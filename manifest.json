@@ -17,5 +17,11 @@
         "https://developer.chrome.com/docs/webstore/*"
       ]
     }
-  ]
+  ],
+  "action": {
+
+  },
+  "background": {
+    "service_worker": "service_worker.js"
+  }
 }
