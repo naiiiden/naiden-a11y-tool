@@ -12,7 +12,7 @@ function injectIframe() {
 
     document.body.insertBefore(iframeElement, document.body.firstChild);
   } else {
-    window.location.reload();
+    document.querySelector("#my-a11y-tool-iframe").remove();
   }
 }
 
