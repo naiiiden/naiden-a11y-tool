@@ -7,14 +7,11 @@
     "default_path": "index.html"
   },
   "permissions": [
-    "sidePanel",
+    "scripting",
     "contextMenus"
   ],
-  "content_scripts": [
-    {
-      "js": ["scripts/content.js"],
-      "matches": ["<all_urls>"]
-    }
+  "host_permissions": [
+    "<all_urls>"
   ],
   "action": {
 
