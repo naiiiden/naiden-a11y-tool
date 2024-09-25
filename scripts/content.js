@@ -1,18 +1,21 @@
 function injectIframe() {
-  if (!document.getElementById('my-a11y-tool-iframe')) {
-    const iframeElement = document.createElement('iframe');
-    iframeElement.id = 'my-a11y-tool-iframe';
-    iframeElement.src = chrome.runtime.getURL('index.html');
-    iframeElement.style.position = 'fixed';
-    iframeElement.style.top = '0';
-    iframeElement.style.left = '0';
-    iframeElement.style.width = '50%';
-    iframeElement.style.height = '50%';
-    iframeElement.style.zIndex = '9999';
+  const naidenA11yIframe = `
+    <iframe id="naiden-a11y-tool" src="${chrome.runtime.getURL('index.html')}" style="
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 50%;
+      z-index: 9999;
+    "></iframe>
+  `;
 
-    document.body.insertBefore(iframeElement, document.body.firstChild);
+  const naidenIframe = document.getElementById('naiden-a11y-tool');
+
+  if (!naidenIframe) {
+    document.body.insertAdjacentHTML('afterbegin', naidenA11yIframe);
   } else {
-    document.querySelector("#my-a11y-tool-iframe").remove();
+    naidenIframe.remove();
   }
 }
 
