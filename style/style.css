@@ -1,0 +1,9 @@
+#naiden-a11y-tool {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  z-index: 9999;
+  background: #fff;
+}/*# sourceMappingURL=style.css.map */
