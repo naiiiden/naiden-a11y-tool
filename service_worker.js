@@ -1,4 +1,4 @@
-chrome.action.onClicked.addListener((tab) => {
+function insAndExec(tab) {
   chrome.scripting.executeScript({
     target: {tabId: tab.id},
     files: ['scripts/content.js']
@@ -8,6 +8,10 @@ chrome.action.onClicked.addListener((tab) => {
     target: { tabId: tab.id },
     files: ['style/style.css']
   });
+}
+
+chrome.action.onClicked.addListener((tab) => {
+  insAndExec(tab);
 });
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -20,28 +24,12 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === 'run_naiden_a11y_tool') {
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      files: ['scripts/content.js']
-    });
-
-    chrome.scripting.insertCSS({
-      target: { tabId: tab.id },
-      files: ['style/style.css']
-    });
+    insAndExec(tab);
   }
 });
 
 chrome.commands.onCommand.addListener((command, tab) => {
   if (command === 'toggle_naiden_a11y_tool') {
-    chrome.scripting.executeScript({
-      target: {tabId: tab.id},
-      files: ['scripts/content.js']
-    });
-
-    chrome.scripting.insertCSS({
-      target: { tabId: tab.id },
-      files: ['style/style.css']
-    });
+    insAndExec(tab);
   }
 });
