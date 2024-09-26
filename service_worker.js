@@ -31,3 +31,12 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     });
   }
 });
+
+chrome.commands.onCommand.addListener((command, tab) => {
+  if (command === 'toggle_naiden_a11y_tool') {
+    chrome.scripting.executeScript({
+      target: {tabId: tab.id},
+      files: ['scripts/content.js']
+    });
+  }
+});
