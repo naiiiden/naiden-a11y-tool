@@ -17,3 +17,17 @@ function injectIframe() {
 }
 
 injectIframe();
+
+function toggleStylesheets(disable) {
+  const stylesheets = document.styleSheets;
+
+  for (let i = 0; i < stylesheets.length; i++) {
+    stylesheets[i].disabled = disable;
+  }
+}
+
+window.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'TOGGLE_STYLES') {
+    toggleStylesheets(event.data.disable);
+  }
+});
