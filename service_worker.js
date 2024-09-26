@@ -38,5 +38,10 @@ chrome.commands.onCommand.addListener((command, tab) => {
       target: {tabId: tab.id},
       files: ['scripts/content.js']
     });
+
+    chrome.scripting.insertCSS({
+      target: { tabId: tab.id },
+      files: ['style/style.css']
+    });
   }
 });
