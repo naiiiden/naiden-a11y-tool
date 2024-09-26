@@ -13,6 +13,7 @@ function injectIframe() {
     document.body.insertAdjacentHTML('afterbegin', naidenA11yIframe);
   } else {
     naidenIframe.remove();
+    toggleStylesheets(false);
   }
 }
 
