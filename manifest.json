@@ -3,12 +3,11 @@
   "name": "naiden's a11y tool",
   "description": "naiden's accessibility audit tool",
   "version": "1.0",
-  "side_panel": {
-    "default_path": "index.html"
-  },
   "permissions": [
     "scripting",
-    "contextMenus"
+    "contextMenus",
+    "tabs",
+    "sidePanel"
   ],
   "host_permissions": [
     "<all_urls>"

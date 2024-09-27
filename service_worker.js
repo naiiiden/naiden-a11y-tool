@@ -1,35 +1,46 @@
-function insAndExec(tab) {
-  chrome.scripting.executeScript({
-    target: {tabId: tab.id},
-    files: ['scripts/content.js']
-  });
+// function insAndExec(tab) {
+//   chrome.scripting.executeScript({
+//     target: {tabId: tab.id},
+//     files: ['scripts/content.js']
+//   });
 
-  chrome.scripting.insertCSS({
-    target: { tabId: tab.id },
-    files: ['style/style.css']
-  });
-}
+//   chrome.scripting.insertCSS({
+//     target: { tabId: tab.id },
+//     files: ['style/style.css']
+//   });
+// }
 
-chrome.action.onClicked.addListener((tab) => {
-  insAndExec(tab);
-});
+// chrome.action.onClicked.addListener((tab) => {
+//   insAndExec(tab);
+// });
 
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
-    id: 'run_naiden_a11y_tool',
-    title: 'run naiden a11y tool',
-    contexts: ['all']
-  });
-});
+// chrome.runtime.onInstalled.addListener(() => {
+//   chrome.contextMenus.create({
+//     id: 'run_naiden_a11y_tool',
+//     title: 'run naiden a11y tool',
+//     contexts: ['all']
+//   });
+// });
 
-chrome.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === 'run_naiden_a11y_tool') {
-    insAndExec(tab);
-  }
-});
+// chrome.contextMenus.onClicked.addListener((info, tab) => {
+//   if (info.menuItemId === 'run_naiden_a11y_tool') {
+//     insAndExec(tab);
+//   }
+// });
 
-chrome.commands.onCommand.addListener((command, tab) => {
-  if (command === 'toggle_naiden_a11y_tool') {
-    insAndExec(tab);
-  }
-});
+// chrome.commands.onCommand.addListener((command, tab) => {
+//   if (command === 'toggle_naiden_a11y_tool') {
+//     insAndExec(tab);
+//   }
+// });
+
+chrome.action.onClicked.addListener( ( tab ) => {
+
+  chrome.sidePanel.setOptions( { 
+      tabId: tab.id,
+      path: "index.html",
+      enabled: true 
+  } );
+  chrome.sidePanel.open( { tabId: tab.id } );
+
+} );
