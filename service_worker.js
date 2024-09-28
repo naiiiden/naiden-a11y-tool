@@ -1,12 +1,12 @@
 chrome.action.onClicked.addListener( ( tab ) => {
 
-  chrome.sidePanel.setOptions( { 
-      tabId: tab.id,
-      path: "index.html",
-      enabled: true 
-  } );
-  chrome.sidePanel.open( { tabId: tab.id } );
-
+  chrome.sidePanel.setOptions({ 
+    tabId: tab.id,
+    path: "index.html",
+    enabled: true 
+  });
+  
+  chrome.sidePanel.open({ tabId: tab.id });
 });
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -19,12 +19,24 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "toggle_naiden_a11y_tool") {
+    chrome.sidePanel.setOptions({ 
+      tabId: tab.id,
+      path: "index.html",
+      enabled: true 
+    });
+
     chrome.sidePanel.open({ tabId: tab.id });
   }
 });
 
 chrome.commands.onCommand.addListener((command, tab) => {
   if (command === 'toggle_naiden_a11y_tool') {
+    chrome.sidePanel.setOptions({ 
+      tabId: tab.id,
+      path: "index.html",
+      enabled: true 
+    });
+
     chrome.sidePanel.open({ tabId: tab.id });
   }
 });
