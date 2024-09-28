@@ -1,12 +1,27 @@
-chrome.action.onClicked.addListener( ( tab ) => {
+let panelState = {};
 
-  chrome.sidePanel.setOptions({ 
-    tabId: tab.id,
-    path: "index.html",
-    enabled: true 
-  });
-  
-  chrome.sidePanel.open({ tabId: tab.id });
+function toggleSidePanel(tab) {
+  const tabId = tab.id;
+
+  if (panelState[tabId]) {
+    chrome.sidePanel.setOptions({
+      tabId: tabId,
+      enabled: false
+    });
+    panelState[tabId] = false; 
+  } else {
+    chrome.sidePanel.setOptions({
+      tabId: tabId,
+      path: "index.html",
+      enabled: true
+    });
+    chrome.sidePanel.open({ tabId: tabId });
+    panelState[tabId] = true; 
+  }
+}
+
+chrome.action.onClicked.addListener((tab) => {
+  toggleSidePanel(tab);
 });
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -19,26 +34,18 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "toggle_naiden_a11y_tool") {
-    chrome.sidePanel.setOptions({ 
-      tabId: tab.id,
-      path: "index.html",
-      enabled: true 
-    });
-
-    chrome.sidePanel.open({ tabId: tab.id });
+    toggleSidePanel(tab);
   }
 });
 
 chrome.commands.onCommand.addListener((command, tab) => {
   if (command === 'toggle_naiden_a11y_tool') {
-    chrome.sidePanel.setOptions({ 
-      tabId: tab.id,
-      path: "index.html",
-      enabled: true 
-    });
-
-    chrome.sidePanel.open({ tabId: tab.id });
+    toggleSidePanel(tab);
   }
 });
 
 chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
+
+chrome.tabs.onRemoved.addListener((tabId) => {
+  delete panelState[tabId];
+});
