@@ -20,7 +20,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["index.html", "scripts/iframe.js"],
+      "resources": ["index.html", "scripts/script.js"],
       "matches": ["<all_urls>"]
     }
   ],
