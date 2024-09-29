@@ -15,7 +15,14 @@ function toggleSidePanel(tab) {
       path: "index.html",
       enabled: true
     });
+    
     chrome.sidePanel.open({ tabId: tabId });
+    
+    chrome.scripting.executeScript({
+      target: {tabId: tabId},
+      files: ['scripts/content.js']
+    });
+
     panelState[tabId] = true; 
   }
 }

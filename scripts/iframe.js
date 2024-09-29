@@ -1,13 +1,12 @@
-let stylesDisabled = false;
-    
-document.getElementById('toggleStyles').addEventListener('click', () => {
-    stylesDisabled = !stylesDisabled;
-    
-    // Post message to parent to toggle stylesheets
-    window.parent.postMessage({
-    type: 'TOGGLE_STYLES',
-    disable: stylesDisabled
-    }, '*');
-    
-    document.getElementById('toggleStyles').textContent = stylesDisabled ? 'Enable Styles' : 'Disable Styles';
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleCheckbox = document.getElementById("toggle-stylesheets");
+
+  toggleCheckbox.addEventListener("change", () => {
+    const disableStylesheets = toggleCheckbox.checked;
+
+    // Get the active tab and send a message to content.js
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, { toggleStylesheets: disableStylesheets });
+    });
+  });
 });
