@@ -8,22 +8,22 @@ function toggleSidePanel(tab) {
       tabId: tabId,
       enabled: false
     });
-    panelState[tabId] = false; 
+    chrome.tabs.sendMessage(tabId, { toggleStylesheets: false }); // Re-enable stylesheets
+    panelState[tabId] = false;
   } else {
     chrome.sidePanel.setOptions({
       tabId: tabId,
       path: "index.html",
       enabled: true
     });
-    
     chrome.sidePanel.open({ tabId: tabId });
-    
+
     chrome.scripting.executeScript({
-      target: {tabId: tabId},
+      target: { tabId: tabId },
       files: ['scripts/content.js']
     });
 
-    panelState[tabId] = true; 
+    panelState[tabId] = true;
   }
 }
 
