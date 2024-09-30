@@ -1,4 +1,8 @@
 # naiden-a11y-tool
+visual stuff and side panel ui:
+green = helpful and possible improvement, yellow = alert to that should be looked at, red = error to be fixed asap
+all elements should be outlined with one of the colors above depending on their state
+
 errors:
 ## alt attr:
 1. img missing alt attribute
