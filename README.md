@@ -1,10 +1,11 @@
 # naiden-a11y-tool
-visual stuff and side panel ui:
-green = helpful and possible improvement, yellow = alert to that should be looked at, red = error to be fixed asap
-all elements should be outlined with one of the colors above depending on their state
+visual stuff and side panel ui: <br>
+green = helpful and possible improvement, yellow = alert to that should be looked at, red = error to be fixed asap <br>
+all elements should be outlined with one of the colors above depending on their state <br>
+~toggleable stylesheets~
 
-errors:
-## alt attr:
+## errors:
+### alt attr:
 1. img missing alt attribute
 2. linked img missing alt text (empty link)
 3. image button missing alt text (empty button)
@@ -21,12 +22,12 @@ errors:
 </map>
 `
 
-## forms:
+### forms:
 1. missing form label
 2. empty form label
 3. multiple form labels
 
-## empty stuff:
+### empty stuff:
 1. empty heading (img w/ no alt attr)
 2. empty button (img w/ no alt attr)
 3. empty link (img w/ no alt attr)
