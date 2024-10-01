@@ -34,3 +34,5 @@ explain what each error means, how to fix it and related wcag link about the iss
 2. empty button (img w/ no alt attr)
 3. empty link (img w/ no alt attr)
 4. empty table header
+5. empty page title
+6. empty iframe title
