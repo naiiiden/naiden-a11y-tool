@@ -51,8 +51,6 @@ chrome.commands.onCommand.addListener((command, tab) => {
   }
 });
 
-chrome.sidePanel.setPanelBehavior({ openPanelOnActionClick: true });
-
 chrome.tabs.onRemoved.addListener((tabId) => {
   delete panelState[tabId];
 });
