@@ -3,11 +3,6 @@ function insAndExec(tab) {
     target: {tabId: tab.id},
     files: ['scripts/content.js']
   });
-
-  chrome.scripting.insertCSS({
-    target: { tabId: tab.id },
-    files: ['style/style.css']
-  });
 }
 
 chrome.action.onClicked.addListener((tab) => {

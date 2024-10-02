@@ -11,4 +11,7 @@
 
 .naiden-a11y-tool-body {
   margin: 0;
+}
+.naiden-a11y-tool-body header {
+  display: flex;
 }/*# sourceMappingURL=style.css.map */
