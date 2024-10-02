@@ -11,7 +11,20 @@
 
 .nano-a11y-tool-body {
   margin: 0;
+  padding: 0.75rem;
+  font-size: initial;
 }
 .nano-a11y-tool-body header {
   display: flex;
+}
+.nano-a11y-tool-body header h1 {
+  font-size: 1rem;
+  margin-right: auto;
+}
+.nano-a11y-tool-body header button {
+  min-width: 24px;
+  min-height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */
