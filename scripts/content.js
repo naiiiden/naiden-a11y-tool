@@ -1,22 +1,39 @@
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.toggleStylesheets !== undefined) {
-      const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
-  
-      stylesheets.forEach((stylesheet) => {
-        stylesheet.disabled = message.toggleStylesheets;
-      });
-    }
-});
+function injectIframe() {
+  const iframe = `
+    <iframe id="naiden-a11y-tool" src="${chrome.runtime.getURL('index.html')}" style="position:fixed; bottom:0; right:0; width:300px; height:400px; z-index:1000;"></iframe>
+  `;
 
-// Listen for messages and handle DOM interactions
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === 'highlightElements') {
-    const elements = document.querySelectorAll('*:not(div):not(span)');
+  const naidenA11yIframe = document.getElementById('naiden-a11y-tool');
 
-    elements.forEach((element) => {
-      element.style.outline = '2px solid red'; // Highlight the elements
-    });
+  if (!naidenA11yIframe) {
+    document.body.insertAdjacentHTML('afterbegin', iframe);
+  } else {
+    naidenA11yIframe.remove();
+    toggleStylesheets(false);
+  }
+}
+injectIframe();
 
-    sendResponse({ elementCount: elements.length });
+function toggleStylesheets(disable) {
+  const stylesheets = document.styleSheets;
+
+  for (let i = 0; i < stylesheets.length; i++) {
+    stylesheets[i].disabled = disable;
+  }
+}
+
+// Listening to messages from the iframe
+window.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'TOGGLE_STYLES') {
+    toggleStylesheets(event.data.disable);
+  } else if (event.data && event.data.type === 'HIGHLIGHT_ELEMENTS') {
+    highlightElements();
   }
 });
+
+function highlightElements() {
+  const elements = document.querySelectorAll('body *:not(div):not(span)');
+  elements.forEach(element => {
+    element.style.outline = '2px solid red'; 
+  });
+}
