@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "naiden's a11y tool",
-  "description": "naiden's accessibility audit tool",
+  "name": "nano's a11y tool",
+  "description": "nano's accessibility audit tool",
   "version": "1.0",
   "permissions": [
     "scripting",
@@ -29,11 +29,11 @@
     }
   ],
   "commands": {
-    "toggle_naiden_a11y_tool": {
+    "toggle_nano_a11y_tool": {
       "suggested_key": {
         "default": "Ctrl+Shift+X"
       },
-      "description": "toggle naiden's a11y tool"
+      "description": "toggle nano's a11y tool"
     }
   }
 }

@@ -1,19 +1,19 @@
 function injectIframe() {
-  const iframe = `<iframe id="naiden-a11y-tool" src="${chrome.runtime.getURL('index.html')}"></iframe>`;
+  const iframe = `<iframe id="nano-a11y-tool" src="${chrome.runtime.getURL('index.html')}"></iframe>`;
 
-  let naidenA11yIframe = document.getElementById('naiden-a11y-tool');
+  let nanoA11yIframe = document.getElementById('nano-a11y-tool');
   const windowHTML = document.documentElement; 
   
-  if (!naidenA11yIframe) {
+  if (!nanoA11yIframe) {
     document.body.insertAdjacentHTML('afterbegin', iframe);
-    naidenA11yIframe = document.getElementById('naiden-a11y-tool');
+    nanoA11yIframe = document.getElementById('nano-a11y-tool');
 
-    naidenA11yIframe.addEventListener("load", () => {
-      const naidenA11yIframeWidth = document.getElementById("naiden-a11y-tool").offsetWidth;
-      windowHTML.style.marginLeft = `${naidenA11yIframeWidth}px`;
+    nanoA11yIframe.addEventListener("load", () => {
+      const nanoA11yIframeWidth = document.getElementById("nano-a11y-tool").offsetWidth;
+      windowHTML.style.marginLeft = `${nanoA11yIframeWidth}px`;
     });
   } else {
-    naidenA11yIframe.remove();
+    nanoA11yIframe.remove();
     windowHTML.style.marginLeft = "unset";
     toggleStylesheets(false);
   }
@@ -21,11 +21,11 @@ function injectIframe() {
 injectIframe();
 
 function removeIframe() {
-  const naidenA11yIframe = document.getElementById('naiden-a11y-tool');
+  const nanoA11yIframe = document.getElementById('nano-a11y-tool');
   const windowHTML = document.documentElement;
   
-  if (naidenA11yIframe) {
-    naidenA11yIframe.remove();
+  if (nanoA11yIframe) {
+    nanoA11yIframe.remove();
     windowHTML.style.marginLeft = "unset";
     toggleStylesheets(false);
   }

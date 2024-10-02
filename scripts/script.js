@@ -10,6 +10,6 @@ document.getElementById('highlight-btn').addEventListener('click', () => {
   window.parent.postMessage({ type: 'HIGHLIGHT_ELEMENTS' }, '*');
 });
 
-document.getElementById("naiden-a11y-tool-close-btn").addEventListener("click", () => {
+document.getElementById("nano-a11y-tool-close-btn").addEventListener("click", () => {
   window.parent.postMessage({ type: 'CLOSE_IFRAME' }, '*');
 });

@@ -11,20 +11,20 @@ chrome.action.onClicked.addListener((tab) => {
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
-    id: 'run_naiden_a11y_tool',
-    title: 'run naiden a11y tool',
+    id: 'run_nano_a11y_tool',
+    title: 'run nano a11y tool',
     contexts: ['all']
   });
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === 'run_naiden_a11y_tool') {
+  if (info.menuItemId === 'run_nano_a11y_tool') {
     insAndExec(tab);
   }
 });
 
 chrome.commands.onCommand.addListener((command, tab) => {
-  if (command === 'toggle_naiden_a11y_tool') {
+  if (command === 'toggle_nano_a11y_tool') {
     insAndExec(tab);
   }
 });

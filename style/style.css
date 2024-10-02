@@ -1,4 +1,4 @@
-#naiden-a11y-tool {
+#nano-a11y-tool {
   border: none;
   position: fixed;
   top: 0;
@@ -9,9 +9,9 @@
   background: #fff;
 }
 
-.naiden-a11y-tool-body {
+.nano-a11y-tool-body {
   margin: 0;
 }
-.naiden-a11y-tool-body header {
+.nano-a11y-tool-body header {
   display: flex;
 }/*# sourceMappingURL=style.css.map */
