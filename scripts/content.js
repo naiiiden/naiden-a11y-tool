@@ -1,6 +1,6 @@
 function injectIframe() {
   const iframe = `
-    <iframe id="naiden-a11y-tool" src="${chrome.runtime.getURL('index.html')}" style="position:fixed; bottom:0; right:0; width:300px; height:400px; z-index:1000;"></iframe>
+    <iframe id="naiden-a11y-tool" src="${chrome.runtime.getURL('index.html')}"></iframe>
   `;
 
   const naidenA11yIframe = document.getElementById('naiden-a11y-tool');
