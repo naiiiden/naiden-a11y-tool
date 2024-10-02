@@ -46,5 +46,7 @@ window.addEventListener('message', (event) => {
     toggleStylesheets(event.data.disable);
   } else if (event.data && event.data.type === 'HIGHLIGHT_ELEMENTS') {
     highlightElements();
+  } if (event.data && event.data.type === "CLOSE_IFRAME") {
+    injectIframe();
   }
 });
