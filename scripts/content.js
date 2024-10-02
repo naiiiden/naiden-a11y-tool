@@ -1,14 +1,20 @@
 function injectIframe() {
-  const iframe = `
-    <iframe id="naiden-a11y-tool" src="${chrome.runtime.getURL('index.html')}"></iframe>
-  `;
+  const iframe = `<iframe id="naiden-a11y-tool" src="${chrome.runtime.getURL('index.html')}"></iframe>`;
 
-  const naidenA11yIframe = document.getElementById('naiden-a11y-tool');
-
+  let naidenA11yIframe = document.getElementById('naiden-a11y-tool');
+  const windowHTML = document.documentElement; 
+  
   if (!naidenA11yIframe) {
     document.body.insertAdjacentHTML('afterbegin', iframe);
+    naidenA11yIframe = document.getElementById('naiden-a11y-tool');
+
+    naidenA11yIframe.addEventListener("load", () => {
+      const naidenA11yIframeWidth = document.getElementById("naiden-a11y-tool").offsetWidth;
+      windowHTML.style.marginLeft = `${naidenA11yIframeWidth}px`;
+    });
   } else {
     naidenA11yIframe.remove();
+    windowHTML.style.marginLeft = "unset";
     toggleStylesheets(false);
   }
 }
