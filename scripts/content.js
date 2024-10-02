@@ -29,9 +29,14 @@ function toggleStylesheets(disable) {
 }
 
 function highlightElements() {
+  // wip
   const elements = document.querySelectorAll('body *:not(div):not(span)');
   elements.forEach(element => {
-    element.style.outline = '2px solid red'; 
+    if (element.style.outline == "") {
+      element.style.outline = '2px solid red'; 
+    } else {
+      element.style.outline = "";
+    }
   });
 }
 
