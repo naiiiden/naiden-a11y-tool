@@ -20,6 +20,17 @@ function injectIframe() {
 }
 injectIframe();
 
+function removeIframe() {
+  const naidenA11yIframe = document.getElementById('naiden-a11y-tool');
+  const windowHTML = document.documentElement;
+  
+  if (naidenA11yIframe) {
+    naidenA11yIframe.remove();
+    windowHTML.style.marginLeft = "unset";
+    toggleStylesheets(false);
+  }
+}
+
 function toggleStylesheets(disable) {
   const stylesheets = document.styleSheets;
 
@@ -47,6 +58,6 @@ window.addEventListener('message', (event) => {
   } else if (event.data && event.data.type === 'HIGHLIGHT_ELEMENTS') {
     highlightElements();
   } if (event.data && event.data.type === "CLOSE_IFRAME") {
-    injectIframe();
+    removeIframe();
   }
 });
