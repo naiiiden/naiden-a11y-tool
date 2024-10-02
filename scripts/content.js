@@ -22,6 +22,13 @@ function toggleStylesheets(disable) {
   }
 }
 
+function highlightElements() {
+  const elements = document.querySelectorAll('body *:not(div):not(span)');
+  elements.forEach(element => {
+    element.style.outline = '2px solid red'; 
+  });
+}
+
 // Listening to messages from the iframe
 window.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'TOGGLE_STYLES') {
@@ -30,10 +37,3 @@ window.addEventListener('message', (event) => {
     highlightElements();
   }
 });
-
-function highlightElements() {
-  const elements = document.querySelectorAll('body *:not(div):not(span)');
-  elements.forEach(element => {
-    element.style.outline = '2px solid red'; 
-  });
-}
