@@ -1,10 +1,11 @@
 #nano-a11y-tool {
     border: none;
     position: fixed; 
-    top: 0; 
+    top: 0;
+    bottom: 0;
     left: 0; 
+    height: 100%;
     width: 300px; 
-    height: 400px; 
     z-index: 1000;
     background: #fff;
 }
