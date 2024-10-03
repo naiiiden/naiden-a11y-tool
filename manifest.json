@@ -4,8 +4,7 @@
   "description": "nano's accessibility audit tool",
   "version": "1.0",
   "permissions": [
-    "scripting",
-    "contextMenus"
+    "scripting"
   ],
   "host_permissions": [
     "<all_urls>"

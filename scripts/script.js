@@ -12,27 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
       `(${highlightElements.toString()})();`
     );
   });
-
-  // Call the function to get the element count
-  getElementCount();
 });
 
-// Function to count the elements in the inspected window
-function getElementCount() {
-  chrome.devtools.inspectedWindow.eval(
-    `document.body.getElementsByTagName('*').length`,
-    (result, isException) => {
-      if (isException) {
-        console.error("Error counting elements:", isException);
-        return;
-      }
-      // Update the count in the DevTools panel
-      document.getElementById('element-count').textContent = result;
-    }
-  );
-}
-
-// Existing functions
 function toggleStylesheets(disable) {
   const stylesheets = document.styleSheets;
   for (let i = 0; i < stylesheets.length; i++) {
