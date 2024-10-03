@@ -1,0 +1,8 @@
+.nano-a11y-tool-popup {
+  min-width: 300px;
+  min-height: 300px;
+  display: grid;
+  place-content: center;
+  padding: 0.5rem;
+  text-align: center;
+}/*# sourceMappingURL=popup.css.map */
