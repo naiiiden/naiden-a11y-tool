@@ -16,6 +16,7 @@
   "background": {
     "service_worker": "service_worker.js"
   },
+  "devtools_page": "index.html",
   "web_accessible_resources": [
     {
       "resources": ["index.html", "scripts/script.js", "style/style.css"],
