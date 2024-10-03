@@ -1,15 +1,52 @@
-const toggleCheckbox = document.getElementById("toggle-stylesheets");
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById('toggle-stylesheets').addEventListener('change', () => {
+    const disable = document.getElementById('toggle-stylesheets').checked;
 
-toggleCheckbox.addEventListener("change", () => {
-  const disableStylesheets = toggleCheckbox.checked;
+    chrome.devtools.inspectedWindow.eval(
+      `(${toggleStylesheets.toString()})(${disable});`
+    );
+  });
 
-  window.parent.postMessage({ type: 'TOGGLE_STYLES', disable: disableStylesheets }, '*');
+  document.getElementById('highlight-btn').addEventListener('click', () => {
+    chrome.devtools.inspectedWindow.eval(
+      `(${highlightElements.toString()})();`
+    );
+  });
+
+  // Call the function to get the element count
+  getElementCount();
 });
 
-document.getElementById('highlight-btn').addEventListener('click', () => {
-  window.parent.postMessage({ type: 'HIGHLIGHT_ELEMENTS' }, '*');
-});
+// Function to count the elements in the inspected window
+function getElementCount() {
+  chrome.devtools.inspectedWindow.eval(
+    `document.body.getElementsByTagName('*').length`,
+    (result, isException) => {
+      if (isException) {
+        console.error("Error counting elements:", isException);
+        return;
+      }
+      // Update the count in the DevTools panel
+      document.getElementById('element-count').textContent = result;
+    }
+  );
+}
 
-document.getElementById("nano-a11y-tool-close-btn").addEventListener("click", () => {
-  window.parent.postMessage({ type: 'CLOSE_IFRAME' }, '*');
-});
+// Existing functions
+function toggleStylesheets(disable) {
+  const stylesheets = document.styleSheets;
+  for (let i = 0; i < stylesheets.length; i++) {
+    stylesheets[i].disabled = disable;
+  }
+}
+
+function highlightElements() {
+  const elements = document.querySelectorAll('body *:not(div):not(span)');
+  elements.forEach(element => {
+    if (element.style.outline == "") {
+      element.style.outline = '2px solid red'; 
+    } else {
+      element.style.outline = "";
+    }
+  });
+}
