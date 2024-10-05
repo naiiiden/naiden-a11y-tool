@@ -61,9 +61,7 @@ function runAudit() {
     "document.title", 
     (result) => {
       if (!result || result === "") {
-        // Error found, push the corresponding error from the array
-        const error = errors.find(e => e.id === 1); // find error with id 1
-        auditResults.push(error);
+        auditResults.push(errors[0]);
       }
     }
   );
@@ -73,9 +71,7 @@ function runAudit() {
     `Array.from(document.querySelectorAll('img')).some(img => !img.alt)`,
     (result) => {
       if (result) {
-        // Error found, push the corresponding error from the array
-        const error = errors.find(e => e.id === 2); // find error with id 2
-        auditResults.push(error);
+        auditResults.push(errors[1]);
       }
     }
   );
