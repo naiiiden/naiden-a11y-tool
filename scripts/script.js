@@ -8,10 +8,17 @@ const errors = [
   },
   {
     id: 2,
-    name: "Missing alt attribute",
+    name: "Image missing alt attribute",
     description: "Some images are missing an alt attribute.",
     wcagLink: "https://www.w3.org/WAI/WCAG21/quickref/#non-text-content",
     fix: "Add descriptive alt text to all images."
+  },
+  {
+    id: 3,
+    name: "Linked image missing alt attribute",
+    description: "Some linked images are missing an alt attribute.",
+    wcagLink: "https://www.w3.org/WAI/WCAG21/quickref/#non-text-content",
+    fix: "Add descriptive alt text to all linked images."
   }
 ];
 
@@ -84,8 +91,8 @@ async function runAudit() {
     // Check each image for missing alt attributes (and ignore valid empty alts)
     const images = await new Promise((resolve) => {
       chrome.devtools.inspectedWindow.eval(`
-        Array.from(document.querySelectorAll('img:not(a img, button img)')).map((img) => {
-          return { alt: img.getAttribute('alt') };
+        Array.from(document.querySelectorAll('img')).map((img) => {
+          return { alt: img.getAttribute('alt'), isLinked: img.closest('a') !== null };
         });
       `, resolve);
     });
@@ -94,6 +101,13 @@ async function runAudit() {
     
     missingAltImages.forEach(img => {
       const error = { ...errors[1]  }; 
+      auditResults.push(error);
+    });
+
+    const linkedImagesWithoutAlt = images.filter(img => img.isLinked && img.alt === null);
+    
+    linkedImagesWithoutAlt.forEach(img => {
+      const error = { ...errors[2] };
       auditResults.push(error);
     });
 
