@@ -69,35 +69,37 @@ function displayAuditResults(auditResults) {
   });
 }
 
-function evalAsync(script) {
-  return new Promise((resolve) => {
-    chrome.devtools.inspectedWindow.eval(script, (result) => {
-      resolve(result);
-    });
-  });
-}
-
-function runAudit() {
+async function runAudit() {
   let auditResults = [];
 
-  // ex1 check if the page has a title
-  evalAsync("document.title").then(result => {
-    if (!result || result === "") {
+  try {
+    const pageTitle = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval("document.title", resolve);
+    });
+    
+    if (!pageTitle || pageTitle === "") {
       auditResults.push(errors[0]);
     }
+
+    // Check each image for missing alt attributes (and ignore valid empty alts)
+    const images = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval(`
+        Array.from(document.querySelectorAll('img')).map((img ) => {
+          return { alt: img.getAttribute('alt') };
+        });
+      `, resolve);
+    });
+
+    const missingAltImages = images.filter(img => img.alt === null);
     
-    // ex2 check each image for missing alt attribute (and ignore valid empty alts)
-    return evalAsync(`Array.from(document.querySelectorAll('img')).map((img) => {
-      return { alt: img.getAttribute('alt') };
-    })`);
-  }).then(result => {
-    const missingAltImages = result.filter(img => img.alt === null); // Only count those with no alt attribute at all
     missingAltImages.forEach(img => {
-      const error = { ...errors[1] }; 
+      const error = { ...errors[1]  }; 
       auditResults.push(error);
     });
 
     console.log("errors:", auditResults);
     displayAuditResults(auditResults);
-  });
+  } catch (err) {
+    console.error("Error during audit:", err);
+  }
 }
