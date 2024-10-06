@@ -81,19 +81,23 @@ function runAudit() {
   let auditResults = [];
 
   // ex1 check if the page has a title
-  evalAsync("document.title").then((title) => {
-    if (!title || title === "") {
+  evalAsync("document.title").then(result => {
+    if (!result || result === "") {
       auditResults.push(errors[0]);
     }
+    
+    // ex2 check each image for missing alt attribute (and ignore valid empty alts)
+    return evalAsync(`Array.from(document.querySelectorAll('img')).map((img) => {
+      return { alt: img.getAttribute('alt') };
+    })`);
+  }).then(result => {
+    const missingAltImages = result.filter(img => img.alt === null); // Only count those with no alt attribute at all
+    missingAltImages.forEach(img => {
+      const error = { ...errors[1] }; 
+      auditResults.push(error);
+    });
 
-    // ex2 check if images have alt attributes
-    return evalAsync(`Array.from(document.querySelectorAll('img')).some(img => !img.alt)`);
-  }).then((missingAlt) => {
-    if (missingAlt) {
-      auditResults.push(errors[1]);
-    }
-
-    // display the results after all checks
+    console.log("errors:", auditResults);
     displayAuditResults(auditResults);
   });
 }
