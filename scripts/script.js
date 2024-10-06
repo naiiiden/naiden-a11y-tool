@@ -53,28 +53,47 @@ function highlightElements() {
   });
 }
 
+
+function displayAuditResults(auditResults) {
+  const errorsList = document.getElementById('errors-list');
+  errorsList.innerHTML = '';
+
+  auditResults.forEach(error => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+      <strong>${error.name}</strong> - ${error.description}<br>
+      <a href="${error.wcagLink}" target="_blank">Learn more</a><br>
+      <p>Fix: ${error.fix}</p>
+    `;
+    errorsList.appendChild(listItem);
+  });
+}
+
+function evalAsync(script) {
+  return new Promise((resolve) => {
+    chrome.devtools.inspectedWindow.eval(script, (result) => {
+      resolve(result);
+    });
+  });
+}
+
 function runAudit() {
   let auditResults = [];
 
   // ex1 check if the page has a title
-  chrome.devtools.inspectedWindow.eval(
-    "document.title", 
-    (result) => {
-      if (!result || result === "") {
-        auditResults.push(errors[0]);
-      }
+  evalAsync("document.title").then((title) => {
+    if (!title || title === "") {
+      auditResults.push(errors[0]);
     }
-  );
 
-  // ex2 check if images have alt attributes
-  chrome.devtools.inspectedWindow.eval(
-    `Array.from(document.querySelectorAll('img')).some(img => !img.alt)`,
-    (result) => {
-      if (result) {
-        auditResults.push(errors[1]);
-      }
+    // ex2 check if images have alt attributes
+    return evalAsync(`Array.from(document.querySelectorAll('img')).some(img => !img.alt)`);
+  }).then((missingAlt) => {
+    if (missingAlt) {
+      auditResults.push(errors[1]);
     }
-  );
 
-  console.log("errors", auditResults);
+    // display the results after all checks
+    displayAuditResults(auditResults);
+  });
 }
