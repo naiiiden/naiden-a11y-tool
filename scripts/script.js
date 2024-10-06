@@ -15,13 +15,20 @@ const errors = [
   },
   {
     id: 2,
+    name: "Page refreshes or redirects automatically",
+    description: "Page refreshes or redirects automatically.",
+    wcagLink: "https://www.w3.org/WAI/WCAG21/quickref/#headings-and-labels",
+    fix: "Remove the <meta> refresh tag."
+  },
+  {
+    id: 3,
     name: "Image missing alt attribute",
     description: "Some images are missing an alt attribute.",
     wcagLink: "https://www.w3.org/WAI/WCAG21/quickref/#non-text-content",
     fix: "Add descriptive alt text to all images."
   },
   {
-    id: 3,
+    id: 4,
     name: "Linked image missing alt attribute",
     description: "Some linked images are missing an alt attribute.",
     wcagLink: "https://www.w3.org/WAI/WCAG21/quickref/#non-text-content",
@@ -68,8 +75,8 @@ function highlightElements() {
 }
 
 
+const errorsList = document.getElementById('errors-list');
 function displayAuditResults(auditResults) {
-  const errorsList = document.getElementById('errors-list');
   errorsList.innerHTML = '';
 
   auditResults.forEach(error => {
@@ -116,6 +123,14 @@ async function runAudit() {
       auditResults.push(errors[1]);
     }
 
+    const metaRefresh = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval("document.querySelector('meta[http-equiv]')", resolve);
+    })
+
+    if ((metaRefresh && metaRefresh.content) || (metaRefresh && metaRefresh.content !== "")) {
+      auditResults.push(errors[2]);
+    }
+
     // Check each image for missing alt attributes (and ignore valid empty alts)
     const images = await new Promise((resolve) => {
       chrome.devtools.inspectedWindow.eval(`
@@ -128,14 +143,14 @@ async function runAudit() {
     const missingAltImages = images.filter(img => img.alt === null);
     
     missingAltImages.forEach(img => {
-      const error = { ...errors[2]  }; 
+      const error = { ...errors[3]  }; 
       auditResults.push(error);
     });
 
     const linkedImagesWithoutAlt = images.filter(img => img.isLinked && img.alt === null);
     
     linkedImagesWithoutAlt.forEach(img => {
-      const error = { ...errors[3] };
+      const error = { ...errors[4] };
       auditResults.push(error);
     });
 
