@@ -84,7 +84,7 @@ async function runAudit() {
     // Check each image for missing alt attributes (and ignore valid empty alts)
     const images = await new Promise((resolve) => {
       chrome.devtools.inspectedWindow.eval(`
-        Array.from(document.querySelectorAll('img')).map((img ) => {
+        Array.from(document.querySelectorAll('img:not(a img, button img)')).map((img) => {
           return { alt: img.getAttribute('alt') };
         });
       `, resolve);
