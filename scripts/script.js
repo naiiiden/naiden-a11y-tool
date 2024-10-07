@@ -1,4 +1,4 @@
-import { htmlAndHeadErrors, linkAndButtonErrors } from "./errors.js";
+import { htmlAndHeadErrors, imageLinkAndButtonErrors } from "./errors.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('toggle-stylesheets').addEventListener('change', () => {
@@ -107,14 +107,14 @@ async function runAudit() {
     const missingAltImages = images.filter(img => img.alt === null);
     
     missingAltImages.forEach(img => {
-      const error = { ...linkAndButtonErrors[0]  }; 
+      const error = { ...imageLinkAndButtonErrors[0]  }; 
       auditResults.push(error);
     });
 
     const linkedImagesWithoutAlt = images.filter(img => img.isLinked && img.alt === null);
     
     linkedImagesWithoutAlt.forEach(img => {
-      const error = { ...linkAndButtonErrors[1] };
+      const error = { ...imageLinkAndButtonErrors[1] };
       auditResults.push(error);
     });
 
