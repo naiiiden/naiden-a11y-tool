@@ -203,6 +203,14 @@ async function runAudit() {
       auditResults.push(emptyErrors[0]);
     });
 
+    const tableHeadings = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("th")).filter(tableHeading => tableHeading.innerText.trim() === "").map(tableHeading => tableHeading.outerHTML)`, resolve)
+    });
+
+    tableHeadings.forEach(() => {
+      auditResults.push(emptyErrors[1]);
+    });
+
     console.log("errors:", auditResults);
     displayAuditResults(auditResults);
   } catch (err) {
