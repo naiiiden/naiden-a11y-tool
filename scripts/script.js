@@ -195,6 +195,14 @@ async function runAudit() {
       });
     });    
 
+    const headings = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("h1, h2, h3, h4, h5, h6")).filter(heading => heading.innerText.trim() === "").map(heading => heading.outerHTML)`, resolve)
+    });
+
+    headings.forEach(() => {
+      auditResults.push(emptyErrors[0]);
+    });
+
     console.log("errors:", auditResults);
     displayAuditResults(auditResults);
   } catch (err) {
