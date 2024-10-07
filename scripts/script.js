@@ -161,6 +161,32 @@ async function runAudit() {
       auditResults.push(imageLinkAndButtonErrors[4]);
     });
 
+    const imageMaps = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval(`
+        Array.from(document.querySelectorAll('img[usemap]')).map((img) => {
+          const usemapName = img.getAttribute('usemap').substring(1);
+          const mapElement = document.querySelector('map[name="' + usemapName + '"]');
+          const areas = mapElement ? Array.from(mapElement.querySelectorAll('area')) : [];
+          return {
+            imgAlt: img.getAttribute('alt'),
+            areas: areas.map(area => area.getAttribute('alt'))
+          };
+        });
+      `, resolve);
+    });
+    
+    imageMaps.forEach(map => {
+      if (!map.imgAlt || map.imgAlt === "") {
+        auditResults.push(imageLinkAndButtonErrors[5]); // Image map missing alt text
+      }
+    
+      map.areas.forEach(areaAlt => {
+        if (!areaAlt || areaAlt === "") {
+          auditResults.push(imageLinkAndButtonErrors[6]); // Image map area missing alt text
+        }
+      });
+    });    
+
     console.log("errors:", auditResults);
     displayAuditResults(auditResults);
   } catch (err) {

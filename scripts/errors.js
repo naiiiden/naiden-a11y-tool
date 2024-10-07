@@ -57,5 +57,19 @@ export const imageLinkAndButtonErrors = [
     description: "Some button don't have text.",
     wcagLink: "",
     fix: "Add descriptive text to all buttons.",
+  },
+  {
+    id: 5,
+    name: "Image map missing alt text",
+    description: "Image map missing alt text.",
+    wcagLink: "",
+    fix: "Add alt text to all img maps.",
+  },
+  {
+    id: 6,
+    name: "Image map area missing alt text",
+    description: "Image map area missing alt text.",
+    wcagLink: "",
+    fix: "Add alt text to all img map areas.",
   }
 ];
