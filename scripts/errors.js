@@ -32,9 +32,30 @@ export const imageLinkAndButtonErrors = [
   },
   {
     id: 1,
-    name: "Linked image missing alt attribute",
-    description: "Some linked images are missing an alt attribute.",
+    name: "Linked image missing alt attribute or alt value is empty",
+    description: "Some linked images are missing an alt attribute or its value is empty.",
     wcagLink: "",
     fix: "Add descriptive alt text to all linked images.",
+  },
+  {
+    id: 2,
+    name: "Button image missing alt attribute or alt value is empty",
+    description: "Some button images are missing an alt attribute or its value is empty.",
+    wcagLink: "",
+    fix: "Add descriptive alt text to all button images.",
+  },
+  {
+    id: 3,
+    name: "Empty button",
+    description: "Some button don't have text.",
+    wcagLink: "",
+    fix: "Add descriptive text to all buttons.",
+  },
+  {
+    id: 4,
+    name: "Empty link",
+    description: "Some links don't have text.",
+    wcagLink: "",
+    fix: "Add descriptive alt text to all button images.",
   },
 ];
