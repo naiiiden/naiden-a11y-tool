@@ -1,4 +1,4 @@
-import { htmlAndHeadErrors, imageLinkAndButtonErrors } from "./errors.js";
+import { htmlAndHeadErrors, imageLinkAndButtonErrors, emptyErrors } from "./errors.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('toggle-stylesheets').addEventListener('change', () => {

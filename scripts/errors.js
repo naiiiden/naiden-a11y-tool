@@ -73,3 +73,20 @@ export const imageLinkAndButtonErrors = [
     fix: "Add alt text to all img map areas.",
   }
 ];
+
+export const emptyErrors = [
+  {
+    id: 0,
+    name: "Empty heading",
+    description: "A heading is empty.",
+    wcagLink: "",
+    fix: "Add text to the empty heading.",
+  },
+  {
+    id: 1,
+    name: "Empty table header",
+    description: "Some table headers empty.",
+    wcagLink: "",
+    fix: "Add text to the empty table header.",
+  },
+]
