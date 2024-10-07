@@ -143,7 +143,7 @@ async function runAudit() {
 
     const emptyLinks = await new Promise((resolve) => {
       chrome.devtools.inspectedWindow.eval(`
-        Array.from(document.querySelectorAll('a')).filter(link => !link.innerText.trim()).map(link => link.outerHTML);
+        Array.from(document.querySelectorAll('a:not(:has(img)')).filter(link => !link.innerText.trim()).map(link => link.outerHTML);
       `, resolve);
     });
 
@@ -153,7 +153,7 @@ async function runAudit() {
 
     const emptyButtons = await new Promise((resolve) => {
       chrome.devtools.inspectedWindow.eval(`
-        Array.from(document.querySelectorAll('button')).filter(button => !button.innerText.trim()).map(button => button.outerHTML);
+        Array.from(document.querySelectorAll('button:not(:has(img)')).filter(button => !button.innerText.trim()).map(button => button.outerHTML);
       `, resolve);
     });
 
