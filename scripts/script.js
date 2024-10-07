@@ -95,27 +95,70 @@ async function runAudit() {
       auditResults.push(htmlAndHeadErrors[2]);
     }
 
-    // Check each image for missing alt attributes (and ignore valid empty alts)
-    const images = await new Promise((resolve) => {
+    const missingAltImages = await new Promise((resolve) => {
       chrome.devtools.inspectedWindow.eval(`
-        Array.from(document.querySelectorAll('img')).map((img) => {
-          return { alt: img.getAttribute('alt'), isLinked: img.closest('a') !== null };
+        Array.from(document.querySelectorAll('img:not(a img):not(button img)')).map((img) => {
+          return { alt: img.getAttribute('alt') };
         });
       `, resolve);
     });
 
-    const missingAltImages = images.filter(img => img.alt === null);
-    
-    missingAltImages.forEach(img => {
-      const error = { ...imageLinkAndButtonErrors[0]  }; 
-      auditResults.push(error);
+    missingAltImages.filter(img => img.alt === null).forEach(() => {
+      auditResults.push(imageLinkAndButtonErrors[0]);
     });
 
-    const linkedImagesWithoutAlt = images.filter(img => img.isLinked && img.alt === null);
-    
-    linkedImagesWithoutAlt.forEach(img => {
-      const error = { ...imageLinkAndButtonErrors[1] };
-      auditResults.push(error);
+    const linkedImages = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval(`
+        Array.from(document.querySelectorAll('a img')).map((img) => {
+          const parentText = img.closest('a').innerText.trim();
+          return { alt: img.getAttribute('alt'), hasText: parentText.length > 0 };
+        });
+      `, resolve);
+    });
+
+    linkedImages.forEach((img) => {
+      if (img.hasText && img.alt === null) {
+        auditResults.push(imageLinkAndButtonErrors[0]);
+      } else if (!img.hasText && (!img.alt || img.alt === "")) {
+        auditResults.push(imageLinkAndButtonErrors[1]);
+      }
+    });
+
+    const buttonImages = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval(`
+        Array.from(document.querySelectorAll('button img')).map((img) => {
+          const parentText = img.closest('button').innerText.trim();
+          return { alt: img.getAttribute('alt'), hasText: parentText.length > 0 };
+        });
+      `, resolve);
+    });
+
+    buttonImages.forEach((img) => {
+      if (img.hasText && img.alt === null) {
+        auditResults.push(imageLinkAndButtonErrors[0]); 
+      } else if (!img.hasText && (!img.alt || img.alt === "")) {
+        auditResults.push(imageLinkAndButtonErrors[2]);
+      }
+    });
+
+    const emptyLinks = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval(`
+        Array.from(document.querySelectorAll('a')).filter(link => !link.innerText.trim()).map(link => link.outerHTML);
+      `, resolve);
+    });
+
+    emptyLinks.forEach(() => {
+      auditResults.push(imageLinkAndButtonErrors[3]);
+    });
+
+    const emptyButtons = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval(`
+        Array.from(document.querySelectorAll('button')).filter(button => !button.innerText.trim()).map(button => button.outerHTML);
+      `, resolve);
+    });
+
+    emptyButtons.forEach(() => {
+      auditResults.push(imageLinkAndButtonErrors[4]);
     });
 
     console.log("errors:", auditResults);

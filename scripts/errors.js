@@ -46,16 +46,16 @@ export const imageLinkAndButtonErrors = [
   },
   {
     id: 3,
-    name: "Empty button",
-    description: "Some button don't have text.",
-    wcagLink: "",
-    fix: "Add descriptive text to all buttons.",
-  },
-  {
-    id: 4,
     name: "Empty link",
     description: "Some links don't have text.",
     wcagLink: "",
     fix: "Add descriptive alt text to all button images.",
   },
+  {
+    id: 4,
+    name: "Empty button",
+    description: "Some button don't have text.",
+    wcagLink: "",
+    fix: "Add descriptive text to all buttons.",
+  }
 ];
