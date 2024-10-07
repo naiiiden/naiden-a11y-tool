@@ -20,6 +20,13 @@ export const htmlAndHeadErrors = [
     wcagLink: "",
     fix: "Remove the <meta> refresh tag.",
   },
+  {
+    id: 3,
+    name: "Disabled text scaling and zooming",
+    description: "viewport meta disables text scaling and zooming.",
+    wcagLink: "",
+    fix: "Remove the meta viewport 'user-scalable=no' attribute or set its value to yes or 1, but not no or 1.",
+  },
 ];
 
 export const imageLinkAndButtonErrors = [

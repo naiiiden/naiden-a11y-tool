@@ -95,6 +95,14 @@ async function runAudit() {
       auditResults.push(htmlAndHeadErrors[2]);
     }
 
+    const metaViewport = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval("document.querySelector('meta[name=\"viewport\"]')?.getAttribute('content')", resolve);
+    })
+
+    if (metaViewport && (metaViewport.includes('user-scalable=no') || metaViewport.includes('user-scalable=0'))) {
+      auditResults.push(htmlAndHeadErrors[3]);
+    }
+
     const missingAltImages = await new Promise((resolve) => {
       chrome.devtools.inspectedWindow.eval(`
         Array.from(document.querySelectorAll('img:not(a img):not(button img)')).map((img) => {
