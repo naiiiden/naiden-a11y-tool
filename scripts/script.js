@@ -1,4 +1,4 @@
-import { errors } from "./errors.js";
+import { htmlAndHeadErrors, linkAndButtonErrors } from "./errors.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('toggle-stylesheets').addEventListener('change', () => {
@@ -76,7 +76,7 @@ async function runAudit() {
     ];
 
     if (!htmlLanguage.lang || !validLangValues.includes(htmlLanguage.split('-')[0])) {
-      auditResults.push(errors[0]);
+      auditResults.push(htmlAndHeadErrors[0]);
     }
 
     const pageTitle = await new Promise((resolve) => {
@@ -84,7 +84,7 @@ async function runAudit() {
     });
     
     if (!pageTitle || pageTitle === "") {
-      auditResults.push(errors[1]);
+      auditResults.push(htmlAndHeadErrors[1]);
     }
 
     const metaRefresh = await new Promise((resolve) => {
@@ -92,7 +92,7 @@ async function runAudit() {
     })
 
     if ((metaRefresh && metaRefresh.content) || (metaRefresh && metaRefresh.content !== "")) {
-      auditResults.push(errors[2]);
+      auditResults.push(htmlAndHeadErrors[2]);
     }
 
     // Check each image for missing alt attributes (and ignore valid empty alts)
@@ -107,14 +107,14 @@ async function runAudit() {
     const missingAltImages = images.filter(img => img.alt === null);
     
     missingAltImages.forEach(img => {
-      const error = { ...errors[3]  }; 
+      const error = { ...linkAndButtonErrors[0]  }; 
       auditResults.push(error);
     });
 
     const linkedImagesWithoutAlt = images.filter(img => img.isLinked && img.alt === null);
     
     linkedImagesWithoutAlt.forEach(img => {
-      const error = { ...errors[4] };
+      const error = { ...linkAndButtonErrors[1] };
       auditResults.push(error);
     });
 
