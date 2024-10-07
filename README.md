@@ -8,9 +8,6 @@ explain what each error means, how to fix it and related wcag link about the iss
 
 ## errors:
 ### alt attr:
-1. img missing alt attribute
-2. linked img missing alt text (empty link)
-3. image button missing alt text (empty button)
 4. image map area missing alt text
 `
 <img src="workplace.jpg" usemap="#workmap">
@@ -31,8 +28,5 @@ explain what each error means, how to fix it and related wcag link about the iss
 
 ### empty stuff:
 1. empty heading (img w/ no alt attr)
-2. empty button (img w/ no alt attr)
-3. empty link (img w/ no alt attr)
 4. empty table header
-5. empty page title
 6. empty iframe title
