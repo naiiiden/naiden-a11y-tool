@@ -9,8 +9,3 @@ explain what each error means, how to fix it and related wcag link about the iss
 1. missing form label
 2. empty form label
 3. multiple form labels
-
-### empty stuff:
-1. empty heading (img w/ no alt attr)
-4. empty table header
-6. empty iframe title
