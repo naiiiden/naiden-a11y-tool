@@ -211,6 +211,16 @@ async function runAudit() {
       auditResults.push(emptyErrors[1]);
     });
 
+    const iframeTitles = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval(`
+        Array.from(document.querySelectorAll("iframe")).filter(iframe => !iframe.hasAttribute("title") || iframe.getAttribute("title").trim() === "").map(iframe => iframe.outerHTML)
+      `, resolve);
+    });
+
+    iframeTitles.forEach(() => {
+      auditResults.push(emptyErrors[2]);
+    });
+
     console.log("errors:", auditResults);
     displayAuditResults(auditResults);
   } catch (err) {
