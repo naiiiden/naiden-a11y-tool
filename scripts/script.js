@@ -1,5 +1,5 @@
 import { emptyAudit } from "./emptyAudit.js";
-import { emptyErrors, formErrors } from "./errors.js";
+import { formAudit } from "./formAudit.js";
 import { htmlAndHeadAudit } from "./htmlAndHeadAudit.js";
 import { imageLinkAndButtonAudit } from "./imageLinkAndButtonsAudit.js";
 
@@ -64,15 +64,7 @@ async function runAudit() {
     await htmlAndHeadAudit(auditResults);
     await imageLinkAndButtonAudit(auditResults);
     await emptyAudit(auditResults);
-   
-
-    const labels = await new Promise((resolve) => {
-      chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("label")).filter(label => label.innerText.trim() === "").map(label => label.outerHTML)`, resolve)
-    });
-
-    labels.forEach(() => {
-      auditResults.push(formErrors[0]);
-    });
+    await formAudit(auditResults);
 
     console.log("errors:", auditResults);
     displayAuditResults(auditResults);
