@@ -104,3 +104,27 @@ export const emptyErrors = [
     fix: "Add text to the empty iframe.",
   },
 ]
+
+export const formErrors = [
+  {
+    id: 0,
+    name: "Missing form label",
+    description: "Form control doesn't have a label",
+    wcagLink: "",
+    fix: "Add a label for the form control",
+  },
+  {
+    id: 1,
+    name: "Empty form label",
+    description: "Form label is empty",
+    wcagLink: "",
+    fix: "Add text to the empty form label",
+  },
+  {
+    id: 2,
+    name: "Multiple form labels",
+    description: "Form control has more than 1 label",
+    wcagLink: "",
+    fix: "Leave only one label for the form control",
+  }
+]
