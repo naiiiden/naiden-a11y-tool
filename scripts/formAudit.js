@@ -21,4 +21,17 @@ export async function formAudit(auditResults) {
     missingLabels.forEach(() => {
         auditResults.push(formErrors[1]); 
     });
+
+    const multipleLabels = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+          Array.from(document.querySelectorAll('input[id]')).filter(input => {
+            const labelCount = document.querySelectorAll('label[for="' + input.id + '"]').length;
+            return labelCount > 1;
+          }).map(input => input.outerHTML)
+        `, resolve);
+    });
+    
+    multipleLabels.forEach(() => {
+        auditResults.push(formErrors[2]);
+    });
 }
