@@ -1,4 +1,4 @@
-import { htmlAndHeadErrors, imageLinkAndButtonErrors, emptyErrors } from "./errors.js";
+import { htmlAndHeadErrors, imageLinkAndButtonErrors, emptyErrors, formErrors } from "./errors.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('toggle-stylesheets').addEventListener('change', () => {
@@ -236,6 +236,14 @@ async function runAudit() {
 
     iframeTitles.forEach(() => {
       auditResults.push(emptyErrors[2]);
+    });
+
+    const labels = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("label")).filter(label => label.innerText.trim() === "").map(label => label.outerHTML)`, resolve)
+    });
+
+    labels.forEach(() => {
+      auditResults.push(formErrors[0]);
     });
 
     console.log("errors:", auditResults);
