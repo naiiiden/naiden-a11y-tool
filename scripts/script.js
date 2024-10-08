@@ -185,22 +185,39 @@ async function runAudit() {
     
     imageMaps.forEach(map => {
       if (!map.imgAlt || map.imgAlt === "") {
-        auditResults.push(imageLinkAndButtonErrors[5]); // Image map missing alt text
+        auditResults.push(imageLinkAndButtonErrors[5]);
       }
     
       map.areas.forEach(areaAlt => {
         if (!areaAlt || areaAlt === "") {
-          auditResults.push(imageLinkAndButtonErrors[6]); // Image map area missing alt text
+          auditResults.push(imageLinkAndButtonErrors[6]);
         }
       });
     });    
 
     const headings = await new Promise((resolve) => {
-      chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("h1, h2, h3, h4, h5, h6")).filter(heading => heading.innerText.trim() === "").map(heading => heading.outerHTML)`, resolve)
+      chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("h1:not(:has(img)), h2:not(:has(img)), h3:not(:has(img)), h4:not(:has(img)), h5:not(:has(img)), h6:not(:has(img))")).filter(heading => heading.innerText.trim() === "").map(heading => heading.outerHTML)`, resolve)
     });
 
     headings.forEach(() => {
       auditResults.push(emptyErrors[0]);
+    });
+
+    const headingsWithImages = await new Promise((resolve) => {
+      chrome.devtools.inspectedWindow.eval(`
+        Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).map((heading) => {
+          const textContent = heading.innerText.trim();
+          const img = heading.querySelector('img');
+          const imgAlt = img ? img.getAttribute('alt') : null;
+          return { hasText: textContent.length > 0, hasImage: img !== null, hasImageAlt: imgAlt !== null && imgAlt.trim() !== "" };
+        });
+      `, resolve);
+    });
+    
+    headingsWithImages.forEach((heading) => {
+      if (!heading.hasText && heading.hasImage && !heading.hasImageAlt) {
+        auditResults.push(emptyErrors[0]);
+      }
     });
 
     const tableHeadings = await new Promise((resolve) => {
