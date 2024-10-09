@@ -78,6 +78,13 @@ export const imageLinkAndButtonErrors = [
     description: "Image map area missing alt text.",
     wcagLink: "",
     fix: "Add alt text to all img map areas.",
+  },
+  {
+    id: 7,
+    name: "Broken skip link",
+    description: "Skip link's target doesn't exist or it's not accessible by keyboard",
+    wcagLink: "",
+    fix: "Skip link's target should match the id or name value of landmark element"
   }
 ];
 

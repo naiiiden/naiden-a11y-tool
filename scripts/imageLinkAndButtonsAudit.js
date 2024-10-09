@@ -92,4 +92,31 @@ export async function imageLinkAndButtonAudit(auditResults) {
             }
         });
     });
+
+    const skipLinks = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            Array.from(document.querySelectorAll('a')).map(link => {
+                const linkText = link.innerText.toLowerCase();
+                const href = link.getAttribute('href');
+                return { text: linkText, href: href };
+            });
+        `, resolve);
+    });
+
+    for (const link of skipLinks) {
+        if (link.text.includes("skip") || link.text.includes("jump")) {
+            if (link.href && link.href.startsWith("#")) {
+                const targetId = link.href.substring(1);
+                const targetExists = await new Promise((resolve) => {
+                    chrome.devtools.inspectedWindow.eval(`
+                        document.getElementById('${targetId}') || document.querySelector('a[name="${targetId}"]')
+                    `, resolve);
+                });
+
+                if (!targetExists) {
+                    auditResults.push(imageLinkAndButtonErrors[7]);
+                }
+            }
+        }
+    }
 }
