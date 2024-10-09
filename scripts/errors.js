@@ -133,5 +133,19 @@ export const formErrors = [
     description: "Form control has more than 1 label",
     wcagLink: "",
     fix: "Leave only one label for the form control",
+  },
+  {
+    id: 3,
+    name: "Fieldset doesn't have legend",
+    description: "Legend describes the elements contained by a fieldset",
+    wcagLink: "",
+    fix: "Add legend",
+  },
+  {
+    id: 4,
+    name: "Missing fieldset",
+    description: "Two or more radio buttons or checkboxes with the same name are not contained by a fieldset",
+    wcagLink: "",
+    fix: "Add fieldset",
   }
 ]

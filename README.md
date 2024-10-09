@@ -4,3 +4,5 @@ green = helpful and possible improvement, yellow = alert to that should be looke
 all elements should be outlined with one of the colors above depending on their state <br>
 text indicator of each feature and structural element, error, alert and aria attr <br>
 explain what each error means, how to fix it and related wcag link about the issue <br>
+
+todo: aria errors, color contrast error, alerts
