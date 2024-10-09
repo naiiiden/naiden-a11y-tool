@@ -93,30 +93,24 @@ export async function imageLinkAndButtonAudit(auditResults) {
         });
     });
 
-    const skipLinks = await new Promise((resolve) => {
+    const brokenSkipLinks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('a')).map(link => {
+            Array.from(document.querySelectorAll('a[href^="#"]')).map(link => {
                 const linkText = link.innerText.toLowerCase();
-                const href = link.getAttribute('href');
-                return { text: linkText, href: href };
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                const isHidden = window.getComputedStyle(link).display === "none" || window.getComputedStyle(link).visibility === "hidden";
+            
+                return {
+                    linkText,
+                    targetExists: !!targetElement,
+                    isHidden
+                };
             });
         `, resolve);
     });
 
-    for (const link of skipLinks) {
-        if (link.text.includes("skip") || link.text.includes("jump")) {
-            if (link.href && link.href.startsWith("#")) {
-                const targetId = link.href.substring(1);
-                const targetExists = await new Promise((resolve) => {
-                    chrome.devtools.inspectedWindow.eval(`
-                        document.getElementById('${targetId}') || document.querySelector('a[name="${targetId}"]')
-                    `, resolve);
-                });
-
-                if (!targetExists) {
-                    auditResults.push(imageLinkAndButtonErrors[7]);
-                }
-            }
-        }
-    }
+    brokenSkipLinks
+    .filter(link => (link.linkText.includes('skip') || link.linkText.includes('jump')) && (!link.targetExists || link.isHidden))
+    .forEach(() => auditResults.push(imageLinkAndButtonErrors[7]));
 }
