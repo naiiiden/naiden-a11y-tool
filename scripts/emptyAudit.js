@@ -43,4 +43,12 @@ export async function emptyAudit(auditResults) {
     iframeTitles.forEach(() => {
         auditResults.push(emptyErrors[2]);
     });
+
+    const summaries = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("summary")).filter(summary => summary.innerText.trim() === "").map(summary => summary.outerHTML)`, resolve)
+    });
+
+    summaries.forEach(() => {
+        auditResults.push(emptyErrors[3]);
+    });
 }
