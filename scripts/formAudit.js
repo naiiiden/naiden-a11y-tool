@@ -34,4 +34,30 @@ export async function formAudit(auditResults) {
     multipleLabels.forEach(() => {
         auditResults.push(formErrors[2]);
     });
+
+    const missingSelectLabels = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            Array.from(document.querySelectorAll('select[id]')).filter(select => {
+                const labelCount = document.querySelectorAll('label[for="' + select.id + '"]').length;
+                return labelCount === 0;
+            }).map(select => select.outerHTML)
+        `, resolve);
+    });
+    
+    missingSelectLabels.forEach(() => {
+        auditResults.push(formErrors[3]); 
+    });
+
+    const multipleSelectLabels = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+          Array.from(document.querySelectorAll('select[id]')).filter(select => {
+            const labelCount = document.querySelectorAll('label[for="' + select.id + '"]').length;
+            return labelCount > 1;
+          }).map(select => select.outerHTML)
+        `, resolve);
+    });
+    
+    multipleSelectLabels.forEach(() => {
+        auditResults.push(formErrors[4]);
+    });
 }
