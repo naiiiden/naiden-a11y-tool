@@ -136,16 +136,30 @@ export const formErrors = [
   },
   {
     id: 3,
+    name: "Select doesn't have label",
+    description: "Select doesn't have label",
+    wcagLink: "",
+    fix: "Add label to select",
+  },
+  {
+    id: 4,
     name: "Fieldset doesn't have legend",
     description: "Legend describes the elements contained by a fieldset",
     wcagLink: "",
     fix: "Add legend",
   },
   {
-    id: 4,
+    id: 5,
     name: "Missing fieldset",
     description: "Two or more radio buttons or checkboxes with the same name are not contained by a fieldset",
     wcagLink: "",
     fix: "Add fieldset",
+  },
+  {
+    id: 6,
+    name: "Empty submit or button input value",
+    description: "Submit or button input value is empty",
+    wcagLink: "",
+    fix: "Add text to value",
   }
 ]
