@@ -11,26 +11,18 @@ export async function formAudit(auditResults) {
 
     const inputAndSelectLabels = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-          Array.from(document.querySelectorAll('input[id], select[id]')).map(element => {
+          Array.from(document.querySelectorAll('input[id], select[id], textarea[id]')).map(element => {
             const labelCount = document.querySelectorAll('label[for="' + element.id + '"]').length;
-            return { html: element.outerHTML, labelCount: labelCount, tagName: element.tagName };
+            return { html: element.outerHTML, labelCount: labelCount };
           })
         `, resolve);
     });
       
     inputAndSelectLabels.forEach((element) => {
         if (element.labelCount === 0) {
-            if (element.tagName === 'INPUT') {
-              auditResults.push(formErrors[1]);
-            } else if (element.tagName === 'SELECT') {
-              auditResults.push(formErrors[3]);
-            }
+            auditResults.push(formErrors[1]);
         } else if (element.labelCount > 1) {
-            if (element.tagName === 'INPUT') {
-              auditResults.push(formErrors[2]);
-            } else if (element.tagName === 'SELECT') {
-              auditResults.push(formErrors[4]);
-            }
+            auditResults.push(formErrors[2]);
         }
     });
 }
