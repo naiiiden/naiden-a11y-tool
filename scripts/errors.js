@@ -110,6 +110,13 @@ export const emptyErrors = [
     wcagLink: "",
     fix: "Add text to the empty iframe.",
   },
+  {
+    id: 3,
+    name: "Empty or missing summary",
+    description: "Summary element is empty or missing.",
+    wcagLink: "",
+    fix: "Add summary.",
+  },
 ]
 
 export const formErrors = [
