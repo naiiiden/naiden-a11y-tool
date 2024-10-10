@@ -9,30 +9,21 @@ export async function formAudit(auditResults) {
         auditResults.push(formErrors[0]);
     });
 
-    const missingLabels = await new Promise((resolve) => {
+    const inputLabels = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('input[id]')).filter(input => {
-                const labelCount = document.querySelectorAll('label[for="' + input.id + '"]').length;
-                return labelCount === 0;
-            }).map(input => input.outerHTML)
-        `, resolve);
-    });
-    
-    missingLabels.forEach(() => {
-        auditResults.push(formErrors[1]); 
-    });
-
-    const multipleLabels = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-          Array.from(document.querySelectorAll('input[id]')).filter(input => {
+          Array.from(document.querySelectorAll('input[id]')).map(input => {
             const labelCount = document.querySelectorAll('label[for="' + input.id + '"]').length;
-            return labelCount > 1;
-          }).map(input => input.outerHTML)
+            return { html: input.outerHTML, labelCount: labelCount };
+          })
         `, resolve);
-    });
-    
-    multipleLabels.forEach(() => {
-        auditResults.push(formErrors[2]);
+      });
+      
+      inputLabels.forEach((input) => {
+        if (input.labelCount === 0) {
+          auditResults.push(formErrors[1]);  
+        } else if (input.labelCount > 1) {
+          auditResults.push(formErrors[2]);
+        }
     });
 
     const missingSelectLabels = await new Promise((resolve) => {
