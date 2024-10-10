@@ -25,4 +25,16 @@ export async function formAudit(auditResults) {
             auditResults.push(formErrors[2]);
         }
     });
+
+    const fieldsets = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+          Array.from(document.querySelectorAll('fieldset')).filter(fieldset => {
+            return fieldset.querySelector('legend') === null;
+          }).map(fieldset => fieldset.outerHTML)
+        `, resolve);
+    });
+    
+    fieldsets.forEach(() => {
+        auditResults.push(formErrors[3]); 
+    });
 }
