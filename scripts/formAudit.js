@@ -56,4 +56,12 @@ export async function formAudit(auditResults) {
     radiosAndCheckboxesWithoutFieldset.forEach(() => {
         auditResults.push(formErrors[4]);
     });
+
+    const emptySubmitOrButtonInput = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll('input[type="button"], input[type="submit"]')).filter(input => input.value === "").map(input => input.outerHTML)`, resolve)
+    });
+
+    emptySubmitOrButtonInput.forEach(() => {
+        auditResults.push(formErrors[5]);
+    });
 }
