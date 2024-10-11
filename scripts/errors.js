@@ -199,5 +199,26 @@ export const semanticErrors = [
     description: "No headings on the page",
     wcagLink: "",
     fix: "Add headings",
+  },
+  {
+    id: 5,
+    name: "No page regions",
+    description: "No page regions or aria landmarks on the page",
+    wcagLink: "",
+    fix: "Use semantic tags to define regions",
+  },
+  {
+    id: 6,
+    name: "Page must have one <main> tag",
+    description: "Page must have a <main> tag",
+    wcagLink: "",
+    fix: "Add <main> tag",
+  },
+  {
+    id: 7,
+    name: "Page should not have more than one <main> tag",
+    description: "Page must have only one <main> tag",
+    wcagLink: "",
+    fix: "Leave only one <main> tag",
   }
 ]
