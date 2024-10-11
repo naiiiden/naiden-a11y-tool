@@ -85,6 +85,13 @@ export const imageLinkAndButtonErrors = [
     description: "Skip link's target doesn't exist or it's not accessible by keyboard",
     wcagLink: "",
     fix: "Skip link's target should match the id or name value of landmark element"
+  },
+  {
+    id: 8,
+    name: "Interactive control element has focusable children",
+    description: "Interactive control element has focusable children",
+    wcagLink: "",
+    fix: "Control must not have focusable children"
   }
 ];
 

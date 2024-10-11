@@ -113,4 +113,23 @@ export async function imageLinkAndButtonAudit(auditResults) {
     brokenSkipLinks
     .filter(link => (link.linkText.includes('skip') || link.linkText.includes('jump')) && (!link.targetExists || link.isHidden))
     .forEach(() => auditResults.push(imageLinkAndButtonErrors[7]));
+
+    const interactiveControlsWithInteractiveControlsAsChildren = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+          Array.from(document.querySelectorAll('button, a, [role="button"], [role="link"]'))
+            .map(element => {
+              const focusableChildren = element.querySelectorAll('button, a, [role="button"], [role="link"], input, select, textarea, [tabindex]');
+              return {
+                html: element.outerHTML,
+                hasFocusableChildren: focusableChildren.length > 0
+              };
+            })
+        `, resolve);
+    });
+    
+    interactiveControlsWithInteractiveControlsAsChildren.forEach((element) => {
+        if (element.hasFocusableChildren) {
+          auditResults.push(imageLinkAndButtonErrors[8]);
+        }
+    });
 }
