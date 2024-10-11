@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
-    runFullAudit();
+    runAudit([htmlAndHeadAudit, imageLinkAndButtonAudit, emptyAudit, formAudit]);
   });
 });
 
@@ -61,27 +61,13 @@ function displayAuditResults(auditResults) {
   });
 }
 
-async function runHtmlAndHeadAudit() {
+async function runAudit(auditFuncs) {
   let auditResults = [];
 
   try {
-    await htmlAndHeadAudit(auditResults);
-
-    console.log("errors:", auditResults);
-    displayAuditResults(auditResults);
-  } catch(err) {
-    console.error("Error during audit:", err);
-  }
-}
-
-async function runFullAudit() {
-  let auditResults = [];
-
-  try {
-    await htmlAndHeadAudit(auditResults);
-    await imageLinkAndButtonAudit(auditResults);
-    await emptyAudit(auditResults);
-    await formAudit(auditResults);
+    for (const auditFunc of auditFuncs) {
+      await auditFunc(auditResults)
+    }
 
     console.log("errors:", auditResults);
     displayAuditResults(auditResults);
