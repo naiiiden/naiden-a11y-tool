@@ -37,4 +37,28 @@ export async function formAudit(auditResults) {
     fieldsets.forEach(() => {
         auditResults.push(formErrors[3]); 
     });
+
+    const radiosAndCheckboxesWithoutFieldset = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+          (() => {
+            const elements = Array.from(document.querySelectorAll('input[type="radio"], input[type="checkbox"]'));
+            const groupedByName = elements.reduce((groups, input) => {
+              if (!groups[input.name]) groups[input.name] = [];
+              groups[input.name].push(input);
+              return groups;
+            }, {});
+    
+            return Object.values(groupedByName)
+              .filter(group => group.length > 1)
+              .filter(group => {
+                return !group.every(input => input.closest('fieldset'));
+              })
+              .map(group => group.map(input => input.outerHTML));
+          })();
+        `, resolve);
+    });
+    
+    radiosAndCheckboxesWithoutFieldset.forEach(() => {
+        auditResults.push(formErrors[4]);
+    });
 }
