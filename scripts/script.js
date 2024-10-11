@@ -19,8 +19,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("run-html-and-head-audit-btn").addEventListener("click", () => {
-    runHtmlAndHeadAudit();
-  })
+    runAudit([htmlAndHeadAudit]);
+  });
+
+  document.getElementById("run-image-link-and-button-audit-btn").addEventListener("click", () => {
+    runAudit([imageLinkAndButtonAudit]);
+  });
+
+  document.getElementById("run-empty-audit-btn").addEventListener("click", () => {
+    runAudit([emptyAudit]);
+  });
+
+  document.getElementById("run-form-audit-btn").addEventListener("click", () => {
+    runAudit([formAudit]);
+  });
 
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
     runAudit([htmlAndHeadAudit, imageLinkAndButtonAudit, emptyAudit, formAudit]);
