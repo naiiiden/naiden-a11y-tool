@@ -170,3 +170,34 @@ export const formErrors = [
     fix: "Add text to value",
   }
 ]
+
+export const semanticErrors = [
+  {
+    id: 0,
+    name: "No first level heading",
+    description: "No first level heading on the page",
+    wcagLink: "",
+    fix: "Add <h1> tag",
+  },
+  {
+    id: 1,
+    name: "Skipped heading level",
+    description: "Heading level skipped",
+    wcagLink: "",
+    fix: "Reorder headings and make sure levels are in order",
+  },
+  {
+    id: 3,
+    name: "Possible heading",
+    description: "A <p> tag looks like a heading",
+    wcagLink: "",
+    fix: "Use a heading element",
+  },
+  {
+    id: 4,
+    name: "No headings",
+    description: "No headings on the page",
+    wcagLink: "",
+    fix: "Add headings",
+  }
+]
