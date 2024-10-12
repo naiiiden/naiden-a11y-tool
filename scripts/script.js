@@ -2,6 +2,7 @@ import { emptyAudit } from "./emptyAudit.js";
 import { formAudit } from "./formAudit.js";
 import { htmlAndHeadAudit } from "./htmlAndHeadAudit.js";
 import { imageLinkAndButtonAudit } from "./imageLinkAndButtonsAudit.js";
+import { semanticAudit } from "./semanticAudit.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('toggle-stylesheets').addEventListener('change', () => {
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
-    runAudit([htmlAndHeadAudit, imageLinkAndButtonAudit, emptyAudit, formAudit]);
+    runAudit([htmlAndHeadAudit, imageLinkAndButtonAudit, emptyAudit, formAudit, semanticAudit]);
   });
 });
 

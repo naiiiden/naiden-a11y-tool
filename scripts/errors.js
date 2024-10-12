@@ -177,7 +177,7 @@ export const semanticErrors = [
     name: "No first level heading",
     description: "No first level heading on the page",
     wcagLink: "",
-    fix: "Add <h1> tag",
+    fix: "Add h1 tag",
   },
   {
     id: 1,
