@@ -43,7 +43,7 @@ export async function semanticAudit(auditResults) {
             .filter(p => {
               const style = window.getComputedStyle(p);
               const fontSize = parseFloat(style.fontSize);
-              const isBold = style.fontWeight === 'bold' || parseInt(style.fontWeight) >= 700;
+              const isBold = style.fontWeight === 'bold' || parseInt(style.fontWeight) >= 600;
               const isItalic = style.fontStyle === 'italic';
     
               return fontSize >= 20 || (fontSize >= 16 && (isBold || isItalic));
