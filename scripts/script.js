@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
     runAudit([formAudit]);
   });
 
+  document.getElementById("run-semantic-audit-btn").addEventListener("click", () => {
+    runAudit([semanticAudit]);
+  });
+
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
     runAudit([htmlAndHeadAudit, imageLinkAndButtonAudit, emptyAudit, formAudit, semanticAudit]);
   });
