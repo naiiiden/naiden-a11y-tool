@@ -55,4 +55,14 @@ export async function semanticAudit(auditResults) {
     possibleHeadings.forEach(() => {
         auditResults.push(semanticErrors[2]);
     });
+
+    const hasHeadings = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+        Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).length > 0
+        `, resolve);
+    });
+    
+    if (!hasHeadings) {
+        auditResults.push(semanticErrors[3]);
+    }
 }
