@@ -92,6 +92,13 @@ export const imageLinkAndButtonErrors = [
     description: "Interactive control element has focusable children",
     wcagLink: "",
     fix: "Control must not have focusable children"
+  },
+  {
+    id: 9,
+    name: "Broken same-page link",
+    description: "Link to another location within the page is present but doesn't have a corresponding target",
+    wcagLink: "",
+    fix: "Ensure the target for the link exists or remove the link"
   }
 ];
 
