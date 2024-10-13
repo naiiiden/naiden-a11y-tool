@@ -209,10 +209,10 @@ export const semanticErrors = [
   },
   {
     id: 5,
-    name: "Page must have one <main> tag",
-    description: "Page must have a <main> tag",
+    name: "Page must have one main tag",
+    description: "Page must have a main tag",
     wcagLink: "",
-    fix: "Add <main> tag",
+    fix: "Add main tag",
   },
   {
     id: 6,

@@ -72,9 +72,17 @@ export async function semanticAudit(auditResults) {
         `, resolve);
     });
 
-    console.log(hasRegionsOrLandmarks);
-    
     if (hasRegionsOrLandmarks < 1) {
         auditResults.push(semanticErrors[4]);
+    }
+
+    const mainLandmark = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            document.querySelectorAll("main, [role='main']").length
+        `, resolve);
+    });
+
+    if (mainLandmark < 1) {
+        auditResults.push(semanticErrors[5]);
     }
 }
