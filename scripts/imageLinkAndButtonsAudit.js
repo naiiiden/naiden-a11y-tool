@@ -132,4 +132,21 @@ export async function imageLinkAndButtonAudit(auditResults) {
           auditResults.push(imageLinkAndButtonErrors[8]);
         }
     });
+
+    const brokenSamePageLinks = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            Array.from(document.querySelectorAll('a[href^="#"]')).map(link => {
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+            
+                return {
+                    targetExists: !!targetElement,
+                };
+            });
+        `, resolve);
+    });
+
+    brokenSamePageLinks
+    .filter(link => !link.targetExists)
+    .forEach(() => auditResults.push(imageLinkAndButtonErrors[9]));
 }
