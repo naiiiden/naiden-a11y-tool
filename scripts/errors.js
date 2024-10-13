@@ -216,9 +216,9 @@ export const semanticErrors = [
   },
   {
     id: 6,
-    name: "Page should not have more than one <main> tag",
-    description: "Page must have only one <main> tag",
+    name: "Page should not have more than one main tag",
+    description: "Page must have only one main tag",
     wcagLink: "",
-    fix: "Leave only one <main> tag",
+    fix: "Leave only one main tag",
   }
 ]

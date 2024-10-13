@@ -84,5 +84,7 @@ export async function semanticAudit(auditResults) {
 
     if (mainLandmark < 1) {
         auditResults.push(semanticErrors[5]);
+    } else if (mainLandmark > 1) {
+        auditResults.push(semanticErrors[6]);
     }
 }
