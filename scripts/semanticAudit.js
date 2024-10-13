@@ -65,4 +65,16 @@ export async function semanticAudit(auditResults) {
     if (!hasHeadings) {
         auditResults.push(semanticErrors[3]);
     }
+
+    const hasRegionsOrLandmarks = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+          document.querySelectorAll('header, nav, main, footer, aside, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"]').length
+        `, resolve);
+    });
+
+    console.log(hasRegionsOrLandmarks);
+    
+    if (hasRegionsOrLandmarks < 1) {
+        auditResults.push(semanticErrors[4]);
+    }
 }
