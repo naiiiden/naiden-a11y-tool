@@ -97,4 +97,14 @@ export async function semanticAudit(auditResults) {
     if (moreThanOneBanner > 1) {
         auditResults.push(semanticErrors[7]);
     } 
+
+    const moreThanOneContentinfo = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            document.querySelectorAll("[role='contentinfo']").length
+        `, resolve);
+    });
+
+    if (moreThanOneContentinfo > 1) {
+        auditResults.push(semanticErrors[8]);
+    } 
 }
