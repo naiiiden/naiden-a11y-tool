@@ -227,6 +227,20 @@ export const semanticErrors = [
     description: "Page must have only one main tag",
     wcagLink: "",
     fix: "Leave only one main tag",
+  },
+  {
+    id: 7,
+    name: "Page should not have more than one banner landmark",
+    description: "Page must have only one banner landmark",
+    wcagLink: "",
+    fix: "Leave only one banner landmark",
+  },
+  {
+    id: 8,
+    name: "Page should not have more than one contentinfo landmark",
+    description: "Page must have only one contentinfo landmark",
+    wcagLink: "",
+    fix: "Leave only one contentinfo landmark",
   }
 ]
 
