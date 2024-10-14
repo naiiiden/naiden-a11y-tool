@@ -87,4 +87,14 @@ export async function semanticAudit(auditResults) {
     } else if (mainLandmark > 1) {
         auditResults.push(semanticErrors[6]);
     }
+
+    const moreThanOneBanner = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            document.querySelectorAll("[role='banner']").length
+        `, resolve);
+    });
+
+    if (moreThanOneBanner > 1) {
+        auditResults.push(semanticErrors[7]);
+    } 
 }
