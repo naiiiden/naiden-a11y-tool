@@ -183,4 +183,25 @@ export async function semanticAudit(auditResults) {
     mainInOtherLandmarks.forEach(() => {
         auditResults.push(semanticErrors[12]);
     });
+
+    const contentOutsideLandmarks = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            (() => {
+                const landmarkSelectors = 'header, nav, main, footer, aside, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="complementary"], [role="region"], [role="search"], [role="form"]';
+                const landmarkElements = Array.from(document.querySelectorAll(landmarkSelectors));
+    
+                const allElements = Array.from(document.body.querySelectorAll('*'));
+    
+                const elementsOutsideLandmarks = allElements.filter(el => {
+                    return !landmarkElements.some(landmark => landmark.contains(el));
+                });
+    
+                return elementsOutsideLandmarks.filter(el => !el.matches('a[href^="#"]'));
+            })()
+        `, resolve);
+    });
+    
+    contentOutsideLandmarks.forEach(() => {
+        auditResults.push(semanticErrors[13]);
+    });
 }

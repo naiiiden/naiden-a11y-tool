@@ -269,6 +269,13 @@ export const semanticErrors = [
     description: "Main landmark should not be contained in another landmark",
     wcagLink: "",
     fix: "Main landmark should be top level",
+  },
+  {
+    id: 13,
+    name: "Page content should be contained by landmarks",
+    description: "Page content should be contained by landmarks",
+    wcagLink: "",
+    fix: "Ensure all page content is contained by landmarks",
   }
 ]
 
