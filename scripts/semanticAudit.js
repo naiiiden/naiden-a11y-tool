@@ -106,5 +106,5 @@ export async function semanticAudit(auditResults) {
 
     if (moreThanOneContentinfo > 1) {
         auditResults.push(semanticErrors[8]);
-    } 
+    }
 }

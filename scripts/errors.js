@@ -241,6 +241,34 @@ export const semanticErrors = [
     description: "Page must have only one contentinfo landmark",
     wcagLink: "",
     fix: "Leave only one contentinfo landmark",
+  },
+  {
+    id: 9,
+    name: "Banner landmark should not be contained in another landmark",
+    description: "Banner landmark should not be contained in another landmark",
+    wcagLink: "",
+    fix: "Banner landmark should be at top level",
+  },
+  {
+    id: 10,
+    name: "Aside should not be contained in another landmark",
+    description: "Aside should not be contained in another landmark",
+    wcagLink: "",
+    fix: "Aside should be top level",
+  },
+  {
+    id: 11,
+    name: "Contentinfo landmark should not be contained in another landmark",
+    description: "Contentinfo landmark should not be contained in another landmark",
+    wcagLink: "",
+    fix: "Contentinfo landmark should be top level",
+  },
+  {
+    id: 12,
+    name: "Main landmark should not be contained in another landmark",
+    description: "Main landmark should not be contained in another landmark",
+    wcagLink: "",
+    fix: "Main landmark should be top level",
   }
 ]
 
