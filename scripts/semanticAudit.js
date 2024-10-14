@@ -110,20 +110,39 @@ export async function semanticAudit(auditResults) {
 
     const bannersInOtherLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-          Array.from(document.querySelectorAll('[role="banner"]')).map(banner => {
-            let parent = banner.parentElement;
-            while (parent && parent !== document.body) {
-              if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
-                return banner.outerHTML;
-              }
-              parent = parent.parentElement;
-            }
-            return null;
-          }).filter(banner => banner !== null)
+            Array.from(document.querySelectorAll('[role="banner"]')).map(banner => {
+                let parent = banner.parentElement;
+                while (parent && parent !== document.body) {
+                    if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
+                        return banner.outerHTML;
+                    }
+                    parent = parent.parentElement;
+                }
+                return null;
+            }).filter(banner => banner !== null)
         `, resolve);
     });
       
     bannersInOtherLandmarks.forEach(() => {
         auditResults.push(semanticErrors[9]);
+    });
+
+    const asidesInOtherLandmarks = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            Array.from(document.querySelectorAll('aside')).map(aside => {
+                let parent = aside.parentElement;
+                while (parent && parent !== document.body) {
+                    if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'banner', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
+                        return aside.outerHTML;
+                    }
+                    parent = parent.parentElement;
+                }
+                return null;
+            }).filter(aside => aside !== null)
+        `, resolve);
+    });
+    
+    asidesInOtherLandmarks.forEach(() => {
+        auditResults.push(semanticErrors[10]);
     });
 }
