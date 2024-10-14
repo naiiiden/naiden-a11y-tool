@@ -162,6 +162,25 @@ export async function semanticAudit(auditResults) {
     });
     
     contentinfoInOtherLandmarks.forEach(() => {
-        auditResults.push(semanticErrors[10]);
+        auditResults.push(semanticErrors[11]);
+    });
+
+    const mainInOtherLandmarks = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            Array.from(document.querySelectorAll('main')).map(aside => {
+                let parent = aside.parentElement;
+                while (parent && parent !== document.body) {
+                    if (parent.hasAttribute('role') && ['contentinfo', 'navigation', 'banner', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
+                        return aside.outerHTML;
+                    }
+                    parent = parent.parentElement;
+                }
+                return null;
+            }).filter(aside => aside !== null)
+        `, resolve);
+    });
+    
+    mainInOtherLandmarks.forEach(() => {
+        auditResults.push(semanticErrors[12]);
     });
 }
