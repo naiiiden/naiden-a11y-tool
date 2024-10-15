@@ -276,7 +276,35 @@ export const semanticErrors = [
     description: "Page content should be contained by landmarks",
     wcagLink: "",
     fix: "Ensure all page content is contained by landmarks",
-  }
+  },
+  {
+    id: 14,
+    name: "\<ul\> and \<ol\> must only directly contain \<li\>, \<script\> or \<template\> elements",
+    description: "\<ul\> and \<ol\> must only directly contain \<li\>, \<script\> or \<template\> elements",
+    wcagLink: "",
+    fix: "Ensure that lists are structured properly",
+  },
+  {
+    id: 15,
+    name: "\<li\> elements must be contained in an \<ul\> or \<ol\>",
+    description: "\<li\> elements must be contained in an \<ul\> or \<ol\>",
+    wcagLink: "",
+    fix: "Ensures li elements are used semantically",
+  },
+  {
+    id: 16,
+    name: "\<dl\> elements must only directly contain properly-ordered \<dt\> and \<dd\> groups, \<script\>, \<template\> or \<div\> elements",
+    description: "\<dl\> elements must only directly contain properly-ordered \<dt\> and \<dd\> groups, \<script\>, \<template\> or \<div\> elements",
+    wcagLink: "",
+    fix: "Ensure that all dl elements are structured correctly.",
+  },
+  {
+    id: 17,
+    name: "\<dt\> and \<dd\> elements must be contained by a \<dl\> element",
+    description: "\<dt\> and \<dd\> elements must be contained by a \<dl\> element",
+    wcagLink: "",
+    fix: "Ensure that all dt and dd elements are contained dl.",
+  },
 ]
 
 const cssErrors = [
