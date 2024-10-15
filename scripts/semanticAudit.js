@@ -253,4 +253,46 @@ export async function semanticAudit(auditResults) {
     liOutsideList.forEach(() => {
         auditResults.push(semanticErrors[15]);
     });
+
+    const invalidDlElements = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            (() => {
+                const dlElements = Array.from(document.querySelectorAll('dl'));
+                
+                const isDlValid = (dl) => {
+                    const validChildTags = ['DT', 'DD', 'DIV', 'SCRIPT', 'TEMPLATE'];
+                    const children = Array.from(dl.children);
+                    
+                    let lastTag = null;
+                    for (let child of children) {
+                        const tagName = child.tagName;
+    
+                        if (!validChildTags.includes(tagName)) {
+                            return false;
+                        }
+    
+                        if (tagName === 'DT') {
+                            if (lastTag === 'DT') {
+                                return false;
+                            }
+                            lastTag = 'DT';
+                        } else if (tagName === 'DD') {
+                            if (lastTag !== 'DT') {
+                                return false; 
+                            }
+                            lastTag = 'DD';
+                        }
+                    }
+    
+                    return true;
+                };
+                
+                return dlElements.filter(dl => !isDlValid(dl));
+            })()
+        `, resolve);
+    });
+    
+    invalidDlElements.forEach(() => {
+        auditResults.push(semanticErrors[16]);
+    });
 }
