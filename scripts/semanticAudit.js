@@ -189,14 +189,20 @@ export async function semanticAudit(auditResults) {
             (() => {
                 const landmarkSelectors = 'header, nav, main, footer, aside, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="complementary"], [role="region"], [role="search"], [role="form"]';
                 const landmarkElements = Array.from(document.querySelectorAll(landmarkSelectors));
-    
+
                 const allElements = Array.from(document.body.querySelectorAll(':not(script), :not(style)'));
-    
+
                 const elementsOutsideLandmarks = allElements.filter(el => {
                     return !landmarkElements.some(landmark => landmark.contains(el));
                 });
-    
-                return elementsOutsideLandmarks.filter(el => !el.matches('a[href^="#"]'));
+
+                return elementsOutsideLandmarks.filter(el => {
+                    if (el.matches('a[href^="#"]')) {
+                        const text = el.innerText.toLowerCase();
+                        return !(text.includes('skip') || text.includes('jump'));
+                    }
+                    return true;
+                });
             })()
         `, resolve);
     });
