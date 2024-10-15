@@ -251,10 +251,10 @@ export const semanticErrors = [
   },
   {
     id: 10,
-    name: "Aside should not be contained in another landmark",
-    description: "Aside should not be contained in another landmark",
+    name: "Aside or role=\"complementary\" should not be contained in another landmark",
+    description: "Aside or role=\"complementary\" should not be contained in another landmark",
     wcagLink: "",
-    fix: "Aside should be top level",
+    fix: "Aside or role=\"complementary\" should be top level",
   },
   {
     id: 11,

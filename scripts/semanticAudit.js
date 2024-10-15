@@ -129,7 +129,7 @@ export async function semanticAudit(auditResults) {
 
     const asidesInOtherLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('aside')).map(aside => {
+            Array.from(document.querySelectorAll('aside, [role="complementary"]')).map(aside => {
                 let parent = aside.parentElement;
                 while (parent && parent !== document.body) {
                     if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'banner', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
