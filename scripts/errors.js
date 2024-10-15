@@ -265,10 +265,10 @@ export const semanticErrors = [
   },
   {
     id: 12,
-    name: "Main landmark  should not be contained in another landmark",
-    description: "Main landmark should not be contained in another landmark",
+    name: "Main or role=\"landmark\" should not be contained in another landmark",
+    description: "Main or role=\"landmark\" should not be contained in another landmark",
     wcagLink: "",
-    fix: "Main landmark should be top level",
+    fix: "Main or role=\"landmark\" should be top level",
   },
   {
     id: 13,

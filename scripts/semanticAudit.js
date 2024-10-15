@@ -167,16 +167,16 @@ export async function semanticAudit(auditResults) {
 
     const mainInOtherLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('main')).map(aside => {
-                let parent = aside.parentElement;
+            Array.from(document.querySelectorAll('main, [role="main"]')).map(main => {
+                let parent = main.parentElement;
                 while (parent && parent !== document.body) {
                     if (parent.hasAttribute('role') && ['contentinfo', 'navigation', 'banner', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
-                        return aside.outerHTML;
+                        return main.outerHTML;
                     }
                     parent = parent.parentElement;
                 }
                 return null;
-            }).filter(aside => aside !== null)
+            }).filter(main => main !== null)
         `, resolve);
     });
     
