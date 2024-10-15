@@ -233,5 +233,24 @@ export async function semanticAudit(auditResults) {
     
     invalidListContent.forEach(() => {
         auditResults.push(semanticErrors[14]); 
-    });    
+    });
+
+    const liOutsideList = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            (() => {
+                const liElements = Array.from(document.querySelectorAll('li'));
+                
+                const invalidLiElements = liElements.filter(li => {
+                    const parent = li.parentElement;
+                    return !(parent && (parent.tagName === 'UL' || parent.tagName === 'OL'));
+                });
+                
+                return invalidLiElements;
+            })()
+        `, resolve);
+    });
+    
+    liOutsideList.forEach(() => {
+        auditResults.push(semanticErrors[15]);
+    });
 }
