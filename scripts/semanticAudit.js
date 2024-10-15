@@ -110,7 +110,7 @@ export async function semanticAudit(auditResults) {
 
     const bannersInOtherLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('[role="banner"]')).map(banner => {
+            Array.from(document.querySelectorAll('header, [role="banner"]')).map(banner => {
                 let parent = banner.parentElement;
                 while (parent && parent !== document.body) {
                     if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
