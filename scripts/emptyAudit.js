@@ -5,8 +5,11 @@ export async function emptyAudit(auditResults) {
         chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("h1:not(:has(img)), h2:not(:has(img)), h3:not(:has(img)), h4:not(:has(img)), h5:not(:has(img)), h6:not(:has(img))")).filter(heading => heading.innerText.trim() === "").map(heading => heading.outerHTML)`, resolve)
     });
 
-    headings.forEach(() => {
-        auditResults.push(emptyErrors[0]);
+    headings.forEach((headingHTML) => {
+        auditResults.push({
+            ...emptyErrors[0],
+            element: headingHTML
+        });
     });
 
     const headingsWithImages = await new Promise((resolve) => {

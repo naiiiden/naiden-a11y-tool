@@ -51,18 +51,6 @@ function toggleStylesheets(disable) {
   }
 }
 
-function highlightElements() {
-  const elements = document.querySelectorAll('body *:not(div):not(span)');
-  elements.forEach(element => {
-    if (element.style.outline == "") {
-      element.style.outline = '2px solid red'; 
-    } else {
-      element.style.outline = "";
-    }
-  });
-}
-
-
 const errorsList = document.getElementById('errors-list');
 function displayAuditResults(auditResults) {
   errorsList.innerHTML = '';
@@ -73,6 +61,7 @@ function displayAuditResults(auditResults) {
       <strong>${error.name}</strong> - ${error.description}<br>
       <a href="${error.wcagLink}" target="_blank">Learn more</a><br>
       <p>Fix: ${error.fix}</p>
+      <p>Element: ${error.element}</p>
     `;
     errorsList.appendChild(listItem);
   });
