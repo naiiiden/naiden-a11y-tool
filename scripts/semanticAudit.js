@@ -210,4 +210,28 @@ export async function semanticAudit(auditResults) {
     contentOutsideLandmarks.forEach(() => {
         auditResults.push(semanticErrors[13]);
     });
+
+    const invalidListContent = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            (() => {
+                const invalidElements = [];
+                const listElements = Array.from(document.querySelectorAll('ul, ol'));
+                
+                listElements.forEach(list => {
+                    const children = Array.from(list.children);
+                    children.forEach(child => {
+                        if (!['LI', 'SCRIPT', 'TEMPLATE'].includes(child.tagName)) {
+                            invalidElements.push(child);
+                        }
+                    });
+                });
+                
+                return invalidElements;
+            })()
+        `, resolve);
+    });
+    
+    invalidListContent.forEach(() => {
+        auditResults.push(semanticErrors[14]); 
+    });    
 }
