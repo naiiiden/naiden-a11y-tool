@@ -187,7 +187,7 @@ export async function semanticAudit(auditResults) {
     const contentOutsideLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
             (() => {
-                const landmarkSelectors = 'header, nav, main, footer, aside, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="complementary"], [role="region"], [role="search"], [role="form"]';
+                const landmarkSelectors = 'header, nav, main, footer, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="region"], [role="search"], [role="form"]';
                 const landmarkElements = Array.from(document.querySelectorAll(landmarkSelectors));
 
                 const allElements = Array.from(document.body.querySelectorAll(':not(script):not(style)'));
