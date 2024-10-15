@@ -244,10 +244,10 @@ export const semanticErrors = [
   },
   {
     id: 9,
-    name: "Header or banner landmark should not be contained in another landmark",
-    description: "Header or banner landmark should not be contained in another landmark",
+    name: "Header or role=\"banner\" landmark should not be contained in another landmark",
+    description: "Header or role=\"banner\" landmark should not be contained in another landmark",
     wcagLink: "",
-    fix: "Headeror banner landmark should be at top level",
+    fix: "Header or role=\"banner\" landmark should be at top level",
   },
   {
     id: 10,
@@ -258,10 +258,10 @@ export const semanticErrors = [
   },
   {
     id: 11,
-    name: "Contentinfo landmark should not be contained in another landmark",
-    description: "Contentinfo landmark should not be contained in another landmark",
+    name: "Footer or role=\"contentinfo\" landmark should not be contained in another landmark",
+    description: "Footer or role=\"contentinfo\" landmark should not be contained in another landmark",
     wcagLink: "",
-    fix: "Contentinfo landmark should be top level",
+    fix: "Footer or role=\"contentinfo\" landmark should be top level",
   },
   {
     id: 12,

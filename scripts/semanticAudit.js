@@ -110,16 +110,16 @@ export async function semanticAudit(auditResults) {
 
     const bannersInOtherLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('header, [role="banner"]')).map(banner => {
-                let parent = banner.parentElement;
+            Array.from(document.querySelectorAll('header, [role="banner"]')).map(header => {
+                let parent = header.parentElement;
                 while (parent && parent !== document.body) {
                     if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
-                        return banner.outerHTML;
+                        return header.outerHTML;
                     }
                     parent = parent.parentElement;
                 }
                 return null;
-            }).filter(banner => banner !== null)
+            }).filter(header => header !== null)
         `, resolve);
     });
       
@@ -148,16 +148,16 @@ export async function semanticAudit(auditResults) {
 
     const contentinfoInOtherLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('contentinfo')).map(aside => {
-                let parent = aside.parentElement;
+            Array.from(document.querySelectorAll('footer, [role="contentinfo"]')).map(footer => {
+                let parent = footer.parentElement;
                 while (parent && parent !== document.body) {
                     if (parent.hasAttribute('role') && ['main', 'navigation', 'banner', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
-                        return aside.outerHTML;
+                        return footer.outerHTML;
                     }
                     parent = parent.parentElement;
                 }
                 return null;
-            }).filter(aside => aside !== null)
+            }).filter(footer => footer !== null)
         `, resolve);
     });
     
