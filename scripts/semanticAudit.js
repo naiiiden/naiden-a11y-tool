@@ -295,4 +295,26 @@ export async function semanticAudit(auditResults) {
     invalidDlElements.forEach(() => {
         auditResults.push(semanticErrors[16]);
     });
+
+    const invalidDtDdElements = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval(`
+            (() => {
+                const dtElements = Array.from(document.querySelectorAll('dt'));
+                const ddElements = Array.from(document.querySelectorAll('dd'));
+                
+                const isInDl = (element) => {
+                    return element.closest('dl') !== null;
+                };
+    
+                const invalidDtElements = dtElements.filter(dt => !isInDl(dt));
+                const invalidDdElements = ddElements.filter(dd => !isInDl(dd));
+    
+                return [...invalidDtElements, ...invalidDdElements];
+            })()
+        `, resolve);
+    });
+    
+    invalidDtDdElements.forEach(() => {
+        auditResults.push(semanticErrors[17]);
+    });
 }
