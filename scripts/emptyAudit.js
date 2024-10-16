@@ -1,15 +1,23 @@
 import { emptyErrors } from "./errors.js";
+import { getUniqueSelector } from "./utils.js";
 
 export async function emptyAudit(auditResults) {
     const headings = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("h1:not(:has(img)), h2:not(:has(img)), h3:not(:has(img)), h4:not(:has(img)), h5:not(:has(img)), h6:not(:has(img))")).filter(heading => heading.innerText.trim() === "").map(heading => heading.outerHTML)`, resolve)
+        chrome.devtools.inspectedWindow.eval(`
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll("h1:not(:has(img)), h2:not(:has(img)), h3:not(:has(img)), h4:not(:has(img)), h5:not(:has(img)), h6:not(:has(img))"))
+              .filter(heading => heading.innerText.trim() === "")
+              .map(heading => ({
+                outerHTML: heading.outerHTML,
+                selector: getUniqueSelector(heading)
+              }));
+          })()
+        `, resolve);
     });
 
-    headings.forEach((headingHTML) => {
-        auditResults.push({
-            ...emptyErrors[0],
-            element: headingHTML
-        });
+    headings.forEach(heading => {
+        auditResults.push({ ...emptyErrors[0], element: heading.outerHTML, selector: heading.selector });
     });
 
     const headingsWithImages = await new Promise((resolve) => {
