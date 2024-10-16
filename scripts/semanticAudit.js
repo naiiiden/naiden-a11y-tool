@@ -97,16 +97,29 @@ export async function semanticAudit(auditResults) {
         auditResults.push(semanticErrors[4]);
     }
 
-    const mainLandmark = await new Promise((resolve) => {
+    const mainLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            document.querySelectorAll("main, [role='main']").length
+            (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
+                return Array.from(document.querySelectorAll("main, [role='main']"))
+                    .map(element => ({
+                        outerHTML: element.outerHTML,
+                        selector: getUniqueSelector(element) // Assuming getUniqueSelector is defined in your context
+                    }));
+            })()
         `, resolve);
     });
-
-    if (mainLandmark < 1) {
+    
+    if (mainLandmarks.length < 1) {
         auditResults.push(semanticErrors[5]);
-    } else if (mainLandmark > 1) {
-        auditResults.push(semanticErrors[6]);
+    } else if (mainLandmarks.length > 1) {
+        mainLandmarks.forEach((landmark) => {
+            auditResults.push({
+                ...semanticErrors[6],
+                element: landmark.outerHTML,
+                selector: landmark.selector
+            });
+        });
     }
 
     const moreThanOneBanner = await new Promise((resolve) => {
