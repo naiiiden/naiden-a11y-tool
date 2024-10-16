@@ -1,12 +1,23 @@
 import { formErrors } from "./errors.js";
+import { getUniqueSelector } from "./utils.js";
 
 export async function formAudit(auditResults) {
     const labels = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("label")).filter(label => label.innerText.trim() === "").map(label => label.outerHTML)`, resolve)
+        chrome.devtools.inspectedWindow.eval(`
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll("label"))
+              .filter(label => label.innerText.trim() === "")
+              .map(label => ({ 
+                outerHTML: label.outerHTML, 
+                selector: getUniqueSelector(label) 
+              }))
+          })()
+        `, resolve)
     });
   
-    labels.forEach(() => {
-        auditResults.push(formErrors[0]);
+    labels.forEach(label => {
+        auditResults.push({ ...formErrors[0], element: label.outerHTML, selector: label.selector });
     });
 
     const inputAndSelectLabels = await new Promise((resolve) => {
