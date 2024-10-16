@@ -1,16 +1,29 @@
 import { imageLinkAndButtonErrors } from "./errors.js";
+import { getUniqueSelector } from "./utils.js";
 
 export async function imageLinkAndButtonAudit(auditResults) {
     const missingAltImages = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-          Array.from(document.querySelectorAll('img:not(a img):not(button img)')).map((img) => {
-            return { alt: img.getAttribute('alt') };
-          });
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll('img:not(a img):not(button img)'))
+              .map((img) => {
+                return {
+                  alt: img.getAttribute('alt'),
+                  outerHTML: img.outerHTML,
+                  selector: getUniqueSelector(img)
+                };
+              });
+          })()
         `, resolve);
     });
-
-    missingAltImages.filter(img => img.alt === null).forEach(() => {
-        auditResults.push(imageLinkAndButtonErrors[0]);
+    
+    missingAltImages.filter(img => img.alt === null).forEach(img => {
+        auditResults.push({
+          ...imageLinkAndButtonErrors[0],
+          element: img.outerHTML,
+          selector: img.selector
+        });
     });
 
     const linkedImages = await new Promise((resolve) => {
