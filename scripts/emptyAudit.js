@@ -48,11 +48,21 @@ export async function emptyAudit(auditResults) {
     });
 
     const tableHeadings = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("th")).filter(tableHeading => tableHeading.innerText.trim() === "").map(tableHeading => tableHeading.outerHTML)`, resolve)
+        chrome.devtools.inspectedWindow.eval(`
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll("th"))
+              .filter(tableHeading => tableHeading.innerText.trim() === "")
+              .map(tableHeading => ({
+                outerHTML: tableHeading.outerHTML,
+                selector: getUniqueSelector(tableHeading)
+              }));
+          })()
+        `, resolve);
     });
-
-    tableHeadings.forEach(() => {
-        auditResults.push(emptyErrors[1]);
+    
+    tableHeadings.forEach(tableHeading => {
+        auditResults.push({ ...emptyErrors[1], element: tableHeading.outerHTML, selector: tableHeading.selector });
     });
 
     const iframeTitles = await new Promise((resolve) => {
