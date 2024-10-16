@@ -62,18 +62,35 @@ export async function imageLinkAndButtonAudit(auditResults) {
 
     const buttonImages = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('button img')).map((img) => {
-            const parentText = img.closest('button').innerText.trim();
-            return { alt: img.getAttribute('alt'), hasText: parentText.length > 0 };
-            });
+            (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
+                return Array.from(document.querySelectorAll('button img'))
+                    .map((img) => {
+                        const parentText = img.closest('button').innerText.trim();
+                        return { 
+                            alt: img.getAttribute('alt'), 
+                            hasText: parentText.length > 0,
+                            outerHTML: img.outerHTML,
+                            selector: getUniqueSelector(img)
+                        };
+                    });
+            })()
         `, resolve);
     });
 
     buttonImages.forEach((img) => {
         if (img.hasText && img.alt === null) {
-            auditResults.push(imageLinkAndButtonErrors[0]); 
+            auditResults.push({ 
+                ...imageLinkAndButtonErrors[0], 
+                element: img.outerHTML,
+                selector: img.selector
+            }); 
         } else if (!img.hasText && (!img.alt || img.alt === "")) {
-            auditResults.push(imageLinkAndButtonErrors[2]);
+            auditResults.push({ 
+                ...imageLinkAndButtonErrors[2], 
+                element: img.outerHTML,
+                selector: img.selector
+            });
         }
     });
 
