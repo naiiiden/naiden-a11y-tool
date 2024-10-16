@@ -208,28 +208,38 @@ export async function semanticAudit(auditResults) {
     const contentOutsideLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
             (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
                 const landmarkSelectors = 'header, nav, main, footer, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="region"], [role="search"], [role="form"]';
                 const landmarkElements = Array.from(document.querySelectorAll(landmarkSelectors));
-
+    
                 const allElements = Array.from(document.body.querySelectorAll(':not(script):not(style)'));
-
+    
                 const elementsOutsideLandmarks = allElements.filter(el => {
                     return !landmarkElements.some(landmark => landmark.contains(el));
                 });
-
-                return elementsOutsideLandmarks.filter(el => {
-                    if (el.matches('a[href^="#"]')) {
-                        const text = el.innerText.toLowerCase();
-                        return !(text.includes('skip') || text.includes('jump'));
-                    }
-                    return true;
-                });
+    
+                return elementsOutsideLandmarks
+                    .filter(el => {
+                        if (el.matches('a[href^="#"]')) {
+                            const text = el.innerText.toLowerCase();
+                            return !(text.includes('skip') || text.includes('jump'));
+                        }
+                        return true;
+                    })
+                    .map(el => ({
+                        outerHTML: el.outerHTML,
+                        selector: getUniqueSelector(el)
+                    }));
             })()
         `, resolve);
     });
     
-    contentOutsideLandmarks.forEach(() => {
-        auditResults.push(semanticErrors[13]);
+    contentOutsideLandmarks.forEach(element => {
+        auditResults.push({
+            ...semanticErrors[13],
+            element: element.outerHTML,
+            selector: element.selector
+        });
     });
 
     const invalidListContent = await new Promise((resolve) => {
