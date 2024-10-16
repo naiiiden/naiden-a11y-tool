@@ -22,19 +22,27 @@ export async function formAudit(auditResults) {
 
     const inputAndSelectLabels = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-          Array.from(document.querySelectorAll('input[id], select[id], textarea[id]')).map(element => {
-            const labelCount = document.querySelectorAll('label[for="' + element.id + '"]').length;
-            return { html: element.outerHTML, labelCount: labelCount };
-          })
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll('input[id], select[id], textarea[id]'))
+              .map(element => {
+                const labelCount = document.querySelectorAll('label[for="' + element.id + '"]').length;
+                return { 
+                  outerHTML: element.outerHTML,
+                  labelCount: labelCount,
+                  selector: getUniqueSelector(element)
+                };
+              });
+          })()
         `, resolve);
     });
       
     inputAndSelectLabels.forEach((element) => {
-        if (element.labelCount === 0) {
-            auditResults.push(formErrors[1]);
-        } else if (element.labelCount > 1) {
-            auditResults.push(formErrors[2]);
-        }
+      if (element.labelCount === 0) {
+          auditResults.push({ ...formErrors[1], element: element.outerHTML, selector: element.selector });
+      } else if (element.labelCount > 1) {
+          auditResults.push({ ...formErrors[2], element: element.outerHTML, selector: element.selector });
+      }
     });
 
     const fieldsets = await new Promise((resolve) => {
