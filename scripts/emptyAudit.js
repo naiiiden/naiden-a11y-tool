@@ -83,10 +83,19 @@ export async function emptyAudit(auditResults) {
     });
 
     const summaries = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll("summary")).filter(summary => summary.innerText.trim() === "").map(summary => summary.outerHTML)`, resolve)
+        chrome.devtools.inspectedWindow.eval(`
+            (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
+                return Array.from(document.querySelectorAll("summary"))
+                    .filter(summary => summary.innerText.trim() === "")
+                    .map(summary => 
+                        ({ outerHTML: summary.outerHTML, selector: getUniqueSelector(summary) 
+                    }))
+            })()
+        `, resolve)
     });
 
-    summaries.forEach(() => {
-        auditResults.push(emptyErrors[3]);
+    summaries.forEach(summary => {
+        auditResults.push({ ...emptyErrors[3], element: summary.outerHTML, selector: summary.selector });
     });
 }
