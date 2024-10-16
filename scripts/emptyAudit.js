@@ -67,12 +67,19 @@ export async function emptyAudit(auditResults) {
 
     const iframeTitles = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll("iframe")).filter(iframe => !iframe.hasAttribute("title") || iframe.getAttribute("title").trim() === "").map(iframe => iframe.outerHTML)
+            (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
+                return Array.from(document.querySelectorAll("iframe"))
+                    .filter(iframe => !iframe.hasAttribute("title") || iframe.getAttribute("title").trim() === "")
+                    .map(iframe => 
+                        ({ outerHTML: iframe.outerHTML, selector: getUniqueSelector(iframe) 
+                    }));
+            })()
         `, resolve);
     });
 
-    iframeTitles.forEach(() => {
-        auditResults.push(emptyErrors[2]);
+    iframeTitles.forEach(iframe => {
+        auditResults.push({ ...emptyErrors[2], element: iframe.outerHTML, selector: iframe.selector });
     });
 
     const summaries = await new Promise((resolve) => {
