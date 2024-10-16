@@ -1,4 +1,5 @@
 import { semanticErrors } from "./errors.js";
+import { getUniqueSelector } from "./utils.js";
 
 export async function semanticAudit(auditResults) {
     const hasH1 = await new Promise((resolve) => {
@@ -13,23 +14,33 @@ export async function semanticAudit(auditResults) {
     }
 
     const headingLevels = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(
-            `Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).map(heading => heading.tagName)`,
-            resolve
-        );
+        chrome.devtools.inspectedWindow.eval(`
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).map(heading => ({
+              tagName: heading.tagName,
+              outerHTML: heading.outerHTML,
+              selector: getUniqueSelector(heading)
+            }));
+          })()
+        `, resolve);
     });
-
+    
     if (headingLevels.length > 0) {
         let previousLevel = 1;
-
+    
         for (const heading of headingLevels) {
-            const currentLevel = parseInt(heading[1]);
-
+            const currentLevel = parseInt(heading.tagName[1]);
+    
             if (currentLevel > previousLevel + 1) {
-                auditResults.push(semanticErrors[1]);
+                auditResults.push({
+                    ...semanticErrors[1],
+                    element: heading.outerHTML,
+                    selector: heading.selector
+                });
                 break;
             }
-
+    
             if (currentLevel > previousLevel) {
                 previousLevel = currentLevel;
             }
