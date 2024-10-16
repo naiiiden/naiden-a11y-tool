@@ -22,18 +22,28 @@ export async function emptyAudit(auditResults) {
 
     const headingsWithImages = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).map((heading) => {
-            const textContent = heading.innerText.trim();
-            const img = heading.querySelector('img');
-            const imgAlt = img ? img.getAttribute('alt') : null;
-            return { hasText: textContent.length > 0, hasImage: img !== null, hasImageAlt: imgAlt !== null && imgAlt.trim() !== "" };
-            });
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'))
+              .map(heading => {
+                const textContent = heading.innerText.trim();
+                const img = heading.querySelector('img');
+                const imgAlt = img ? img.getAttribute('alt') : null;
+                return {
+                  hasText: textContent.length > 0,
+                  hasImage: img !== null,
+                  hasImageAlt: imgAlt !== null && imgAlt.trim() !== "",
+                  outerHTML: heading.outerHTML,
+                  selector: getUniqueSelector(heading)
+                };
+              });
+          })()
         `, resolve);
     });
     
-    headingsWithImages.forEach((heading) => {
+    headingsWithImages.forEach(heading => {
         if (!heading.hasText && heading.hasImage && !heading.hasImageAlt) {
-            auditResults.push(emptyErrors[0]);
+            auditResults.push({ ...emptyErrors[0], element: heading.outerHTML, selector: heading.selector });
         }
     });
 
