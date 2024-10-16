@@ -232,22 +232,37 @@ export async function imageLinkAndButtonAudit(auditResults) {
           });
         }
     });
-    
 
     const brokenSamePageLinks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('a[href^="#"]')).map(link => {
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll('a[href^="#"]'))
+              .filter(link => {
+                const linkText = link.innerText.toLowerCase();
+                return !(linkText.includes('jump') || linkText.includes('skip'));
+              })
+              .map(link => {
                 const targetId = link.getAttribute('href').substring(1);
                 const targetElement = document.getElementById(targetId);
-            
+                
                 return {
-                    targetExists: !!targetElement,
+                  targetExists: !!targetElement,
+                  outerHTML: link.outerHTML,
+                  selector: getUniqueSelector(link)
                 };
-            });
+              });
+          })()
         `, resolve);
     });
-
+    
     brokenSamePageLinks
-    .filter(link => !link.targetExists)
-    .forEach(() => auditResults.push(imageLinkAndButtonErrors[9]));
+      .filter(link => !link.targetExists)
+      .forEach(link => {
+        auditResults.push({
+          ...imageLinkAndButtonErrors[9],
+          element: link.outerHTML,
+          selector: link.selector
+        });
+    });
 }
