@@ -90,10 +90,20 @@ export async function formAudit(auditResults) {
     });
 
     const emptySubmitOrButtonInput = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`Array.from(document.querySelectorAll('input[type="button"], input[type="submit"]')).filter(input => input.value === "").map(input => input.outerHTML)`, resolve)
+        chrome.devtools.inspectedWindow.eval(`
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll('input[type="button"], input[type="submit"]'))
+              .filter(input => input.value === "")
+              .map(input => ({ 
+                outerHTML: input.outerHTML,
+                selector: getUniqueSelector(input)
+              }))
+          })()
+        `, resolve)
     });
 
-    emptySubmitOrButtonInput.forEach(() => {
-        auditResults.push(formErrors[5]);
+    emptySubmitOrButtonInput.forEach(control => {
+        auditResults.push({ ...formErrors[5], element: control.outerHTML, selector: control.selector });
     });
 }
