@@ -176,24 +176,35 @@ export async function imageLinkAndButtonAudit(auditResults) {
 
     const brokenSkipLinks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('a[href^="#"]')).map(link => {
-                const linkText = link.innerText.toLowerCase();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                const isHidden = window.getComputedStyle(link).display === "none" || window.getComputedStyle(link).visibility === "hidden";
-            
-                return {
-                    linkText,
-                    targetExists: !!targetElement,
-                    isHidden
-                };
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll('a[href^="#"]')).map(link => {
+              const linkText = link.innerText.toLowerCase();
+              const targetId = link.getAttribute('href').substring(1);
+              const targetElement = document.getElementById(targetId);
+              const isHidden = window.getComputedStyle(link).display === "none" || window.getComputedStyle(link).visibility === "hidden";
+              
+              return {
+                linkText,
+                targetExists: !!targetElement,
+                isHidden,
+                linkOuterHTML: link.outerHTML,
+                linkSelector: getUniqueSelector(link)
+              };
             });
+          })()
         `, resolve);
     });
-
+    
     brokenSkipLinks
-    .filter(link => (link.linkText.includes('skip') || link.linkText.includes('jump')) && (!link.targetExists || link.isHidden))
-    .forEach(() => auditResults.push(imageLinkAndButtonErrors[7]));
+      .filter(link => (link.linkText.includes('skip') || link.linkText.includes('jump')) && (!link.targetExists || link.isHidden))
+      .forEach(link => {
+        auditResults.push({
+          ...imageLinkAndButtonErrors[7],
+          element: link.linkOuterHTML,
+          selector: link.linkSelector
+        });
+    });
 
     const interactiveControlsWithInteractiveControlsAsChildren = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
