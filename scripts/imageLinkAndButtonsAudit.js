@@ -114,12 +114,20 @@ export async function imageLinkAndButtonAudit(auditResults) {
 
     const emptyButtons = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('button:not(:has(img)')).filter(button => !button.innerText.trim()).map(button => button.outerHTML);
+            (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
+                return Array.from(document.querySelectorAll('button:not(:has(img)'))
+                    .filter(button => !button.innerText.trim())
+                    .map(button => ({
+                        outerHTML:  button.outerHTML,
+                        selector: getUniqueSelector(button)
+                    }));
+            })()
         `, resolve);
     });
 
-    emptyButtons.forEach(() => {
-        auditResults.push(imageLinkAndButtonErrors[4]);
+    emptyButtons.forEach(button => {
+        auditResults.push({ ...imageLinkAndButtonErrors[4], element: button.outerHTML, selector: button.selector });
     });
 
     const imageMaps = await new Promise((resolve) => {
