@@ -49,22 +49,32 @@ export async function semanticAudit(auditResults) {
 
     const possibleHeadings = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-          Array.from(document.querySelectorAll('p'))
-            .filter(p => p.innerText.trim().length < 50)
-            .filter(p => {
-              const style = window.getComputedStyle(p);
-              const fontSize = parseFloat(style.fontSize);
-              const isBold = style.fontWeight === 'bold' || parseInt(style.fontWeight) >= 600;
-              const isItalic = style.fontStyle === 'italic';
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll('p'))
+              .filter(p => p.innerText.trim().length < 50)
+              .filter(p => {
+                const style = window.getComputedStyle(p);
+                const fontSize = parseFloat(style.fontSize);
+                const isBold = style.fontWeight === 'bold' || parseInt(style.fontWeight) >= 600;
+                const isItalic = style.fontStyle === 'italic';
     
-              return fontSize >= 20 || (fontSize >= 16 && (isBold || isItalic));
-            })
-            .map(p => p.outerHTML)
+                return fontSize >= 20 || (fontSize >= 16 && (isBold || isItalic));
+              })
+              .map(p => ({
+                outerHTML: p.outerHTML,
+                selector: getUniqueSelector(p)
+              }));
+          })()
         `, resolve);
-      });
+    });
     
-    possibleHeadings.forEach(() => {
-        auditResults.push(semanticErrors[2]);
+    possibleHeadings.forEach(heading => {
+        auditResults.push({
+            ...semanticErrors[2],
+            element: heading.outerHTML,
+            selector: heading.selector
+        });
     });
 
     const hasHeadings = await new Promise((resolve) => {
