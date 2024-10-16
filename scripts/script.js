@@ -77,13 +77,15 @@ function displayAuditResults(auditResults) {
       <strong>${error.name}</strong> - ${error.description}<br>
       <a href="${error.wcagLink}" target="_blank">Learn more</a><br>
       <p>Fix: ${error.fix}</p>
-      <pre><code>${escapeHtml(error.element)}</code></pre>
-      <button id="highlight-btn-${index}">Highlight</button>
+      ${error.element ? `<pre><code>${escapeHtml(error.element)}</code></pre>` : ``}
+      ${error.selector ? `<button id="highlight-btn-${index}">Highlight</button>` : ``}
     `;
 
-    listItem.querySelector(`#highlight-btn-${index}`).addEventListener('click', () => {
-      highlightElement(error.selector);
-    });
+    if (error.selector) {
+      listItem.querySelector(`#highlight-btn-${index}`).addEventListener('click', () => {
+        highlightElement(error.selector);
+      });
+    }
 
     errorsList.appendChild(listItem);
   });
