@@ -28,18 +28,35 @@ export async function imageLinkAndButtonAudit(auditResults) {
 
     const linkedImages = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('a img')).map((img) => {
-            const parentText = img.closest('a').innerText.trim();
-            return { alt: img.getAttribute('alt'), hasText: parentText.length > 0 };
-            });
+            (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
+                return Array.from(document.querySelectorAll('a img'))
+                    .map((img) => {
+                        const parentText = img.closest('a').innerText.trim();
+                        return { 
+                            alt: img.getAttribute('alt'), 
+                            hasText: parentText.length > 0, 
+                            outerHTML: img.outerHTML,
+                            selector: getUniqueSelector(img)
+                        };
+                    });
+            })()
         `, resolve);
     });
 
     linkedImages.forEach((img) => {
         if (img.hasText && img.alt === null) {
-            auditResults.push(imageLinkAndButtonErrors[0]);
+            auditResults.push({ 
+                ...imageLinkAndButtonErrors[0], 
+                element: img.outerHTML, 
+                selector: img.selector 
+            });
         } else if (!img.hasText && (!img.alt || img.alt === "")) {
-            auditResults.push(imageLinkAndButtonErrors[1]);
+            auditResults.push({ 
+                ...imageLinkAndButtonErrors[1], 
+                element: img.outerHTML, 
+                selector: img.selector 
+            });
         }
     });
 
