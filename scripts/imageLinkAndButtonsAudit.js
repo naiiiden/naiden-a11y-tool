@@ -132,26 +132,44 @@ export async function imageLinkAndButtonAudit(auditResults) {
 
     const imageMaps = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('img[usemap]')).map((img) => {
-            const usemapName = img.getAttribute('usemap').substring(1);
-            const mapElement = document.querySelector('map[name="' + usemapName + '"]');
-            const areas = mapElement ? Array.from(mapElement.querySelectorAll('area')) : [];
-            return {
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll('img[usemap]')).map((img) => {
+              const usemapName = img.getAttribute('usemap').substring(1);
+              const mapElement = document.querySelector('map[name="' + usemapName + '"]');
+              const areas = mapElement ? Array.from(mapElement.querySelectorAll('area')) : [];
+              
+              return {
                 imgAlt: img.getAttribute('alt'),
-                areas: areas.map(area => area.getAttribute('alt'))
-            };
+                imgOuterHTML: img.outerHTML,
+                imgSelector: getUniqueSelector(img),
+                areas: areas.map(area => ({
+                  areaAlt: area.getAttribute('alt'),
+                  areaOuterHTML: area.outerHTML,
+                  areaSelector: getUniqueSelector(area)
+                }))
+              };
             });
+          })()
         `, resolve);
     });
     
     imageMaps.forEach(map => {
         if (!map.imgAlt || map.imgAlt === "") {
-            auditResults.push(imageLinkAndButtonErrors[5]);
+            auditResults.push({
+              ...imageLinkAndButtonErrors[5],
+              element: map.imgOuterHTML,
+              selector: map.imgSelector
+            });
         }
         
-        map.areas.forEach(areaAlt => {
-            if (!areaAlt || areaAlt === "") {
-            auditResults.push(imageLinkAndButtonErrors[6]);
+        map.areas.forEach(area => {
+            if (!area.areaAlt || area.areaAlt === "") {
+                auditResults.push({
+                  ...imageLinkAndButtonErrors[6],
+                  element: area.areaOuterHTML,
+                  selector: area.areaSelector
+                });
             }
         });
     });
