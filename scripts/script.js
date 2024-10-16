@@ -7,15 +7,8 @@ import { semanticAudit } from "./semanticAudit.js";
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('toggle-stylesheets').addEventListener('change', () => {
     const disable = document.getElementById('toggle-stylesheets').checked;
-
     chrome.devtools.inspectedWindow.eval(
       `(${toggleStylesheets.toString()})(${disable});`
-    );
-  });
-
-  document.getElementById('highlight-btn').addEventListener('click', () => {
-    chrome.devtools.inspectedWindow.eval(
-      `(${highlightElements.toString()})();`
     );
   });
 
@@ -55,16 +48,40 @@ const errorsList = document.getElementById('errors-list');
 function displayAuditResults(auditResults) {
   errorsList.innerHTML = '';
 
-  auditResults.forEach(error => {
+  auditResults.forEach((error, index) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
       <strong>${error.name}</strong> - ${error.description}<br>
       <a href="${error.wcagLink}" target="_blank">Learn more</a><br>
       <p>Fix: ${error.fix}</p>
       <p>Element: ${error.element}</p>
+      <button id="highlight-btn-${index}">Highlight</button>
     `;
+
+    listItem.querySelector(`#highlight-btn-${index}`).addEventListener('click', () => {
+      highlightElement(error.selector);
+    });
+
     errorsList.appendChild(listItem);
   });
+}
+
+function highlightElement(selector) {
+  chrome.devtools.inspectedWindow.eval(`
+    (() => {
+      const element = document.querySelector('${selector}');
+      if (element) {
+        // Check if the element already has the highlight class
+        if (element.classList.contains('highlighted')) {
+          element.classList.remove('highlighted'); // Remove highlight
+          element.style.outline = ''; // Reset outline style
+        } else {
+          element.classList.add('highlighted'); // Add highlight
+          element.style.outline = '3px solid red'; // Apply outline style
+        }
+      }
+    })();
+  `);
 }
 
 async function runAudit(auditFuncs) {
