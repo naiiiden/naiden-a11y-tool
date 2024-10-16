@@ -44,6 +44,15 @@ function toggleStylesheets(disable) {
   }
 }
 
+function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 const errorsList = document.getElementById('errors-list');
 function displayAuditResults(auditResults) {
   errorsList.innerHTML = '';
@@ -54,7 +63,7 @@ function displayAuditResults(auditResults) {
       <strong>${error.name}</strong> - ${error.description}<br>
       <a href="${error.wcagLink}" target="_blank">Learn more</a><br>
       <p>Fix: ${error.fix}</p>
-      <p>Element: ${error.element}</p>
+      <pre><code>${escapeHtml(error.element)}</code></pre>
       <button id="highlight-btn-${index}">Highlight</button>
     `;
 
