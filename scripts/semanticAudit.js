@@ -218,7 +218,11 @@ export async function semanticAudit(auditResults) {
                     return !landmarkElements.some(landmark => landmark.contains(el));
                 });
     
-                return elementsOutsideLandmarks
+                const filteredElements = elementsOutsideLandmarks.filter(el => {
+                    return !elementsOutsideLandmarks.some(parent => parent !== el && parent.contains(el));
+                });
+    
+                return filteredElements
                     .filter(el => {
                         if (el.matches('a[href^="#"]')) {
                             const text = el.innerText.toLowerCase();
