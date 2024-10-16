@@ -47,14 +47,22 @@ export async function formAudit(auditResults) {
 
     const fieldsets = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-          Array.from(document.querySelectorAll('fieldset')).filter(fieldset => {
-            return fieldset.querySelector('legend') === null;
-          }).map(fieldset => fieldset.outerHTML)
+          (() => {
+            const getUniqueSelector = ${getUniqueSelector.toString()};
+            return Array.from(document.querySelectorAll('fieldset'))
+              .filter(fieldset => {
+                return fieldset.querySelector('legend') === null;
+              })
+              .map(fieldset => ({ 
+                outerHTML: fieldset.outerHTML, 
+                selector: getUniqueSelector(fieldset) 
+              }))
+          })()
         `, resolve);
     });
     
-    fieldsets.forEach(() => {
-        auditResults.push(formErrors[3]); 
+    fieldsets.forEach(fieldset => {
+        auditResults.push({ ...formErrors[3], element: fieldset.outerHTML, selector: fieldset.selector }); 
     });
 
     const radiosAndCheckboxesWithoutFieldset = await new Promise((resolve) => {
