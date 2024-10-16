@@ -42,6 +42,20 @@ function toggleStylesheets(disable) {
   for (let i = 0; i < stylesheets.length; i++) {
     stylesheets[i].disabled = disable;
   }
+
+  document.querySelectorAll('*').forEach((element) => {
+    if (disable) {
+      if (element.hasAttribute('style')) {
+        element.setAttribute('disabled-style', element.getAttribute('style'));
+        element.removeAttribute('style');
+      }
+    } else {
+      if (element.hasAttribute('disabled-style')) {
+        element.setAttribute('style', element.getAttribute('disabled-style'));
+        element.removeAttribute('disabled-style');
+      }
+    }
+  });
 }
 
 function escapeHtml(unsafe) {
@@ -80,13 +94,12 @@ function highlightElement(selector) {
     (() => {
       const element = document.querySelector('${selector}');
       if (element) {
-        // Check if the element already has the highlight class
         if (element.classList.contains('highlighted')) {
-          element.classList.remove('highlighted'); // Remove highlight
-          element.style.outline = ''; // Reset outline style
+          element.classList.remove('highlighted');
+          element.style.outline = '';
         } else {
-          element.classList.add('highlighted'); // Add highlight
-          element.style.outline = '3px solid red'; // Apply outline style
+          element.classList.add('highlighted');
+          element.style.outline = '3px solid red';
         }
       }
     })();
