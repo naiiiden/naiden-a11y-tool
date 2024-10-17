@@ -144,21 +144,34 @@ export async function semanticAudit(auditResults) {
 
     const bannersInOtherLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('header, [role="banner"]')).map(header => {
-                let parent = header.parentElement;
-                while (parent && parent !== document.body) {
-                    if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
-                        return header.outerHTML;
-                    }
-                    parent = parent.parentElement;
-                }
-                return null;
-            }).filter(header => header !== null)
+            (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
+                return Array.from(document.querySelectorAll('header, [role="banner"]'))
+                    .map(header => {
+                        let parent = header.parentElement;
+                        while (parent && parent !== document.body) {
+                            if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role')) ||
+                                ['MAIN', 'NAV', 'FOOTER', 'ASIDE', 'SECTION', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
+                                return {
+                                    outerHTML: header.outerHTML,
+                                    selector: getUniqueSelector(header) 
+                                };
+                            }
+                            parent = parent.parentElement;
+                        }
+                        return null;
+                    })
+                    .filter(header => header !== null);
+            })()
         `, resolve);
     });
-      
-    bannersInOtherLandmarks.forEach(() => {
-        auditResults.push(semanticErrors[9]);
+    
+    bannersInOtherLandmarks.forEach((banner) => {
+        auditResults.push({
+            ...semanticErrors[9],
+            element: banner.outerHTML,
+            selector: banner.selector
+        });
     });
 
     const asidesInOtherLandmarks = await new Promise((resolve) => {
