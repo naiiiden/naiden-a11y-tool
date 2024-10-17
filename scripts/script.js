@@ -88,7 +88,7 @@ function displayAuditResults(auditResults) {
   auditResults.forEach((error, index) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
-      <strong>${error.name}</strong> - ${error.description}<br>
+      <strong>${escapeHtml(error.name)}</strong> - ${error.description}<br>
       <a href="${error.wcagLink}" target="_blank">Learn more</a><br>
       <p>Fix: ${error.fix}</p>
       ${error.element ? `<pre><code>${escapeHtml(error.element)}</code></pre>` : ``}
