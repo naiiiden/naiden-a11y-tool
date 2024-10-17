@@ -411,6 +411,7 @@ export async function semanticAudit(auditResults) {
     const invalidDtDdElements = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
             (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
                 const dtElements = Array.from(document.querySelectorAll('dt'));
                 const ddElements = Array.from(document.querySelectorAll('dd'));
                 
@@ -418,15 +419,30 @@ export async function semanticAudit(auditResults) {
                     return element.closest('dl') !== null;
                 };
     
-                const invalidDtElements = dtElements.filter(dt => !isInDl(dt));
-                const invalidDdElements = ddElements.filter(dd => !isInDl(dd));
+                const invalidDtElements = dtElements
+                    .filter(dt => !isInDl(dt))
+                    .map(dt => ({
+                        outerHTML: dt.outerHTML,
+                        selector: getUniqueSelector(dt)
+                    }));
+    
+                const invalidDdElements = ddElements
+                    .filter(dd => !isInDl(dd))
+                    .map(dd => ({
+                        outerHTML: dd.outerHTML,
+                        selector: getUniqueSelector(dd)
+                    }));
     
                 return [...invalidDtElements, ...invalidDdElements];
             })()
         `, resolve);
     });
     
-    invalidDtDdElements.forEach(() => {
-        auditResults.push(semanticErrors[17]);
+    invalidDtDdElements.forEach((element) => {
+        auditResults.push({
+            ...semanticErrors[17],
+            element: element.outerHTML,
+            selector: element.selector
+        });
     });
 }
