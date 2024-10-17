@@ -60,10 +60,16 @@ function toggleStylesheets(disable) {
 }
 
 
-
+const errorsIndicator = document.getElementById("errors-indicator");
 const errorsList = document.getElementById('errors-list');
 function displayAuditResults(auditResults) {
   errorsList.innerHTML = '';
+  errorsIndicator.innerHTML = "";
+
+  if (auditResults.length === 0) {
+    errorsIndicator.textContent = 'No errors found.';
+    return;
+  }
 
   auditResults.forEach((error, index) => {
     const listItem = document.createElement('li');
