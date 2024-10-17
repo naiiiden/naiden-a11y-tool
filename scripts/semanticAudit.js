@@ -207,21 +207,33 @@ export async function semanticAudit(auditResults) {
 
     const contentinfoInOtherLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('footer, [role="contentinfo"]')).map(footer => {
-                let parent = footer.parentElement;
-                while (parent && parent !== document.body) {
-                    if (parent.hasAttribute('role') && ['main', 'navigation', 'banner', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
-                        return footer.outerHTML;
+            (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
+                return Array.from(document.querySelectorAll('footer, [role="contentinfo"]'))
+                    .map(footer => {
+                        let parent = footer.parentElement;
+                        while (parent && parent !== document.body) {
+                            if (parent.hasAttribute('role') && ['main', 'navigation', 'banner', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role')) || ['MAIN', 'NAV', 'HEADER', 'SECTION', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
+                                return {
+                                    outerHTML: footer.outerHTML,
+                                    selector: getUniqueSelector(footer)
+                                }
+                            }
+                        parent = parent.parentElement;
                     }
-                    parent = parent.parentElement;
-                }
-                return null;
-            }).filter(footer => footer !== null)
+                        return null;
+                    })
+                    .filter(footer => footer !== null)
+            })()
         `, resolve);
     });
     
-    contentinfoInOtherLandmarks.forEach(() => {
-        auditResults.push(semanticErrors[11]);
+    contentinfoInOtherLandmarks.forEach(footer => {
+        auditResults.push({ 
+            ...semanticErrors[11],
+            element: footer.outerHTML,
+            selector: footer.selector
+        });
     });
 
     const mainInOtherLandmarks = await new Promise((resolve) => {
