@@ -1,3 +1,9 @@
+export function inspectedWindowEval(script) {
+  return new Promise((resolve) => {
+    chrome.devtools.inspectedWindow.eval(`(() => { ${script} })()`, resolve);
+  });
+}
+
 export function getUniqueSelector(element) {
     let path = '';
     while (element.parentElement) {

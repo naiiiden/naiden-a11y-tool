@@ -1,41 +1,33 @@
 import { formErrors } from "./errors.js";
-import { getUniqueSelector } from "./utils.js";
+import { getUniqueSelector, inspectedWindowEval } from "./utils.js";
 
 export async function formAudit(auditResults) {
-    const labels = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-          (() => {
-            const getUniqueSelector = ${getUniqueSelector.toString()};
-            return Array.from(document.querySelectorAll("label"))
-              .filter(label => label.innerText.trim() === "")
-              .map(label => ({ 
-                outerHTML: label.outerHTML, 
-                selector: getUniqueSelector(label) 
-              }))
-          })()
-        `, resolve)
-    });
+   const labels = await inspectedWindowEval(`
+      const getUniqueSelector = ${getUniqueSelector.toString()};
+      return Array.from(document.querySelectorAll("label"))
+        .filter(label => label.innerText.trim() === "")
+        .map(label => ({ 
+          outerHTML: label.outerHTML, 
+          selector: getUniqueSelector(label) 
+        }))
+    `)
   
     labels.forEach(label => {
         auditResults.push({ ...formErrors[0], element: label.outerHTML, selector: label.selector });
     });
 
-    const inputAndSelectLabels = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-          (() => {
-            const getUniqueSelector = ${getUniqueSelector.toString()};
-            return Array.from(document.querySelectorAll('input[id], select[id], textarea[id]'))
-              .map(element => {
-                const labelCount = document.querySelectorAll('label[for="' + element.id + '"]').length;
-                return { 
-                  outerHTML: element.outerHTML,
-                  labelCount: labelCount,
-                  selector: getUniqueSelector(element)
-                };
-              });
-          })()
-        `, resolve);
-    });
+    const inputAndSelectLabels = await inspectedWindowEval(`
+      const getUniqueSelector = ${getUniqueSelector.toString()};
+      return Array.from(document.querySelectorAll('input[id], select[id], textarea[id]'))
+        .map(element => {
+          const labelCount = document.querySelectorAll('label[for="' + element.id + '"]').length;
+          return { 
+            outerHTML: element.outerHTML,
+            labelCount: labelCount,
+            selector: getUniqueSelector(element)
+          };
+        });  
+    `)
       
     inputAndSelectLabels.forEach((element) => {
       if (element.labelCount === 0) {
