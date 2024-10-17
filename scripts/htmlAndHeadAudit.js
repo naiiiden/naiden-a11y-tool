@@ -2,7 +2,7 @@ import { htmlAndHeadErrors } from "./errors.js";
 
 export async function htmlAndHeadAudit(auditResults) {
     const htmlLanguage = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval("document.documentElement", resolve);
+        chrome.devtools.inspectedWindow.eval("document.documentElement.getAttribute('lang')", resolve);
     });
   
     const validLangValues = [
@@ -18,7 +18,7 @@ export async function htmlAndHeadAudit(auditResults) {
         "uz", "ve", "vi", "vo", "wa", "cy", "wo", "xh", "yi", "yo", "za", "zu"
     ];
 
-    if (!htmlLanguage.lang || !validLangValues.includes(htmlLanguage.split('-')[0])) {
+    if (!htmlLanguage || !validLangValues.includes(htmlLanguage.split('-')[0])) {
         auditResults.push(htmlAndHeadErrors[0]);
     }
 
