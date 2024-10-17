@@ -66,27 +66,37 @@ export async function formAudit(auditResults) {
     });
 
     const radiosAndCheckboxesWithoutFieldset = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-          (() => {
-            const elements = Array.from(document.querySelectorAll('input[type="radio"], input[type="checkbox"]'));
-            const groupedByName = elements.reduce((groups, input) => {
-              if (!groups[input.name]) groups[input.name] = [];
-              groups[input.name].push(input);
-              return groups;
-            }, {});
+      chrome.devtools.inspectedWindow.eval(`
+        (() => {
+          const getUniqueSelector = ${getUniqueSelector.toString()};
+          const elements = Array.from(document.querySelectorAll('input[type="radio"], input[type="checkbox"]'));
+          const groupedByName = elements.reduce((groups, input) => {
+            if (!groups[input.name]) groups[input.name] = [];
+            groups[input.name].push(input);
+            return groups;
+          }, {});
     
-            return Object.values(groupedByName)
-              .filter(group => group.length > 1)
-              .filter(group => {
-                return !group.every(input => input.closest('fieldset'));
-              })
-              .map(group => group.map(input => input.outerHTML));
-          })();
-        `, resolve);
+          return Object.values(groupedByName)
+            .filter(group => group.length > 1) 
+            .filter(group => {
+              return !group.every(input => input.closest('fieldset'));
+            })
+            .map(group => group.map(input => ({
+              outerHTML: input.outerHTML,
+              selector: getUniqueSelector(input)
+            })));
+        })()
+      `, resolve);
     });
-    
-    radiosAndCheckboxesWithoutFieldset.forEach(() => {
-        auditResults.push(formErrors[4]);
+  
+    radiosAndCheckboxesWithoutFieldset.forEach((group) => {
+        group.forEach(input => {
+            auditResults.push({
+                ...formErrors[4],
+                element: input.outerHTML,
+                selector: input.selector
+            });
+        });
     });
 
     const emptySubmitOrButtonInput = await new Promise((resolve) => {
