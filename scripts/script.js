@@ -5,6 +5,16 @@ import { imageLinkAndButtonAudit } from "./imageLinkAndButtonsAudit.js";
 import { semanticAudit } from "./semanticAudit.js";
 import { escapeHtml } from "./utils.js";
 
+const errorsIndicator = document.getElementById("errors-indicator");
+const errorsList = document.getElementById('errors-list');
+
+function emptyErrorMessage(text) {
+  if (errorsList.innerHTML === "") {
+    errorsIndicator.innerHTML = text;
+    return;
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('toggle-stylesheets').addEventListener('change', () => {
     const disable = document.getElementById('toggle-stylesheets').checked;
@@ -14,23 +24,33 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("run-html-and-head-audit-btn").addEventListener("click", () => {
-    runAudit([htmlAndHeadAudit]);
+    runAudit([htmlAndHeadAudit]).then(() => {
+      emptyErrorMessage("No html and head errors.");
+    });
   });
 
   document.getElementById("run-image-link-and-button-audit-btn").addEventListener("click", () => {
-    runAudit([imageLinkAndButtonAudit]);
+    runAudit([imageLinkAndButtonAudit]).then(() => {
+      emptyErrorMessage("No image, link and button errors.");
+    });
   });
 
   document.getElementById("run-empty-audit-btn").addEventListener("click", () => {
-    runAudit([emptyAudit]);
+    runAudit([emptyAudit]).then(() => {
+      emptyErrorMessage("No empty element errors.");
+    });
   });
 
   document.getElementById("run-form-audit-btn").addEventListener("click", () => {
-    runAudit([formAudit]);
+    runAudit([formAudit]).then(() => {
+      emptyErrorMessage("No form errors.");
+    });
   });
 
   document.getElementById("run-semantic-audit-btn").addEventListener("click", () => {
-    runAudit([semanticAudit]);
+    runAudit([semanticAudit]).then(() => {
+      emptyErrorMessage("No semantic errors.");
+    });
   });
 
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
@@ -59,16 +79,12 @@ function toggleStylesheets(disable) {
   });
 }
 
-
-const errorsIndicator = document.getElementById("errors-indicator");
-const errorsList = document.getElementById('errors-list');
 function displayAuditResults(auditResults) {
   errorsList.innerHTML = '';
   errorsIndicator.innerHTML = "";
 
   if (auditResults.length === 0) {
-    errorsIndicator.textContent = 'No errors found.';
-    return;
+    emptyErrorMessage("No errors found.");
   }
 
   auditResults.forEach((error, index) => {
