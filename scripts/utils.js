@@ -12,3 +12,12 @@ export function getUniqueSelector(element) {
   
     return path.slice(0, -3); // Remove trailing ' > '
 }
+
+export function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}

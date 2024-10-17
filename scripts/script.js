@@ -3,6 +3,7 @@ import { formAudit } from "./formAudit.js";
 import { htmlAndHeadAudit } from "./htmlAndHeadAudit.js";
 import { imageLinkAndButtonAudit } from "./imageLinkAndButtonsAudit.js";
 import { semanticAudit } from "./semanticAudit.js";
+import { escapeHtml } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('toggle-stylesheets').addEventListener('change', () => {
@@ -58,14 +59,7 @@ function toggleStylesheets(disable) {
   });
 }
 
-function escapeHtml(unsafe) {
-  return unsafe
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
+
 
 const errorsList = document.getElementById('errors-list');
 function displayAuditResults(auditResults) {
