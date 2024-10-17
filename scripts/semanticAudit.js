@@ -311,6 +311,7 @@ export async function semanticAudit(auditResults) {
     const invalidListContent = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
             (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
                 const invalidElements = [];
                 const listElements = Array.from(document.querySelectorAll('ul, ol'));
                 
@@ -318,7 +319,10 @@ export async function semanticAudit(auditResults) {
                     const children = Array.from(list.children);
                     children.forEach(child => {
                         if (!['LI', 'SCRIPT', 'TEMPLATE'].includes(child.tagName)) {
-                            invalidElements.push(child);
+                            invalidElements.push({
+                                outerHTML: child.outerHTML,
+                                selector: getUniqueSelector(child)
+                            });
                         }
                     });
                 });
@@ -328,8 +332,12 @@ export async function semanticAudit(auditResults) {
         `, resolve);
     });
     
-    invalidListContent.forEach(() => {
-        auditResults.push(semanticErrors[14]); 
+    invalidListContent.forEach((element) => {
+        auditResults.push({
+            ...semanticErrors[14],
+            element: element.outerHTML,
+            selector: element.selector
+        });
     });
 
     const liOutsideList = await new Promise((resolve) => {
