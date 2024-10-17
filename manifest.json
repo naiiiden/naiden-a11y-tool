@@ -12,9 +12,6 @@
   "action": {
     "default_popup": "popup.html"
   },
-  "background": {
-    "service_worker": "service_worker.js"
-  },
   "devtools_page": "index.html",
   "web_accessible_resources": [
     {

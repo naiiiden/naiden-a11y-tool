@@ -104,7 +104,7 @@ export async function semanticAudit(auditResults) {
                 return Array.from(document.querySelectorAll("main, [role='main']"))
                     .map(element => ({
                         outerHTML: element.outerHTML,
-                        selector: getUniqueSelector(element) // Assuming getUniqueSelector is defined in your context
+                        selector: getUniqueSelector(element)
                     }));
             })()
         `, resolve);
