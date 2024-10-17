@@ -274,7 +274,7 @@ export async function semanticAudit(auditResults) {
         chrome.devtools.inspectedWindow.eval(`
             (() => {
                 const getUniqueSelector = ${getUniqueSelector.toString()};
-                const landmarkSelectors = 'header, nav, main, footer, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="region"], [role="search"], [role="form"]';
+                const landmarkSelectors = 'header, nav, main, footer, section, aside, form, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="region"], [role="complementary"], [role="form"], [role="search"]';
                 const landmarkElements = Array.from(document.querySelectorAll(landmarkSelectors));
     
                 const allElements = Array.from(document.body.querySelectorAll(':not(script):not(style)'));
