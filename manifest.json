@@ -24,13 +24,5 @@
       "matches": ["<all_urls>"],
       "css": ["style/style.css"]
     }
-  ],
-  "commands": {
-    "toggle_nano_a11y_tool": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+X"
-      },
-      "description": "toggle nano's a11y tool"
-    }
-  }
+  ]
 }
