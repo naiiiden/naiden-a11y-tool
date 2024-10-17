@@ -176,21 +176,33 @@ export async function semanticAudit(auditResults) {
 
     const asidesInOtherLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('aside, [role="complementary"]')).map(aside => {
-                let parent = aside.parentElement;
-                while (parent && parent !== document.body) {
-                    if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'banner', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
-                        return aside.outerHTML;
+            (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
+                return Array.from(document.querySelectorAll('aside, [role="complementary"]'))
+                    .map(aside => {
+                        let parent = aside.parentElement;
+                        while (parent && parent !== document.body) {
+                            if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'banner', 'search', 'form', 'region'].includes(parent.getAttribute('role')) || ['MAIN', 'NAV', 'FOOTER', 'SECTION', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
+                                return {
+                                    outerHTML: aside.outerHTML,
+                                    selector: getUniqueSelector(aside)
+                                }
+                            }
+                        parent = parent.parentElement;
                     }
-                    parent = parent.parentElement;
-                }
-                return null;
-            }).filter(aside => aside !== null)
+                        return null;
+                    })
+                    .filter(aside => aside !== null)
+            })()
         `, resolve);
     });
     
-    asidesInOtherLandmarks.forEach(() => {
-        auditResults.push(semanticErrors[10]);
+    asidesInOtherLandmarks.forEach(aside => {
+        auditResults.push({ 
+            ...semanticErrors[10],
+            element: aside.outerHTML,
+            selector: aside.selector 
+        });
     });
 
     const contentinfoInOtherLandmarks = await new Promise((resolve) => {
