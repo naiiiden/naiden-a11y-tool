@@ -54,7 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
-    runAudit([htmlAndHeadAudit, imageLinkAndButtonAudit, emptyAudit, formAudit, semanticAudit]);
+    runAudit([htmlAndHeadAudit, imageLinkAndButtonAudit, emptyAudit, formAudit, semanticAudit]).then(() => {
+      emptyErrorMessage("No errors found.");
+    });
   });
 });
 
@@ -82,10 +84,6 @@ function toggleStylesheets(disable) {
 function displayAuditResults(auditResults) {
   errorsList.innerHTML = '';
   errorsIndicator.innerHTML = "";
-
-  if (auditResults.length === 0) {
-    emptyErrorMessage("No errors found.");
-  }
 
   auditResults.forEach((error, index) => {
     const listItem = document.createElement('li');
