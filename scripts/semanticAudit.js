@@ -238,21 +238,33 @@ export async function semanticAudit(auditResults) {
 
     const mainInOtherLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-            Array.from(document.querySelectorAll('main, [role="main"]')).map(main => {
-                let parent = main.parentElement;
-                while (parent && parent !== document.body) {
-                    if (parent.hasAttribute('role') && ['contentinfo', 'navigation', 'banner', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role'))) {
-                        return main.outerHTML;
+            (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
+                return Array.from(document.querySelectorAll('main, [role="main"]'))
+                    .map(main => {
+                        let parent = main.parentElement;
+                        while (parent && parent !== document.body) {
+                            if (parent.hasAttribute('role') && ['contentinfo', 'navigation', 'banner', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role')) || ['FOOTER', 'NAV', 'HEADER', 'SECTION', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
+                                return {
+                                    outerHTML: main.outerHTML,
+                                    selector: getUniqueSelector(main)
+                                };
+                            }
+                            parent = parent.parentElement;
                     }
-                    parent = parent.parentElement;
-                }
-                return null;
-            }).filter(main => main !== null)
+                        return null;
+                    })
+                    .filter(main => main !== null)
+            })()
         `, resolve);
     });
     
-    mainInOtherLandmarks.forEach(() => {
-        auditResults.push(semanticErrors[12]);
+    mainInOtherLandmarks.forEach(main => {
+        auditResults.push({ 
+            ...semanticErrors[12],
+            element: main.outerHTML,
+            selector: main.selector 
+        });
     });
 
     const contentOutsideLandmarks = await new Promise((resolve) => {
