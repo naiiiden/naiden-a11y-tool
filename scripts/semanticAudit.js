@@ -150,7 +150,7 @@ export async function semanticAudit(auditResults) {
                     .map(header => {
                         let parent = header.parentElement;
                         while (parent && parent !== document.body) {
-                            if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role')) ||
+                            if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'complementary', 'region', 'form', 'search'].includes(parent.getAttribute('role')) ||
                                 ['MAIN', 'NAV', 'FOOTER', 'ASIDE', 'SECTION', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
                                 return {
                                     outerHTML: header.outerHTML,
@@ -182,7 +182,8 @@ export async function semanticAudit(auditResults) {
                     .map(aside => {
                         let parent = aside.parentElement;
                         while (parent && parent !== document.body) {
-                            if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'banner', 'search', 'form', 'region'].includes(parent.getAttribute('role')) || ['MAIN', 'NAV', 'FOOTER', 'SECTION', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
+                            if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'region', 'banner', 'form', 'search'].includes(parent.getAttribute('role')) || 
+                                ['MAIN', 'NAV', 'FOOTER', 'SECTION', 'HEADER', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
                                 return {
                                     outerHTML: aside.outerHTML,
                                     selector: getUniqueSelector(aside)
@@ -213,7 +214,8 @@ export async function semanticAudit(auditResults) {
                     .map(footer => {
                         let parent = footer.parentElement;
                         while (parent && parent !== document.body) {
-                            if (parent.hasAttribute('role') && ['main', 'navigation', 'banner', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role')) || ['MAIN', 'NAV', 'HEADER', 'SECTION', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
+                            if (parent.hasAttribute('role') && ['main', 'navigation', 'banner', 'region', 'complementary', 'form', 'search'].includes(parent.getAttribute('role')) || 
+                                ['MAIN', 'NAV', 'HEADER', 'SECTION', 'ASIDE', 'ARTICLE', 'FORM'].includes(parent.tagName)) {
                                 return {
                                     outerHTML: footer.outerHTML,
                                     selector: getUniqueSelector(footer)
@@ -244,7 +246,8 @@ export async function semanticAudit(auditResults) {
                     .map(main => {
                         let parent = main.parentElement;
                         while (parent && parent !== document.body) {
-                            if (parent.hasAttribute('role') && ['contentinfo', 'navigation', 'banner', 'complementary', 'search', 'form', 'region'].includes(parent.getAttribute('role')) || ['FOOTER', 'NAV', 'HEADER', 'SECTION', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
+                            if (parent.hasAttribute('role') && ['contentinfo', 'navigation', 'banner', 'region', 'complementary', 'search', 'form'].includes(parent.getAttribute('role')) || 
+                                ['FOOTER', 'NAV', 'HEADER', 'SECTION', 'ASIDE', 'ARTICLE', 'FORM'].includes(parent.tagName)) {
                                 return {
                                     outerHTML: main.outerHTML,
                                     selector: getUniqueSelector(main)
