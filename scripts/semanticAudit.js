@@ -369,6 +369,7 @@ export async function semanticAudit(auditResults) {
     const invalidDlElements = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
             (() => {
+                const getUniqueSelector = ${getUniqueSelector.toString()};
                 const dlElements = Array.from(document.querySelectorAll('dl'));
                 
                 const isDlValid = (dl) => {
@@ -399,13 +400,22 @@ export async function semanticAudit(auditResults) {
                     return true;
                 };
                 
-                return dlElements.filter(dl => !isDlValid(dl));
+                return dlElements
+                    .filter(dl => !isDlValid(dl))
+                    .map(dl => ({
+                        outerHTML: dl.outerHTML,
+                        selector: getUniqueSelector(dl)
+                    }));
             })()
         `, resolve);
     });
     
-    invalidDlElements.forEach(() => {
-        auditResults.push(semanticErrors[16]);
+    invalidDlElements.forEach((element) => {
+        auditResults.push({
+            ...semanticErrors[16],
+            element: element.outerHTML,
+            selector: element.selector
+        });
     });
 
     const invalidDtDdElements = await new Promise((resolve) => {
