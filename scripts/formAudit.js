@@ -37,49 +37,41 @@ export async function formAudit(auditResults) {
       }
     });
 
-    const fieldsets = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-          (() => {
-            const getUniqueSelector = ${getUniqueSelector.toString()};
-            return Array.from(document.querySelectorAll('fieldset'))
-              .filter(fieldset => {
-                return fieldset.querySelector('legend') === null;
-              })
-              .map(fieldset => ({ 
-                outerHTML: fieldset.outerHTML, 
-                selector: getUniqueSelector(fieldset) 
-              }))
-          })()
-        `, resolve);
-    });
+    const fieldsets = await inspectedWindowEval(`
+      const getUniqueSelector = ${getUniqueSelector.toString()};
+      return Array.from(document.querySelectorAll('fieldset'))
+        .filter(fieldset => {
+          return fieldset.querySelector('legend') === null;
+        })
+        .map(fieldset => ({ 
+          outerHTML: fieldset.outerHTML, 
+          selector: getUniqueSelector(fieldset) 
+        }))
+    `)
     
     fieldsets.forEach(fieldset => {
         auditResults.push({ ...formErrors[3], element: fieldset.outerHTML, selector: fieldset.selector }); 
     });
 
-    const radiosAndCheckboxesWithoutFieldset = await new Promise((resolve) => {
-      chrome.devtools.inspectedWindow.eval(`
-        (() => {
-          const getUniqueSelector = ${getUniqueSelector.toString()};
-          const elements = Array.from(document.querySelectorAll('input[type="radio"], input[type="checkbox"]'));
-          const groupedByName = elements.reduce((groups, input) => {
-            if (!groups[input.name]) groups[input.name] = [];
-            groups[input.name].push(input);
-            return groups;
-          }, {});
-    
-          return Object.values(groupedByName)
-            .filter(group => group.length > 1) 
-            .filter(group => {
-              return !group.every(input => input.closest('fieldset'));
-            })
-            .map(group => group.map(input => ({
-              outerHTML: input.outerHTML,
-              selector: getUniqueSelector(input)
-            })));
-        })()
-      `, resolve);
-    });
+    const radiosAndCheckboxesWithoutFieldset = await inspectedWindowEval(`
+      const getUniqueSelector = ${getUniqueSelector.toString()};
+      const elements = Array.from(document.querySelectorAll('input[type="radio"], input[type="checkbox"]'));
+      const groupedByName = elements.reduce((groups, input) => {
+        if (!groups[input.name]) groups[input.name] = [];
+        groups[input.name].push(input);
+        return groups;
+      }, {});
+
+      return Object.values(groupedByName)
+        .filter(group => group.length > 1) 
+        .filter(group => {
+          return !group.every(input => input.closest('fieldset'));
+        })
+        .map(group => group.map(input => ({
+          outerHTML: input.outerHTML,
+          selector: getUniqueSelector(input)
+        })));
+    `)
   
     radiosAndCheckboxesWithoutFieldset.forEach((group) => {
         group.forEach(input => {
@@ -91,19 +83,15 @@ export async function formAudit(auditResults) {
         });
     });
 
-    const emptySubmitOrButtonInput = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-          (() => {
-            const getUniqueSelector = ${getUniqueSelector.toString()};
-            return Array.from(document.querySelectorAll('input[type="button"], input[type="submit"]'))
-              .filter(input => input.value === "")
-              .map(input => ({ 
-                outerHTML: input.outerHTML,
-                selector: getUniqueSelector(input)
-              }))
-          })()
-        `, resolve)
-    });
+    const emptySubmitOrButtonInput = await inspectedWindowEval(`
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    return Array.from(document.querySelectorAll('input[type="button"], input[type="submit"]'))
+      .filter(input => input.value === "")
+      .map(input => ({ 
+        outerHTML: input.outerHTML,
+        selector: getUniqueSelector(input)
+      }))
+    `) 
 
     emptySubmitOrButtonInput.forEach(control => {
         auditResults.push({ ...formErrors[5], element: control.outerHTML, selector: control.selector });

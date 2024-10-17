@@ -1,5 +1,5 @@
 import { semanticErrors } from "./errors.js";
-import { getUniqueSelector } from "./utils.js";
+import { getUniqueSelector, inspectedWindowEval } from "./utils.js";
 
 export async function semanticAudit(auditResults) {
     const hasH1 = await new Promise((resolve) => {
@@ -13,18 +13,14 @@ export async function semanticAudit(auditResults) {
         auditResults.push(semanticErrors[0]);
     }
 
-    const headingLevels = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-          (() => {
-            const getUniqueSelector = ${getUniqueSelector.toString()};
-            return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).map(heading => ({
-              tagName: heading.tagName,
-              outerHTML: heading.outerHTML,
-              selector: getUniqueSelector(heading)
-            }));
-          })()
-        `, resolve);
-    });
+    const headingLevels = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).map(heading => ({
+            tagName: heading.tagName,
+            outerHTML: heading.outerHTML,
+            selector: getUniqueSelector(heading)
+        }));
+    `) 
     
     if (headingLevels.length > 0) {
         let previousLevel = 1;
@@ -47,27 +43,23 @@ export async function semanticAudit(auditResults) {
         }
     }
 
-    const possibleHeadings = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-          (() => {
-            const getUniqueSelector = ${getUniqueSelector.toString()};
-            return Array.from(document.querySelectorAll('p'))
-              .filter(p => p.innerText.trim().length < 50)
-              .filter(p => {
-                const style = window.getComputedStyle(p);
-                const fontSize = parseFloat(style.fontSize);
-                const isBold = style.fontWeight === 'bold' || parseInt(style.fontWeight) >= 600;
-                const isItalic = style.fontStyle === 'italic';
+    const possibleHeadings = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll('p'))
+          .filter(p => p.innerText.trim().length < 50)
+          .filter(p => {
+            const style = window.getComputedStyle(p);
+            const fontSize = parseFloat(style.fontSize);
+            const isBold = style.fontWeight === 'bold' || parseInt(style.fontWeight) >= 600;
+            const isItalic = style.fontStyle === 'italic';
     
-                return fontSize >= 20 || (fontSize >= 16 && (isBold || isItalic));
-              })
-              .map(p => ({
-                outerHTML: p.outerHTML,
-                selector: getUniqueSelector(p)
-              }));
-          })()
-        `, resolve);
-    });
+            return fontSize >= 20 || (fontSize >= 16 && (isBold || isItalic));
+          })
+          .map(p => ({
+            outerHTML: p.outerHTML,
+            selector: getUniqueSelector(p)
+          }));
+    `) 
     
     possibleHeadings.forEach(heading => {
         auditResults.push({
@@ -97,18 +89,14 @@ export async function semanticAudit(auditResults) {
         auditResults.push(semanticErrors[4]);
     }
 
-    const mainLandmarks = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-            (() => {
-                const getUniqueSelector = ${getUniqueSelector.toString()};
-                return Array.from(document.querySelectorAll("main, [role='main']"))
-                    .map(element => ({
-                        outerHTML: element.outerHTML,
-                        selector: getUniqueSelector(element)
-                    }));
-            })()
-        `, resolve);
-    });
+    const mainLandmarks = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll("main, [role='main']"))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }));
+    `) 
     
     if (mainLandmarks.length < 1) {
         auditResults.push(semanticErrors[5]);
@@ -142,29 +130,25 @@ export async function semanticAudit(auditResults) {
         auditResults.push(semanticErrors[8]);
     }
 
-    const bannersInOtherLandmarks = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-            (() => {
-                const getUniqueSelector = ${getUniqueSelector.toString()};
-                return Array.from(document.querySelectorAll('header, [role="banner"]'))
-                    .map(header => {
-                        let parent = header.parentElement;
-                        while (parent && parent !== document.body) {
-                            if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'complementary', 'region', 'form', 'search'].includes(parent.getAttribute('role')) ||
-                                ['MAIN', 'NAV', 'FOOTER', 'ASIDE', 'SECTION', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
-                                return {
-                                    outerHTML: header.outerHTML,
-                                    selector: getUniqueSelector(header) 
-                                };
-                            }
-                            parent = parent.parentElement;
-                        }
-                        return null;
-                    })
-                    .filter(header => header !== null);
-            })()
-        `, resolve);
-    });
+    const bannersInOtherLandmarks = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll('header, [role="banner"]'))
+            .map(header => {
+                let parent = header.parentElement;
+                while (parent && parent !== document.body) {
+                    if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'complementary', 'region', 'form', 'search'].includes(parent.getAttribute('role')) ||
+                        ['MAIN', 'NAV', 'FOOTER', 'ASIDE', 'SECTION', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
+                        return {
+                            outerHTML: header.outerHTML,
+                            selector: getUniqueSelector(header) 
+                        };
+                    }
+                    parent = parent.parentElement;
+                }
+                return null;
+            })
+            .filter(header => header !== null);
+    `) 
     
     bannersInOtherLandmarks.forEach((banner) => {
         auditResults.push({
@@ -174,29 +158,25 @@ export async function semanticAudit(auditResults) {
         });
     });
 
-    const asidesInOtherLandmarks = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-            (() => {
-                const getUniqueSelector = ${getUniqueSelector.toString()};
-                return Array.from(document.querySelectorAll('aside, [role="complementary"]'))
-                    .map(aside => {
-                        let parent = aside.parentElement;
-                        while (parent && parent !== document.body) {
-                            if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'region', 'banner', 'form', 'search'].includes(parent.getAttribute('role')) || 
-                                ['MAIN', 'NAV', 'FOOTER', 'SECTION', 'HEADER', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
-                                return {
-                                    outerHTML: aside.outerHTML,
-                                    selector: getUniqueSelector(aside)
-                                }
-                            }
-                        parent = parent.parentElement;
+    const asidesInOtherLandmarks = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll('aside, [role="complementary"]'))
+            .map(aside => {
+                let parent = aside.parentElement;
+                while (parent && parent !== document.body) {
+                    if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'region', 'banner', 'form', 'search'].includes(parent.getAttribute('role')) || 
+                        ['MAIN', 'NAV', 'FOOTER', 'SECTION', 'HEADER', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
+                        return {
+                            outerHTML: aside.outerHTML,
+                            selector: getUniqueSelector(aside)
+                        }
                     }
-                        return null;
-                    })
-                    .filter(aside => aside !== null)
-            })()
-        `, resolve);
-    });
+                parent = parent.parentElement;
+            }
+                return null;
+            })
+            .filter(aside => aside !== null)
+    `) 
     
     asidesInOtherLandmarks.forEach(aside => {
         auditResults.push({ 
@@ -206,29 +186,25 @@ export async function semanticAudit(auditResults) {
         });
     });
 
-    const contentinfoInOtherLandmarks = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-            (() => {
-                const getUniqueSelector = ${getUniqueSelector.toString()};
-                return Array.from(document.querySelectorAll('footer, [role="contentinfo"]'))
-                    .map(footer => {
-                        let parent = footer.parentElement;
-                        while (parent && parent !== document.body) {
-                            if (parent.hasAttribute('role') && ['main', 'navigation', 'banner', 'region', 'complementary', 'form', 'search'].includes(parent.getAttribute('role')) || 
-                                ['MAIN', 'NAV', 'HEADER', 'SECTION', 'ASIDE', 'ARTICLE', 'FORM'].includes(parent.tagName)) {
-                                return {
-                                    outerHTML: footer.outerHTML,
-                                    selector: getUniqueSelector(footer)
-                                }
-                            }
-                        parent = parent.parentElement;
+    const contentinfoInOtherLandmarks = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll('footer, [role="contentinfo"]'))
+            .map(footer => {
+                let parent = footer.parentElement;
+                while (parent && parent !== document.body) {
+                    if (parent.hasAttribute('role') && ['main', 'navigation', 'banner', 'region', 'complementary', 'form', 'search'].includes(parent.getAttribute('role')) || 
+                        ['MAIN', 'NAV', 'HEADER', 'SECTION', 'ASIDE', 'ARTICLE', 'FORM'].includes(parent.tagName)) {
+                        return {
+                            outerHTML: footer.outerHTML,
+                            selector: getUniqueSelector(footer)
+                        }
                     }
-                        return null;
-                    })
-                    .filter(footer => footer !== null)
-            })()
-        `, resolve);
-    });
+                parent = parent.parentElement;
+            }
+                return null;
+            })
+            .filter(footer => footer !== null)
+    `) 
     
     contentinfoInOtherLandmarks.forEach(footer => {
         auditResults.push({ 
@@ -238,29 +214,25 @@ export async function semanticAudit(auditResults) {
         });
     });
 
-    const mainInOtherLandmarks = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-            (() => {
-                const getUniqueSelector = ${getUniqueSelector.toString()};
-                return Array.from(document.querySelectorAll('main, [role="main"]'))
-                    .map(main => {
-                        let parent = main.parentElement;
-                        while (parent && parent !== document.body) {
-                            if (parent.hasAttribute('role') && ['contentinfo', 'navigation', 'banner', 'region', 'complementary', 'search', 'form'].includes(parent.getAttribute('role')) || 
-                                ['FOOTER', 'NAV', 'HEADER', 'SECTION', 'ASIDE', 'ARTICLE', 'FORM'].includes(parent.tagName)) {
-                                return {
-                                    outerHTML: main.outerHTML,
-                                    selector: getUniqueSelector(main)
-                                };
-                            }
-                            parent = parent.parentElement;
+    const mainInOtherLandmarks = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll('main, [role="main"]'))
+            .map(main => {
+                let parent = main.parentElement;
+                while (parent && parent !== document.body) {
+                    if (parent.hasAttribute('role') && ['contentinfo', 'navigation', 'banner', 'region', 'complementary', 'search', 'form'].includes(parent.getAttribute('role')) || 
+                        ['FOOTER', 'NAV', 'HEADER', 'SECTION', 'ASIDE', 'ARTICLE', 'FORM'].includes(parent.tagName)) {
+                        return {
+                            outerHTML: main.outerHTML,
+                            selector: getUniqueSelector(main)
+                        };
                     }
-                        return null;
-                    })
-                    .filter(main => main !== null)
-            })()
-        `, resolve);
-    });
+                    parent = parent.parentElement;
+            }
+                return null;
+            })
+            .filter(main => main !== null)
+    `) 
     
     mainInOtherLandmarks.forEach(main => {
         auditResults.push({ 
@@ -270,38 +242,34 @@ export async function semanticAudit(auditResults) {
         });
     });
 
-    const contentOutsideLandmarks = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-            (() => {
-                const getUniqueSelector = ${getUniqueSelector.toString()};
-                const landmarkSelectors = 'header, nav, main, footer, section, aside, form, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="region"], [role="complementary"], [role="form"], [role="search"]';
-                const landmarkElements = Array.from(document.querySelectorAll(landmarkSelectors));
+    const contentOutsideLandmarks = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        const landmarkSelectors = 'header, nav, main, footer, section, aside, form, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="region"], [role="complementary"], [role="form"], [role="search"]';
+        const landmarkElements = Array.from(document.querySelectorAll(landmarkSelectors));
     
-                const allElements = Array.from(document.body.querySelectorAll(':not(script):not(style)'));
+        const allElements = Array.from(document.body.querySelectorAll(':not(script):not(style)'));
     
-                const elementsOutsideLandmarks = allElements.filter(el => {
-                    return !landmarkElements.some(landmark => landmark.contains(el));
-                });
+        const elementsOutsideLandmarks = allElements.filter(el => {
+            return !landmarkElements.some(landmark => landmark.contains(el));
+        });
     
-                const filteredElements = elementsOutsideLandmarks.filter(el => {
-                    return !elementsOutsideLandmarks.some(parent => parent !== el && parent.contains(el));
-                });
+        const filteredElements = elementsOutsideLandmarks.filter(el => {
+            return !elementsOutsideLandmarks.some(parent => parent !== el && parent.contains(el));
+        });
     
-                return filteredElements
-                    .filter(el => {
-                        if (el.matches('a[href^="#"]')) {
-                            const text = el.innerText.toLowerCase();
-                            return !(text.includes('skip') || text.includes('jump'));
-                        }
-                        return true;
-                    })
-                    .map(el => ({
-                        outerHTML: el.outerHTML,
-                        selector: getUniqueSelector(el)
-                    }));
-            })()
-        `, resolve);
-    });
+        return filteredElements
+            .filter(el => {
+                if (el.matches('a[href^="#"]')) {
+                    const text = el.innerText.toLowerCase();
+                    return !(text.includes('skip') || text.includes('jump'));
+                }
+                return true;
+            })
+            .map(el => ({
+                outerHTML: el.outerHTML,
+                selector: getUniqueSelector(el)
+            }));
+    `) 
     
     contentOutsideLandmarks.forEach(element => {
         auditResults.push({
@@ -311,29 +279,25 @@ export async function semanticAudit(auditResults) {
         });
     });
 
-    const invalidListContent = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-            (() => {
-                const getUniqueSelector = ${getUniqueSelector.toString()};
-                const invalidElements = [];
-                const listElements = Array.from(document.querySelectorAll('ul, ol'));
-                
-                listElements.forEach(list => {
-                    const children = Array.from(list.children);
-                    children.forEach(child => {
-                        if (!['LI', 'SCRIPT', 'TEMPLATE'].includes(child.tagName)) {
-                            invalidElements.push({
-                                outerHTML: child.outerHTML,
-                                selector: getUniqueSelector(child)
-                            });
-                        }
+    const invalidListContent = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        const invalidElements = [];
+        const listElements = Array.from(document.querySelectorAll('ul, ol'));
+        
+        listElements.forEach(list => {
+            const children = Array.from(list.children);
+            children.forEach(child => {
+                if (!['LI', 'SCRIPT', 'TEMPLATE'].includes(child.tagName)) {
+                    invalidElements.push({
+                        outerHTML: child.outerHTML,
+                        selector: getUniqueSelector(child)
                     });
-                });
-                
-                return invalidElements;
-            })()
-        `, resolve);
-    });
+                }
+            });
+        });
+        
+        return invalidElements;
+    `) 
     
     invalidListContent.forEach((element) => {
         auditResults.push({
@@ -343,23 +307,19 @@ export async function semanticAudit(auditResults) {
         });
     });
 
-    const liOutsideList = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-            (() => {
-                const getUniqueSelector = ${getUniqueSelector.toString()};
-                const liElements = Array.from(document.querySelectorAll('li'));
-                const invalidLiElements = liElements.filter(li => {
-                    const parent = li.parentElement;
-                    return !(parent && (parent.tagName === 'UL' || parent.tagName === 'OL'));
-                }).map(li => ({
-                    outerHTML: li.outerHTML,
-                    selector: getUniqueSelector(li)
-                }));
-                
-                return invalidLiElements;
-            })()
-        `, resolve);
-    });
+    const liOutsideList = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        const liElements = Array.from(document.querySelectorAll('li'));
+        const invalidLiElements = liElements.filter(li => {
+            const parent = li.parentElement;
+            return !(parent && (parent.tagName === 'UL' || parent.tagName === 'OL'));
+        }).map(li => ({
+            outerHTML: li.outerHTML,
+            selector: getUniqueSelector(li)
+        }));
+        
+        return invalidLiElements;
+    `) 
     
     liOutsideList.forEach((element) => {
         auditResults.push({
@@ -369,49 +329,45 @@ export async function semanticAudit(auditResults) {
         });
     });
 
-    const invalidDlElements = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-            (() => {
-                const getUniqueSelector = ${getUniqueSelector.toString()};
-                const dlElements = Array.from(document.querySelectorAll('dl'));
-                
-                const isDlValid = (dl) => {
-                    const validChildTags = ['DT', 'DD', 'DIV', 'SCRIPT', 'TEMPLATE'];
-                    const children = Array.from(dl.children);
-                    
-                    let lastTag = null;
-                    for (let child of children) {
-                        const tagName = child.tagName;
+    const invalidDlElements = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        const dlElements = Array.from(document.querySelectorAll('dl'));
+        
+        const isDlValid = (dl) => {
+            const validChildTags = ['DT', 'DD', 'DIV', 'SCRIPT', 'TEMPLATE'];
+            const children = Array.from(dl.children);
+            
+            let lastTag = null;
+            for (let child of children) {
+                const tagName = child.tagName;
     
-                        if (!validChildTags.includes(tagName)) {
-                            return false;
-                        }
+                if (!validChildTags.includes(tagName)) {
+                    return false;
+                }
     
-                        if (tagName === 'DT') {
-                            if (lastTag === 'DT') {
-                                return false;
-                            }
-                            lastTag = 'DT';
-                        } else if (tagName === 'DD') {
-                            if (lastTag !== 'DT') {
-                                return false; 
-                            }
-                            lastTag = 'DD';
-                        }
+                if (tagName === 'DT') {
+                    if (lastTag === 'DT') {
+                        return false;
                     }
+                    lastTag = 'DT';
+                } else if (tagName === 'DD') {
+                    if (lastTag !== 'DT') {
+                        return false; 
+                    }
+                    lastTag = 'DD';
+                }
+            }
     
-                    return true;
-                };
-                
-                return dlElements
-                    .filter(dl => !isDlValid(dl))
-                    .map(dl => ({
-                        outerHTML: dl.outerHTML,
-                        selector: getUniqueSelector(dl)
-                    }));
-            })()
-        `, resolve);
-    });
+            return true;
+        };
+        
+        return dlElements
+            .filter(dl => !isDlValid(dl))
+            .map(dl => ({
+                outerHTML: dl.outerHTML,
+                selector: getUniqueSelector(dl)
+            }));
+    `) 
     
     invalidDlElements.forEach((element) => {
         auditResults.push({
@@ -421,35 +377,31 @@ export async function semanticAudit(auditResults) {
         });
     });
 
-    const invalidDtDdElements = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-            (() => {
-                const getUniqueSelector = ${getUniqueSelector.toString()};
-                const dtElements = Array.from(document.querySelectorAll('dt'));
-                const ddElements = Array.from(document.querySelectorAll('dd'));
-                
-                const isInDl = (element) => {
-                    return element.closest('dl') !== null;
-                };
+    const invalidDtDdElements = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        const dtElements = Array.from(document.querySelectorAll('dt'));
+        const ddElements = Array.from(document.querySelectorAll('dd'));
+        
+        const isInDl = (element) => {
+            return element.closest('dl') !== null;
+        };
     
-                const invalidDtElements = dtElements
-                    .filter(dt => !isInDl(dt))
-                    .map(dt => ({
-                        outerHTML: dt.outerHTML,
-                        selector: getUniqueSelector(dt)
-                    }));
+        const invalidDtElements = dtElements
+            .filter(dt => !isInDl(dt))
+            .map(dt => ({
+                outerHTML: dt.outerHTML,
+                selector: getUniqueSelector(dt)
+            }));
     
-                const invalidDdElements = ddElements
-                    .filter(dd => !isInDl(dd))
-                    .map(dd => ({
-                        outerHTML: dd.outerHTML,
-                        selector: getUniqueSelector(dd)
-                    }));
+        const invalidDdElements = ddElements
+            .filter(dd => !isInDl(dd))
+            .map(dd => ({
+                outerHTML: dd.outerHTML,
+                selector: getUniqueSelector(dd)
+            }));
     
-                return [...invalidDtElements, ...invalidDdElements];
-            })()
-        `, resolve);
-    });
+        return [...invalidDtElements, ...invalidDdElements];
+    `) 
     
     invalidDtDdElements.forEach((element) => {
         auditResults.push({
