@@ -2,19 +2,7 @@ import { htmlAndHeadErrors } from "./errors.js";
 
 export async function htmlAndHeadAudit(auditResults) {
     const htmlLanguage = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(
-            `(() => {
-                const htmlElement = document.documentElement;
-                const langAttr = htmlElement.getAttribute('lang');
-                const openingTag = '<html' + (htmlElement.hasAttributes() ? 
-                    Array.from(htmlElement.attributes)
-                        .map(attr => ' ' + attr.name + '="' + attr.value + '"').join('') : '') + '>';
-                const closingTag = '</html>';
-                const selector = htmlElement.tagName.toLowerCase();
-                return { langAttr, selector, element: openingTag + closingTag };
-            })()`, 
-            resolve
-        );
+        chrome.devtools.inspectedWindow.eval("document.documentElement.getAttribute('lang')", resolve);
     });
   
     const validLangValues = [
@@ -30,12 +18,8 @@ export async function htmlAndHeadAudit(auditResults) {
         "uz", "ve", "vi", "vo", "wa", "cy", "wo", "xh", "yi", "yo", "za", "zu"
     ];
 
-    if (!htmlLanguage.langAttr || !validLangValues.includes(htmlLanguage.langAttr.split('-')[0])) {
-        auditResults.push({
-            ...htmlAndHeadErrors[0],
-            element: htmlLanguage.element,
-            selector: htmlLanguage.selector
-        });
+    if (!htmlLanguage || !validLangValues.includes(htmlLanguage.split('-')[0])) {
+        auditResults.push(htmlAndHeadErrors[0]);
     }
 
     const pageTitle = await new Promise((resolve) => {
