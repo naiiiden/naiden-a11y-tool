@@ -2,17 +2,16 @@ import { formErrors } from "./errors.js";
 import { getUniqueSelector, inspectedWindowEval } from "./utils.js";
 
 export async function formAudit(auditResults) {
-   const labels = await inspectedWindowEval(`
+   const emptyLabels = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
-      return Array.from(document.querySelectorAll("label"))
-        .filter(label => label.innerText.trim() === "")
+      return Array.from(document.querySelectorAll("label:empty"))
         .map(label => ({ 
           outerHTML: label.outerHTML, 
           selector: getUniqueSelector(label) 
         }))
     `)
   
-    labels.forEach(label => {
+    emptyLabels.forEach(label => {
         auditResults.push({ ...formErrors[0], element: label.outerHTML, selector: label.selector });
     });
 
