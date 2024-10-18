@@ -79,17 +79,16 @@ export async function formAudit(auditResults) {
         });
     });
 
-    const emptySubmitOrButtonInput = await inspectedWindowEval(`
+    const emptySubmitOrButtonInputValues = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
-    return Array.from(document.querySelectorAll('input[type="button"], input[type="submit"]'))
-      .filter(input => input.value === "")
+    return Array.from(document.querySelectorAll(':is(input[type="button"], input[type="submit"])[value=""]'))
       .map(input => ({ 
         outerHTML: input.outerHTML,
         selector: getUniqueSelector(input)
       }))
     `) 
 
-    emptySubmitOrButtonInput.forEach(control => {
+    emptySubmitOrButtonInputValues.forEach(control => {
         auditResults.push({ ...formErrors[5], element: control.outerHTML, selector: control.selector });
     });
 }
