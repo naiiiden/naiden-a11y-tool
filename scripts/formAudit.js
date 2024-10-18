@@ -59,10 +59,7 @@ export async function formAudit(auditResults) {
       }, {});
 
       return Object.values(groupedByName)
-        .filter(group => group.length > 1) 
-        .filter(group => {
-          return !group.every(input => input.closest('fieldset'));
-        })
+        .filter(group => group.length > 1)
         .map(group => group.map(input => ({
           outerHTML: input.outerHTML,
           selector: getUniqueSelector(input)
