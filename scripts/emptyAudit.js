@@ -15,7 +15,7 @@ export async function emptyAudit(auditResults) {
         auditResults.push({ ...emptyErrors[0], element: heading.outerHTML, selector: heading.selector });
     });
 
-    const headingsWithImages = await inspectedWindowEval(`
+    const emptyHeadingsWithImages = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
       return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'))
         .map(heading => {
@@ -32,23 +32,22 @@ export async function emptyAudit(auditResults) {
         });
     `)
     
-    headingsWithImages.forEach(heading => {
+    emptyHeadingsWithImages.forEach(heading => {
         if (!heading.hasText && heading.hasImage && !heading.hasImageAlt) {
             auditResults.push({ ...emptyErrors[0], element: heading.outerHTML, selector: heading.selector });
         }
     });
 
-    const tableHeadings = await inspectedWindowEval(`
+    const emptyTableHeadings = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
-      return Array.from(document.querySelectorAll("th"))
-        .filter(tableHeading => tableHeading.innerText.trim() === "")
+      return Array.from(document.querySelectorAll("th:empty"))
         .map(tableHeading => ({
           outerHTML: tableHeading.outerHTML,
           selector: getUniqueSelector(tableHeading)
         }));
     `)
     
-    tableHeadings.forEach(tableHeading => {
+    emptyTableHeadings.forEach(tableHeading => {
         auditResults.push({ ...emptyErrors[1], element: tableHeading.outerHTML, selector: tableHeading.selector });
     });
 
