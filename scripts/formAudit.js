@@ -55,7 +55,7 @@ export async function formAudit(auditResults) {
 
     const radiosAndCheckboxesWithoutFieldset = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
-      const elements = Array.from(document.querySelectorAll('input[type="radio"], input[type="checkbox"]'));
+      const elements = Array.from(document.querySelectorAll('input[type="radio"]:not(fieldset input), input[type="checkbox"]:not(fieldset input)'));
       const groupedByName = elements.reduce((groups, input) => {
         if (!groups[input.name]) groups[input.name] = [];
         groups[input.name].push(input);
