@@ -4,7 +4,7 @@ import { getUniqueSelector, inspectedWindowEval } from "./utils.js";
 export async function emptyAudit(auditResults) {
     const emptyHeadings = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
-      return Array.from(document.querySelectorAll("h1:not(:has(img)):empty, h2:not(:has(img)):empty, h3:not(:has(img)):empty, h4:not(:has(img)):empty, h5:not(:has(img)):empty, h6:not(:has(img)):empty"))
+      return Array.from(document.querySelectorAll(":is(h1, h2, h3, h4, h5, h6):not(:has(img))"))
         .map(heading => ({
           outerHTML: heading.outerHTML,
           selector: getUniqueSelector(heading)
