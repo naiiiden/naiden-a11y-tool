@@ -64,16 +64,24 @@ export async function emptyAudit(auditResults) {
         auditResults.push({ ...emptyErrors[2], element: iframe.outerHTML, selector: iframe.selector });
     });
 
-    const summaries = await inspectedWindowEval(`
+    const emptyOrMissingSummaries = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
-      return Array.from(document.querySelectorAll("summary"))
-          .filter(summary => summary.innerText.trim() === "")
-          .map(summary => 
-              ({ outerHTML: summary.outerHTML, selector: getUniqueSelector(summary) 
-          }))
+      return Array.from(document.querySelectorAll("details"))
+          .filter(details => {
+              const summary = details.querySelector("summary");
+              return !summary || summary.innerText.trim() === "";
+          })
+          .map(details => {
+              const summary = details.querySelector("summary");
+              return {
+                  outerHTML: details.outerHTML, 
+                  selector: getUniqueSelector(details),
+                  summaryExists: !!summary
+              };
+          });
     `) 
 
-    summaries.forEach(summary => {
+    emptyOrMissingSummaries.forEach(summary => {
         auditResults.push({ ...emptyErrors[3], element: summary.outerHTML, selector: summary.selector });
     });
 }
