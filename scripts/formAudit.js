@@ -36,19 +36,16 @@ export async function formAudit(auditResults) {
       }
     });
 
-    const fieldsets = await inspectedWindowEval(`
+    const fieldsetsMissingLegends = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
-      return Array.from(document.querySelectorAll('fieldset'))
-        .filter(fieldset => {
-          return fieldset.querySelector('legend') === null;
-        })
+      return Array.from(document.querySelectorAll('fieldset:not(:has(legend))'))
         .map(fieldset => ({ 
           outerHTML: fieldset.outerHTML, 
           selector: getUniqueSelector(fieldset) 
         }))
     `)
     
-    fieldsets.forEach(fieldset => {
+    fieldsetsMissingLegends.forEach(fieldset => {
         auditResults.push({ ...formErrors[3], element: fieldset.outerHTML, selector: fieldset.selector }); 
     });
 
