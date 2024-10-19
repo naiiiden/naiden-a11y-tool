@@ -330,29 +330,12 @@ export async function semanticAudit(auditResults) {
 
     const invalidDtDdElements = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        const dtElements = Array.from(document.querySelectorAll('dt'));
-        const ddElements = Array.from(document.querySelectorAll('dd'));
-        
-        const isInDl = (element) => {
-            return element.closest('dl') !== null;
-        };
-    
-        const invalidDtElements = dtElements
-            .filter(dt => !isInDl(dt))
-            .map(dt => ({
-                outerHTML: dt.outerHTML,
-                selector: getUniqueSelector(dt)
+        return Array.from(document.querySelectorAll('dt:not(dl dt), dd:not(dl dd)'))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
             }));
-    
-        const invalidDdElements = ddElements
-            .filter(dd => !isInDl(dd))
-            .map(dd => ({
-                outerHTML: dd.outerHTML,
-                selector: getUniqueSelector(dd)
-            }));
-    
-        return [...invalidDtElements, ...invalidDdElements];
-    `) 
+    `);
     
     invalidDtDdElements.forEach((element) => {
         auditResults.push({
