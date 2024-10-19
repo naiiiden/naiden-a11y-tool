@@ -265,16 +265,11 @@ export async function semanticAudit(auditResults) {
 
     const liOutsideList = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        const liElements = Array.from(document.querySelectorAll('li'));
-        const invalidLiElements = liElements.filter(li => {
-            const parent = li.parentElement;
-            return !(parent && (parent.tagName === 'UL' || parent.tagName === 'OL'));
-        }).map(li => ({
+        return Array.from(document.querySelectorAll('li:not(ul li, ol li)'))
+        .map(li => ({
             outerHTML: li.outerHTML,
             selector: getUniqueSelector(li)
         }));
-        
-        return invalidLiElements;
     `) 
     
     liOutsideList.forEach((element) => {
