@@ -149,29 +149,18 @@ export async function semanticAudit(auditResults) {
 
     const asidesInOtherLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('aside, [role="complementary"]'))
-            .map(aside => {
-                let parent = aside.parentElement;
-                while (parent && parent !== document.body) {
-                    if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'region', 'banner', 'form', 'search'].includes(parent.getAttribute('role')) || 
-                        ['MAIN', 'NAV', 'FOOTER', 'SECTION', 'HEADER', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
-                        return {
-                            outerHTML: aside.outerHTML,
-                            selector: getUniqueSelector(aside)
-                        }
-                    }
-                parent = parent.parentElement;
-            }
-                return null;
-            })
-            .filter(aside => aside !== null)
-    `) 
+        return Array.from(document.querySelectorAll('main aside, nav aside, footer aside, section aside, header aside, form aside, article aside, [role="main"] aside, [role="navigation"] aside, [role="contentinfo"] aside, [role="region"] aside, [role="complementary"] aside, [role="form"] aside, [role="search"] aside'))
+            .map(aside => ({
+                outerHTML: aside.outerHTML,
+                selector: getUniqueSelector(aside)
+            }));
+    `);
     
     asidesInOtherLandmarks.forEach(aside => {
-        auditResults.push({ 
+        auditResults.push({
             ...semanticErrors[10],
             element: aside.outerHTML,
-            selector: aside.selector 
+            selector: aside.selector
         });
     });
 
