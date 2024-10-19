@@ -237,23 +237,12 @@ export async function semanticAudit(auditResults) {
 
     const invalidListContent = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        const invalidElements = [];
-        const listElements = Array.from(document.querySelectorAll('ul, ol'));
-        
-        listElements.forEach(list => {
-            const children = Array.from(list.children);
-            children.forEach(child => {
-                if (!['LI', 'SCRIPT', 'TEMPLATE'].includes(child.tagName)) {
-                    invalidElements.push({
-                        outerHTML: child.outerHTML,
-                        selector: getUniqueSelector(child)
-                    });
-                }
-            });
-        });
-        
-        return invalidElements;
-    `) 
+        return Array.from(document.querySelectorAll(':is(ul, ol) > :not(li):not(script):not(template)'))
+        .map(element => ({
+            outerHTML: element.outerHTML,
+            selector: getUniqueSelector(element)
+        }));
+    `);
     
     invalidListContent.forEach((element) => {
         auditResults.push({
