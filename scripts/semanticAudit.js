@@ -132,22 +132,11 @@ export async function semanticAudit(auditResults) {
 
     const bannersInOtherLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('header, [role="banner"]'))
-            .map(header => {
-                let parent = header.parentElement;
-                while (parent && parent !== document.body) {
-                    if (parent.hasAttribute('role') && ['main', 'navigation', 'contentinfo', 'complementary', 'region', 'form', 'search'].includes(parent.getAttribute('role')) ||
-                        ['MAIN', 'NAV', 'FOOTER', 'ASIDE', 'SECTION', 'FORM', 'ARTICLE'].includes(parent.tagName)) {
-                        return {
-                            outerHTML: header.outerHTML,
-                            selector: getUniqueSelector(header) 
-                        };
-                    }
-                    parent = parent.parentElement;
-                }
-                return null;
-            })
-            .filter(header => header !== null);
+        return Array.from(document.querySelectorAll('main header, nav header, footer header, aside header, section header, form header, article header, [role="main"] [role="banner"], [role="navigation"] [role="banner"], [role="contentinfo"] [role="banner"], [role="complementary"] [role="banner"], [role="region"] [role="banner"], [role="form"] [role="banner"], [role="search"] [role="banner"]'))
+            .map(header => ({
+                outerHTML: header.outerHTML,
+                selector: getUniqueSelector(header)
+            }));
     `) 
     
     bannersInOtherLandmarks.forEach((banner) => {
