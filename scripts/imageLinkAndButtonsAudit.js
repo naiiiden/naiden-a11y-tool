@@ -178,25 +178,21 @@ export async function imageLinkAndButtonAudit(auditResults) {
 
     const interactiveControlsWithInteractiveControlsAsChildren = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
-      return Array.from(document.querySelectorAll('button, a, [role="button"], [role="link"]'))
+      return Array.from(document.querySelectorAll(':is(button, a, [role="button"], [role="link"]):has(a, button, [role="button"], [role="link"], input, [tabindex], textarea, select)'))
         .map(element => {
-          const focusableChildren = element.querySelectorAll('button, a, [role="button"], [role="link"], input, select, textarea, [tabindex]');
           return {
             outerHTML: element.outerHTML,
-            hasFocusableChildren: focusableChildren.length > 0,
             selector: getUniqueSelector(element)
           };
         });
     `) 
     
     interactiveControlsWithInteractiveControlsAsChildren.forEach((element) => {
-        if (element.hasFocusableChildren) {
           auditResults.push({
             ...imageLinkAndButtonErrors[8],
             element: element.outerHTML,
             selector: element.selector
           });
-        }
     });
 
     const brokenSamePageLinks = await inspectedWindowEval(`
