@@ -155,7 +155,7 @@ export async function semanticAudit(auditResults) {
                 selector: getUniqueSelector(aside)
             }));
     `);
-    
+
     asidesInOtherLandmarks.forEach(aside => {
         auditResults.push({
             ...semanticErrors[10],
@@ -165,27 +165,16 @@ export async function semanticAudit(auditResults) {
     });
 
     const contentinfoInOtherLandmarks = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('footer, [role="contentinfo"]'))
-            .map(footer => {
-                let parent = footer.parentElement;
-                while (parent && parent !== document.body) {
-                    if (parent.hasAttribute('role') && ['main', 'navigation', 'banner', 'region', 'complementary', 'form', 'search'].includes(parent.getAttribute('role')) || 
-                        ['MAIN', 'NAV', 'HEADER', 'SECTION', 'ASIDE', 'ARTICLE', 'FORM'].includes(parent.tagName)) {
-                        return {
-                            outerHTML: footer.outerHTML,
-                            selector: getUniqueSelector(footer)
-                        }
-                    }
-                parent = parent.parentElement;
-            }
-                return null;
-            })
-            .filter(footer => footer !== null)
-    `) 
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    return Array.from(document.querySelectorAll('main footer, nav footer, section footer, header footer, article footer, form footer, aside footer, [role="main"] footer, [role="navigation"] footer, [role="region"] footer, [role="complementary"] footer, [role="form"] footer, [role="search"] footer'))
+        .map(footer => ({
+            outerHTML: footer.outerHTML,
+            selector: getUniqueSelector(footer)
+        }));
+    `);
     
     contentinfoInOtherLandmarks.forEach(footer => {
-        auditResults.push({ 
+        auditResults.push({
             ...semanticErrors[11],
             element: footer.outerHTML,
             selector: footer.selector
