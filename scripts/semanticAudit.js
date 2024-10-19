@@ -183,29 +183,18 @@ export async function semanticAudit(auditResults) {
 
     const mainInOtherLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('main, [role="main"]'))
-            .map(main => {
-                let parent = main.parentElement;
-                while (parent && parent !== document.body) {
-                    if (parent.hasAttribute('role') && ['contentinfo', 'navigation', 'banner', 'region', 'complementary', 'search', 'form'].includes(parent.getAttribute('role')) || 
-                        ['FOOTER', 'NAV', 'HEADER', 'SECTION', 'ASIDE', 'ARTICLE', 'FORM'].includes(parent.tagName)) {
-                        return {
-                            outerHTML: main.outerHTML,
-                            selector: getUniqueSelector(main)
-                        };
-                    }
-                    parent = parent.parentElement;
-            }
-                return null;
-            })
-            .filter(main => main !== null)
-    `) 
+        return Array.from(document.querySelectorAll('nav main, footer main, section main, header main, article main, form main, aside main, [role="navigation"] main, [role="contentinfo"] main, [role="region"] main, [role="complementary"] main, [role="form"] main, [role="search"] main'))
+            .map(main => ({
+                outerHTML: main.outerHTML,
+                selector: getUniqueSelector(main)
+            }));
+    `);
     
     mainInOtherLandmarks.forEach(main => {
-        auditResults.push({ 
+        auditResults.push({
             ...semanticErrors[12],
             element: main.outerHTML,
-            selector: main.selector 
+            selector: main.selector
         });
     });
 
