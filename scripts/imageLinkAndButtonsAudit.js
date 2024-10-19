@@ -97,8 +97,7 @@ export async function imageLinkAndButtonAudit(auditResults) {
 
     const emptyButtons = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
-      return Array.from(document.querySelectorAll('button:not(:has(img)'))
-          .filter(button => !button.innerText.trim())
+      return Array.from(document.querySelectorAll('button:not(:has(img):empty'))
           .map(button => ({
               outerHTML:  button.outerHTML,
               selector: getUniqueSelector(button)
