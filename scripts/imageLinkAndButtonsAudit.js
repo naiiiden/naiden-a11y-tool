@@ -98,12 +98,21 @@ export async function imageLinkAndButtonAudit(auditResults) {
     const emptyButtons = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
       return Array.from(document.querySelectorAll('button:not(:has(img):empty'))
-          .map(button => ({
-              outerHTML:  button.outerHTML,
-              selector: getUniqueSelector(button)
-          }));
-    `) 
-
+        .filter(button => {
+            const ariaLabel = button.hasAttribute('aria-label') ? button.getAttribute('aria-label') : null;
+            const ariaLabelledby = button.hasAttribute('aria-labelledby') 
+              ? document.getElementById(button.getAttribute('aria-labelledby')) 
+              : null;
+            const title = button.hasAttribute('title') ? button.getAttribute('title') : null;
+            
+            return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+        })
+        .map(button => ({
+            outerHTML: button.outerHTML,
+            selector: getUniqueSelector(button)
+        }));
+  `);
+  
     emptyButtons.forEach(button => {
         auditResults.push({ ...imageLinkAndButtonErrors[4], element: button.outerHTML, selector: button.selector });
     });
