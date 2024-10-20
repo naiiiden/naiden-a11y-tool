@@ -200,33 +200,20 @@ export async function semanticAudit(auditResults) {
 
     const contentOutsideLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        const landmarkSelectors = 'header, nav, main, footer, section, aside, form, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="region"], [role="complementary"], [role="form"], [role="search"]';
-        const landmarkElements = Array.from(document.querySelectorAll(landmarkSelectors));
-    
-        const allElements = Array.from(document.body.querySelectorAll(':not(script):not(style)'));
-    
-        const elementsOutsideLandmarks = allElements.filter(el => {
-            return !landmarkElements.some(landmark => landmark.contains(el));
-        });
-    
-        const filteredElements = elementsOutsideLandmarks.filter(el => {
-            return !elementsOutsideLandmarks.some(parent => parent !== el && parent.contains(el));
-        });
-    
-        return filteredElements
+        return Array.from(document.querySelectorAll('body > *:not(:is(header, nav, main, footer, section, aside, form, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="region"], [role="complementary"], [role="form"], [role="search"], style, script))'))
             .filter(el => {
                 if (el.matches('a[href^="#"]')) {
                     const text = el.innerText.toLowerCase();
                     return !(text.includes('skip') || text.includes('jump'));
                 }
                 return true;
-            })
+            })    
             .map(el => ({
                 outerHTML: el.outerHTML,
                 selector: getUniqueSelector(el)
             }));
-    `) 
-    
+    `)
+
     contentOutsideLandmarks.forEach(element => {
         auditResults.push({
             ...semanticErrors[13],
