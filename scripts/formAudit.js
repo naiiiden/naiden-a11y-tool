@@ -15,7 +15,7 @@ export async function formAudit(auditResults) {
         auditResults.push({ ...formErrors[0], element: label.outerHTML, selector: label.selector });
     });
 
-    const inputAndSelectLabels = await inspectedWindowEval(`
+    const formControlLabels = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
       return Array.from(document.querySelectorAll('input[id], select[id], textarea[id]'))
         .map(element => {
@@ -28,7 +28,7 @@ export async function formAudit(auditResults) {
         });  
     `)
       
-    inputAndSelectLabels.forEach((element) => {
+    formControlLabels.forEach((element) => {
       if (element.labelCount === 0) {
           auditResults.push({ ...formErrors[1], element: element.outerHTML, selector: element.selector });
       } else if (element.labelCount > 1) {
