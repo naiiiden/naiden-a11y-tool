@@ -5,20 +5,26 @@ export async function imageLinkAndButtonAudit(auditResults) {
     const missingAltImages = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
       return Array.from(document.querySelectorAll('img:not(a img):not(button img)'))
-        .map((img) => {
-          return {
-            alt: img.getAttribute('alt'),
+        .filter(img => {
+            const alt = img.getAttribute('alt');
+            const ariaLabel = img.hasAttribute('aria-label') ? img.getAttribute('aria-label') : null;
+            const ariaLabelledby = img.hasAttribute('aria-labelledby') 
+                ? document.getElementById(img.getAttribute('aria-labelledby')) 
+                : null;
+
+            return alt === null && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+        })
+        .map(img => ({
             outerHTML: img.outerHTML,
             selector: getUniqueSelector(img)
-          };
-        });
-    `) 
-    
-    missingAltImages.filter(img => img.alt === null).forEach(img => {
-        auditResults.push({
-          ...imageLinkAndButtonErrors[0],
-          element: img.outerHTML,
-          selector: img.selector
+        }));
+    `);
+
+    missingAltImages.forEach(img => {
+        auditResults.push({ 
+            ...imageLinkAndButtonErrors[0],
+            element: img.outerHTML,
+            selector: img.selector
         });
     });
 
