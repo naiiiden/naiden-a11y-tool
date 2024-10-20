@@ -67,21 +67,29 @@ export async function emptyAudit(auditResults) {
     const emptyOrMissingSummaries = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
       return Array.from(document.querySelectorAll("details"))
-          .filter(details => {
-              const summary = details.querySelector("summary");
-              return !summary || summary.innerText.trim() === "";
-          })
-          .map(details => {
-              const summary = details.querySelector("summary");
-              return {
-                  outerHTML: details.outerHTML, 
-                  selector: getUniqueSelector(details),
-                  summaryExists: !!summary
-              };
-          });
-    `) 
-
+        .filter(details => {
+          const summary = details.querySelector("summary");
+    
+          if (summary) {
+            const ariaLabel = summary.hasAttribute('aria-label') ? summary.getAttribute('aria-label') : null;
+            const ariaLabelledby = summary.hasAttribute('aria-labelledby') 
+              ? document.getElementById(summary.getAttribute('aria-labelledby')) 
+              : null;
+            const title = summary.hasAttribute('title') ? summary.getAttribute('title') : null;
+    
+            return summary.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+          }
+    
+          return !summary;
+        })
+        .map(details => ({
+          outerHTML: details.outerHTML,
+          selector: getUniqueSelector(details),
+          summaryExists: !!details.querySelector("summary")
+        }));
+    `);
+    
     emptyOrMissingSummaries.forEach(summary => {
-        auditResults.push({ ...emptyErrors[3], element: summary.outerHTML, selector: summary.selector });
+      auditResults.push({ ...emptyErrors[3], element: summary.outerHTML, selector: summary.selector });
     });
 }
