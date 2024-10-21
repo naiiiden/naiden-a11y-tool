@@ -135,7 +135,7 @@ export async function imageLinkAndButtonAudit(auditResults) {
             imgOuterHTML: img.outerHTML,
             imgSelector: getUniqueSelector(img),
             areas: areas.filter(area => {
-                const ariaLabel = area.hasAttribute('aria-label') ? area.getAttribute('aria-label') : null;
+                const ariaLabel = area.hasAttribute('aria-label') ? area.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = area.hasAttribute('aria-labelledby') 
                     ? document.getElementById(area.getAttribute('aria-labelledby')) 
                     : null;
