@@ -78,7 +78,7 @@ export async function formAudit(auditResults) {
 
     const emptySubmitOrButtonInputValues = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
-    return Array.from(document.querySelectorAll(':is(input[type="button"], input[type="submit"])[value=""]'))
+    return Array.from(document.querySelectorAll(':is(input[type="button"], input[type="submit"], input[type="reset"])[value=""]'))
       .map(input => ({ 
         outerHTML: input.outerHTML,
         selector: getUniqueSelector(input)
