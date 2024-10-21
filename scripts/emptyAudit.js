@@ -71,11 +71,11 @@ export async function emptyAudit(auditResults) {
           const summary = details.querySelector("summary");
     
           if (summary) {
-            const ariaLabel = summary.hasAttribute('aria-label') ? summary.getAttribute('aria-label') : null;
+            const ariaLabel = summary.hasAttribute('aria-label') ? summary.getAttribute('aria-label').trim() : null;
             const ariaLabelledby = summary.hasAttribute('aria-labelledby') 
               ? document.getElementById(summary.getAttribute('aria-labelledby')) 
               : null;
-            const title = summary.hasAttribute('title') ? summary.getAttribute('title') : null;
+            const title = summary.hasAttribute('title') ? summary.getAttribute('title').trim() : null;
     
             return summary.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
           }
