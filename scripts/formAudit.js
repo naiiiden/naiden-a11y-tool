@@ -82,11 +82,11 @@ export async function formAudit(auditResults) {
         .filter(input => {
           const inputType = input.getAttribute('type');
           const value = input.getAttribute('value');
-          const ariaLabel = input.hasAttribute('aria-label') ? input.getAttribute('aria-label') : null;
+          const ariaLabel = input.hasAttribute('aria-label') ? input.getAttribute('aria-label').trim() : null;
           const ariaLabelledby = input.hasAttribute('aria-labelledby') 
               ? document.getElementById(input.getAttribute('aria-labelledby')) 
               : null;
-          const title = input.hasAttribute('title') ? input.getAttribute('title') : null;
+          const title = input.hasAttribute('title') ? input.getAttribute('title').trim() : null;
           
           if (inputType === 'submit' || inputType === 'reset') {
             return !value && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
