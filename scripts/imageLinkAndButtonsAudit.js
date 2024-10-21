@@ -105,11 +105,11 @@ export async function imageLinkAndButtonAudit(auditResults) {
       const getUniqueSelector = ${getUniqueSelector.toString()};
       return Array.from(document.querySelectorAll('button:not(:has(img):empty'))
         .filter(button => {
-            const ariaLabel = button.hasAttribute('aria-label') ? button.getAttribute('aria-label') : null;
+            const ariaLabel = button.hasAttribute('aria-label') ? button.getAttribute('aria-label').trim() : null;
             const ariaLabelledby = button.hasAttribute('aria-labelledby') 
               ? document.getElementById(button.getAttribute('aria-labelledby')) 
               : null;
-            const title = button.hasAttribute('title') ? button.getAttribute('title') : null;
+            const title = button.hasAttribute('title') ? button.getAttribute('title').trim() : null;
             
             return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
         })
