@@ -7,7 +7,7 @@ export async function imageLinkAndButtonAudit(auditResults) {
       return Array.from(document.querySelectorAll('img:not(a img):not(button img)'))
         .filter(img => {
             const alt = img.getAttribute('alt');
-            const ariaLabel = img.hasAttribute('aria-label') ? img.getAttribute('aria-label') : null;
+            const ariaLabel = img.hasAttribute('aria-label') ? img.getAttribute('aria-label').trim() : null;
             const ariaLabelledby = img.hasAttribute('aria-labelledby') 
                 ? document.getElementById(img.getAttribute('aria-labelledby')) 
                 : null;
