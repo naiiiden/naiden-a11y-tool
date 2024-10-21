@@ -76,16 +76,35 @@ export async function formAudit(auditResults) {
         });
     });
 
-    const emptySubmitOrButtonInputValues = await inspectedWindowEval(`
-    const getUniqueSelector = ${getUniqueSelector.toString()};
-    return Array.from(document.querySelectorAll(':is(input[type="button"], input[type="submit"], input[type="reset"])[value=""]'))
-      .map(input => ({ 
-        outerHTML: input.outerHTML,
-        selector: getUniqueSelector(input)
-      }))
-    `) 
-
-    emptySubmitOrButtonInputValues.forEach(control => {
-        auditResults.push({ ...formErrors[5], element: control.outerHTML, selector: control.selector });
+    const emptySubmitButtonOrResetInputValues = await inspectedWindowEval(`
+      const getUniqueSelector = ${getUniqueSelector.toString()};
+      return Array.from(document.querySelectorAll('input[type="button"], input[type="submit"], input[type="reset"]'))
+        .filter(input => {
+          const inputType = input.getAttribute('type');
+          const value = input.getAttribute('value');
+          const ariaLabel = input.hasAttribute('aria-label') ? input.getAttribute('aria-label') : null;
+          const ariaLabelledby = input.hasAttribute('aria-labelledby') 
+              ? document.getElementById(input.getAttribute('aria-labelledby')) 
+              : null;
+          const title = input.hasAttribute('title') ? input.getAttribute('title') : null;
+          
+          if (inputType === 'submit' || inputType === 'reset') {
+            return !value && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+          }
+    
+          return (!value || value === "") && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+        })
+        .map(input => ({
+          outerHTML: input.outerHTML,
+          selector: getUniqueSelector(input)
+        }));
+    `);
+    
+    emptySubmitButtonOrResetInputValues.forEach(control => {
+      auditResults.push({ 
+        ...formErrors[5], 
+        element: control.outerHTML, 
+        selector: control.selector 
+      });
     });
 }
