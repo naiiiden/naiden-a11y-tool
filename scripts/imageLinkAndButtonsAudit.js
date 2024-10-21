@@ -129,37 +129,41 @@ export async function imageLinkAndButtonAudit(auditResults) {
         const usemapName = img.getAttribute('usemap').substring(1);
         const mapElement = document.querySelector('map[name="' + usemapName + '"]');
         const areas = mapElement ? Array.from(mapElement.querySelectorAll('area')) : [];
-        
+
         return {
-          imgAlt: img.getAttribute('alt'),
-          imgOuterHTML: img.outerHTML,
-          imgSelector: getUniqueSelector(img),
-          areas: areas.map(area => ({
-            areaAlt: area.getAttribute('alt'),
-            areaOuterHTML: area.outerHTML,
-            areaSelector: getUniqueSelector(area)
-          }))
+            imgAlt: img.getAttribute('alt'),
+            imgOuterHTML: img.outerHTML,
+            imgSelector: getUniqueSelector(img),
+            areas: areas.filter(area => {
+                const ariaLabel = area.hasAttribute('aria-label') ? area.getAttribute('aria-label') : null;
+                const ariaLabelledby = area.hasAttribute('aria-labelledby') 
+                    ? document.getElementById(area.getAttribute('aria-labelledby')) 
+                    : null;
+                const areaAlt = area.getAttribute('alt');
+                return !(areaAlt || ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+            }).map(area => ({
+                areaOuterHTML: area.outerHTML,
+                areaSelector: getUniqueSelector(area)
+            }))
         };
       });
-    `) 
-    
+    `);
+  
     imageMaps.forEach(map => {
         if (!map.imgAlt || map.imgAlt === "") {
             auditResults.push({
-              ...imageLinkAndButtonErrors[5],
-              element: map.imgOuterHTML,
-              selector: map.imgSelector
+                ...imageLinkAndButtonErrors[5],
+                element: map.imgOuterHTML,
+                selector: map.imgSelector
             });
         }
         
         map.areas.forEach(area => {
-            if (!area.areaAlt || area.areaAlt === "") {
-                auditResults.push({
-                  ...imageLinkAndButtonErrors[6],
-                  element: area.areaOuterHTML,
-                  selector: area.areaSelector
-                });
-            }
+            auditResults.push({
+                ...imageLinkAndButtonErrors[6],
+                element: area.areaOuterHTML,
+                selector: area.areaSelector
+            });
         });
     });
 
