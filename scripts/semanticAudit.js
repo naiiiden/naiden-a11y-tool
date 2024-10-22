@@ -4,7 +4,7 @@ import { getUniqueSelector, inspectedWindowEval } from "./utils.js";
 export async function semanticAudit(auditResults) {
     const hasH1 = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(
-        `document.querySelector('h1') !== null`,
+        `!!document.querySelector('h1') || !!document.querySelector('[role="heading"][aria-level="1"]')`,
         resolve
         );
     });
@@ -19,23 +19,23 @@ export async function semanticAudit(auditResults) {
             let level;
         
             if (heading.hasAttribute('role') && heading.getAttribute('role') === 'heading') {
-            const ariaLevel = heading.getAttribute('aria-level');
-            if (ariaLevel && !isNaN(ariaLevel)) {
-                level = parseInt(ariaLevel, 10);
-            } else {
-                level = 2;
-            }
+                const ariaLevel = heading.getAttribute('aria-level');
+                if (ariaLevel && !isNaN(ariaLevel)) {
+                    level = parseInt(ariaLevel, 10);
+                } else {
+                    level = 2;
+                }
             } else {
                 level = parseInt(heading.tagName[1], 10);
             }
         
             return {
-            level,
-            tagName: heading.tagName,
-            outerHTML: heading.outerHTML,
-            selector: getUniqueSelector(heading)
+                level,
+                tagName: heading.tagName,
+                outerHTML: heading.outerHTML,
+                selector: getUniqueSelector(heading)
             };
-        }).filter(heading => heading !== null);
+        });
     `);
       
     if (headingLevels.length > 0) {
