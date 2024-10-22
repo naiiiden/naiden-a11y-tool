@@ -15,31 +15,47 @@ export async function semanticAudit(auditResults) {
 
     const headingLevels = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6')).map(heading => ({
+        return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, [role="heading"]')).map(heading => {
+            let level;
+        
+            if (heading.hasAttribute('role') && heading.getAttribute('role') === 'heading') {
+            const ariaLevel = heading.getAttribute('aria-level');
+            if (ariaLevel && !isNaN(ariaLevel)) {
+                level = parseInt(ariaLevel, 10);
+            } else {
+                return null;
+            }
+            } else {
+            level = parseInt(heading.tagName[1], 10);
+            }
+        
+            return {
+            level,
             tagName: heading.tagName,
             outerHTML: heading.outerHTML,
             selector: getUniqueSelector(heading)
-        }));
-    `) 
-    
+            };
+        }).filter(heading => heading !== null);
+    `);
+      
     if (headingLevels.length > 0) {
         let previousLevel = 1;
-    
+      
         for (const heading of headingLevels) {
-            const currentLevel = parseInt(heading.tagName[1]);
-    
-            if (currentLevel > previousLevel + 1) {
-                auditResults.push({
-                    ...semanticErrors[1],
-                    element: heading.outerHTML,
-                    selector: heading.selector
-                });
-                break;
-            }
-    
-            if (currentLevel > previousLevel) {
-                previousLevel = currentLevel;
-            }
+          const currentLevel = heading.level;
+      
+          if (currentLevel > previousLevel + 1) {
+            auditResults.push({
+              ...semanticErrors[1],
+              element: heading.outerHTML,
+              selector: heading.selector
+            });
+            break;
+          }
+      
+          if (currentLevel > previousLevel) {
+            previousLevel = currentLevel;
+          }
         }
     }
 
