@@ -23,10 +23,10 @@ export async function semanticAudit(auditResults) {
             if (ariaLevel && !isNaN(ariaLevel)) {
                 level = parseInt(ariaLevel, 10);
             } else {
-                return null;
+                level = 2;
             }
             } else {
-            level = parseInt(heading.tagName[1], 10);
+                level = parseInt(heading.tagName[1], 10);
             }
         
             return {
