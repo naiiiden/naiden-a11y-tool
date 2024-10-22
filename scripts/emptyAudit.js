@@ -17,7 +17,7 @@ export async function emptyAudit(auditResults) {
 
     const emptyHeadingsWithImages = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
-      return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'))
+      return Array.from(document.querySelectorAll(':is(h1, h2, h3, h4, h5, h6):has(img)'))
         .map(heading => {
           const textContent = heading.innerText.trim();
           const img = heading.querySelector('img');
