@@ -5,6 +5,14 @@ export async function emptyAudit(auditResults) {
     const emptyHeadings = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
       return Array.from(document.querySelectorAll(":is(h1, h2, h3, h4, h5, h6):not(:has(img)):empty"))
+        .filter(heading => {
+            const ariaLabel = heading.hasAttribute('aria-label') ? heading.getAttribute('aria-label').trim() : null;
+            const ariaLabelledby = heading.hasAttribute('aria-labelledby') 
+              ? document.getElementById(heading.getAttribute('aria-labelledby')) 
+              : null;
+            
+            return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+        })
         .map(heading => ({
           outerHTML: heading.outerHTML,
           selector: getUniqueSelector(heading)
