@@ -166,7 +166,11 @@ export async function semanticAudit(auditResults) {
     const asidesInOtherLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
-          :is(header, nav, main, section, form, article, aside, footer, [role="banner"], [role="navigation"], [role="main"], [role="region"], [role="form"], [role="complementary"], [role="contentinfo"]) 
+          :is(header, nav, main, section, form, article, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
+                [role="region"]:is(
+                                    [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
+                                    ), 
+                [role="form"], [role="complementary"], [role="contentinfo"]) 
           :is(aside, [role="complementary"])
         \`))
         .map(aside => ({
@@ -174,7 +178,6 @@ export async function semanticAudit(auditResults) {
           selector: getUniqueSelector(aside)
         }));
     `);
-      
 
     asidesInOtherLandmarks.forEach(aside => {
         auditResults.push({
