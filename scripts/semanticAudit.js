@@ -170,7 +170,7 @@ export async function semanticAudit(auditResults) {
                 :is([role="region"], [role="form"]):is(
                     [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
                 ), 
-                [role="complementary"], [role="contentinfo"]) 
+                [role="complementary"], [role="contentinfo"], [role="search"]) 
           :is(aside, [role="complementary"])
         \`))
         .map(aside => ({
@@ -221,7 +221,7 @@ export async function semanticAudit(auditResults) {
                 :is([role="region"], [role="form"]):is(
                     [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
                 ), 
-                [role="complementary"], [role="contentinfo"]) 
+                [role="complementary"], [role="contentinfo"], [role="search"]) 
           :is(main, [role="main"])
         \`))
             .map(main => ({
