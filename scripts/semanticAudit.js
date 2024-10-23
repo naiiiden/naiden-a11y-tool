@@ -167,12 +167,10 @@ export async function semanticAudit(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
           :is(header, nav, main, section, form, article, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
-                [role="region"]:is(
+                :is([role="region"], [role="form"]):is(
                     [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
                 ), 
-                [role="form"]:is(
-                    [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
-                ), [role="complementary"], [role="contentinfo"]) 
+                [role="complementary"], [role="contentinfo"]) 
           :is(aside, [role="complementary"])
         \`))
         .map(aside => ({
@@ -189,9 +187,19 @@ export async function semanticAudit(auditResults) {
         });
     });
 
+    // main footer, nav footer, section footer, header footer, article footer, form footer, aside footer, [role="main"] footer, [role="navigation"] footer, [role="region"] footer, [role="complementary"] footer, [role="form"] footer, [role="search"] footer
+    // :is(footer, [role="contentinfo"]):not(:is(article, aside) :is(footer, [role="contentinfo"])
+
     const contentinfoInOtherLandmarks = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
-    return Array.from(document.querySelectorAll('main footer, nav footer, section footer, header footer, article footer, form footer, aside footer, [role="main"] footer, [role="navigation"] footer, [role="region"] footer, [role="complementary"] footer, [role="form"] footer, [role="search"] footer'))
+    return Array.from(document.querySelectorAll(\`
+        :is(header, nav, main, section, form, article, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
+                :is([role="region"], [role="form"]):is(
+                    [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
+                ), 
+                [role="complementary"], [role="contentinfo"]) 
+          :is(aside, [role="complementary"])
+    \`))
         .map(footer => ({
             outerHTML: footer.outerHTML,
             selector: getUniqueSelector(footer)
