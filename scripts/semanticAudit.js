@@ -198,7 +198,7 @@ export async function semanticAudit(auditResults) {
                     [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
                 ), 
                 [role="complementary"], [role="contentinfo"]) 
-          :is(aside, [role="complementary"])
+          :is(footer, [role="contentinfo"])
     \`))
         .map(footer => ({
             outerHTML: footer.outerHTML,
