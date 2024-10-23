@@ -165,7 +165,7 @@ export async function semanticAudit(auditResults) {
 
     const asidesInOtherLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('main aside, nav aside, footer aside, section aside, header aside, form aside, article aside, [role="main"] aside, [role="navigation"] aside, [role="contentinfo"] aside, [role="region"] aside, [role="complementary"] aside, [role="form"] aside, [role="search"] aside'))
+        return Array.from(document.querySelectorAll(':is(main, nav, footer, section, header, form, article, [role="main"], [role="navigation"], [role="contentinfo"], [role="region"], [role="form"], [role="search"]) :is(aside, [role="complementary"])'))
             .map(aside => ({
                 outerHTML: aside.outerHTML,
                 selector: getUniqueSelector(aside)
