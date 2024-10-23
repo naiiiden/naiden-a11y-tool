@@ -168,9 +168,11 @@ export async function semanticAudit(auditResults) {
         return Array.from(document.querySelectorAll(\`
           :is(header, nav, main, section, form, article, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
                 [role="region"]:is(
-                                    [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
-                                    ), 
-                [role="form"], [role="complementary"], [role="contentinfo"]) 
+                    [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
+                ), 
+                [role="form"]:is(
+                    [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
+                ), [role="complementary"], [role="contentinfo"]) 
           :is(aside, [role="complementary"])
         \`))
         .map(aside => ({
