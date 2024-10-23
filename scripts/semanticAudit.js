@@ -216,7 +216,14 @@ export async function semanticAudit(auditResults) {
 
     const mainInOtherLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('nav main, footer main, section main, header main, article main, form main, aside main, [role="navigation"] main, [role="contentinfo"] main, [role="region"] main, [role="complementary"] main, [role="form"] main, [role="search"] main'))
+        return Array.from(document.querySelectorAll(\`
+          :is(header, nav, main, section, form, article, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
+                :is([role="region"], [role="form"]):is(
+                    [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
+                ), 
+                [role="complementary"], [role="contentinfo"]) 
+          :is(main, [role="main"])
+        \`))
             .map(main => ({
                 outerHTML: main.outerHTML,
                 selector: getUniqueSelector(main)
