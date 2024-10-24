@@ -171,7 +171,7 @@ export async function semanticAudit(auditResults) {
                     [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
                 ), 
                 [role="complementary"], [role="contentinfo"], [role="search"]) 
-          :is(aside, [role="complementary"])
+          :is(aside:not([role]), [role="complementary"])
         \`))
         .map(aside => ({
           outerHTML: aside.outerHTML,
@@ -198,7 +198,7 @@ export async function semanticAudit(auditResults) {
                     [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
                 ), 
                 [role="complementary"], [role="contentinfo"]) 
-          :is(footer, [role="contentinfo"])
+          :is(footer:not([role]), [role="contentinfo"])
     \`))
         .map(footer => ({
             outerHTML: footer.outerHTML,
@@ -222,7 +222,7 @@ export async function semanticAudit(auditResults) {
                     [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
                 ), 
                 [role="complementary"], [role="contentinfo"], [role="search"]) 
-          :is(main, [role="main"])
+          :is(main:not([role]), [role="main"])
         \`))
             .map(main => ({
                 outerHTML: main.outerHTML,
