@@ -149,7 +149,7 @@ export async function semanticAudit(auditResults) {
     const bannersInOtherLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
-          :is(header, nav, main, section, form, article, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
+          :is(header, nav, main, section, form, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
                 :is([role="region"], [role="form"]):is(
                     [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
                 ), 
@@ -200,7 +200,7 @@ export async function semanticAudit(auditResults) {
     const contentinfoInOtherLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
-            :is(header, nav, main, section, form, article, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
+            :is(header, nav, main, section, form, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
                     :is([role="region"], [role="form"]):is(
                         [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
                     ), 
