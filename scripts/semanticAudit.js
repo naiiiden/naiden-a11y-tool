@@ -148,11 +148,18 @@ export async function semanticAudit(auditResults) {
 
     const bannersInOtherLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('main header, nav header, footer header, aside header, section header, form header, article header, [role="main"] [role="banner"], [role="navigation"] [role="banner"], [role="contentinfo"] [role="banner"], [role="complementary"] [role="banner"], [role="region"] [role="banner"], [role="form"] [role="banner"], [role="search"] [role="banner"]'))
-            .map(header => ({
-                outerHTML: header.outerHTML,
-                selector: getUniqueSelector(header)
-            }));
+        return Array.from(document.querySelectorAll(\`
+          :is(header, nav, main, section, form, article, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
+                :is([role="region"], [role="form"]):is(
+                    [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
+                ), 
+                [role="complementary"], [role="contentinfo"], [role="search"]) 
+          :is(header:not([role]), [role="banner"])
+        \`))
+        .map(header => ({
+            outerHTML: header.outerHTML,
+            selector: getUniqueSelector(header)
+        }));
     `) 
     
     bannersInOtherLandmarks.forEach((banner) => {
@@ -191,15 +198,15 @@ export async function semanticAudit(auditResults) {
     // :is(footer, [role="contentinfo"]):not(:is(article, aside) :is(footer, [role="contentinfo"])
 
     const contentinfoInOtherLandmarks = await inspectedWindowEval(`
-    const getUniqueSelector = ${getUniqueSelector.toString()};
-    return Array.from(document.querySelectorAll(\`
-        :is(header, nav, main, section, form, article, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
-                :is([role="region"], [role="form"]):is(
-                    [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
-                ), 
-                [role="complementary"], [role="contentinfo"]) 
-          :is(footer:not([role]), [role="contentinfo"])
-    \`))
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll(\`
+            :is(header, nav, main, section, form, article, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
+                    :is([role="region"], [role="form"]):is(
+                        [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
+                    ), 
+                    [role="complementary"], [role="contentinfo"], [role="search"])
+            :is(footer:not([role]), [role="contentinfo"])
+        \`))
         .map(footer => ({
             outerHTML: footer.outerHTML,
             selector: getUniqueSelector(footer)
