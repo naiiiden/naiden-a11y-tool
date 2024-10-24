@@ -126,23 +126,23 @@ export async function semanticAudit(auditResults) {
         });
     }
 
-    const moreThanOneBanner = await new Promise((resolve) => {
+    const moreThanOneBannerLandmark = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
             document.querySelectorAll("[role='banner']").length
         `, resolve);
     });
 
-    if (moreThanOneBanner > 1) {
+    if (moreThanOneBannerLandmark > 1) {
         auditResults.push(semanticErrors[7]);
     } 
 
-    const moreThanOneContentinfo = await new Promise((resolve) => {
+    const moreThanOneContentinfoLandmark = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
             document.querySelectorAll("[role='contentinfo']").length
         `, resolve);
     });
 
-    if (moreThanOneContentinfo > 1) {
+    if (moreThanOneContentinfoLandmark > 1) {
         auditResults.push(semanticErrors[8]);
     }
 
