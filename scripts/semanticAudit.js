@@ -97,7 +97,7 @@ export async function semanticAudit(auditResults) {
 
     const hasRegionsOrLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
-          document.querySelectorAll('header, nav, main, footer, aside, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="complementary"]').length
+          document.querySelectorAll('header, nav, main, footer, aside, form, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="complementary"], [role="search"], :is([role="region"], [role="form"]):is([aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""]))').length
         `, resolve);
     });
 
