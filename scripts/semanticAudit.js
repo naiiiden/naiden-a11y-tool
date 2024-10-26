@@ -247,7 +247,7 @@ export async function semanticAudit(auditResults) {
 
     const contentOutsideLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('body > *:not(:is(header, nav, main, footer, section, aside, form, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="region"], [role="complementary"], [role="form"], [role="search"], style, script))'))
+        return Array.from(document.querySelectorAll('body > *:not(:is(header, nav, main, footer, section, aside, form, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="complementary"], [role="search"], :is([role="region"], [role="form"]):is([aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])), style, script))'))
             .filter(el => {
                 if (el.matches('a[href^="#"]')) {
                     const text = el.innerText.toLowerCase();
