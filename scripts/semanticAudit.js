@@ -194,7 +194,7 @@ export async function semanticAudit(auditResults) {
         });
     });
 
-    // main footer, nav footer, section footer, header footer, article footer, form footer, aside footer, [role="main"] footer, [role="navigation"] footer, [role="region"] footer, [role="complementary"] footer, [role="form"] footer, [role="search"] footer
+    // possible last :is() for landmark that can be contained in other landmark
     // :is(footer, [role="contentinfo"]):not(:is(article, aside) :is(footer, [role="contentinfo"])
 
     const contentinfoInOtherLandmarks = await inspectedWindowEval(`
