@@ -34,4 +34,11 @@ export const imageErrors = [
         wcagLink: "",
         fix: "Add alt text to all img map areas.",
     },
+    {
+        id: 5,
+        name: "role='img' elements must have an alt text",
+        description: "role='img' elements must have an alt text.",
+        wcagLink: "",
+        fix: "Add alt text to all role='img' elements.",
+    },
 ]

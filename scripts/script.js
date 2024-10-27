@@ -1,7 +1,6 @@
 import { emptyAudit } from "./audits/emptyAudit.js";
 import { formAudit } from "./audits/formAudit.js";
 import { htmlAndHeadAudit } from "./audits/htmlAndHeadAudit.js";
-import { imageLinkAndButtonAudit } from "./audits/imageLinkAndButtonsAudit.js";
 import { imagesAudit } from "./audits/imagesAudit.js";
 import { linksAndButtonsAudit } from "./audits/linksAndButtonsAudit.js";
 import { semanticAudit } from "./audits/semanticAudit.js";

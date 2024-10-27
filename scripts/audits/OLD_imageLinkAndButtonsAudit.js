@@ -1,4 +1,4 @@
-import { imageLinkAndButtonErrors } from "../errors.js";
+import { imageLinkAndButtonErrors } from "../OLD_errors.js";
 import { getUniqueSelector, inspectedWindowEval } from "../utils.js";
 
 export async function imageLinkAndButtonAudit(auditResults) {
