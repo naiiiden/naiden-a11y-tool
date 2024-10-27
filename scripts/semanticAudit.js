@@ -205,7 +205,7 @@ export async function semanticAudit(auditResults) {
                         [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
                     ), 
                     [role="complementary"], [role="contentinfo"], [role="search"])
-            :is(footer:not([role]), [role="contentinfo"])
+            :is(footer:not([role]):not(:is(article, aside, main, nav, section) footer:not([role])), [role="contentinfo"])
         \`))
         .map(footer => ({
             outerHTML: footer.outerHTML,
