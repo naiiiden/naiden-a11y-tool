@@ -154,7 +154,7 @@ export async function semanticAudit(auditResults) {
                     [aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])
                 ), 
                 [role="complementary"], [role="contentinfo"], [role="search"]) 
-          :is(header:not([role]), [role="banner"])
+          :is(header:not([role]):not(:is(article, aside, main, nav, section) header:not([role])), [role="banner"])
         \`))
         .map(header => ({
             outerHTML: header.outerHTML,
@@ -193,9 +193,6 @@ export async function semanticAudit(auditResults) {
             selector: aside.selector
         });
     });
-
-    // possible last :is() for landmark that can be contained in other landmark
-    // :is(footer, [role="contentinfo"]):not(:is(article, aside) :is(footer, [role="contentinfo"])
 
     const contentinfoInOtherLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
