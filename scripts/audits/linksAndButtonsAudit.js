@@ -17,7 +17,7 @@ export async function linksAndButtonsAudit(auditResults) {
 
     const emptyButtons = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
-      return Array.from(document.querySelectorAll(':is([role="button"], button):not(:has(img):empty'))
+      return Array.from(document.querySelectorAll(':is([role="button"], button):not(:has(img)):empty'))
         .filter(button => {
             const ariaLabel = button.hasAttribute('aria-label') ? button.getAttribute('aria-label').trim() : null;
             const ariaLabelledby = button.hasAttribute('aria-labelledby') 
