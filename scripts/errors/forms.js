@@ -1,0 +1,44 @@
+export const formErrors = [
+    {
+      id: 0,
+      name: "Empty form label",
+      description: "Form label is empty",
+      wcagLink: "",
+      fix: "Add text to the empty form label",
+    },
+    {
+      id: 1,
+      name: "Form control missing label",
+      description: "Form control doesn't have a label",
+      wcagLink: "",
+      fix: "Add a label for the form control",
+    },
+    {
+      id: 2,
+      name: "Form control multiple form labels",
+      description: "Form control has more than 1 label",
+      wcagLink: "",
+      fix: "Leave only one label for the form control",
+    },
+    {
+      id: 3,
+      name: "Fieldset doesn't have legend",
+      description: "Legend describes the elements contained by a fieldset",
+      wcagLink: "",
+      fix: "Add legend",
+    },
+    {
+      id: 4,
+      name: "Missing fieldset",
+      description: "Two or more radio buttons or checkboxes with the same name are not contained by a fieldset",
+      wcagLink: "",
+      fix: "Add fieldset",
+    },
+    {
+      id: 5,
+      name: "Empty submit or button input value",
+      description: "Submit or button input value is empty",
+      wcagLink: "",
+      fix: "Add text to value",
+    }
+]
