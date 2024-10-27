@@ -1,5 +1,5 @@
-import { emptyErrors } from "./errors/emptyElements.js";
-import { getUniqueSelector, inspectedWindowEval } from "./utils.js";
+import { emptyErrors } from "../errors/emptyElements.js";
+import { getUniqueSelector, inspectedWindowEval } from "../utils.js";
 
 export async function emptyAudit(auditResults) {
     const emptyHeadings = await inspectedWindowEval(`

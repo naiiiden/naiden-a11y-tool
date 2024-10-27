@@ -1,8 +1,8 @@
-import { emptyAudit } from "./emptyAudit.js";
-import { formAudit } from "./formAudit.js";
-import { htmlAndHeadAudit } from "./htmlAndHeadAudit.js";
-import { imageLinkAndButtonAudit } from "./imageLinkAndButtonsAudit.js";
-import { semanticAudit } from "./semanticAudit.js";
+import { emptyAudit } from "./audits/emptyAudit.js";
+import { formAudit } from "./audits/formAudit.js";
+import { htmlAndHeadAudit } from "./audits/htmlAndHeadAudit.js";
+import { imageLinkAndButtonAudit } from "./audits/imageLinkAndButtonsAudit.js";
+import { semanticAudit } from "./audits/semanticAudit.js";
 import { escapeHtml } from "./utils.js";
 
 const errorsIndicator = document.getElementById("errors-indicator");

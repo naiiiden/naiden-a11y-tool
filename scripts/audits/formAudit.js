@@ -1,5 +1,5 @@
-import { formErrors } from "./errors/forms.js";
-import { getUniqueSelector, inspectedWindowEval } from "./utils.js";
+import { formErrors } from "../errors/forms.js";
+import { getUniqueSelector, inspectedWindowEval } from "../utils.js";
 
 export async function formAudit(auditResults) {
    const emptyLabels = await inspectedWindowEval(`

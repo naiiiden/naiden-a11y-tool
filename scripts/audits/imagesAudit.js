@@ -1,5 +1,5 @@
-import { imageErrors } from "./errors/images.js";
-import { getUniqueSelector, inspectedWindowEval } from "./utils.js";
+import { imageErrors } from "../errors/images.js";
+import { getUniqueSelector, inspectedWindowEval } from "../utils.js";
 
 export async function imagesAudit(auditResults) {
     const missingAltImages = await inspectedWindowEval(`
