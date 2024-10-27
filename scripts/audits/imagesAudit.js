@@ -117,7 +117,7 @@ export async function imagesAudit(auditResults) {
     imageMaps.forEach(map => {
         if (!map.imgAlt || map.imgAlt === "") {
             auditResults.push({
-                ...imageLinkAndButtonErrors[3],
+                ...imageErrors[3],
                 element: map.imgOuterHTML,
                 selector: map.imgSelector
             });
@@ -125,7 +125,7 @@ export async function imagesAudit(auditResults) {
         
         map.areas.forEach(area => {
             auditResults.push({
-                ...imageLinkAndButtonErrors[4],
+                ...imageErrors[4],
                 element: area.areaOuterHTML,
                 selector: area.areaSelector
             });
