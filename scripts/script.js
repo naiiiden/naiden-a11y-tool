@@ -2,6 +2,8 @@ import { emptyAudit } from "./audits/emptyAudit.js";
 import { formAudit } from "./audits/formAudit.js";
 import { htmlAndHeadAudit } from "./audits/htmlAndHeadAudit.js";
 import { imageLinkAndButtonAudit } from "./audits/imageLinkAndButtonsAudit.js";
+import { imagesAudit } from "./audits/imagesAudit.js";
+import { linksAndButtonsAudit } from "./audits/linksAndButtonsAudit.js";
 import { semanticAudit } from "./audits/semanticAudit.js";
 import { escapeHtml } from "./utils.js";
 
@@ -29,8 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.getElementById("run-image-link-and-button-audit-btn").addEventListener("click", () => {
-    runAudit([imageLinkAndButtonAudit]).then(() => {
+  document.getElementById("run-image-audit-btn").addEventListener("click", () => {
+    runAudit([imagesAudit]).then(() => {
+      emptyErrorMessage("No image, link and button errors.");
+    });
+  });
+
+  document.getElementById("run-link-and-button-audit-btn").addEventListener("click", () => {
+    runAudit([linksAndButtonsAudit]).then(() => {
       emptyErrorMessage("No image, link and button errors.");
     });
   });

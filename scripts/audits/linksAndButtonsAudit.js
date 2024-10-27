@@ -1,7 +1,7 @@
 import { linksAndButtonsErrors } from "../errors/linksAndButtons.js";
 import { getUniqueSelector, inspectedWindowEval } from "../utils.js";
 
-export async function imageLinkAndButtonAudit(auditResults) {
+export async function linksAndButtonsAudit(auditResults) {
     const emptyLinks = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
       return Array.from(document.querySelectorAll('a:not(:has(img):empty'))
