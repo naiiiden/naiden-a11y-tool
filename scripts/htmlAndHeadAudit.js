@@ -1,4 +1,4 @@
-import { htmlAndHeadErrors } from "./errors.js";
+import { htmlAndHeadErrors } from "./errors/htmlAndHead.js";
 
 export async function htmlAndHeadAudit(auditResults) {
     const htmlLanguage = await new Promise((resolve) => {

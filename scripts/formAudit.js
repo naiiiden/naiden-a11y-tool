@@ -1,4 +1,4 @@
-import { formErrors } from "./errors.js";
+import { formErrors } from "./errors/forms.js";
 import { getUniqueSelector, inspectedWindowEval } from "./utils.js";
 
 export async function formAudit(auditResults) {

@@ -1,4 +1,4 @@
-import { semanticErrors } from "./errors.js";
+import { semanticErrors } from "./errors/semantic.js";
 import { getUniqueSelector, inspectedWindowEval } from "./utils.js";
 
 export async function semanticAudit(auditResults) {
