@@ -26,13 +26,14 @@ export async function formAudit(auditResults) {
           return { 
             outerHTML: element.outerHTML,
             labelCount: labelCount + (wrappingLabel ? 1 : 0),
+            hasTextInWrappingLabel: hasWrappingLabelWithText,
             selector: getUniqueSelector(element)
           };
         });  
     `)
       
     formControlLabels.forEach((element) => {
-      if (element.labelCount === 0) {
+      if (element.labelCount === 0 || element.labelCount === 1 && !element.hasTextInWrappingLabel) {
           auditResults.push({ ...formErrors[1], element: element.outerHTML, selector: element.selector });
       } else if (element.labelCount > 1) {
           auditResults.push({ ...formErrors[2], element: element.outerHTML, selector: element.selector });
