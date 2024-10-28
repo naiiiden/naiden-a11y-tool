@@ -33,13 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("run-image-audit-btn").addEventListener("click", () => {
     runAudit([imagesAudit]).then(() => {
-      emptyErrorMessage("No image, link and button errors.");
+      emptyErrorMessage("No image errors.");
     });
   });
 
   document.getElementById("run-link-and-button-audit-btn").addEventListener("click", () => {
     runAudit([linksAndButtonsAudit]).then(() => {
-      emptyErrorMessage("No image, link and button errors.");
+      emptyErrorMessage("No link and button errors.");
     });
   });
 
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("run-aria-audit-btn").addEventListener("click", () => {
     runAudit([ariaAudit]).then(() => {
-      emptyErrorMessage("No semantic errors.");
+      emptyErrorMessage("No aria errors.");
     });
   });
 
