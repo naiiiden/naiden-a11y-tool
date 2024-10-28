@@ -61,6 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  document.getElementById("run-aria-audit-btn").addEventListener("click", () => {
+    runAudit([ariaAudit]).then(() => {
+      emptyErrorMessage("No semantic errors.");
+    });
+  });
+
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
     runAudit([htmlAndHeadAudit, linksAndButtonsAudit, emptyAudit, formAudit, semanticAudit, ariaAudit]).then(() => {
       emptyErrorMessage("No errors found.");
