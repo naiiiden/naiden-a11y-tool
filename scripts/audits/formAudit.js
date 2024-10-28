@@ -20,9 +20,12 @@ export async function formAudit(auditResults) {
       return Array.from(document.querySelectorAll('input[id], select[id], textarea[id]'))
         .map(element => {
           const labelCount = document.querySelectorAll('label[for="' + element.id + '"]').length;
+          const wrappingLabel = element.closest('label');
+          const hasWrappingLabelWithText = wrappingLabel && wrappingLabel.innerText.trim().length > 0;
+
           return { 
             outerHTML: element.outerHTML,
-            labelCount: labelCount,
+            labelCount: labelCount + (wrappingLabel ? 1 : 0),
             selector: getUniqueSelector(element)
           };
         });  
