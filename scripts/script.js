@@ -4,6 +4,7 @@ import { htmlAndHeadAudit } from "./audits/htmlAndHeadAudit.js";
 import { imagesAudit } from "./audits/imagesAudit.js";
 import { linksAndButtonsAudit } from "./audits/linksAndButtonsAudit.js";
 import { semanticAudit } from "./audits/semanticAudit.js";
+import { ariaAudit } from "./audits/ariaAudit.js";
 import { escapeHtml } from "./utils.js";
 
 const errorsIndicator = document.getElementById("errors-indicator");
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
-    runAudit([htmlAndHeadAudit, linksAndButtonsAudit, emptyAudit, formAudit, semanticAudit]).then(() => {
+    runAudit([htmlAndHeadAudit, linksAndButtonsAudit, emptyAudit, formAudit, semanticAudit, ariaAudit]).then(() => {
       emptyErrorMessage("No errors found.");
     });
   });
