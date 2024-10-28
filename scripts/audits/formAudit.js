@@ -17,7 +17,7 @@ export async function formAudit(auditResults) {
 
     const formControlLabels = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
-      return Array.from(document.querySelectorAll('input[id], select[id], textarea[id]'))
+      return Array.from(document.querySelectorAll('input[id]:not(:is([type="submit"], [type="button"], [type="reset"], [type="hidden"])), select[id], textarea[id]'))
         .map(element => {
           const labelCount = document.querySelectorAll('label[for="' + element.id + '"]').length;
           const wrappingLabel = element.closest('label');
@@ -115,15 +115,15 @@ export async function formAudit(auditResults) {
     const imageInputs = await inspectedWindowEval(`
       const getUniqueSelector = ${getUniqueSelector.toString()};
       return Array.from(document.querySelectorAll('input[type="image"]'))
-        .filter(input => {
-            const alt = input.getAttribute('alt');
-            const ariaLabel = input.hasAttribute('aria-label') ? input.getAttribute('aria-label').trim() : null;
-            const ariaLabelledby = input.hasAttribute('aria-labelledby') 
-                ? document.getElementById(input.getAttribute('aria-labelledby')) 
-                : null;
+          .filter(input => {
+              const alt = input.getAttribute('alt');
+              const ariaLabel = input.hasAttribute('aria-label') ? input.getAttribute('aria-label').trim() : null;
+              const ariaLabelledby = input.hasAttribute('aria-labelledby') 
+                  ? document.getElementById(input.getAttribute('aria-labelledby')) 
+                  : null;
 
-            return !alt?.trim() && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
-        })
+              return !alt?.trim() && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+          })
         .map(input => ({ 
             outerHTML: input.outerHTML, 
             selector: getUniqueSelector(input) 
