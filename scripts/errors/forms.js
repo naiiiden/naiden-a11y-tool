@@ -40,5 +40,12 @@ export const formErrors = [
       description: "Submit or button input value is empty",
       wcagLink: "",
       fix: "Add text to value",
+    },
+    {
+      id: 6,
+      name: "Image input must have alt text",
+      description: "Image input must have alt text",
+      wcagLink: "",
+      fix: "Add alt text to image inputs",
     }
 ]
