@@ -33,5 +33,26 @@ export const ariaErrors = [
         description: "aria tooltip elements must have an accessible name",
         wcagLink: "",
         fix: "ensure elements with role tooltip have accessible names"
+    },
+    {
+        id: 5,
+        name: "deprecated aria roles must not be used",
+        description: "deprecated aria roles must not be used",
+        wcagLink: "",
+        fix: "make sure all that all role attributes are not using deprecated values"
+    },
+    {
+        id: 6,
+        name: "aria input fields must have an accessible names",
+        description: "aria input fields must have an accessible names",
+        wcagLink: "",
+        fix: "ensure elements with role (combobox, listbox, searchbox, slider, spinbutton, textbox) have accessible names"
+    },
+    {
+        id: 7,
+        name: "aria toggle field elements must have an accessible name",
+        description: "aria toggle field elements must have an accessible name",
+        wcagLink: "",
+        fix: "ensure elements with role (checkbox, menu, menuitemcheckbox, menuitemradio, radio, radiogroup, switch) have accessible names"
     }
 ]
