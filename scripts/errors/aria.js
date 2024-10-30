@@ -54,5 +54,26 @@ export const ariaErrors = [
         description: "aria toggle field elements must have an accessible name",
         wcagLink: "",
         fix: "ensure elements with role (checkbox, menu, menuitemcheckbox, menuitemradio, radio, radiogroup, switch) have accessible names"
-    }
+    },
+    {
+        id: 8,
+        name: "aria hidden elements must not be focusable or contain focusable children",
+        description: "aria hidden elements must not be focusable or contain focusable children",
+        wcagLink: "",
+        fix: "ensure aria hidden elements are not focusable and don't contain focusable children"
+    },
+    {
+        id: 9,
+        name: "aria roles must conform to valid values",
+        description: "aria roles must conform to valid values",
+        wcagLink: "",
+        fix: "ensure all aria role elements have a valid value"
+    },
+    {
+        id: 10,
+        name: "aria braille attributes must have a non-braille equivalent",
+        description: "aria braille attributes must have a non-braille equivalent",
+        wcagLink: "",
+        fix: "ensure elements with aria braille attribute have a non-braille equivalent"
+    },
 ]
