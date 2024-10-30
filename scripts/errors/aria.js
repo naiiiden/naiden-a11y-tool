@@ -76,4 +76,25 @@ export const ariaErrors = [
         wcagLink: "",
         fix: "ensure elements with aria braille attribute have a non-braille equivalent"
     },
+    {
+        id: 11,
+        name: "aria dialog and alertdialog elements must have an accessible name",
+        description: "aria dialog and alertdialog elements must have an accessible name",
+        wcagLink: "",
+        fix: "ensure elements with role dialog and alertdialog have accessible names"
+    },
+    {
+        id: 12,
+        name: "aria role text elements should not have focusable descendants",
+        description: "aria role text elements should not have focusable descendants",
+        wcagLink: "",
+        fix: "ensure elements with role text don't have focusable descendants"
+    },
+    {
+        id: 13,
+        name: "aria role should be appropriate for the element",
+        description: "aria role should be appropriate for the element",
+        wcagLink: "",
+        fix: "ensure elements with role attribute have appropriate value for the element"
+    }
 ]
