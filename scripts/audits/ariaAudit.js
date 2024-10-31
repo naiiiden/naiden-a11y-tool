@@ -148,4 +148,26 @@ export async function ariaAudit(auditResults) {
     ariaHiddenFocusable.forEach(element => {
         auditResults.push({ ...ariaErrors[8], element: element.outerHTML, selector: element.selector });
     })
+
+    const ariaDialogAndAlertDialog = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll("[role='alert'], [role='alertdialog']"))
+            .filter(element => {
+                const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
+                const ariaLabelledby = element.hasAttribute('aria-labelledby') 
+                    ? document.getElementById(element.getAttribute('aria-labelledby')) 
+                    : null;
+                const title = element.hasAttribute('title') ? element.getAttribute('title').trim() : null;
+    
+                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+            })
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }));
+    `)
+
+    ariaDialogAndAlertDialog.forEach(element => {
+        auditResults.push({ ...ariaErrors[11], element: element.outerHTML, selector: element.selector });
+    });
 }
