@@ -146,6 +146,6 @@ export async function ariaAudit(auditResults) {
     `)
 
     ariaHiddenFocusable.forEach(element => {
-        auditResults.push({ ...ariaErrors[7], element: element.outerHTML, selector: element.selector });
+        auditResults.push({ ...ariaErrors[8], element: element.outerHTML, selector: element.selector });
     })
 }
