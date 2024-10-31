@@ -135,4 +135,17 @@ export async function ariaAudit(auditResults) {
     ariaInputFields.forEach(element => {
         auditResults.push({ ...ariaErrors[6], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaHiddenFocusable = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll("[aria-hidden='true']:has(a, button, input:not(disabled)])"))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }));
+    `)
+
+    ariaHiddenFocusable.forEach(element => {
+        auditResults.push({ ...ariaErrors[7], element: element.outerHTML, selector: element.selector });
+    })
 }
