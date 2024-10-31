@@ -170,4 +170,17 @@ export async function ariaAudit(auditResults) {
     ariaDialogAndAlertDialog.forEach(element => {
         auditResults.push({ ...ariaErrors[11], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaText = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll("[role='text']:has(a, button, input:not(disabled), :not([tabindex^='-']))"))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }));
+    `)
+
+    ariaText.forEach(element => {
+        auditResults.push({ ...ariaErrors[12], element: element.outerHTML, selector: element.selector });
+    });
 }
