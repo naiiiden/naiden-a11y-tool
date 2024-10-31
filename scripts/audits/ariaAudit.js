@@ -114,4 +114,25 @@ export async function ariaAudit(auditResults) {
     ariaDeprecatedRoles.forEach(element => {
         auditResults.push({ ...ariaErrors[5], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaInputFields = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll("[role='combobox'], [role='listbox'], [role='searchbox'], [role='slider'], [role='spinbutton'], [role='textbox']"))
+        .filter(element => {
+                const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
+                const ariaLabelledby = element.hasAttribute('aria-labelledby') 
+                ? document.getElementById(element.getAttribute('aria-labelledby')) 
+                : null;
+                
+                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+            })
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }));
+    `)
+
+    ariaInputFields.forEach(element => {
+        auditResults.push({ ...ariaErrors[6], element: element.outerHTML, selector: element.selector });
+    });
 }
