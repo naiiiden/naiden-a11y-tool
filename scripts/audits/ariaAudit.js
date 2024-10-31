@@ -101,4 +101,17 @@ export async function ariaAudit(auditResults) {
     ariaTooltip.forEach(element => {
         auditResults.push({ ...ariaErrors[4], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaDeprecatedRoles = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll("[role='directory']"))
+        .map(element => ({
+            outerHTML: element.outerHTML,
+            selector: getUniqueSelector(element)
+        }));
+    `)
+
+    ariaDeprecatedRoles.forEach(element => {
+        auditResults.push({ ...ariaErrors[5], element: element.outerHTML, selector: element.selector });
+    });
 }
