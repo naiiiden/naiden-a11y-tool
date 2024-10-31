@@ -1,5 +1,5 @@
 chrome.devtools.panels.create(
-  "nano's a11y tool",
+  "naiden's a11y tool",
   "icon.png",
   "index.html",
   function(panel) {
