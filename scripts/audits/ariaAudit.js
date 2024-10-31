@@ -59,4 +59,25 @@ export async function ariaAudit(auditResults) {
     ariaMeter.forEach(element => {
         auditResults.push({ ...ariaErrors[2], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaProgressbar = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll("[role='progressbar']"))
+            .filter(element => {
+                const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
+                const ariaLabelledby = element.hasAttribute('aria-labelledby') 
+                ? document.getElementById(element.getAttribute('aria-labelledby')) 
+                : null;
+                
+                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+            })
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }));
+    `)
+
+    ariaProgressbar.forEach(element => {
+        auditResults.push({ ...ariaErrors[3], element: element.outerHTML, selector: element.selector });
+    });
 }
