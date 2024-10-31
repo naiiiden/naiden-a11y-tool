@@ -138,7 +138,7 @@ export async function ariaAudit(auditResults) {
 
     const ariaHiddenFocusable = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll("[aria-hidden='true']:has(a, button, input:not(disabled)])"))
+        return Array.from(document.querySelectorAll("[aria-hidden='true']:has(a, button, input:not(disabled))"))
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element)
