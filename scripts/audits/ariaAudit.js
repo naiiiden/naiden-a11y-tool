@@ -173,7 +173,7 @@ export async function ariaAudit(auditResults) {
 
     const ariaText = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll("[role='text']:has(a, button, input:not(disabled), :not([tabindex^='-']))"))
+        return Array.from(document.querySelectorAll("[role='text']:has(a, button, :is(input, textarea, select):not(disabled), :not([tabindex^='-']))"))
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element)
