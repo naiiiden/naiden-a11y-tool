@@ -140,7 +140,7 @@ export async function ariaAudit(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[aria-hidden='true']"))
             .filter(element => {
-                return Array.from(element.querySelectorAll("a, button, :is(input, textarea, select):not(disabled), :not([tabindex^='-'])")) 
+                return Array.from(element.querySelectorAll("a, :is(input, textarea, select, button):not(disabled), :not([tabindex^='-'])")) 
                     .every(child => window.getComputedStyle(child).display !== 'none');
             })
             .map(element => ({
@@ -177,7 +177,7 @@ export async function ariaAudit(auditResults) {
 
     const ariaTextNoFocusableChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll("[role='text']:has(a, button, :is(input, textarea, select):not(disabled), :not([tabindex^='-']))"))
+        return Array.from(document.querySelectorAll("[role='text']:has(a, :is(input, textarea, select, button):not(disabled), :not([tabindex^='-']))"))
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element)
