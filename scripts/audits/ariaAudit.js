@@ -2,19 +2,19 @@ import { ariaErrors } from "../errors/aria.js";
 import { getUniqueSelector, inspectedWindowEval } from "../utils.js";
 
 export async function ariaAudit(auditResults) {
-    const documentBody = await inspectedWindowEval(`
+    const documentBodyAriaHidden = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const body = document.body;
-        const isAriaHidden = body.hasAttribute('aria-hidden') && body.getAttribute('aria-hidden') === 'true';
+        const isHidden = body.hasAttribute('aria-hidden') && body.getAttribute('aria-hidden') === 'true';
         
         return {
-            isAriaHidden,
+            isHidden,
             outerHTML: body.outerHTML,
             selector: getUniqueSelector(body)
         }
     `)
 
-    if (documentBody.isAriaHidden) {
+    if (documentBodyAriaHidden.isHidden) {
         auditResults.push({ ...ariaErrors[0], element: documentBody.outerHTML, selector: documentBody.selector });
     }
 
@@ -136,7 +136,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[6], element: element.outerHTML, selector: element.selector });
     });
 
-    const ariaHiddenFocusable = await inspectedWindowEval(`
+    const ariaHiddenWithFocusableChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[aria-hidden='true']:has(a, button, :is(input, textarea, select):not(disabled), :not([tabindex^='-']))"))
             .map(element => ({
@@ -145,7 +145,7 @@ export async function ariaAudit(auditResults) {
             }));
     `)
 
-    ariaHiddenFocusable.forEach(element => {
+    ariaHiddenWithFocusableChildren.forEach(element => {
         auditResults.push({ ...ariaErrors[8], element: element.outerHTML, selector: element.selector });
     })
 
@@ -171,7 +171,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[11], element: element.outerHTML, selector: element.selector });
     });
 
-    const ariaText = await inspectedWindowEval(`
+    const ariaTextNoFocusableChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='text']:has(a, button, :is(input, textarea, select):not(disabled), :not([tabindex^='-']))"))
             .map(element => ({
@@ -180,7 +180,7 @@ export async function ariaAudit(auditResults) {
             }));
     `)
 
-    ariaText.forEach(element => {
+    ariaTextNoFocusableChildren.forEach(element => {
         auditResults.push({ ...ariaErrors[12], element: element.outerHTML, selector: element.selector });
     });
 }
