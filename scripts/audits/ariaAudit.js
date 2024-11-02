@@ -18,7 +18,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[0], element: documentBody.outerHTML, selector: documentBody.selector });
     }
 
-    const ariaCommands = await inspectedWindowEval(`
+    const ariaCommandsNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(":is([role='link'], [role='button'], [role='menuitem']):empty"))
             .filter(element => {
@@ -35,11 +35,11 @@ export async function ariaAudit(auditResults) {
             }));
     `)
 
-    ariaCommands.forEach(element => {
+    ariaCommandsNames.forEach(element => {
         auditResults.push({ ...ariaErrors[1], element: element.outerHTML, selector: element.selector });
     });
 
-    const ariaMeter = await inspectedWindowEval(`
+    const ariaMeterNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='meter']"))
             .filter(element => {
@@ -56,11 +56,11 @@ export async function ariaAudit(auditResults) {
             }));
     `)
 
-    ariaMeter.forEach(element => {
+    ariaMeterNames.forEach(element => {
         auditResults.push({ ...ariaErrors[2], element: element.outerHTML, selector: element.selector });
     });
 
-    const ariaProgressbar = await inspectedWindowEval(`
+    const ariaProgressbarNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='progressbar']"))
             .filter(element => {
@@ -77,11 +77,11 @@ export async function ariaAudit(auditResults) {
             }));
     `)
 
-    ariaProgressbar.forEach(element => {
+    ariaProgressbarNames.forEach(element => {
         auditResults.push({ ...ariaErrors[3], element: element.outerHTML, selector: element.selector });
     });
 
-    const ariaTooltip = await inspectedWindowEval(`
+    const ariaTooltipNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='tooltip']:empty"))
             .filter(element => {
@@ -98,7 +98,7 @@ export async function ariaAudit(auditResults) {
             }));
     `)
 
-    ariaTooltip.forEach(element => {
+    ariaTooltipNames.forEach(element => {
         auditResults.push({ ...ariaErrors[4], element: element.outerHTML, selector: element.selector });
     });
 
@@ -115,7 +115,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[5], element: element.outerHTML, selector: element.selector });
     });
 
-    const ariaInputFields = await inspectedWindowEval(`
+    const ariaInputFieldNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='combobox'], [role='listbox'], [role='searchbox'], [role='slider'], [role='spinbutton'], [role='textbox']"))
         .filter(element => {
@@ -132,7 +132,7 @@ export async function ariaAudit(auditResults) {
             }));
     `)
 
-    ariaInputFields.forEach(element => {
+    ariaInputFieldNames.forEach(element => {
         auditResults.push({ ...ariaErrors[6], element: element.outerHTML, selector: element.selector });
     });
 
@@ -149,7 +149,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[8], element: element.outerHTML, selector: element.selector });
     })
 
-    const ariaDialogAndAlertDialog = await inspectedWindowEval(`
+    const ariaDialogAndAlertDialogNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='alert'], [role='alertdialog']"))
             .filter(element => {
@@ -167,7 +167,7 @@ export async function ariaAudit(auditResults) {
             }));
     `)
 
-    ariaDialogAndAlertDialog.forEach(element => {
+    ariaDialogAndAlertDialogNames.forEach(element => {
         auditResults.push({ ...ariaErrors[11], element: element.outerHTML, selector: element.selector });
     });
 
