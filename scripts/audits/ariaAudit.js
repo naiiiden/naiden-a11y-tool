@@ -240,7 +240,7 @@ export async function ariaAudit(auditResults) {
         return Array.from(document.querySelectorAll(\`
             a[href][role]:not([role='button'], [role='checkbox'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='switch'], [role='tab'], [role='treeitem'], [role='link']), 
             a:not([href])[role]:is([role='generic']), 
-            address:is([role='group']), 
+            address[role]:is([role='group']), 
             area[href][role]:not([role='link']), 
             area:not([href])[role]:not([role='button'], [role='link']), 
             area:not([href])[role]:is([role='generic']), 
