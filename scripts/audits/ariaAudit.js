@@ -252,7 +252,10 @@ export async function ariaAudit(auditResults) {
             bdo[role]:is([role='generic']), 
             body[role]:is([role='generic']), 
             br[role]:not([role='none'], [role='presentation']), 
-            button[role]:not([role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem'], [role='button'])
+            button[role]:not([role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem'], [role='button']), 
+            table caption[role]:not([role='caption']), 
+            col[role]:not([role='']), 
+            colgroup[role]:not([role=''])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
