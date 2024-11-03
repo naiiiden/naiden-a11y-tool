@@ -291,7 +291,7 @@ export async function ariaAudit(auditResults) {
             input[type='file'][role], 
             input[type='hidden'][role], 
             input[type='image'][role]:not([role='button'], [role='checkbox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem']), 
-            input[type-'month'][role], 
+            input[type='month'][role], 
             input[type='number'][role]:not([role='spinbutton']), 
             input[type='password'][role], 
             input[type='radio'][role]:not([role='menuitemradio'], [role='radio']), 
@@ -299,7 +299,8 @@ export async function ariaAudit(auditResults) {
             input[type='reset'][role]:not([role='button'], [role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem']), 
             input[type='search'][role]:not([role='textbox'][list]), 
             input[type='submit'][role]:not([role='button'], [role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem']), 
-            input[type='tel'][role]:not([role='textbox'][list])
+            input[type='tel'][role]:not([role='textbox'][list]), 
+            input[type='text'][role]:not(:is([role='combobox'], [role='searchbox'], [role='spinbutton'], [role='textbox'])[list])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
