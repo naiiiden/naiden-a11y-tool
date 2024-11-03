@@ -281,7 +281,25 @@ export async function ariaAudit(auditResults) {
             iframe[role]:not([role='application'], [role='document'], [role='img'], [role='none'], [role='presentation']), 
             img[alt]:not([alt=''])[role]:not([role='button'], [role='checkbox'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='meter'], [role='option'], [role='progressbar'], [role='radio'], [role='scrollbar'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem'], [role='img']), 
             img:not([alt], [aria-label], [aria-labelledby])[role]:not([role='none'], [role='presentation']), 
-            img[alt=''][role]:not([role='none'], [role='presentation'])
+            img[alt=''][role]:not([role='none'], [role='presentation']), 
+            input[type='button'][role]:not([role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem'], [role='button']), 
+            input[type='checkbox'][role]:not([role='menuitemcheckbox'], [role='option'], [role='switch'], [role='checkbox']):not([role='button'][aria-pressed]), 
+            input[type='color'][role], 
+            input[type='date'][role], 
+            input[type='datetime-local'][role], 
+            input[type='email'][role]:not([role='textbox'][list]), 
+            input[type='file'][role], 
+            input[type='hidden'][role], 
+            input[type='image'][role]:not([role='button'], [role='checkbox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem']), 
+            input[type-'month'][role], 
+            input[type='number'][role]:not([role='spinbutton']), 
+            input[type='password'][role], 
+            input[type='radio'][role]:not([role='menuitemradio'], [role='radio']), 
+            input[type='range'][role]:not([role='slider']), 
+            input[type='reset'][role]:not([role='button'], [role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem']), 
+            input[type='search'][role]:not([role='textbox'][list]), 
+            input[type='submit'][role]:not([role='button'], [role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem']), 
+            input[type='tel'][role]:not([role='textbox'][list])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
