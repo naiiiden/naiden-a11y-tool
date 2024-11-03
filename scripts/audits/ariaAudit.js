@@ -246,7 +246,13 @@ export async function ariaAudit(auditResults) {
             area:not([href])[role]:is([role='generic']), 
             article[role]:not([role='application'], [role='document'], [role='feed'], [role='main'], [role='none'], [role='presentation'], [role='region'], [role='article']), 
             aside[role]:not([role='feed'], [role='none'], [role='note'], [role='presentation'], [role='region'], [role='search'], [role='complementary']), 
-            audio[role]:not([role='application'])
+            audio[role]:not([role='application']), 
+            b[role]:is([role='generic']), 
+            bdi[role]:is([role='generic']), 
+            bdo[role]:is([role='generic']), 
+            body[role]:is([role='generic']), 
+            br[role]:not([role='none'], [role='presentation']), 
+            button[role]:not([role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem'], [role='button'])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
