@@ -303,7 +303,11 @@ export async function ariaAudit(auditResults) {
             input[type='text'][role]:not([role='combobox'], [role='searchbox'], [role='spinbutton'], [role='textbox']):not([list]), 
             :is(input[type='text'], input[type='search'], input[type='tel'], input[type='url'], input[type='email'])[list][role]:not([role='combobox']), 
             input[type='url']:not([role='textbox'][list]), 
-            input[type='week'][role]
+            input[type='week'][role], 
+            label[role], 
+            legend[role],
+            li:is(:is(ul, ol, menu, [role='list']) li)[role]:not([role='listitem']),  
+            link[role]
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
