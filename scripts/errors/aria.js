@@ -84,7 +84,7 @@ export const ariaErrors = [
         fix: "ensure elements with role text don't have focusable descendants"
     },
     {
-        id: 13,
+        id: 12,
         name: "aria role should be appropriate for the element",
         description: "aria role should be appropriate for the element",
         wcagLink: "",

@@ -235,4 +235,19 @@ export async function ariaAudit(auditResults) {
     ariaTextNoFocusableChildren.forEach(element => {
         auditResults.push({ ...ariaErrors[11], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaAppropriateRole = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll(\`
+            a:not([role='button'], [role='checkbox'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='switch'], [role='tab'], [role='treeitem'], [role='link'])
+        \`))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element),
+            }));
+    `)
+
+    ariaAppropriateRole.forEach(element => {
+        auditResults.push({ ...ariaErrors[12], element: element.outerHTML, selector: element.selector });
+    });
 }
