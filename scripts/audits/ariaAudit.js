@@ -239,13 +239,13 @@ export async function ariaAudit(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
             a[href][role]:not([role='button'], [role='checkbox'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='switch'], [role='tab'], [role='treeitem'], [role='link']), 
-            a:not([href])[role]:not(:not([role='generic'])), 
-            address:not(:not([role='group'])), 
+            a:not([href])[role]:is([role='generic']), 
+            address:is([role='group']), 
             area[href][role]:not([role='link']), 
             area:not([href])[role]:not([role='button'], [role='link']), 
-            area:not([href])[role]:not(:not([role='generic'])), 
-            article[role]:not([role='application'], [role='document'], [role='feed'], [role='main'], [role='none'], [role='presentation'], [role='region']), 
-            aside[role]:not([role='feed'], [role='none'], [role='note'], [role='presentation'], [role='region'], [role='search']), 
+            area:not([href])[role]:is([role='generic']), 
+            article[role]:not([role='application'], [role='document'], [role='feed'], [role='main'], [role='none'], [role='presentation'], [role='region'], [role='article']), 
+            aside[role]:not([role='feed'], [role='none'], [role='note'], [role='presentation'], [role='region'], [role='search'], [role='complementary']), 
             audio[role]:not([role='application'])
         \`))
             .map(element => ({
