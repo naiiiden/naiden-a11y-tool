@@ -255,7 +255,15 @@ export async function ariaAudit(auditResults) {
             button[role]:not([role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem'], [role='button']), 
             table caption[role]:not([role='caption']), 
             col[role]:not([role='']), 
-            colgroup[role]:not([role=''])
+            colgroup[role]:not([role='']), 
+            data[role]:is([role='generic']), 
+            datalist[role]:not([role='listbox']), 
+            details[role]:not([role='group']), 
+            dialog[role]:not([role='alertdialog'], [role='dialog']), 
+            div[role]:not(dl div):is([role='generic']), 
+            dl > div[role]:not([role='presentation'], [role='none']), 
+            dl[role]:not([role='group'], [role='list'], [role='none'], [role='presentation']), 
+            dt[role]:not([role='listitem'])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
