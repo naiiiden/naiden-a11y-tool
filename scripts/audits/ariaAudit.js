@@ -300,7 +300,10 @@ export async function ariaAudit(auditResults) {
             input[type='search'][role]:not([role='textbox'][list]), 
             input[type='submit'][role]:not([role='button'], [role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem']), 
             input[type='tel'][role]:not([role='textbox'][list]), 
-            input[type='text'][role]:not(:is([role='combobox'], [role='searchbox'], [role='spinbutton'], [role='textbox'])[list])
+            input[type='text'][role]:not([role='combobox'], [role='searchbox'], [role='spinbutton'], [role='textbox']):not([list]), 
+            :is(input[type='text'], input[type='search'], input[type='tel'], input[type='url'], input[type='email'])[list][role]:not([role='combobox']), 
+            input[type='url']:not([role='textbox'][list]), 
+            input[type='week'][role]
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
