@@ -193,7 +193,6 @@ export async function ariaAudit(auditResults) {
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element),
-                invalidRole: element.getAttribute("role")
             }));
     `)
 
