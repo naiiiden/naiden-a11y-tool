@@ -220,7 +220,7 @@ export async function ariaAudit(auditResults) {
     `)
 
     ariaDialogAndAlertDialogNames.forEach(element => {
-        auditResults.push({ ...ariaErrors[11], element: element.outerHTML, selector: element.selector });
+        auditResults.push({ ...ariaErrors[10], element: element.outerHTML, selector: element.selector });
     });
 
     const ariaTextNoFocusableChildren = await inspectedWindowEval(`
@@ -233,6 +233,6 @@ export async function ariaAudit(auditResults) {
     `)
 
     ariaTextNoFocusableChildren.forEach(element => {
-        auditResults.push({ ...ariaErrors[12], element: element.outerHTML, selector: element.selector });
+        auditResults.push({ ...ariaErrors[11], element: element.outerHTML, selector: element.selector });
     });
 }
