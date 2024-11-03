@@ -264,7 +264,8 @@ export async function ariaAudit(auditResults) {
             div[role]:not(dl div):is([role='generic']), 
             dl > div[role]:not([role='presentation'], [role='none']), 
             dl[role]:not([role='group'], [role='list'], [role='none'], [role='presentation']), 
-            dt[role]:not([role='listitem'])
+            dt[role]:not([role='listitem']), 
+            embed[role]:not([role='application'], [role='document'], [role='img'], [role='none'], [role='presentation'])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
