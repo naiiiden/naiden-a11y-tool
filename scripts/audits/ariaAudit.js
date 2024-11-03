@@ -136,6 +136,27 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[6], element: element.outerHTML, selector: element.selector });
     });
 
+    const ariaToggleFieldNames = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll("[role='checkbox'], [role='menu'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='radio'], [role='radiogroup'], [role='switch']"))
+        .filter(element => {
+                const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
+                const ariaLabelledby = element.hasAttribute('aria-labelledby') 
+                ? document.getElementById(element.getAttribute('aria-labelledby')) 
+                : null;
+                
+                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+            })
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }));
+    `)
+
+    ariaToggleFieldNames.forEach(element => {
+        auditResults.push({ ...ariaErrors[7], element: element.outerHTML, selector: element.selector });
+    });
+
     const ariaHiddenWithFocusableChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[aria-hidden='true']"))
