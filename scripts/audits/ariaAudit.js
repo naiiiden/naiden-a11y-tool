@@ -182,7 +182,7 @@ export async function ariaAudit(auditResults) {
             "banner", "complementary", "contentinfo", "form", "main", "navigation", "region", "search", "alert", "log",
             "marquee", "status", "timer", "none", "generic", "presentation", "cell", "columnheader", "row", "rowgroup",
             "rowheader", "table", "button", "checkbox", "gridcell", "link", "menuitem", "menuitemcheckbox", 
-            "menuitemradio", "option", "progressbar", "radio", "scrollbar", "searchbox", "separator", "slider", 
+            "menuitemradio", "option", "progressbar", "radio", "scrollbar", "searchbox", "slider", 
             "spinbutton", "switch", "tab", "tabpanel", "textbox", "treeitem", "combobox", "grid", "listbox", "menu", 
             "menubar", "radiogroup", "tablist", "tree", "treegrid", "alertdialog", "dialog"
         ]);
