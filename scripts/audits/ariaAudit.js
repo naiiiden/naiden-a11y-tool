@@ -276,8 +276,12 @@ export async function ariaAudit(auditResults) {
             header[role]:is([role='generic']), 
             hgroup[role]:is([role='group']), 
             hr[role]:not([role='none'], [role='presentation'], [role='separator']), 
-            html[role]:not([role='document'])
-
+            html[role]:not([role='document']),
+            i[role]:is([role='generic']), 
+            iframe[role]:not([role='application'], [role='document'], [role='img'], [role='none'], [role='presentation']), 
+            img[alt]:not([alt=''])[role]:not([role='button'], [role='checkbox'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='meter'], [role='option'], [role='progressbar'], [role='radio'], [role='scrollbar'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem'], [role='img']), 
+            img:not([alt], [aria-label], [aria-labelledby])[role]:not([role='none'], [role='presentation']), 
+            img[alt=''][role]:not([role='none'], [role='presentation'])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
