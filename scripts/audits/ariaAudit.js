@@ -260,6 +260,7 @@ export async function ariaAudit(auditResults) {
             datalist[role]:not([role='listbox']), 
             details[role]:not([role='group']), 
             dialog[role]:not([role='alertdialog'], [role='dialog']), 
+            dfn[role]:not([role='term']), 
             div[role]:not(dl div):is([role='generic']), 
             dl > div[role]:not([role='presentation'], [role='none']), 
             dl[role]:not([role='group'], [role='list'], [role='none'], [role='presentation']), 
