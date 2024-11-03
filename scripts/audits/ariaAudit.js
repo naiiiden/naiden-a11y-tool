@@ -270,7 +270,14 @@ export async function ariaAudit(auditResults) {
             figcaption[role]:not([role='group'], [role='none'], [role='presentation']), 
             footer[role]:not([role='group'], [role='presentation'], [role='none'], [role='contentinfo']), 
             footer[role]:is([role='generic']), 
-            form[role]:not([role='none'], [role='presentation'], [role='search'], [role='form'])
+            form[role]:not([role='none'], [role='presentation'], [role='search'], [role='form']), 
+            :is(h1, h2, h3, h4, h5, h6)[role]:not([role='none'], [role='presentation'], [role='tab'], [role='heading']), 
+            header[role]:not([role='group'], [role='none'], [role='presentation'], [role='banner']), 
+            header[role]:is([role='generic']), 
+            hgroup[role]:is([role='group']), 
+            hr[role]:not([role='none'], [role='presentation'], [role='separator']), 
+            html[role]:not([role='document'])
+
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
