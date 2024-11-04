@@ -319,7 +319,11 @@ export async function ariaAudit(auditResults) {
             object[role]:not([role='application'], [role='document'], [role='img']), 
             ol[role]:not([role='group'], [role='listbox'], [role='menu'], [role='menubar'], [role='none'], [role='presentation'], [role='radiogroup'], [role='tablist'], [role='toolbar'], [role='tree'], [role='list']), 
             optgroup[role]:not([role='group']), 
-            option[role]:not([role='option'])
+            option[role]:not([role='option']), 
+            param[role], 
+            picture[role], 
+            pre[role]:is([role='generic']),
+            progress[role]:not([role='progressbar'])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
