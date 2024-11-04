@@ -269,7 +269,7 @@ export async function ariaAudit(auditResults) {
             embed[role]:not([role='application'], [role='document'], [role='img'], [role='none'], [role='presentation']), 
             fieldset[role]:not([role='none'], [role='presentation'], [role='radiogroup'], [role='group']), 
             figcaption[role]:not([role='group'], [role='none'], [role='presentation']), 
-            footer[role]:not([role='group'], [role='presentation'], [role='none'], [role='contentinfo']), 
+            footer[role]:not([role=''], [role='group'], [role='presentation'], [role='none'], [role='contentinfo']), 
             footer[role]:is([role='generic']), 
             form[role]:not([role='none'], [role='presentation'], [role='search'], [role='form']), 
             :is(h1, h2, h3, h4, h5, h6)[role]:not([role='none'], [role='presentation'], [role='tab'], [role='heading']), 
