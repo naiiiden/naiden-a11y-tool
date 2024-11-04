@@ -251,7 +251,7 @@ export async function ariaAudit(auditResults) {
             base[role], 
             bdi[role]:is([role='generic']), 
             bdo[role]:is([role='generic']), 
-            body[role]:is([role='generic']), 
+            body[role]:is([role], [role='generic']), 
             br[role]:not([role='none'], [role='presentation']), 
             button[role]:not([role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem'], [role='button']), 
             table caption[role]:not([role='caption']), 
