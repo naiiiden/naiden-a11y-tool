@@ -248,6 +248,7 @@ export async function ariaAudit(auditResults) {
             aside[role]:not([role='feed'], [role='none'], [role='note'], [role='presentation'], [role='region'], [role='search'], [role='complementary']), 
             audio[role]:not([role='application']), 
             b[role]:is([role='generic']), 
+            base[role], 
             bdi[role]:is([role='generic']), 
             bdo[role]:is([role='generic']), 
             body[role]:is([role='generic']), 
