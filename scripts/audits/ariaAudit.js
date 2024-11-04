@@ -315,7 +315,11 @@ export async function ariaAudit(auditResults) {
             meta[role], 
             meter[role]:not([role='meter']), 
             nav[role]:not([role='menu'], [role='menubar'], [role='none'], [role='presentation'], [role='tablist'], [role='navigation']), 
-            noscript[role]
+            noscript[role], 
+            object[role]:not([role='application'], [role='document'], [role='img']), 
+            ol[role]:not([role='group'], [role='listbox'], [role='menu'], [role='menubar'], [role='none'], [role='presentation'], [role='radiogroup'], [role='tablist'], [role='toolbar'], [role='tree'], [role='list']), 
+            optgroup[role]:not([role='group']), 
+            option[role]:not([role='option'])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
