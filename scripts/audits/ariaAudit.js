@@ -323,7 +323,8 @@ export async function ariaAudit(auditResults) {
             param[role], 
             picture[role], 
             pre[role]:is([role='generic']),
-            progress[role]:not([role='progressbar'])
+            progress[role]:not([role='progressbar']), 
+            q[role]:is([role='generic'])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
