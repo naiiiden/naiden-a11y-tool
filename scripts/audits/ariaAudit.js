@@ -313,7 +313,9 @@ export async function ariaAudit(auditResults) {
             math[role]:not([role='math']), 
             menu[role]:not([role='group'], [role='listbox'], [role='menu'], [role='menubar'], [role='none'], [role='presentation'], [role='radiogroup'], [role='tablist'], [role='toolbar'], [role='tree'], [role='list']), 
             meta[role], 
-            meter[role]:not([role='meter'])
+            meter[role]:not([role='meter']), 
+            nav[role]:not([role='menu'], [role='menubar'], [role='none'], [role='presentation'], [role='tablist'], [role='navigation']), 
+            noscript[role]
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
