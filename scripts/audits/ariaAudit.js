@@ -324,7 +324,20 @@ export async function ariaAudit(auditResults) {
             picture[role], 
             pre[role]:is([role='generic']),
             progress[role]:not([role='progressbar']), 
-            q[role]:is([role='generic'])
+            q[role]:is([role='generic']), 
+            samp[role]:is([role='generic']), 
+            script[role], 
+            search[role]:not([role='form'], [role='group'], [role='none'], [role='presentation'], [role='region'], [role='search']), 
+            section[role]:not([role='alert'], [role='alertdialog'], [role='application'], [role='banner'], [role='complementary'], [role='contentinfo'], [role='dialog'], [role='document'], [role='feed'], [role='group'], [role='log'], [role='main'], [role='marquee'], [role='navigation'], [role='none'], [role='note'], [role='presentation'], [role='search'], [role='status'], [role='tabpanel'], [role='region']), 
+            section[role]:is([role='generic']), 
+            select[role]:not([multiple]):not([role='menu'], [role='combobox']),
+            select[role][multiple]:not([role='listbox']), 
+            slot[role], 
+            small[role]:is([role='generic']), 
+            source[role], 
+            span[role]:is([role='generic']), 
+            style[role], 
+            summary:is(details summary)[role]
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
