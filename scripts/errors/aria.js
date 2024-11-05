@@ -96,5 +96,54 @@ export const ariaErrors = [
         description: "aria treeitem elements must have an accessible name",
         wcagLink: "",
         fix: "ensure aria treeitem elements have accessible names"
+    },
+    {
+        id: 14,
+        name: "aria attributes must conform to valid values",
+        description: "aria attributes must conform to valid values",
+        wcagLink: "",
+        fix: "ensure all aria attributes have valid values"
+    },
+    {
+        id: 15,
+        name: "aria attributes must conform to valid names",
+        description: "aria attributes must conform to valid names",
+        wcagLink: "",
+        fix: "ensure all aria attributes have valid names"
+    },
+    {
+        id: 16,
+        name: "elements with aria roles must only use supported aria attributes",
+        description: "elements with aria roles must only use supported aria attributes",
+        wcagLink: "",
+        fix: "ensure element with aria roles use aria attributes allowed for their role"
+    },
+    {
+        id: 17,
+        name: "required aria attributes must be provided for elements with aria role",
+        description: "required aria attributes must be provided for elements with aria role",
+        wcagLink: "",
+        fix: "ensure all elements with aria role have required attributes defined"
+    },
+    {
+        id: 18,
+        name: "certain aria roles must contain particular children",
+        description: "certain aria roles must contain particular children",
+        wcagLink: "",
+        fix: "ensure aria role elements have required children role"
+    },
+    {
+        id: 19,
+        name: "certain aria roles must be contained by particular parents",
+        description: "certain aria roles must be contained by particular parents",
+        wcagLink: "",
+        fix: "ensure aria role elements are contained by parent role"
+    },
+    {
+        id: 20,
+        name: "aria role elements must use permitted aria attributes",
+        description: "aria role elements must use permitted aria attributes",
+        wcagLink: "",
+        fix: "ensure aria attributes are not prohibited for the element's role"
     }
 ]
