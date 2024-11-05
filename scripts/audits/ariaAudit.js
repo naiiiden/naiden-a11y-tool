@@ -305,6 +305,7 @@ export async function ariaAudit(auditResults) {
             input[type='text'][role]:not([role='combobox'], [role='searchbox'], [role='spinbutton'], [role='textbox']):not([list]), 
             :is(input[type='text'], input[type='search'], input[type='tel'], input[type='url'], input[type='email'])[list][role]:not([role='combobox']), 
             input[type='url']:not([role='textbox'][list]), 
+            input[type='time'][role]:not([role='']), 
             input[type='week'][role]:not([role='']), 
             label[role]:not([role='']), 
             legend[role]:not([role='']),
