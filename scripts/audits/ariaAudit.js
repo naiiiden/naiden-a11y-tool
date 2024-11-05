@@ -202,7 +202,7 @@ export async function ariaAudit(auditResults) {
 
     const ariaDialogAndAlertDialogNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll("[role='alert'], [role='alertdialog']"))
+        return Array.from(document.querySelectorAll("[role='dialog'], [role='alertdialog']"))
             .filter(element => {
                 const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = element.hasAttribute('aria-labelledby') 
