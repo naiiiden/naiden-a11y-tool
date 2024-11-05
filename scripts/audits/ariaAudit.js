@@ -346,13 +346,13 @@ export async function ariaAudit(auditResults) {
             textarea[role]:not([role=''], [role='textbox']), 
             th:is(table[role='table'] th)[role]:not([role=''], [role='columnheader'], [role='rowheader'], [role='cell']), 
             th:is(:is(table[role='grid'], table[role='treegrid']) th)[role]:not([role=''], [role='columnheader'], [role='rowheader'], [role='gridcell']), 
-            title[role], 
-            tr:is(:is(table[role='table'], table[role='grid'], table[role='treegrid']) tr)[role]:not([role='row']), 
-            track[role], 
+            title[role]:not([role='']), 
+            tr:is(:is(table[role='table'], table[role='grid'], table[role='treegrid']) tr)[role]:not([role=''], [role='row']), 
+            track[role]:not([role='']), 
             u[role]:is([role='generic']), 
-            ul[role]:not([role='group'], [role='listbox'], [role='menu'], [role='menubar'], [role='none'], [role='presentation'], [role='radiogroup'], [role='tablist'], [role='toolbar'], [role='tree'], [role='list']), 
-            video[role]:not([role='application']), 
-            wbr[role]:not([role='none'], [role='presentation'])
+            ul[role]:not([role=''], [role='group'], [role='listbox'], [role='menu'], [role='menubar'], [role='none'], [role='presentation'], [role='radiogroup'], [role='tablist'], [role='toolbar'], [role='tree'], [role='list']), 
+            video[role]:not([role=''], [role='application']), 
+            wbr[role]:not([role=''], [role='none'], [role='presentation'])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
