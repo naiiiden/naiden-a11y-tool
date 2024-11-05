@@ -289,7 +289,6 @@ export async function ariaAudit(auditResults) {
             input[type='color'][role]:not([role='']), 
             input[type='date'][role]:not([role='']), 
             input[type='datetime-local'][role]:not([role='']), 
-            input[type='email'][role]:not([role='textbox'][list]), 
             input[type='file'][role]:not([role='']), 
             input[type='hidden'][role]:not([role='']), 
             input[type='image'][role]:not([role=''], [role='button'], [role='checkbox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem']), 
@@ -299,12 +298,13 @@ export async function ariaAudit(auditResults) {
             input[type='radio'][role]:not([role=''], [role='menuitemradio'], [role='radio']), 
             input[type='range'][role]:not([role=''], [role='slider']), 
             input[type='reset'][role]:not([role=''], [role='button'], [role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem']), 
-            input[type='search'][role]:not([role='textbox'][list]), 
             input[type='submit'][role]:not([role=''], [role='button'], [role='checkbox'], [role='combobox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='separator'], [role='slider'], [role='switch'], [role='tab'], [role='treeitem']), 
-            input[type='tel'][role]:not([role='textbox'][list]), 
-            input[type='text'][role]:not([role='combobox'], [role='searchbox'], [role='spinbutton'], [role='textbox']):not([list]), 
-            :is(input[type='text'], input[type='search'], input[type='tel'], input[type='url'], input[type='email'])[list][role]:not([role='combobox']), 
-            input[type='url']:not([role='textbox'][list]), 
+            input[type='email'][role]:not([role=''], [role='textbox'], [list]), 
+            input[type='search'][role]:not([role=''], [role='searchbox'], [list]), 
+            input[type='tel'][role]:not([role=''], [role='textbox'], [list]),  
+            input[type='url'][role]:not([role=''], [role='textbox'], [list]), 
+            input[type='text'][role]:not([role=''], [role='combobox'], [role='searchbox'], [role='spinbutton'], [role='textbox'], [list]), 
+            :is(input[type='text'], input[type='search'], input[type='tel'], input[type='url'], input[type='email'])[role]:not([role=''], [role='combobox'])[list], 
             input[type='time'][role]:not([role='']), 
             input[type='week'][role]:not([role='']), 
             label[role]:not([role='']), 
@@ -360,13 +360,6 @@ export async function ariaAudit(auditResults) {
                 selector: getUniqueSelector(element),
             }));
     `)
-
-    // input[type='email'][role]:not([role=''], [role='textbox'], [list]), 
-    //         input[type='search'][role]:not([role=''], [role='searchbox'], [list]),  
-    //         input[type='tel'][role]:not([role=''], [role='textbox'], [list]), 
-    //         input[type='url'][role]:not([role=''], [role='textbox'], [list]), 
-    //         input[type='text'][role]:not([role=''], [role='combobox'], [role='searchbox'], [role='spinbutton'], [role='textbox'], [list]), 
-    //         :is(input[type='text'], input[type='search'], input[type='tel'], input[type='url'], input[type='email'])[role]:not([role=''], [role='combobox'])[list]
 
     ariaAppropriateRole.forEach(element => {
         auditResults.push({ ...ariaErrors[12], element: element.outerHTML, selector: element.selector });
