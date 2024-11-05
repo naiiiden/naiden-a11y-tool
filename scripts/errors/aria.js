@@ -89,5 +89,12 @@ export const ariaErrors = [
         description: "aria role should be appropriate for the element",
         wcagLink: "",
         fix: "ensure elements with role attribute have appropriate value for the element"
+    },
+    {
+        id: 13,
+        name: "aria treeitem elements must have an accessible name",
+        description: "aria treeitem elements must have an accessible name",
+        wcagLink: "",
+        fix: "ensure aria treeitem elements have accessible names"
     }
 ]
