@@ -340,6 +340,8 @@ export async function ariaAudit(auditResults) {
             span[role]:is([role='generic']), 
             style[role]:not([role='']), 
             summary:is(details summary)[role]:not([role='']), 
+            template[role]:not([role='']), 
+            textarea[role]:not([role=''], [role='textbox']), 
             th:is(table[role='table'] th)[role]:not([role='columnheader'], [role='rowheader'], [role='cell']), 
             th:is(:is(table[role='grid'], table[role='treegrid']) th)[role]:not([role='columnheader'], [role='rowheader'], [role='gridcell']), 
             title[role], 
