@@ -412,8 +412,7 @@ export async function ariaAudit(auditResults) {
             [aria-readonly]:not([aria-readonly=''], [aria-readonly='true'], [aria-readonly='false']), 
             [aria-required]:not([aria-required=''], [aria-required='true'], [aria-required='false']), 
             [aria-selected]:not([aria-selected=''], [aria-selected='true'], [aria-selected='false'], [aria-selected='undefined']), 
-            [aria-sort]:not([aria-sort=''], [aria-sort='ascending'], [aria-sort='descending'], [aria-sort='none'], [aria-sort='other']), 
-            
+            [aria-sort]:not([aria-sort=''], [aria-sort='ascending'], [aria-sort='descending'], [aria-sort='none'], [aria-sort='other'])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
