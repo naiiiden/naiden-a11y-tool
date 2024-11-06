@@ -389,7 +389,17 @@ export async function ariaAudit(auditResults) {
     const ariaAttributesValidValues = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
-            [aria-atomic]:not([aria-atomic=''], [aria-atomic='true'], [aria-atomic='false'])
+            [aria-atomic]:not([aria-atomic=''], [aria-atomic='true'], [aria-atomic='false']), 
+            [aria-busy]:not([aria-busy=''], [aria-busy='true'], [aria-busy='false']), 
+            [aria-current]:not([aria-current=''], [aria-current='page'], [aria-current='step'], [aria-current='location'], [aria-current='date'], [aria-current='time']), 
+            [aria-disabled]:not([aria-disabled=''], [aria-disabled='true'], [aria-disabled='false']), 
+            [aria-dropeffect]:not([aria-dropeffect=''], [aria-dropeffect='copy'], [aria-dropeffect='execute'], [aria-dropeffect='link'], [aria-dropeffect='move'], [aria-dropeffect='none'], [aria-dropeffect='popup']), 
+            [aria-grabbed]:not([aria-grabbed=''], [aria-grabbed='true'], [aria-grabbed='false'], [aria-grabbed='undefined']), 
+            [aria-haspopup]:not([aria-haspopup=''], [aria-haspopup='true'], [aria-haspopup='false'], [aria-haspopup='menu'], [aria-haspopup='listbox'], [aria-haspopup='tree'], [aria-haspopup='grid'], [aria-haspopup='dialog']), 
+            [aria-hidden]:not([aria-hidden=''], [aria-hidden='true'], [aria-hidden='false'], [aria-hidden='undefined']), 
+            [aria-invalid]:not([aria-invalid=''], [aria-invalid='true'], [aria-invalid='false'], [aria-invalid='grammar'], [aria-invalid='spelling']), 
+            [aria-live]:not([aria-live=''], [aria-live='off'], [aria-live='assertive'], [aria-live='polite']), 
+            [aria-relevant]:not([aria-relevant=''], [aria-relevant='additions'], [aria-relevant='additions text'], [aria-relevant='all'], [aria-relevant='removals'], [aria-relevant='text'])
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
