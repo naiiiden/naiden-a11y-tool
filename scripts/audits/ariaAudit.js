@@ -385,4 +385,19 @@ export async function ariaAudit(auditResults) {
     ariaTreeitemNames.forEach(element => {
         auditResults.push({ ...ariaErrors[13], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaAttributesValidValues = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll(\`
+            [aria-atomic]:not([aria-atomic=''], [aria-atomic='true'], [aria-atomic='false'])
+        \`))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element),
+            }));
+    `)
+
+    ariaAttributesValidValues.forEach(element => {
+        auditResults.push({ ...ariaErrors[14], element: element.outerHTML, selector: element.selector });
+    });
 }
