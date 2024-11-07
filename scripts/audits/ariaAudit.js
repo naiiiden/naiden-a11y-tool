@@ -451,4 +451,27 @@ export async function ariaAudit(auditResults) {
     ariaValidAttributes.forEach(element => {
         auditResults.push({ ...ariaErrors[15], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaRoleSupportedAriaAttributesList = {
+        alert: ['aria-atomic']
+    }
+
+    const ariaRoleSupportedAriaAttributes = await inspectedWindowEval(`
+        const ariaRoleSupportedAriaAttributesList = ${JSON.stringify(ariaRoleSupportedAriaAttributesList)};
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll('[role]'))
+            .flatMap(element => {
+                const validAttributes = ariaRoleSupportedAriaAttributesList[element.getAttribute('role')] || [];
+                return Array.from(element.attributes)
+                    .filter(attr => attr.name.startsWith('aria') && !validAttributes.includes(attr.name))
+                    .map(attr => ({
+                        outerHTML: element.outerHTML,
+                        selector: getUniqueSelector(element)
+                    }))
+        });
+    `);
+
+    ariaRoleSupportedAriaAttributes.forEach(element => {
+        auditResults.push({ ...ariaErrors[16], element: element.outerHTML, selector: element.selector });
+    });
 }
