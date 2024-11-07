@@ -423,4 +423,25 @@ export async function ariaAudit(auditResults) {
     ariaAttributesValidValues.forEach(element => {
         auditResults.push({ ...ariaErrors[14], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaValidAttributesArray = [
+        'aria-label'
+    ];
+
+    const ariaValidAttributes = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll('*'))
+            .flatMap(element => 
+                Array.from(element.attributes)
+                    .filter(attr => attr.name.startsWith('aria-') && !${JSON.stringify(ariaValidAttributesArray)}.includes(attr.name))
+                    .map(attr => ({
+                        outerHTML: element.outerHTML,
+                        selector: getUniqueSelector(element)
+                    }))
+        );
+    `);
+
+    ariaValidAttributes.forEach(element => {
+        auditResults.push({ ...ariaErrors[15], element: element.outerHTML, selector: element.selector });
+    });
 }
