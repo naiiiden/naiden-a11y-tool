@@ -433,7 +433,7 @@ export async function ariaAudit(auditResults) {
         return Array.from(document.querySelectorAll('*'))
             .flatMap(element => 
                 Array.from(element.attributes)
-                    .filter(attr => attr.name.startsWith('aria-') && !${JSON.stringify(ariaValidAttributesArray)}.includes(attr.name))
+                    .filter(attr => attr.name.startsWith('aria') && !${JSON.stringify(ariaValidAttributesArray)}.includes(attr.name))
                     .map(attr => ({
                         outerHTML: element.outerHTML,
                         selector: getUniqueSelector(element)
