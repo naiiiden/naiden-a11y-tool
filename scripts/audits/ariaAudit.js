@@ -453,7 +453,30 @@ export async function ariaAudit(auditResults) {
     });
 
     const ariaRoleSupportedAriaAttributesList = {
-        alert: ['aria-atomic']
+        alert: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup',
+            'aria-hddien', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 'aria-owns', 
+            'aria-relevant', 'aria-roledescription'
+        ], 
+        alertdialog: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details',
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 
+            'aria-modal', 'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ], 
+        application: [
+            'aria-activedescendant', 'aria-disabled', 'aria-errormessage', 'aria-expanded', 'aria-haspopup', 'aria-invalid', 
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 
+            'aria-dropeffect', 'aria-flowto', 'aria-grabbed', 'aria-hidden', 'aria-keyshortcuts', 'aria-label', 
+            'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ], 
+        article: [
+            'aria-posinset', 'aria-setsize', 'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 
+            'aria-describedby', 'aria-details', 'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 
+            'aria-grabbed', 'aria-haspopup', 'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 
+            'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ]
     }
 
     const ariaRoleSupportedAriaAttributes = await inspectedWindowEval(`
