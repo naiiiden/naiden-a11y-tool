@@ -494,7 +494,59 @@ export async function ariaAudit(auditResults) {
             'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 'aria-dropeffect', 'aria-errormessage',
             'aria-flowto', 'aria-grabbed', 'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label',
             'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant', 'aria-roledescription'
-        ]
+        ],
+        caption: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details',
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 
+            'aria-haspopup', 'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-live', 
+            'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ],
+        cell: [
+            'aria-colindex', 'aria-colspan', 'aria-rowindex', 'aria-rowspan', 'aria-atomic', 'aria-busy',
+            'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 'aria-disabled', 'aria-dropeffect',
+            'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 'aria-hidden', 'aria-invalid',
+            'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant',
+            'aria-roledescription'
+        ],
+        checkbox: [
+            'aria-checked', 'aria-errormessage', 'aria-expanded', 'aria-invalid', 'aria-readonly', 'aria-required',
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details',
+            'aria-disabled', 'aria-dropeffect', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 'aria-hidden',
+            'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant',
+            'aria-roledescription'
+        ],
+        code: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details',
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup',
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-live', 'aria-owns', 'aria-relevant', 
+            'aria-roledescription'
+        ],
+        columnheader: [
+            'aria-sort', 'aria-atomic', 'aria-busy', 'aria-colindex', 'aria-colspan', 'aria-controls',
+            'aria-current', 'aria-describedby', 'aria-details', 'aria-disabled', 'aria-dropeffect', 'aria-errormessage',
+            'aria-expanded', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 'aria-hidden', 'aria-invalid', 
+            'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 'aria-owns', 'aria-readonly', 
+            'aria-relevant', 'aria-required', 'aria-roledescription', 'aria-rowindex', 'aria-rowspan', 'aria-selected'
+        ],
+        combobox: [
+            'aria-controls', 'aria-expanded', 'aria-activedescendant', 'aria-autocomplete', 'aria-errormessage', 'aria-haspopup',
+            'aria-invalid', 'aria-readonly', 'aria-required', 'aria-atomic', 'aria-busy', 'aria-current',
+            'aria-describedby', 'aria-details', 'aria-disabled', 'aria-dropeffect', 'aria-flowto', 'aria-grabbed', 
+            'aria-hidden', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 'aria-owns', 
+            'aria-relevant', 'aria-roledescription'
+        ],
+        complementary: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details',
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup',
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live',
+            'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ],
+        contentinfo: [  
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details',
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup',
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live',
+            'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ],   
     }
 
     const ariaRoleSupportedAriaAttributes = await inspectedWindowEval(`
