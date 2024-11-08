@@ -476,6 +476,24 @@ export async function ariaAudit(auditResults) {
             'aria-describedby', 'aria-details', 'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 
             'aria-grabbed', 'aria-haspopup', 'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 
             'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ],
+        banner: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live',
+            'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ],
+        blockquote: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details',
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup',
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live',
+            'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ],
+        button: [
+            'aria-disabled', 'aria-haspopup', 'aria-expanded', 'aria-pressed', 'aria-atomic', 'aria-busy',
+            'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 'aria-dropeffect', 'aria-errormessage',
+            'aria-flowto', 'aria-grabbed', 'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label',
+            'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant', 'aria-roledescription'
         ]
     }
 
