@@ -735,6 +735,13 @@ export async function ariaAudit(auditResults) {
             'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup',
             'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live',
             'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ],
+        option: [
+            'aria-selected', 'aria-checked', 'aria-posinset', 'aria-setsize', 'aria-atomic', 'aria-busy',
+            'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 'aria-disabled', 'aria-dropeffect',
+            'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 'aria-hidden', 'aria-invalid',
+            'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant',
+            'aria-roledescription'
         ]
     }
 
