@@ -800,6 +800,78 @@ export async function ariaAudit(auditResults) {
             'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 'aria-hidden', 'aria-invalid',
             'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 'aria-owns', 'aria-readonly',
             'aria-relevant', 'aria-required', 'aria-roledescription', 'aria-rowindex', 'aria-rowspan', 'aria-selected'
+        ],
+        scrollbar: [
+            'aria-controls', 'aria-valuenow', 'aria-disabled', 'aria-orientation', 'aria-valuemax', 'aria-valuemin',
+            'aria-atomic', 'aria-busy', 'aria-current', 'aria-describedby', 'aria-details', 'aria-dropeffect',
+            'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 'aria-hidden', 'aria-invalid',
+            'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant',
+            'aria-roledescription', 'aria-valuetext'
+        ],
+        search: [  
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details',
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup',
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'ari-alabel', 'aria-labelledby', 'aria-live', 
+            'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ],
+        searchbox: [
+            'aria-activedescendant', 'aria-atomic', 'aria-autocomplete', 'aria-busy', 'aria-controls', 'aria-current',
+            'aria-describedby', 'aria-details', 'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto',
+            'aria-grabbed', 'aria-haspopup', 'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label',
+            'aria-labelledby', 'aria-live', 'aria-multiline', 'aria-owns', 'aria-placeholder', 'aria-readonly',
+            'aria-relevant', 'aria-required', 'aria-roledescription'
+        ],
+        separator: [
+            'aria-disabled', 'aria-orientation', 'aria-valuemax', 'aria-valuemin', 'aria-valuetext', 'aria-atomic',
+            'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 'aria-dropeffect',
+            'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 'aria-hidden', 'aria-invalid',
+            'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant',
+            'aria-roledescription', 'aria-valuenow'
+        ],
+        slider: [
+            'aria-errormessage', 'aria-haspopup', 'aria-invalid', 'aria-orientation', 'aria-readonly', 'aria-valuemax',
+            'aria-valuemin', 'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby',
+            'aria-details', 'aria-disabled', 'aria-dropeffect', 'aria-flowto', 'aria-grabbed', 'aria-hidden',
+            'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant',
+            'aria-roledescription', 'aria-valuetext'
+        ], 
+        spinbutton: [
+            'aria-errormessage', 'aria-invalid', 'aria-readonly', 'aria-required', 'aria-valuemax', 'aria-valuemin',
+            'aria-valuenow', 'aria-valuetext', 'aria-activedescendant', 'aria-atomic', 'aria-busy', 'aria-controls',
+            'aria-current', 'aria-describedby', 'aria-details', 'aria-disabled', 'aria-dropeffect', 'aria-flowto',
+            'aria-grabbed', 'aria-haspopup', 'aria-hidden', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby',
+            'aria-live', 'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ],
+        status: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label', 'aria-labelledby', 'aria-live', 
+            'aria-owns', 'aria-relevant', 'aria-roledescription'
+        ], 
+        strong: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-live', 'aria-owns', 'aria-relevant', 
+            'aria-roledescription'
+        ],
+        subscript: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-live', 'aria-owns', 'aria-relevant', 
+            'aria-roledescription'
+        ],
+        superscript: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-live', 'aria-owns', 'aria-relevant', 
+            'aria-roledescription'
+        ],
+        switch: [
+            'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 
+            'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup', 
+            'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-live', 'aria-owns', 'aria-relevant', 
+            'aria-required', 'aria-label', 'aria-labelledby', 'aria-roledescription', 'aria-checked', 'aria-expanded',
+            'aria-readonly'
         ]
     }
 
