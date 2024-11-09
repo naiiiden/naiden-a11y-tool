@@ -976,4 +976,19 @@ export async function ariaAudit(auditResults) {
     ariaRoleSupportedAriaAttributes.forEach(element => {
         auditResults.push({ ...ariaErrors[16], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaRoleRequiredAriaAttributes = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll(\`
+            [role='checkbox']:not([aria-checked])
+        \`))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }))
+    `)
+
+    ariaRoleRequiredAriaAttributes.forEach(element => {
+        auditResults.push({ ...ariaErrors[17], element: element.outerHTML, selector: element.selector });
+    });
 }
