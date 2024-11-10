@@ -1014,7 +1014,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[17], element: element.outerHTML, selector: element.selector });
     });
 
-    const ariaRoleRequiredChildren = await inspectedWindowEval(`
+    const ariaRoleRequiredParent = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
             [role='caption']:is(:not([role='figure'] [role='caption'], [role='grid'] [role='caption'], [role='table'] [role='caption'], [role='treegrid'] [role='caption'])), 
@@ -1038,7 +1038,7 @@ export async function ariaAudit(auditResults) {
             }))
     `)
 
-    ariaRoleRequiredChildren.forEach(element => {
+    ariaRoleRequiredParent.forEach(element => {
         auditResults.push({ ...ariaErrors[18], element: element.outerHTML, selector: element.selector });
     });
 }
