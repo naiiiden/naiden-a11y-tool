@@ -1068,4 +1068,19 @@ export async function ariaAudit(auditResults) {
     ariaRoleRequiredParent.forEach(element => {
         auditResults.push({ ...ariaErrors[19], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaRolePermittedAttributes = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll(\`
+            [role='caption']:has([aria-label], [aria-labelledby])
+        \`))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }))
+    `)
+
+    ariaRolePermittedAttributes.forEach(element => {
+        auditResults.push({ ...ariaErrors[20], element: element.outerHTML, selector: element.selector });
+    });
 }
