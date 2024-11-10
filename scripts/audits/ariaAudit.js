@@ -1014,6 +1014,21 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[17], element: element.outerHTML, selector: element.selector });
     });
 
+    const ariaRoleRequiredChildren = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll(\`
+            [role='feed']:not(:has([role='article']))
+        \`))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }))
+    `)
+
+    ariaRoleRequiredChildren.forEach(element => {
+        auditResults.push({ ...ariaErrors[18], element: element.outerHTML, selector: element.selector });
+    });
+
     const ariaRoleRequiredParent = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
@@ -1039,6 +1054,6 @@ export async function ariaAudit(auditResults) {
     `)
 
     ariaRoleRequiredParent.forEach(element => {
-        auditResults.push({ ...ariaErrors[18], element: element.outerHTML, selector: element.selector });
+        auditResults.push({ ...ariaErrors[19], element: element.outerHTML, selector: element.selector });
     });
 }
