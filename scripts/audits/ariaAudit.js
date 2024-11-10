@@ -2,6 +2,7 @@ import { ariaErrors } from "../errors/aria.js";
 import { getUniqueSelector, inspectedWindowEval } from "../utils.js";
 
 export async function ariaAudit(auditResults) {
+    // https://dequeuniversity.com/rules/axe/4.10/aria-hidden-body
     const documentBodyAriaHidden = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const body = document.body;
@@ -18,6 +19,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[0], element: documentBody.outerHTML, selector: documentBody.selector });
     }
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-command-name
     const ariaCommandsNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(":is([role='link'], [role='button'], [role='menuitem']):empty"))
@@ -39,6 +41,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[1], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-meter-name
     const ariaMeterNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='meter']"))
@@ -60,6 +63,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[2], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-progressbar-name
     const ariaProgressbarNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='progressbar']"))
@@ -81,6 +85,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[3], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-tooltip-name
     const ariaTooltipNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='tooltip']:empty"))
@@ -102,6 +107,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[4], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-deprecated-role
     const ariaDeprecatedRoles = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='directory']"))
@@ -115,6 +121,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[5], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-input-field-name
     const ariaInputFieldNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='combobox'], [role='listbox'], [role='searchbox'], [role='slider'], [role='spinbutton'], [role='textbox']"))
@@ -136,6 +143,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[6], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-toggle-field-name
     const ariaToggleFieldNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='checkbox'], [role='menu'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='radio'], [role='radiogroup'], [role='switch']"))
@@ -157,6 +165,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[7], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus
     const ariaHiddenWithFocusableChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[aria-hidden='true']"))
@@ -174,6 +183,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[8], element: element.outerHTML, selector: element.selector });
     })
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-roles
     const ariaRoleValidValues = await inspectedWindowEval(`
         const validAriaRoles = new Set([
             "", "application", "article", "blockquote", "caption", "document", "feed", "group", "heading", "list", "listitem",
@@ -200,6 +210,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[9], element: element.outerHTML, selector: element.selector });
     })
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-dialog-name
     const ariaDialogAndAlertDialogNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='dialog'], [role='alertdialog']"))
@@ -222,6 +233,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[10], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-text
     const ariaTextNoFocusableChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='text']:has(a, :is(input, textarea, select, button):not(:disabled), [tabindex]:not([tabindex^='-']))"))
@@ -235,6 +247,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[11], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role
     const ariaAppropriateRole = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
@@ -365,6 +378,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[12], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-treeitem-name
     const ariaTreeitemNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[role='treeitem']:empty"))
@@ -386,6 +400,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[13], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr-value
     const ariaAttributesValidValues = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
@@ -435,6 +450,7 @@ export async function ariaAudit(auditResults) {
         'aria-setsize', 'aria-sort', 'aria-valuemax', 'aria-valuemin', 'aria-valuenow', 'aria-valuetext'
     ];
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr
     const ariaValidAttributes = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll('*'))
@@ -970,6 +986,7 @@ export async function ariaAudit(auditResults) {
         ]
     }
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr
     const ariaRoleSupportedAriaAttributes = await inspectedWindowEval(`
         const ariaRoleSupportedAriaAttributesList = ${JSON.stringify(ariaRoleSupportedAriaAttributesList)};
         const getUniqueSelector = ${getUniqueSelector.toString()};
@@ -989,6 +1006,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[16], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-required-attr
     const ariaRoleRequiredAriaAttributes = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
@@ -1014,6 +1032,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[17], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-required-children
     const ariaRoleRequiredChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
@@ -1041,6 +1060,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[18], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-required-parent
     const ariaRoleRequiredParent = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
@@ -1069,6 +1089,7 @@ export async function ariaAudit(auditResults) {
         auditResults.push({ ...ariaErrors[19], element: element.outerHTML, selector: element.selector });
     });
 
+    // https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr
     const ariaRolePermittedAttributes = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
