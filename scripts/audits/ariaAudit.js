@@ -1017,7 +1017,20 @@ export async function ariaAudit(auditResults) {
     const ariaRoleRequiredChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
-            [role='cell']:is(:not([role='row'] [role='cell']))
+            [role='caption']:is(:not([role='figure'] [role='caption'], [role='grid'] [role='caption'], [role='table'] [role='caption'], [role='treegrid'] [role='caption'])), 
+            [role='cell']:is(:not([role='row'] [role='cell'])), 
+            [role='columnheader']:is(:not([role='row'] [role='columnheader'])), 
+            [role='gridcell']:is(:not([role='row'] [role='gridcell'])), 
+            [role='listitem']:is(:not([role='list'] [role='listitem'], [role='directory'] [role='listitem'])), 
+            [role='menuitem']:is(:not([role='group'] [role='menuitem'], [role='menu'] [role='menuitem'], [role='menubar'] [role='menuitem'])),
+            [role='menuitemcheckbox']:is(:not([role='group'] [role='menuitemcheckbox'], [role='menu'] [role='menuitemcheckbox'], [role='menubar'] [role='menuitemcheckbox'])),
+            [role='menuitemradio']:is(:not([role='group'] [role='menuitemradio'], [role='menu'] [role='menuitemradio'], [role='menubar'] [role='menuitemradio'])),
+            [role='option']:is(:not([role='group'] [role='option'], [role='listbox'] [role='option'])), 
+            [role='row']:is(:not([role='grid'] [role='row'], [role='rowgroup'] [role='row'], [role='table'] [role='row'], [role='treegrid'] [role='row'])),
+            [role='rowgroup']:is(:not([role='grid'] [role='rowgroup'], [role='table'] [role='rowgroup'], [role='treegrid'] [role='rowgroup'])),
+            [role='rowheader']:is(:not([role='row'] [role='rowheader'])), 
+            [role='tab']:is(:not([role='tablist'] [role='tab'])),
+            [role='treeitem']:is(:not([role='group'] [role='treeitem'], [role='tree'] [role='treeitem']))
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
