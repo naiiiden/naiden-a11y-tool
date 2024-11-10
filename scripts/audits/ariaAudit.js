@@ -1013,4 +1013,19 @@ export async function ariaAudit(auditResults) {
     ariaRoleRequiredAriaAttributes.forEach(element => {
         auditResults.push({ ...ariaErrors[17], element: element.outerHTML, selector: element.selector });
     });
+
+    const ariaRoleRequiredChildren = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll(\`
+            [role='cell']:is(:not([role='row'] [role='cell']))
+        \`))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }))
+    `)
+
+    ariaRoleRequiredChildren.forEach(element => {
+        auditResults.push({ ...ariaErrors[18], element: element.outerHTML, selector: element.selector });
+    });
 }
