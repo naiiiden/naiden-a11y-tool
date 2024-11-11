@@ -1,10 +1,10 @@
-import { htmlAndHeadErrors } from "../errors/htmlAndHead.js";
+import { htmlAndHeadErrors } from "../../../errors/htmlAndHead.js";
 
-export async function htmlAndHeadAudit(auditResults) {
+export async function htmlLanguage(auditResults) {
     const htmlLanguage = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval("document.documentElement.getAttribute('lang')", resolve);
     });
-  
+    
     const validLangValues = [
         "ab", "aa", "af", "ak", "sq", "am", "ar", "an", "hy", "as", "av", "ae", "ay", "az", "bm", "ba", "eu", "be", "bn",
         "bi", "bs", "br", "bg", "my", "ca", "ch", "ce", "zh", "cu", "cv", "kw", "co", "cr", "cs", "da", "dv", "nl", "dz",
@@ -17,32 +17,9 @@ export async function htmlAndHeadAudit(auditResults) {
         "sv", "ta", "te", "tg", "th", "ti", "bo", "tk", "tl", "tn", "to", "tr", "ts", "tt", "tw", "ty", "ug", "uk", "ur",
         "uz", "ve", "vi", "vo", "wa", "cy", "wo", "xh", "yi", "yo", "za", "zu"
     ];
-
+    
     if (!htmlLanguage || !validLangValues.includes(htmlLanguage.split('-')[0])) {
         auditResults.push(htmlAndHeadErrors[0]);
     }
-
-    const pageTitle = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval("document.title", resolve);
-    });
-    
-    if (!pageTitle || pageTitle === "") {
-        auditResults.push(htmlAndHeadErrors[1]);
-    }
-
-    const metaRefresh = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`document.querySelector('meta[http-equiv="refresh"]')`, resolve);
-    })
-
-    if ((metaRefresh && metaRefresh.content) || (metaRefresh && metaRefresh.content !== "")) {
-        auditResults.push(htmlAndHeadErrors[2]);
-    }
-
-    const metaViewport = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval("document.querySelector('meta[name=\"viewport\"]')?.getAttribute('content')", resolve);
-    })
-
-    if (metaViewport && (metaViewport.includes('user-scalable=no') || metaViewport.includes('user-scalable=0'))) {
-        auditResults.push(htmlAndHeadErrors[3]);
-    }
 }
+
