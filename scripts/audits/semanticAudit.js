@@ -1,5 +1,6 @@
 import { semanticErrors } from "../errors/semantic.js";
-import { getUniqueSelector, inspectedWindowEval } from "../utils.js";
+import { getUniqueSelector } from "../utils/getUniqueSelector.js";
+import { inspectedWindowEval } from "../utils/inspectedWindowEval.js";
 
 export async function semanticAudit(auditResults) {
     const hasH1 = await new Promise((resolve) => {

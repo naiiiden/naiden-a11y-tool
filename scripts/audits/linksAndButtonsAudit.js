@@ -1,5 +1,6 @@
 import { linksAndButtonsErrors } from "../errors/linksAndButtons.js";
-import { getUniqueSelector, inspectedWindowEval } from "../utils.js";
+import { getUniqueSelector } from "../utils/getUniqueSelector.js";
+import { inspectedWindowEval } from "../utils/inspectedWindowEval.js";
 
 export async function linksAndButtonsAudit(auditResults) {
     const emptyLinks = await inspectedWindowEval(`
