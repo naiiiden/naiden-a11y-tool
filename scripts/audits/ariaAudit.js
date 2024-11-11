@@ -166,7 +166,7 @@ export async function ariaAudit(auditResults) {
     });
 
     // https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus
-    const ariaHiddenWithFocusableChildren = await inspectedWindowEval(`
+    const ariaHiddenFocusableOrWithFocusableChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[aria-hidden='true']"))
             .filter(element => {
@@ -179,7 +179,7 @@ export async function ariaAudit(auditResults) {
             }));
     `);
 
-    ariaHiddenWithFocusableChildren.forEach(element => {
+    ariaHiddenFocusableOrWithFocusableChildren.forEach(element => {
         auditResults.push({ ...ariaErrors[8], element: element.outerHTML, selector: element.selector });
     })
 
