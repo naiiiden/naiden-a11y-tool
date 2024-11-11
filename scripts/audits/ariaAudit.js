@@ -1114,4 +1114,20 @@ export async function ariaAudit(auditResults) {
     ariaRolePermittedAttributes.forEach(element => {
         auditResults.push({ ...ariaErrors[20], element: element.outerHTML, selector: element.selector });
     });
+
+    // https://dequeuniversity.com/rules/axe/4.10/aria-conditional-attr
+    const ariaConditionalAttributes = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll(\`
+            input[type='checkbox'][aria-checked]:not([aria-checked=''])
+        \`))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }))
+    `)
+
+    ariaConditionalAttributes.forEach(element => {
+        auditResults.push({ ...ariaErrors[22], element: element.outerHTML, selector: element.selector });
+    });
 }
