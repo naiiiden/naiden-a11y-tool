@@ -6,7 +6,7 @@ export async function hasMetaViewport(auditResults) {
     })
 
     if (metaViewport && (metaViewport.includes('user-scalable=no') || metaViewport.includes('user-scalable=0'))) {
-        auditResults.push(rootAndMetadataErrors[3]);
+        auditResults.push(rootAndMetadataErrors[4]);
     }
 }
 

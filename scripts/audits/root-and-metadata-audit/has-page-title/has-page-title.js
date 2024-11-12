@@ -6,7 +6,7 @@ export async function hasPageTitle(auditResults) {
     });
     
     if (!pageTitle || pageTitle === "") {
-        auditResults.push(rootAndMetadataErrors[1]);
+        auditResults.push(rootAndMetadataErrors[2]);
     }
 }
 

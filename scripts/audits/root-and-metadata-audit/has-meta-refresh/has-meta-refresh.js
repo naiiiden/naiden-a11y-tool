@@ -6,7 +6,7 @@ export async function hasMetaRefresh(auditResults) {
     })
 
     if ((metaRefresh && metaRefresh.content) || (metaRefresh && metaRefresh.content !== "")) {
-        auditResults.push(rootAndMetadataErrors[2]);
+        auditResults.push(rootAndMetadataErrors[3]);
     }
 }
 
