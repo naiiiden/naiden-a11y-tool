@@ -19,7 +19,7 @@ export async function hasValidHtmlLanguage(auditResults) {
     ];
     
     if (!htmlLanguage || !validLangValues.includes(htmlLanguage.split('-')[0])) {
-        auditResults.push(rootAndMetadataErrors[0]);
+        auditResults.push(rootAndMetadataErrors[1]);
     }
 }
 
