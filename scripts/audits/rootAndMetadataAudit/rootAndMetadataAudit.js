@@ -1,7 +1,7 @@
-import { htmlAndHeadErrors } from "../../errors/htmlAndHead.js";
+import { htmlAndHeadErrors } from "../../errors/rootAndMetadata.js";
 import { htmlLanguage } from "./htmlLanguage/htmlLanguage.js";
 
-export async function htmlAndHeadAudit(auditResults) {
+export async function rootAndMetadataAudit(auditResults) {
     await htmlLanguage(auditResults);
 
     const pageTitle = await new Promise((resolve) => {

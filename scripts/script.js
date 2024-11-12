@@ -1,6 +1,6 @@
 import { emptyAudit } from "./audits/emptyAudit.js";
 import { formAudit } from "./audits/formAudit.js";
-import { htmlAndHeadAudit } from "./audits/htmlAndHeadAudit/htmlAndHeadAudit.js";
+import { rootAndMetadataAudit } from "./audits/rootAndMetadataAudit/rootAndMetadataAudit.js";
 import { imagesAudit } from "./audits/imagesAudit.js";
 import { linksAndButtonsAudit } from "./audits/linksAndButtonsAudit.js";
 import { semanticAudit } from "./audits/semanticAudit.js";
@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  document.getElementById("run-html-and-head-audit-btn").addEventListener("click", () => {
-    runAudit([htmlAndHeadAudit]).then(() => {
+  document.getElementById("run-root-and-metadata-audit-btn").addEventListener("click", () => {
+    runAudit([rootAndMetadataAudit]).then(() => {
       emptyErrorMessage("No html and head errors.");
     });
   });
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
-    runAudit([htmlAndHeadAudit, linksAndButtonsAudit, emptyAudit, formAudit, semanticAudit, ariaAudit]).then(() => {
+    runAudit([rootAndMetadataAudit, linksAndButtonsAudit, emptyAudit, formAudit, semanticAudit, ariaAudit]).then(() => {
       emptyErrorMessage("No errors found.");
     });
   });
