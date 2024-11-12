@@ -1,4 +1,4 @@
-import { htmlAndHeadErrors } from "../../../errors/rootAndMetadata.js";
+import { rootAndMetadataErrors } from "../../../errors/root-and-metadata.js";
 
 export async function hasPageTitle(auditResults) {
     const pageTitle = await new Promise((resolve) => {
@@ -6,7 +6,7 @@ export async function hasPageTitle(auditResults) {
     });
     
     if (!pageTitle || pageTitle === "") {
-        auditResults.push(htmlAndHeadErrors[1]);
+        auditResults.push(rootAndMetadataErrors[1]);
     }
 }
 

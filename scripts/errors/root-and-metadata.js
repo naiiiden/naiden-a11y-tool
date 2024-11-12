@@ -1,4 +1,4 @@
-export const htmlAndHeadErrors = [
+export const rootAndMetadataErrors = [
     {
       id: 0,
       name: "Page lang attribute missing or invalid",

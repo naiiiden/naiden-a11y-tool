@@ -1,4 +1,4 @@
-import { htmlAndHeadErrors } from "../../../errors/rootAndMetadata.js";
+import { rootAndMetadataErrors } from "../../../errors/root-and-metadata.js";
 
 export async function hasMetaViewport(auditResults) {
     const metaViewport = await new Promise((resolve) => {
@@ -6,7 +6,7 @@ export async function hasMetaViewport(auditResults) {
     })
 
     if (metaViewport && (metaViewport.includes('user-scalable=no') || metaViewport.includes('user-scalable=0'))) {
-        auditResults.push(htmlAndHeadErrors[3]);
+        auditResults.push(rootAndMetadataErrors[3]);
     }
 }
 

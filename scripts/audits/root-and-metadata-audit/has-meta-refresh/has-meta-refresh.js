@@ -1,4 +1,4 @@
-import { htmlAndHeadErrors } from "../../../errors/rootAndMetadata.js";
+import { rootAndMetadataErrors } from "../../../errors/root-and-metadata.js";
 
 export async function hasMetaRefresh(auditResults) {
     const metaRefresh = await new Promise((resolve) => {
@@ -6,7 +6,7 @@ export async function hasMetaRefresh(auditResults) {
     })
 
     if ((metaRefresh && metaRefresh.content) || (metaRefresh && metaRefresh.content !== "")) {
-        auditResults.push(htmlAndHeadErrors[2]);
+        auditResults.push(rootAndMetadataErrors[2]);
     }
 }
 

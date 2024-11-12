@@ -1,4 +1,4 @@
-import { htmlAndHeadErrors } from "../../../errors/rootAndMetadata.js";
+import { rootAndMetadataErrors } from "../../../errors/root-and-metadata.js";
 
 export async function hasValidHtmlLanguage(auditResults) {
     const htmlLanguage = await new Promise((resolve) => {
@@ -19,7 +19,7 @@ export async function hasValidHtmlLanguage(auditResults) {
     ];
     
     if (!htmlLanguage || !validLangValues.includes(htmlLanguage.split('-')[0])) {
-        auditResults.push(htmlAndHeadErrors[0]);
+        auditResults.push(rootAndMetadataErrors[0]);
     }
 }
 
