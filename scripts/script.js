@@ -1,10 +1,10 @@
-import { emptyAudit } from "./audits/emptyAudit.js";
-import { formAudit } from "./audits/formAudit.js";
+import { emptyAudit } from "./audits/empty-audit/empty-audit.js";
+import { formAudit } from "./audits/form-audit/form-audit.js";
 import { rootAndMetadataAudit } from "./audits/root-and-metadata-audit/root-and-metadata-audit.js";
-import { imagesAudit } from "./audits/imagesAudit.js";
-import { linksAndButtonsAudit } from "./audits/linksAndButtonsAudit.js";
-import { semanticAudit } from "./audits/semanticAudit.js";
-import { ariaAudit } from "./audits/ariaAudit.js";
+import { imagesAudit } from "./audits/images-audit/images-audit.js";
+import { linksAndButtonsAudit } from "./audits/links-and-buttons-audit/links-and-buttons-audit.js";
+import { semanticAudit } from "./audits/semantic-audit/semantic-audit.js";
+import { ariaAudit } from "./audits/aria-audit/aria-audit.js";
 import { escapeHtml } from "./utils/escape-html.js";
 
 const errorsIndicator = document.getElementById("errors-indicator");
