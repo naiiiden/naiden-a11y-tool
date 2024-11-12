@@ -1,30 +1,11 @@
-import { htmlAndHeadErrors } from "../../errors/rootAndMetadata.js";
-import { hasValidHtmlLanguage } from "./htmlLanguage/htmlLanguage.js";
+import { hasMetaRefresh } from "./hasMetaRefresh/hasMetaRefresh.js";
+import { hasMetaViewport } from "./hasMetaViewport/hasMetaViewport.js";
+import { hasPageTitle } from "./hasPageTitle/hasPageTitle.js";
+import { hasValidHtmlLanguage } from "./hasValidHtmlLanguage/hasValidHtmlLanguage.js";
 
 export async function rootAndMetadataAudit(auditResults) {
     await hasValidHtmlLanguage(auditResults);
-
-    const pageTitle = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval("document.title", resolve);
-    });
-    
-    if (!pageTitle || pageTitle === "") {
-        auditResults.push(htmlAndHeadErrors[1]);
-    }
-
-    const metaRefresh = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`document.querySelector('meta[http-equiv="refresh"]')`, resolve);
-    })
-
-    if ((metaRefresh && metaRefresh.content) || (metaRefresh && metaRefresh.content !== "")) {
-        auditResults.push(htmlAndHeadErrors[2]);
-    }
-
-    const metaViewport = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval("document.querySelector('meta[name=\"viewport\"]')?.getAttribute('content')", resolve);
-    })
-
-    if (metaViewport && (metaViewport.includes('user-scalable=no') || metaViewport.includes('user-scalable=0'))) {
-        auditResults.push(htmlAndHeadErrors[3]);
-    }
+    await hasPageTitle(auditResults);
+    await hasMetaRefresh(auditResults);
+    await hasMetaViewport(auditResults);
 }
