@@ -1,6 +1,6 @@
 import { htmlAndHeadErrors } from "../../../errors/rootAndMetadata.js";
 
-export async function htmlLanguage(auditResults) {
+export async function hasValidHtmlLanguage(auditResults) {
     const htmlLanguage = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval("document.documentElement.getAttribute('lang')", resolve);
     });

@@ -1,8 +1,8 @@
 import { htmlAndHeadErrors } from "../../errors/rootAndMetadata.js";
-import { htmlLanguage } from "./htmlLanguage/htmlLanguage.js";
+import { hasValidHtmlLanguage } from "./htmlLanguage/htmlLanguage.js";
 
 export async function rootAndMetadataAudit(auditResults) {
-    await htmlLanguage(auditResults);
+    await hasValidHtmlLanguage(auditResults);
 
     const pageTitle = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval("document.title", resolve);
