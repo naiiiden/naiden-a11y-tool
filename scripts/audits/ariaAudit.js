@@ -1,6 +1,6 @@
 import { ariaErrors } from "../errors/aria.js";
-import { getUniqueSelector } from "../utils/getUniqueSelector.js";
-import { inspectedWindowEval } from "../utils/inspectedWindowEval.js";
+import { getUniqueSelector } from "../utils/get-unique-selector.js";
+import { inspectedWindowEval } from "../utils/inspected-window-eval.js";
 
 export async function ariaAudit(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-hidden-body

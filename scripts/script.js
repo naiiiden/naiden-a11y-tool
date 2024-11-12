@@ -5,7 +5,7 @@ import { imagesAudit } from "./audits/imagesAudit.js";
 import { linksAndButtonsAudit } from "./audits/linksAndButtonsAudit.js";
 import { semanticAudit } from "./audits/semanticAudit.js";
 import { ariaAudit } from "./audits/ariaAudit.js";
-import { escapeHtml } from "./utils/escapeHtml.js";
+import { escapeHtml } from "./utils/escape-html.js";
 
 const errorsIndicator = document.getElementById("errors-indicator");
 const errorsList = document.getElementById('errors-list');
