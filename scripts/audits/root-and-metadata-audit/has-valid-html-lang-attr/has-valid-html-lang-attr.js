@@ -1,10 +1,6 @@
 import { rootAndMetadataErrors } from "../../../errors/root-and-metadata.js";
 
-export async function hasValidHtmlLanguage(auditResults) {
-    const htmlLanguage = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval("document.documentElement.getAttribute('lang')", resolve);
-    });
-    
+export async function hasValidHtmlLangAttr(auditResults) {
     const validLangValues = [
         "ab", "aa", "af", "ak", "sq", "am", "ar", "an", "hy", "as", "av", "ae", "ay", "az", "bm", "ba", "eu", "be", "bn",
         "bi", "bs", "br", "bg", "my", "ca", "ch", "ce", "zh", "cu", "cv", "kw", "co", "cr", "cs", "da", "dv", "nl", "dz",
@@ -18,7 +14,12 @@ export async function hasValidHtmlLanguage(auditResults) {
         "uz", "ve", "vi", "vo", "wa", "cy", "wo", "xh", "yi", "yo", "za", "zu"
     ];
     
-    if (!htmlLanguage || !validLangValues.includes(htmlLanguage.split('-')[0])) {
+    const htmlLanguage = await new Promise((resolve) => {
+        chrome.devtools.inspectedWindow.eval("document.documentElement.getAttribute('lang')", resolve);
+    });
+    
+    
+    if (htmlLanguage && !validLangValues.includes(htmlLanguage.split('-')[0])) {
         auditResults.push(rootAndMetadataErrors[1]);
     }
 }
