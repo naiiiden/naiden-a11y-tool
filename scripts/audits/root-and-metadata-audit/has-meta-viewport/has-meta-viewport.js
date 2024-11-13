@@ -18,7 +18,7 @@ export async function hasMetaViewport(auditResults) {
     console.log(1, metaViewport);
 
     if (metaViewport.hasContentAttr && (metaViewport.hasContentAttr.includes('user-scalable=no') || metaViewport.hasContentAttr.includes('user-scalable=0'))) {
-        auditResults.push(rootAndMetadataErrors[4]);
+        auditResults.push({... rootAndMetadataErrors[4], element: metaViewport.outerHTML, selector: metaViewport.selector });
     }
 }
 
