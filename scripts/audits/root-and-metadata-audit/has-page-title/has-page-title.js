@@ -18,7 +18,7 @@ export async function hasPageTitle(auditResults) {
         }
     `);
 
-    if (documentTitle?.documentTitle === "" || !document.documentTitle) {
+    if (documentTitle?.documentTitle === "" || !documentTitle) {
         auditResults.push({ ...rootAndMetadataErrors[2], element: documentTitle?.outerHTML, selector: documentTitle?.selector });
     }
 }
