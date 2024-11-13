@@ -3,11 +3,7 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function hasHtmlLangAttr(auditResults) {
-    // const htmlLanguage = await new Promise((resolve) => {
-    //     chrome.devtools.inspectedWindow.eval("document.documentElement.getAttribute('lang')", resolve);
-    // });
-
-    const htmlLanguage = await inspectedWindowEval(`
+    const rootDocument = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const rootDocument = document.documentElement;
         const hasLangAttr = rootDocument.getAttribute('lang');
@@ -17,11 +13,10 @@ export async function hasHtmlLangAttr(auditResults) {
             outerHTML: rootDocument.outerHTML,
             selector: getUniqueSelector(rootDocument)
         }
-
     `)
     
-    if (!htmlLanguage.hasLangAttr) {
-        auditResults.push({ ...rootAndMetadataErrors[0], element: htmlLanguage.outerHTML, selector: htmlLanguage.selector });
+    if (!rootDocument.hasLangAttr) {
+        auditResults.push({ ...rootAndMetadataErrors[0], element: rootDocument.outerHTML, selector: rootDocument.selector });
     }
 }
 
