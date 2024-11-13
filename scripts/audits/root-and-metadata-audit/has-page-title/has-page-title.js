@@ -7,15 +7,18 @@ export async function hasPageTitle(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const documentTitle = document.querySelector("title");
 
-        return {
-            documentTitle,
-            outerHTML: documentTitle.outerHTML,
-            selector: getUniqueSelector(documentTitle)
+        if (documentTitle) {
+            return {
+                documentTitle: documentTitle.textContent,
+                outerHTML: documentTitle.outerHTML,
+                selector: getUniqueSelector(documentTitle)
+            }
+        } else {
+            return;
         }
-    `)
+    `);
 
-    if (documentTitle.documentTitle) {
-        auditResults.push({ ...rootAndMetadataErrors[2], element: documentTitle.outerHTML, selector: documentTitle.selector });
+    if (documentTitle?.documentTitle === "" || !document.documentTitle) {
+        auditResults.push({ ...rootAndMetadataErrors[2], element: documentTitle?.outerHTML, selector: documentTitle?.selector });
     }
 }
-
