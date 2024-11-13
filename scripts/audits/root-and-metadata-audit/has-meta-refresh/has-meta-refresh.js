@@ -15,7 +15,7 @@ export async function hasMetaRefresh(auditResults) {
         }
     `)
 
-    if ((metaRefresh && metaRefresh.content) || (metaRefresh && metaRefresh.content !== "")) {
+    if (metaRefresh.hasContentAttr && metaRefresh.hasContentAttr.value !== "") {
         auditResults.push({... rootAndMetadataErrors[3], element: metaRefresh.outerHTML, selector: metaRefresh.selector });
     }
 }
