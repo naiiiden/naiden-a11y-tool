@@ -10,7 +10,7 @@ export async function hasHtmlLangAttr(auditResults) {
 
         return {
             hasLangAttr,
-            outerHTML: rootDocument.outerHTML,
+            outerHTML: rootDocument.cloneNode().outerHTML,
             selector: getUniqueSelector(rootDocument)
         }
     `)
