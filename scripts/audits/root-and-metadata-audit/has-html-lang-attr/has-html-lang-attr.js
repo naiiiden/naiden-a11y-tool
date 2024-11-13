@@ -19,4 +19,3 @@ export async function hasHtmlLangAttr(auditResults) {
         auditResults.push({ ...rootAndMetadataErrors[0], element: rootDocument.outerHTML, selector: rootDocument.selector });
     }
 }
-

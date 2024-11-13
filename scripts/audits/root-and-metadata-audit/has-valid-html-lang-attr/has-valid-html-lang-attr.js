@@ -1,4 +1,6 @@
 import { rootAndMetadataErrors } from "../../../errors/root-and-metadata.js";
+import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
+import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function hasValidHtmlLangAttr(auditResults) {
     const validLangValues = [
@@ -14,13 +16,19 @@ export async function hasValidHtmlLangAttr(auditResults) {
         "uz", "ve", "vi", "vo", "wa", "cy", "wo", "xh", "yi", "yo", "za", "zu"
     ];
     
-    const htmlLanguage = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval("document.documentElement.getAttribute('lang')", resolve);
-    });
-    
-    
-    if (htmlLanguage && !validLangValues.includes(htmlLanguage.split('-')[0])) {
-        auditResults.push(rootAndMetadataErrors[1]);
+    const rootDocument = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        const rootDocument = document.documentElement;
+        const hasLangAttr = rootDocument.getAttribute('lang');
+
+        return {
+            hasLangAttr,
+            outerHTML: rootDocument.cloneNode().outerHTML,
+            selector: getUniqueSelector(rootDocument)
+        }
+    `)
+
+    if (rootDocument.hasLangAttr && !validLangValues.includes(rootDocument.hasLangAttr.split('-')[0])) {
+        auditResults.push({ ...rootAndMetadataErrors[1], element: rootDocument.outerHTML, selector: rootDocument.selector });
     }
 }
-
