@@ -4,7 +4,7 @@ import { inspectedWindowEval } from "../../utils/inspected-window-eval.js";
 
 export async function ariaAudit(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-hidden-body
-    const documentBodyAriaHidden = await inspectedWindowEval(`
+    const documentBody = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const body = document.body;
         const isHidden = body.hasAttribute('aria-hidden') && body.getAttribute('aria-hidden') === 'true';
@@ -16,7 +16,7 @@ export async function ariaAudit(auditResults) {
         }
     `)
 
-    if (documentBodyAriaHidden.isHidden) {
+    if (documentBody.isHidden) {
         auditResults.push({ ...ariaErrors[0], element: documentBody.outerHTML, selector: documentBody.selector });
     }
 
