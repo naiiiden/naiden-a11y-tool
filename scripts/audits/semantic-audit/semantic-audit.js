@@ -1,100 +1,19 @@
 import { semanticErrors } from "../../errors/semantic.js";
 import { getUniqueSelector } from "../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../utils/inspected-window-eval.js";
+import { hasHeadingLevelOne } from "./has-heading-level-one/has-heading-level-one.js";
+import { hasHeadings } from "./has-headings/has-headings.js";
+import { hasHeadingLevels } from "./heading-levels/heading-levels.js";
+import { hasPossibleHeadings } from "./possible-headings/possible-headings.js";
 
 export async function semanticAudit(auditResults) {
-    const hasH1 = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(
-        `!!document.querySelector('h1') || !!document.querySelector('[role="heading"][aria-level="1"]')`,
-        resolve
-        );
-    });
-
-    if (!hasH1) {
-        auditResults.push(semanticErrors[0]);
-    }
-
-    const headingLevels = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, [role="heading"]')).map(heading => {
-            let level;
-        
-            if (heading.hasAttribute('role') && heading.getAttribute('role') === 'heading') {
-                const ariaLevel = heading.getAttribute('aria-level');
-                if (ariaLevel && !isNaN(ariaLevel)) {
-                    level = parseInt(ariaLevel, 10);
-                } else {
-                    level = 2;
-                }
-            } else {
-                level = parseInt(heading.tagName[1], 10);
-            }
-        
-            return {
-                level,
-                tagName: heading.tagName,
-                outerHTML: heading.outerHTML,
-                selector: getUniqueSelector(heading)
-            };
-        });
-    `);
-      
-    if (headingLevels.length > 0) {
-        let previousLevel = 1;
-      
-        for (const heading of headingLevels) {
-          const currentLevel = heading.level;
-      
-          if (currentLevel > previousLevel + 1) {
-            auditResults.push({
-              ...semanticErrors[1],
-              element: heading.outerHTML,
-              selector: heading.selector
-            });
-            break;
-          }
-      
-          if (currentLevel > previousLevel) {
-            previousLevel = currentLevel;
-          }
-        }
-    }
-
-    const possibleHeadings = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('p'))
-          .filter(p => p.innerText.trim().length < 50)
-          .filter(p => {
-            const style = window.getComputedStyle(p);
-            const fontSize = parseFloat(style.fontSize);
-            const isBold = style.fontWeight === 'bold' || parseInt(style.fontWeight) >= 600;
-            const isItalic = style.fontStyle === 'italic';
+    await hasHeadingLevelOne(auditResults);
+    await hasHeadingLevels(auditResults);
+    await hasPossibleHeadings(auditResults);
+    await hasHeadings(auditResults);
     
-            return fontSize >= 20 || (fontSize >= 16 && (isBold || isItalic));
-          })
-          .map(p => ({
-            outerHTML: p.outerHTML,
-            selector: getUniqueSelector(p)
-          }));
-    `) 
-    
-    possibleHeadings.forEach(heading => {
-        auditResults.push({
-            ...semanticErrors[2],
-            element: heading.outerHTML,
-            selector: heading.selector
-        });
-    });
 
-    const hasHeadings = await new Promise((resolve) => {
-        chrome.devtools.inspectedWindow.eval(`
-        Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, [role="heading"]')).length > 0
-        `, resolve);
-    });
     
-    if (!hasHeadings) {
-        auditResults.push(semanticErrors[3]);
-    }
 
     const hasRegionsOrLandmarks = await new Promise((resolve) => {
         chrome.devtools.inspectedWindow.eval(`
