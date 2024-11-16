@@ -1,4 +1,4 @@
-import { emptyAudit } from "./audits/empty-audit/empty-audit.js";
+import { emptyAudit } from "./audits/empty-elements-audit/empty-audit.js";
 import { formAudit } from "./audits/form-audit/form-audit.js";
 import { rootAndMetadataAudit } from "./audits/root-and-metadata-audit/root-and-metadata-audit.js";
 import { imagesAudit } from "./audits/images-audit/images-audit.js";
