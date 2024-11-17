@@ -5,7 +5,7 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function hasEmptyButtons(auditResults) {
     const emptyButtons = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll(':is([role="button"], button):not(:has(img)):empty'))
+        return Array.from(document.querySelectorAll(':is([role="button"], button):not(:has(img))'))
             .filter(button => {
                 const ariaLabel = button.hasAttribute('aria-label') ? button.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = button.hasAttribute('aria-labelledby') 
@@ -13,7 +13,7 @@ export async function hasEmptyButtons(auditResults) {
                 : null;
                 const title = button.hasAttribute('title') ? button.getAttribute('title').trim() : null;
                 
-                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+                return button.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
             })
             .map(button => ({
                 outerHTML: button.outerHTML,
