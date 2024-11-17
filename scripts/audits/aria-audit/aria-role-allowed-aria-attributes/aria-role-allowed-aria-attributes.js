@@ -2,8 +2,8 @@ import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
-export async function ariaRoleSupportedAriaAttributes(auditResults) {
-    const ariaRoleSupportedAriaAttributesList = {
+export async function ariaRoleAllowedAriaAttributes(auditResults) {
+    const ariaRoleAllowedAriaAttributesList = {
         alert: [
             'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 
             'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup',
@@ -522,8 +522,8 @@ export async function ariaRoleSupportedAriaAttributes(auditResults) {
     }
 
     // https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr
-    const ariaRoleSupportedAriaAttributes = await inspectedWindowEval(`
-        const ariaRoleSupportedAriaAttributesList = ${JSON.stringify(ariaRoleSupportedAriaAttributesList)};
+    const ariaRoleAllowedAriaAttributes = await inspectedWindowEval(`
+        const ariaRoleSupportedAriaAttributesList = ${JSON.stringify(ariaRoleAllowedAriaAttributesList)};
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll('[role]'))
             .flatMap(element => {
@@ -537,7 +537,7 @@ export async function ariaRoleSupportedAriaAttributes(auditResults) {
         });
     `);
 
-    ariaRoleSupportedAriaAttributes.forEach(element => {
+    ariaRoleAllowedAriaAttributes.forEach(element => {
         auditResults.push({ ...ariaErrors[16], element: element.outerHTML, selector: element.selector });
     });
 }

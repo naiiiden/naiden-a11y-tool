@@ -1,5 +1,5 @@
-import { ariaAppropriateRole } from "./aria-appropriate-role/aria-appropriate-role.js";
-import { ariaAttributesValidValues } from "./aria-attributes-valid-values/aria-attributes-valid-values.js";
+import { ariaAllowedRole } from "./aria-allowed-role/aria-allowed-role.js";
+import { ariaValidAttributeValues } from "./aria-valid-attribute-values/aria-valid-attribute-values.js";
 import { ariaCommandsNames } from "./aria-command-names/aria-command-names.js";
 import { ariaConditionalAttributes } from "./aria-conditional-attributes/aria-conditional-attributes.js";
 import { ariaDialogAndAlertDialogNames } from "./aria-dialog-and-alertdialog-names/aria-dialog-and-alertdialog-names.js";
@@ -11,7 +11,7 @@ import { ariaRoleProhibitedAttributes } from "./aria-role-prohibited-attributes/
 import { ariaRoleRequiredAriaAttributes } from "./aria-role-required-aria-attributes/aria-role-required-aria-attributes.js";
 import { ariaRoleRequiredChildren } from "./aria-role-required-children/aria-role-required-children.js";
 import { ariaRoleRequiredParent } from "./aria-role-required-parent/aria-role-required-parent.js";
-import { ariaRoleSupportedAriaAttributes } from "./aria-role-supported-aria-attributes/aria-role-supported-aria-attributes.js";
+import { ariaRoleAllowedAriaAttributes } from "./aria-role-allowed-aria-attributes/aria-role-allowed-aria-attributes.js";
 import { ariaRoleValidValues } from "./aria-roles-valid-values/aria-roles-valid-values.js";
 import { ariaTextNoFocusableChildren } from "./aria-text-no-focusable-children/aria-text-no-focusable-children.js";
 import { ariaToggleFieldNames } from "./aria-toggle-field-names/aria-toggle-field-names.js";
@@ -34,11 +34,11 @@ export async function ariaAudit(auditResults) {
     await ariaRoleValidValues(auditResults);
     await ariaDialogAndAlertDialogNames(auditResults);
     await ariaTextNoFocusableChildren(auditResults);
-    await ariaAppropriateRole(auditResults);
+    await ariaAllowedRole(auditResults);
     await ariaTreeitemNames(auditResults);
-    await ariaAttributesValidValues(auditResults);
+    await ariaValidAttributeValues(auditResults);
     await ariaValidAttributes(auditResults);
-    await ariaRoleSupportedAriaAttributes(auditResults);
+    await ariaRoleAllowedAriaAttributes(auditResults);
     await ariaRoleRequiredAriaAttributes(auditResults);
     await ariaRoleRequiredChildren(auditResults);
     await ariaRoleRequiredParent(auditResults);

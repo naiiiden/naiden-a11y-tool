@@ -2,9 +2,9 @@ import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
-export async function ariaAppropriateRole(auditResults) {
+export async function ariaAllowedRole(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role
-    const ariaAppropriateRole = await inspectedWindowEval(`
+    const ariaAllowedRole = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
             a[href][role]:not([role=''], [role='button'], [role='checkbox'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='switch'], [role='tab'], [role='treeitem'], [role='link']), 
@@ -130,7 +130,7 @@ export async function ariaAppropriateRole(auditResults) {
             }));
     `)
 
-    ariaAppropriateRole.forEach(element => {
+    ariaAllowedRole.forEach(element => {
         auditResults.push({ ...ariaErrors[12], element: element.outerHTML, selector: element.selector });
     });
 }

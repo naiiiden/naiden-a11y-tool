@@ -4,7 +4,7 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function ariaRoleProhibitedAttributes(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr
-    const ariaRolePermittedAttributes = await inspectedWindowEval(`
+    const ariaRoleProhibitedAttributes = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
             [role='caption']:has([aria-label], [aria-labelledby]), 
@@ -25,7 +25,7 @@ export async function ariaRoleProhibitedAttributes(auditResults) {
             }))
     `)
 
-    ariaRolePermittedAttributes.forEach(element => {
+    ariaRoleProhibitedAttributes.forEach(element => {
         auditResults.push({ ...ariaErrors[20], element: element.outerHTML, selector: element.selector });
     });
 }

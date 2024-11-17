@@ -2,7 +2,7 @@ import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
-export async function ariaAttributesValidValues(auditResults) {
+export async function ariaValidAttributeValues(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr-value
     const ariaAttributesValidValues = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
