@@ -11,7 +11,7 @@ export async function hasAriaHiddenBody(auditResults) {
         
         return {
             isHidden,
-            outerHTML: body.outerHTML,
+            outerHTML: body.cloneNode().outerHTML,
             selector: getUniqueSelector(body)
         }
     `)
