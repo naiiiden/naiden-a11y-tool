@@ -5,7 +5,7 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function hasEmptyTableHeadings(auditResults) {
     const emptyTableHeadings = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll("th"))
+        return Array.from(document.querySelectorAll("th, [role='rowheader'], [role='columnheader']"))
             .filter(tableHeading => {
                 return tableHeading.innerText.trim() === "";
             })
