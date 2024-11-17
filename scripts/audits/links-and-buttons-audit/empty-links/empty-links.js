@@ -5,7 +5,7 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function hasEmptyLinks(auditResults) {
     const emptyLinks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('a:not(:has(img)):empty'))
+        return Array.from(document.querySelectorAll('a:not(:has(img))'))
             .filter(link => {
                 const ariaLabel = link.hasAttribute('aria-label') ? link.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = link.hasAttribute('aria-labelledby') 
@@ -13,7 +13,7 @@ export async function hasEmptyLinks(auditResults) {
                 : null;
                 const title = link.hasAttribute('title') ? link.getAttribute('title').trim() : null;
         
-                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+                return link.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
             })
             .map(link => ({
                 outerHTML: link.outerHTML,
