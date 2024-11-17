@@ -8,7 +8,7 @@ export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[aria-hidden='true']"))
             .filter(element => {
-                return Array.from(element.querySelectorAll("a, :is(input, textarea, select, button):not(:disabled), [tabindex]:not([tabindex^='-'])")) 
+                return Array.from(element.querySelectorAll("a, [contenteditable]:not([contenteditable='false']), :is(input, textarea, select, button):not(:disabled), [tabindex]:not([tabindex^='-'])")) 
                     .some(child => window.getComputedStyle(child).display !== 'none');
             })
             .map(element => ({
