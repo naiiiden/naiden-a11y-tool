@@ -6,14 +6,14 @@ export async function ariaTreeitemNames(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-treeitem-name
     const ariaTreeitemNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll("[role='treeitem']:empty"))
+        return Array.from(document.querySelectorAll("[role='treeitem']"))
             .filter(element => {
                 const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = element.hasAttribute('aria-labelledby') 
                 ? document.getElementById(element.getAttribute('aria-labelledby')) 
                 : null;
                 
-                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+                return element.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
             })
             .map(element => ({
                 outerHTML: element.outerHTML,
