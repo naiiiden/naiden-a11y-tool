@@ -5,10 +5,13 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function hasEmptyLabels(auditResults) {
     const emptyLabels = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll("label:empty"))
+        return Array.from(document.querySelectorAll("label"))
+            .filter(label => {
+                return label.innerText.trim() === "";
+            })
             .map(label => ({ 
-            outerHTML: label.outerHTML, 
-            selector: getUniqueSelector(label) 
+                outerHTML: label.outerHTML, 
+                selector: getUniqueSelector(label) 
             }))
     `)
 
