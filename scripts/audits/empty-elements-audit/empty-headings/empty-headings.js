@@ -5,14 +5,14 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function hasEmptyHeadings(auditResults) {
     const emptyHeadings = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll(":is(h1, h2, h3, h4, h5, h6, [role='heading']):not(:has(img)):empty"))
+        return Array.from(document.querySelectorAll(":is(h1, h2, h3, h4, h5, h6, [role='heading']):not(:has(img))"))
             .filter(heading => {
                 const ariaLabel = heading.hasAttribute('aria-label') ? heading.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = heading.hasAttribute('aria-labelledby') 
                     ? document.getElementById(heading.getAttribute('aria-labelledby')) 
                     : null;
                 
-                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+                return heading.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
             })
             .map(heading => ({
                 outerHTML: heading.outerHTML,
