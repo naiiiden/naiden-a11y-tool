@@ -3,6 +3,7 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function hasImageMaps(auditResults) {
+    // https://dequeuniversity.com/rules/axe/4.10/area-alt
     const imageMaps = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll('img[usemap]')).map((img) => {
