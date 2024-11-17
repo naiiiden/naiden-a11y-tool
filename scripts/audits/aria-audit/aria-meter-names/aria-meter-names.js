@@ -10,8 +10,8 @@ export async function ariaMeterNames(auditResults) {
             .filter(element => {
                 const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = element.hasAttribute('aria-labelledby') 
-                ? document.getElementById(element.getAttribute('aria-labelledby')) 
-                : null;
+                    ? document.getElementById(element.getAttribute('aria-labelledby')) 
+                    : null;
                 const title = element.hasAttribute('title') ? element.getAttribute('title').trim() : null;
                 
                 return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
