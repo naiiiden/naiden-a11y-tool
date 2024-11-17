@@ -6,14 +6,14 @@ export async function ariaCommandsNames(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-command-name
     const ariaCommandsNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll(":is([role='link'], [role='button'], [role='menuitem']):empty"))
+        return Array.from(document.querySelectorAll(":is([role='link'], [role='button'], [role='menuitem'])"))
             .filter(element => {
                 const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = element.hasAttribute('aria-labelledby') 
                 ? document.getElementById(element.getAttribute('aria-labelledby')) 
                 : null;
                 
-                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+                return element.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
             })
             .map(element => ({
                 outerHTML: element.outerHTML,
