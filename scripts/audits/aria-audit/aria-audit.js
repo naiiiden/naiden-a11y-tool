@@ -7,7 +7,7 @@ import { ariaHiddenFocusableOrWithFocusableChildren } from "./aria-hidden-focusa
 import { ariaInputFieldNames } from "./aria-input-field-names/aria-input-field-names.js";
 import { ariaMeterNames } from "./aria-meter-names/aria-meter-names.js";
 import { ariaProgressbarNames } from "./aria-progressbar-names/aria-progressbar-names.js";
-import { ariaRolePermittedAttributes } from "./aria-role-permitted-attributes/aria-role-permitted-attributes.js";
+import { ariaRoleProhibitedAttributes } from "./aria-role-prohibited-attributes/aria-role-prohibited-attributes.js";
 import { ariaRoleRequiredAriaAttributes } from "./aria-role-required-aria-attributes/aria-role-required-aria-attributes.js";
 import { ariaRoleRequiredChildren } from "./aria-role-required-children/aria-role-required-children.js";
 import { ariaRoleRequiredParent } from "./aria-role-required-parent/aria-role-required-parent.js";
@@ -42,6 +42,6 @@ export async function ariaAudit(auditResults) {
     await ariaRoleRequiredAriaAttributes(auditResults);
     await ariaRoleRequiredChildren(auditResults);
     await ariaRoleRequiredParent(auditResults);
-    await ariaRolePermittedAttributes(auditResults);
+    await ariaRoleProhibitedAttributes(auditResults);
     await ariaConditionalAttributes(auditResults);
 }
