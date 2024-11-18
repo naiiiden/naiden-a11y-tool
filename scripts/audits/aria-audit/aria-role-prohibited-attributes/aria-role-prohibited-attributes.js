@@ -3,29 +3,45 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function ariaRoleProhibitedAttributes(auditResults) {
+    const ariaRoleProhibitedAttributesList = {
+        caption: ["aria-label", "aria-labelledby"],
+        code: ["aria-label", "aria-labelledby"],
+        deletion: ["aria-label", "aria-labelledby"],
+        emphasis: ["aria-label", "aria-labelledby"],
+        generic: ["aria-label", "aria-labelledby", "aria-roledescription"],
+        insertion: ["aria-label", "aria-labelledby"],
+        paragraph: ["aria-label", "aria-labelledby"],
+        presentation: ["aria-label", "aria-labelledby"],
+        strong: ["aria-label", "aria-labelledby"],
+        subscript: ["aria-label", "aria-labelledby"],
+        superscript: ["aria-label", "aria-labelledby"],
+    };
+
     // https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr
     const ariaRoleProhibitedAttributes = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll(\`
-            [role='caption']:has([aria-label], [aria-labelledby]), 
-            [role='code']:has([aria-label], [aria-labelledby]), 
-            [role='deletion']:has([aria-label], [aria-labelledby]), 
-            [role='emphasis']:has([aria-label], [aria-labelledby]), 
-            [role='generic']:has([aria-label], [aria-labelledby], [aria-roledescription]), 
-            [role='insertion']:has([aria-label], [aria-labelledby]), 
-            [role='paragraph']:has([aria-label], [aria-labelledby]), 
-            [role='presentation']:has([aria-label], [aria-labelledby]), 
-            [role='strong']:has([aria-label], [aria-labelledby]), 
-            [role='subscript']:has([aria-label], [aria-labelledby]), 
-            [role='superscript']:has([aria-label], [aria-labelledby])
-        \`))
-            .map(element => ({
-                outerHTML: element.outerHTML,
-                selector: getUniqueSelector(element)
-            }))
+        const ariaRoleProhibitedAttributesList = ${JSON.stringify(ariaRoleProhibitedAttributesList)};
+
+        return Array.from(document.querySelectorAll(Object.keys(ariaRoleProhibitedAttributesList).map(role => \`[role='\${role}']\`).join(", ")))
+            .filter(element => {
+                const role = element.getAttribute("role");
+                const prohibitedAttributes = ariaRoleProhibitedAttributesList[role];
+                return prohibitedAttributes.some(attr => element.hasAttribute(attr));
+            })
+            .map(element => {
+                const role = element.getAttribute("role");
+                const prohibitedAttributes = ariaRoleProhibitedAttributesList[role];
+                const foundAttributes = prohibitedAttributes.filter(attr => element.hasAttribute(attr));
+                return {
+                    outerHTML: element.outerHTML,
+                    selector: getUniqueSelector(element),
+                    role,
+                    prohibitedAttributes: foundAttributes
+                };
+            });
     `)
 
     ariaRoleProhibitedAttributes.forEach(element => {
-        auditResults.push({ ...ariaErrors[20], element: element.outerHTML, selector: element.selector });
+        auditResults.push({ ...ariaErrors[20], element: element.outerHTML, selector: element.selector, message: `The element with role '${element.role}' contains prohibited attributes: ${element.prohibitedAttributes.join(", ")}.`, });
     });
 }
