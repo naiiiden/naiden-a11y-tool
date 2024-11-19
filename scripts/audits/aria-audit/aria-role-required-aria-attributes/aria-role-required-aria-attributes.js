@@ -33,13 +33,12 @@ export async function ariaRoleRequiredAriaAttributes(auditResults) {
             return {
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element),
-                role,
                 missingAttributes
             };
         });
     `)
 
     ariaRoleRequiredAriaAttributes.forEach(element => {
-        auditResults.push({ ...ariaErrors[17], element: element.outerHTML, selector: element.selector, message: `The element with role '${element.role}' is missing the following required attributes: ${element.missingAttributes.join(", ")}.` });
+        auditResults.push({ ...ariaErrors[17], element: element.outerHTML, selector: element.selector, message: `The element is missing the following required attributes: ${element.missingAttributes.join(", ")}.` });
     });
 }
