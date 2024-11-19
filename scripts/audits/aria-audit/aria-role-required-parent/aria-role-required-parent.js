@@ -3,9 +3,27 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function ariaRoleRequiredParent(auditResults) {
+    const ariaRoleRequiredParentList = {
+        caption: ["figure", "caption", "grid", "table", "treegrid"],
+        cell: ["row"],
+        columnheader: ["row"],
+        gridcell: ["row"],
+        listitem: ["list", "directory"],
+        menuitem: ["group", "menu", "menubar"],
+        menuitemcheckbox: ["group", "menu", "menubar"],
+        menuitemradio: ["group", "menu", "menubar"],
+        option: ["group", "listbox"],
+        row: ["grid", "rowgroup", "table", "treegrid"],
+        rowgroup: ["grid", "table", "treegrid"],
+        tab: ["tablist"],
+        treeitem: ["group", "tree"]
+    }
+
     // https://dequeuniversity.com/rules/axe/4.10/aria-required-parent
     const ariaRoleRequiredParent = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const ariaRoleRequiredParentList = ${JSON.stringify(ariaRoleRequiredParentList)};
+
         return Array.from(document.querySelectorAll(\`
             [role='caption']:is(:not([role='figure'] [role='caption'], [role='grid'] [role='caption'], [role='table'] [role='caption'], [role='treegrid'] [role='caption'])), 
             [role='cell']:is(:not([role='row'] [role='cell'])), 
