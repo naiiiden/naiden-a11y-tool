@@ -35,13 +35,12 @@ export async function ariaRoleProhibitedAttributes(auditResults) {
                 return {
                     outerHTML: element.outerHTML,
                     selector: getUniqueSelector(element),
-                    role,
                     prohibitedAttributes: foundAttributes
                 };
             });
     `)
 
     ariaRoleProhibitedAttributes.forEach(element => {
-        auditResults.push({ ...ariaErrors[20], element: element.outerHTML, selector: element.selector, message: `The element with role '${element.role}' contains prohibited attributes: ${element.prohibitedAttributes.join(", ")}.`, });
+        auditResults.push({ ...ariaErrors[20], element: element.outerHTML, selector: element.selector, message: `The element contains prohibited attributes: ${element.prohibitedAttributes.join(", ")}.`, });
     });
 }
