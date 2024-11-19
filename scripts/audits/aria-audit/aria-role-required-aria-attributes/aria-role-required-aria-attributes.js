@@ -3,26 +3,40 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function ariaRoleRequiredAriaAttributes(auditResults) {
+    const ariaRoleRequiredAriaAttributesList = {
+        checkbox: ["aria-checked"],
+        combobox: ["aria-controls", "aria-expanded"],
+        heading: ["aria-level"],
+        meter: ["aria-valuenow"],
+        menuitemcheckbox: ["aria-checked"],
+        option: ["aria-selected"],
+        radio: ["aria-checked"],
+        scrollbar: ["aria-controls", "aria-valuenow"],
+        separator: ["aria-valuenow"],
+        slider: ["aria-valuenow"],
+        switch: ["aria-checked"],
+    }
+
     // https://dequeuniversity.com/rules/axe/4.10/aria-required-attr
     const ariaRoleRequiredAriaAttributes = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll(\`
-            [role='checkbox']:not([aria-checked]), 
-            [role='combobox']:not([aria-controls], [aria-expanded]), 
-            [role='heading']:not([aria-level]), 
-            [role='meter']:not([aria-valuenow]), 
-            [role='menuitemcheckbox']:not([aria-checked]), 
-            [role='option']:not([aria-selected]), 
-            [role='radio']:not([aria-checked]), 
-            [role='scrollbar']:not([aria-controls], [aria-valuenow]), 
-            [role='separator']:not([aria-valuenow]), 
-            [role='slider']:not([aria-valuenow]), 
-            [role='switch']:not([aria-checked])
-        \`))
-            .map(element => ({
+        const ariaRoleRequiredAriaAttributesList = ${JSON.stringify(ariaRoleRequiredAriaAttributesList)};
+
+        return Array.from(document.querySelectorAll(
+            Object.entries(ariaRoleRequiredAriaAttributesList)
+                .map(([role, attrs]) => "[role='" + role + "']:not(" + attrs.map(attr => "[" + attr + "]").join(", ") + ")")
+                .join(", ")
+        )).map(element => {
+            const role = element.getAttribute("role");
+            const requiredAttributes = ariaRoleRequiredAriaAttributesList[role];
+            const missingAttributes = requiredAttributes.filter(attr => !element.hasAttribute(attr));
+            return {
                 outerHTML: element.outerHTML,
-                selector: getUniqueSelector(element)
-            }))
+                selector: getUniqueSelector(element),
+                role,
+                missingAttributes
+            };
+        });
     `)
 
     ariaRoleRequiredAriaAttributes.forEach(element => {
