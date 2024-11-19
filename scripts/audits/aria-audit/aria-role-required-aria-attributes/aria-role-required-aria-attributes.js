@@ -40,6 +40,6 @@ export async function ariaRoleRequiredAriaAttributes(auditResults) {
     `)
 
     ariaRoleRequiredAriaAttributes.forEach(element => {
-        auditResults.push({ ...ariaErrors[17], element: element.outerHTML, selector: element.selector });
+        auditResults.push({ ...ariaErrors[17], element: element.outerHTML, selector: element.selector, message: `The element with role '${element.role}' is missing the following required attributes: ${element.missingAttributes.join(", ")}.` });
     });
 }
