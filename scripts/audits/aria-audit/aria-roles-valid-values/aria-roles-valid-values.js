@@ -22,7 +22,7 @@ export async function ariaRoleValidValues(auditResults) {
         return Array.from(document.querySelectorAll("[role]"))
             .filter(element => !validAriaRoles.has(element.getAttribute("role").trim()))
             .map(element => ({
-                outerHTML: element.outerHTML,
+                outerHTML: element.cloneNode().outerHTML,
                 selector: getUniqueSelector(element),
             }));
     `)
