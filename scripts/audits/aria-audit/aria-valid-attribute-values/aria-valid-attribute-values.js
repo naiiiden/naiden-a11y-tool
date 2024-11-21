@@ -27,7 +27,8 @@ export async function ariaValidAttributeValues(auditResults) {
         "aria-required": ["true", "false"],
         "aria-selected": ["true", "false", "undefined"],
         "aria-sort": ["ascending", "descending", "none", "other"],
-        "aria-controls": "id"
+        "aria-controls": "id",
+        "aria-colcount": "integer"
     }
 
     // https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr-value
@@ -54,6 +55,16 @@ export async function ariaValidAttributeValues(auditResults) {
                             value: attrValue,
                             validValues: "one or more valid ID references"
                         };
+                    } else if (validValues === "integer") {
+                        const parsedValue = parseInt(attrValue, 10);
+                        if (isNaN(parsedValue) || parsedValue <= 0 || parsedValue.toString() !== attrValue) {
+                            return {
+                                attribute: attr,
+                                value: attrValue,
+                                validValues: "a positive integer (greater than zero, no decimals)"
+                            };
+                        }
+                        return null;
                     } else if (Array.isArray(validValues)) {
                         return !validValues.includes(attrValue)
                             ? { attribute: attr, value: attrValue, validValues }
