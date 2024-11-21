@@ -21,6 +21,10 @@ export async function ariaValidAttributeValues(auditResults) {
         "aria-rowindex": "integer",
         "aria-rowspan": "integer",
         "aria-setsize": "integer",
+        "aria-valuemax": "number",
+        "aria-valuemin": "number",
+        "aria-valuenow": "number",
+        "aria-valuetext": "number",
         "aria-atomic": ["true", "false"],
         "aria-busy": ["true", "false"],
         "aria-current": ["page", "step", "location", "date", "time"],
@@ -77,6 +81,16 @@ export async function ariaValidAttributeValues(auditResults) {
                                 attribute: attr,
                                 value: attrValue,
                                 validValues: "a positive integer (greater than zero, no decimals)"
+                            };
+                        }
+                        return null;
+                    } else if (validValues === "number") {
+                        const parsedValue = parseFloat(attrValue);
+                        if (isNaN(parsedValue) || parsedValue.toString() !== attrValue) {
+                            return {
+                                attribute: attr,
+                                value: attrValue,
+                                validValues: "a valid number (can be negative or decimal)"
                             };
                         }
                         return null;
