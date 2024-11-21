@@ -32,15 +32,40 @@ export async function ariaValidAttributeValues(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr-value
     const ariaAttributesValidValues = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll(\`
-        \`))
-            .map(element => ({
-                outerHTML: element.outerHTML,
-                selector: getUniqueSelector(element),
-            }));
-    `)
+        const ariaAttributesValidValuesList = ${JSON.stringify(ariaAttributesValidValuesList)};
+
+        return Array.from(document.querySelectorAll(Object.keys(ariaAttributesValidValuesList).map(attr => \`[\${attr}]\`).join(", ")))
+            .map(element => {
+                const invalidAttributes = Object.entries(ariaAttributesValidValuesList).filter(([attr, validValues]) => {
+                    const attrValue = element.getAttribute(attr);
+                    return attrValue !== null && !validValues.includes(attrValue);
+                });
+
+                if (invalidAttributes.length > 0) {
+                    return {
+                        outerHTML: element.outerHTML,
+                        selector: getUniqueSelector(element),
+                        invalidAttributes: invalidAttributes.map(([attr, validValues]) => ({
+                            attribute: attr,
+                            value: element.getAttribute(attr),
+                            validValues
+                        }))
+                    };
+                }
+                return null;
+            })
+            .filter(result => result !== null);
+    `);
 
     ariaAttributesValidValues.forEach(element => {
-        auditResults.push({ ...ariaErrors[14], element: element.outerHTML, selector: element.selector });
+        auditResults.push({
+            ...ariaErrors[14],
+            element: element.outerHTML,
+            selector: element.selector,
+            message: 
+                element.invalidAttributes.map(attrInfo => 
+                    `The attribute "${attrInfo.attribute}" has an invalid value "${attrInfo.value}". Valid values are: ${attrInfo.validValues.join(", ")}.`
+                ).join(" ")
+        });
     });
 }
