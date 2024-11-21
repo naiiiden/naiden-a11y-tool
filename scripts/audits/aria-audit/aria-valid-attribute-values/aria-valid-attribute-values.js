@@ -4,6 +4,23 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function ariaValidAttributeValues(auditResults) {
     const ariaAttributesValidValuesList = {
+        "aria-activedescendant": "id",
+        "aria-colcount": "integer",
+        "aria-colindex": "integer",
+        "aria-colspan": "integer",
+        "aria-controls": "id",
+        "aria-describedby": "id",
+        "aria-details": "id",
+        "aria-errormessage": "id",
+        "aria-flowto": "id",
+        "aria-labelledby": "id",
+        "aria-level": "integer",
+        "aria-owns": "id",
+        "aria-posinset": "integer",
+        "aria-rowcount": "integer",
+        "aria-rowindex": "integer",
+        "aria-rowspan": "integer",
+        "aria-setsize": "integer",
         "aria-atomic": ["true", "false"],
         "aria-busy": ["true", "false"],
         "aria-current": ["page", "step", "location", "date", "time"],
