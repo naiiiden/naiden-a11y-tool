@@ -26,7 +26,8 @@ export async function ariaValidAttributeValues(auditResults) {
         "aria-readonly": ["true", "false"],
         "aria-required": ["true", "false"],
         "aria-selected": ["true", "false", "undefined"],
-        "aria-sort": ["ascending", "descending", "none", "other"]
+        "aria-sort": ["ascending", "descending", "none", "other"],
+        "aria-controls": "id"
     }
 
     // https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr-value
@@ -36,20 +37,37 @@ export async function ariaValidAttributeValues(auditResults) {
 
         return Array.from(document.querySelectorAll(Object.keys(ariaAttributesValidValuesList).map(attr => \`[\${attr}]\`).join(", ")))
             .map(element => {
-                const invalidAttributes = Object.entries(ariaAttributesValidValuesList).filter(([attr, validValues]) => {
+                const invalidAttributes = Object.entries(ariaAttributesValidValuesList).map(([attr, validValues]) => {
                     const attrValue = element.getAttribute(attr);
-                    return attrValue !== null && !validValues.includes(attrValue);
-                });
-
+                    if (attrValue === null) return null;
+    
+                    if (validValues === "id") {
+                        const ids = attrValue.split(/\s+/).map(id => id.trim()).filter(id => id);
+                        console.log(ids);
+                        for (const id of ids) {
+                            if (document.getElementById(id)) {
+                                return null;
+                            }
+                        }
+                        return {
+                            attribute: attr,
+                            value: attrValue,
+                            validValues: "one or more valid ID references"
+                        };
+                    } else if (Array.isArray(validValues)) {
+                        return !validValues.includes(attrValue)
+                            ? { attribute: attr, value: attrValue, validValues }
+                            : null;
+                    }
+    
+                    return null;
+                }).filter(attrError => attrError !== null);
+    
                 if (invalidAttributes.length > 0) {
                     return {
                         outerHTML: element.outerHTML,
                         selector: getUniqueSelector(element),
-                        invalidAttributes: invalidAttributes.map(([attr, validValues]) => ({
-                            attribute: attr,
-                            value: element.getAttribute(attr),
-                            validValues
-                        }))
+                        invalidAttributes
                     };
                 }
                 return null;
@@ -64,7 +82,7 @@ export async function ariaValidAttributeValues(auditResults) {
             selector: element.selector,
             message: 
                 element.invalidAttributes.map(attrInfo => 
-                    `The attribute "${attrInfo.attribute}" has an invalid value "${attrInfo.value}". Valid values are: ${attrInfo.validValues.join(", ")}.`
+                    `The attribute "${attrInfo.attribute}" has an invalid value "${attrInfo.value}". ${Array.isArray(attrInfo.validValues) ? `Valid values are: ${attrInfo.validValues.join(", ")}.` : attrInfo.validValues}`
                 ).join(" ")
         });
     });
