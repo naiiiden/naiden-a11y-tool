@@ -27,8 +27,6 @@ export async function ariaValidAttributeValues(auditResults) {
         "aria-required": ["true", "false"],
         "aria-selected": ["true", "false", "undefined"],
         "aria-sort": ["ascending", "descending", "none", "other"],
-        "aria-controls": "id",
-        "aria-colcount": "integer"
     }
 
     // https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr-value
