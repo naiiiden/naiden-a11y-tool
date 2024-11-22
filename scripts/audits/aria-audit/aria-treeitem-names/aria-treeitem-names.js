@@ -10,10 +10,11 @@ export async function ariaTreeitemNames(auditResults) {
             .filter(element => {
                 const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = element.hasAttribute('aria-labelledby') 
-                ? document.getElementById(element.getAttribute('aria-labelledby')) 
-                : null;
+                    ? document.getElementById(element.getAttribute('aria-labelledby')) 
+                    : null;
+                const title = element.hasAttribute('title') ? element.getAttribute('title').trim() : null;
                 
-                return element.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+                return element.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
             })
             .map(element => ({
                 outerHTML: element.outerHTML,
