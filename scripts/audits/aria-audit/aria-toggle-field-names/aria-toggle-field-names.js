@@ -14,7 +14,7 @@ export async function ariaToggleFieldNames(auditResults) {
                     : null;
                 const title = element.hasAttribute('title') ? element.getAttribute('title').trim() : null;
                 
-                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+                return element.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
             })
             .map(element => ({
                 outerHTML: element.outerHTML,
