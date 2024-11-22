@@ -18,17 +18,33 @@ export async function ariaValidAttributes(auditResults) {
     const ariaValidAttributes = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll('*'))
-            .flatMap(element => 
-                Array.from(element.attributes)
+            .map(element => {
+                const invalidAttributes = Array.from(element.attributes)
                     .filter(attr => attr.name.startsWith('aria') && !${JSON.stringify(ariaValidAttributesArray)}.includes(attr.name))
                     .map(attr => ({
+                        attribute: attr.name,
+                        value: attr.value
+                    }));
+
+                if (invalidAttributes.length > 0) {
+                    return {
                         outerHTML: element.outerHTML,
-                        selector: getUniqueSelector(element)
-                    }))
-        );
+                        selector: getUniqueSelector(element),
+                        invalidAttributes
+                    };
+                }
+
+                return null;
+            })
+            .filter(result => result !== null);
     `);
 
     ariaValidAttributes.forEach(element => {
-        auditResults.push({ ...ariaErrors[15], element: element.outerHTML, selector: element.selector });
+        auditResults.push({
+            ...ariaErrors[15],
+            element: element.outerHTML,
+            selector: element.selector,
+            message: `The element contains unrecognized ARIA attributes: ${element.invalidAttributes.map(attr => `${attr.attribute}`).join(", ")}. Ensure these attributes are spelled correctly and are valid ARIA attributes.`
+        });
     });
 }
