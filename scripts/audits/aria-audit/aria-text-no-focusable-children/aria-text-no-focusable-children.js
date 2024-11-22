@@ -6,14 +6,36 @@ export async function ariaTextNoFocusableChildren(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-text
     const ariaTextNoFocusableChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll("[role='text']:has(a, :is(input, textarea, select, button):not(:disabled), [tabindex]:not([tabindex^='-']))"))
-            .map(element => ({
-                outerHTML: element.outerHTML,
-                selector: getUniqueSelector(element)
-            }));
-    `)
+
+        return Array.from(document.querySelectorAll("[role='text']"))
+            .map(element => {
+                const focusableDescendants = Array.from(element.querySelectorAll("a, input:not(:disabled), textarea:not(:disabled), select:not(:disabled), button:not(:disabled), [tabindex]:not([tabindex^='-'])"));
+
+                if (focusableDescendants.length > 0) {
+                    return {
+                        outerHTML: element.outerHTML,
+                        selector: getUniqueSelector(element),
+                        focusableDescendants: focusableDescendants.map(child => ({
+                            outerHTML: child.outerHTML,
+                            selector: getUniqueSelector(child)
+                        }))
+                    };
+                }
+
+                return null;
+            })
+            .filter(result => result !== null);
+    `);
 
     ariaTextNoFocusableChildren.forEach(element => {
-        auditResults.push({ ...ariaErrors[11], element: element.outerHTML, selector: element.selector });
+        auditResults.push({
+            ...ariaErrors[11],
+            element: element.outerHTML,
+            selector: element.selector,
+            message: 
+                `The element with role="text" contains focusable descendants, which is not allowed. Focusable descendants:${element.focusableDescendants
+                .map(descendant => `\n- Focusable element: ${descendant.outerHTML}`)
+                .join("")}`
+        });
     });
 }
