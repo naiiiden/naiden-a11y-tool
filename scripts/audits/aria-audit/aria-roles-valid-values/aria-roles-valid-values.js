@@ -12,7 +12,7 @@ export async function ariaRoleValidValues(auditResults) {
         "rowheader", "table", "button", "checkbox", "gridcell", "link", "menuitem", "menuitemcheckbox", 
         "menuitemradio", "option", "progressbar", "radio", "scrollbar", "searchbox", "slider", 
         "spinbutton", "switch", "tab", "tabpanel", "textbox", "treeitem", "combobox", "grid", "listbox", "menu", 
-        "menubar", "radiogroup", "tablist", "tree", "treegrid", "alertdialog", "dialog"
+        "menubar", "radiogroup", "tablist", "tree", "treegrid", "alertdialog", "dialog", "text"
     ];
     
     // https://dequeuniversity.com/rules/axe/4.10/aria-roles
