@@ -125,7 +125,7 @@ export async function ariaAllowedRole(auditResults) {
             wbr[role]:not([role=''], [role='none'], [role='presentation'])
         \`))
             .map(element => ({
-                outerHTML: element.outerHTML,
+                outerHTML: element.cloneNode().outerHTML,
                 selector: getUniqueSelector(element),
             }));
     `)
