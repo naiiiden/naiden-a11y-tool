@@ -35,7 +35,7 @@ export async function ariaRoleRequiredChildren(auditResults) {
 
                 if (!hasRequiredChildren) {
                     return {
-                        outerHTML: element.outerHTML,
+                        outerHTML: element.cloneNode().outerHTML,
                         selector: getUniqueSelector(element),
                         missingChildren: requiredChildren
                     };
