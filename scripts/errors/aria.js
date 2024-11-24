@@ -151,13 +151,6 @@ export const ariaErrors = [
         name: "aria attributes must be used as specified for the element's role",
         description: "aria attributes must be used as specified for the element's role",
         wcagLink: "",
-        fix: "ensure aria attributes are used correctly for the element's role"
-    },
-    {
-        id: 22,
-        name: "aria attributes must be used as specified for the element's role",
-        description: "aria attributes must be used as specified for the element's role",
-        wcagLink: "",
         fix: "ensure aria attributes are not used in a way their role describes authors should not or must not do"
     }
 ]

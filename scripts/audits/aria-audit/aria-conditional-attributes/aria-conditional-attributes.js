@@ -17,6 +17,6 @@ export async function ariaConditionalAttributes(auditResults) {
     `)
 
     ariaConditionalAttributes.forEach(element => {
-        auditResults.push({ ...ariaErrors[22], element: element.outerHTML, selector: element.selector });
+        auditResults.push({ ...ariaErrors[21], element: element.outerHTML, selector: element.selector });
     });
 }
