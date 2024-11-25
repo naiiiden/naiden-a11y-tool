@@ -132,4 +132,11 @@ export const semanticErrors = [
       wcagLink: "",
       fix: "each page must have a main landmark to provide a mechanism to bypass repeated blocks of content or interface elements",
     },
+    {
+      id: 19,
+      name: "ids must be unique",
+      description: "ids must be unique",
+      wcagLink: "",
+      fix: "ensure ids are not duplicated",
+    },
 ]
