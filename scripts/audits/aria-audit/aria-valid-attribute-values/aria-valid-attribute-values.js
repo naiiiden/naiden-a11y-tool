@@ -63,7 +63,6 @@ export async function ariaValidAttributeValues(auditResults) {
     
                     if (validValues === "id") {
                         const ids = attrValue.trim().split(' ').map(id => id.trim()).filter(id => id);
-                        console.log(ids);
                         for (const id of ids) {
                             if (document.getElementById(id)) {
                                 return null;

@@ -20,8 +20,6 @@ export async function hasBypass(auditResults) {
         }
     `)
 
-    console.log(hasBypass.skipLinks.length);
-
     if (hasBypass.skipLinks.length === 0 && hasBypass.mainElements.length === 0 && hasBypass.headings.length === 0) {
         auditResults.push(semanticErrors[18]);
     }
