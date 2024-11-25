@@ -1,5 +1,6 @@
 import { hasAsideInOtherLandmarks } from "./has-aside-in-other-landmarks/has-aside-in-other-landmarks.js";
 import { hasBannersInOtherLandmarks } from "./has-banners-in-other-landmarks/has-banners-in-other-landmarks.js";
+import { hasBypass } from "./has-bypass/has-bypass.js";
 import { hasContentOutsideLandmarks } from "./has-content-outside-landmarks/has-content-outside-landmarks.js";
 import { hasContentinfoInOtherLandmarks } from "./has-contentinfo-in-other-landmarks/has-contentinfo-in-other-landmarks.js";
 import { hasHeadingLevelOne } from "./has-heading-level-one/has-heading-level-one.js";
@@ -36,4 +37,6 @@ export async function semanticAudit(auditResults) {
     await hasLiOutsideList(auditResults);
     await hasInvalidDlElements(auditResults);
     await hasInvalidDtDdElements(auditResults);
+
+    await hasBypass(auditResults);
 }
