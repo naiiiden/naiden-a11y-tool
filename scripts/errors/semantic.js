@@ -125,4 +125,11 @@ export const semanticErrors = [
       wcagLink: "",
       fix: "Ensure that all dt and dd elements are contained dl.",
     },
+    {
+      id: 18,
+      name: "page must have means to bypass repeated blocks",
+      description: "page must have means to bypass repeated blocks",
+      wcagLink: "",
+      fix: "each page must have a main landmark to provide a mechanism to bypass repeated blocks of content or interface elements",
+    },
 ]
