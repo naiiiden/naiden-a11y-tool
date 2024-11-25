@@ -12,8 +12,9 @@ export async function hasEmptyButtons(auditResults) {
                 ? document.getElementById(button.getAttribute('aria-labelledby')) 
                 : null;
                 const title = button.hasAttribute('title') ? button.getAttribute('title').trim() : null;
-                
-                return button.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+                const tabIndex = button.hasAttribute('tabindex') ? button.getAttribute('tabindex').trim() === "-1" : null;
+
+                return (button.innerText.trim() === "" || tabIndex) && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
             })
             .map(button => ({
                 outerHTML: button.outerHTML,
