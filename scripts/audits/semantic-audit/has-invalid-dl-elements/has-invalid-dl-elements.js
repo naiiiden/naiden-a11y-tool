@@ -6,33 +6,45 @@ export async function hasInvalidDlElements(auditResults) {
     const invalidDlElements = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const dlElements = Array.from(document.querySelectorAll('dl'));
-        
+
         const isDlValid = (dl) => {
             const validChildTags = ['DT', 'DD', 'DIV', 'SCRIPT', 'TEMPLATE'];
-            const children = Array.from(dl.children);
-            
+            let isValid = true;
             let lastTag = null;
-            for (let child of children) {
-                const tagName = child.tagName;
-    
-                if (!validChildTags.includes(tagName)) {
-                    return false;
-                }
-    
-                if (tagName === 'DT') {
-                    if (lastTag === 'DT') {
+
+            const validateChildren = (children) => {
+                for (let child of children) {
+                    const tagName = child.tagName;
+
+                    if (tagName === 'DIV') {
+                        isValid = validateChildren(Array.from(child.children));
+                        if (!isValid) return false;
+                        continue;
+                    }
+
+                    if (!validChildTags.includes(tagName)) {
+                        isValid = false;
                         return false;
                     }
-                    lastTag = 'DT';
-                } else if (tagName === 'DD') {
-                    if (lastTag !== 'DT') {
-                        return false; 
+
+                    if (tagName === 'DT') {
+                        if (lastTag === 'DT') {
+                            isValid = false;
+                            return false;
+                        }
+                        lastTag = 'DT';
+                    } else if (tagName === 'DD') {
+                        if (lastTag !== 'DT') {
+                            isValid = false;
+                            return false;
+                        }
+                        lastTag = 'DD';
                     }
-                    lastTag = 'DD';
                 }
-            }
-    
-            return true;
+                return true;
+            };
+
+            return validateChildren(Array.from(dl.children));
         };
         
         return dlElements
@@ -47,7 +59,8 @@ export async function hasInvalidDlElements(auditResults) {
         auditResults.push({
             ...semanticErrors[16],
             element: element.outerHTML,
-            selector: element.selector
+            selector: element.selector,
+            message: "Invalid <dl> structure detected. Ensure <dt> and <dd> elements are properly ordered and not nested inside <div> or other containers."
         });
     });
 }
