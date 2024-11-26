@@ -7,8 +7,7 @@ export async function ariaConditionalAttributes(auditResults) {
     const ariaConditionalAttributes = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
-            input[type='checkbox'][aria-checked]:not([aria-checked='']), 
-            :not([role='treegrid']):is(tr, [role='row']):not([aria-posinset]:not([aria-posinset='']))
+            :is(tr, [role='row'])[aria-posinset]:not([aria-posinset='']):not([role='treegrid'] :is(tr, [role='row']))
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
