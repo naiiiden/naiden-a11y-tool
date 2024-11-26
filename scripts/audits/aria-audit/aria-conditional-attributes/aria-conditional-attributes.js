@@ -7,7 +7,7 @@ export async function ariaConditionalAttributes(auditResults) {
     const ariaConditionalAttributes = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
-            :is(tr, [role='row'])[aria-posinset]:not([aria-posinset='']):not([role='treegrid'] :is(tr, [role='row']))
+            :is(tr, [role='row']):is([aria-posinset]:not([aria-posinset='']), [aria-setsize]:not([aria-setsize='']), [aria-expanded]:not([aria-expanded='']), [aria-level]:not([aria-level=''])):not([role='treegrid'] :is(tr, [role='row']))
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
