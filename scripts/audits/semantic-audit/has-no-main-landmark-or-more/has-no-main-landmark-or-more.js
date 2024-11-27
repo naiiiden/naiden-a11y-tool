@@ -15,7 +15,7 @@ export async function hasNoMainLandmarkOrMore(auditResults) {
     if (mainLandmarks.length < 1) {
         auditResults.push(semanticErrors[5]);
     } else if (mainLandmarks.length > 1) {
-        mainLandmarks.forEach((landmark) => {
+        mainLandmarks.slice(1).forEach((landmark) => {
             auditResults.push({
                 ...semanticErrors[6],
                 element: landmark.outerHTML,
