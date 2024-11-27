@@ -152,5 +152,12 @@ export const ariaErrors = [
         description: "aria attributes must be used as specified for the element's role",
         wcagLink: "",
         fix: "ensure aria attributes are not used in a way their role describes authors should not or must not do"
+    },
+    {
+        id: 22,
+        name: "elements marked as presentational or none should be consistently ignored",
+        description: "elements marked as presentational or none should be consistently ignored",
+        wcagLink: "",
+        fix: "check all elements with role=none or role=presentation to ensure they do not have a global ARIA attribute and are not focusable"
     }
 ]
