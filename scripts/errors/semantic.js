@@ -16,7 +16,7 @@ export const semanticErrors = [
     {
       id: 2,
       name: "Possible heading",
-      description: "A <p> tag looks like a heading",
+      description: "A <p> element looks like a heading",
       wcagLink: "",
       fix: "Use a heading element",
     },
