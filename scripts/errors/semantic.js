@@ -139,4 +139,11 @@ export const semanticErrors = [
       wcagLink: "",
       fix: "ensure ids are not duplicated",
     },
+    {
+      id: 20,
+      name: "elements should not have tabindex greater than 0",
+      description: "elements should not have tabindex greater than 0",
+      wcagLink: "",
+      fix: "ensure tabindex values greater than 0 are never used",
+    }
 ]
