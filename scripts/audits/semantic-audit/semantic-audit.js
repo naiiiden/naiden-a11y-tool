@@ -15,6 +15,7 @@ import { hasMoreThanOneBannerLandmark } from "./has-more-than-one-banner-landmar
 import { hasMoreThanOneContentinfoLandmark } from "./has-more-than-one-contentinfo-landmark/has-more-than-one-contentinfo-landmark.js";
 import { hasNoMainLandmarkOrMore } from "./has-no-main-landmark-or-more/has-no-main-landmark-or-more.js";
 import { hasRegionsOrLandmarks } from "./has-regions-or-landmarks/has-regions-or-landmarks.js";
+import { hasTabindexGreaterThanZero } from "./has-tabindex-greater-than-zero/has-tabindex-greater-than-zero.js";
 import { hasHeadingLevels } from "./heading-levels/heading-levels.js";
 import { hasPossibleHeadings } from "./possible-headings/possible-headings.js";
 
@@ -41,4 +42,5 @@ export async function semanticAudit(auditResults) {
 
     await hasBypass(auditResults);
     await hasDuplicateIds(auditResults);
+    await hasTabindexGreaterThanZero(auditResults);
 }
