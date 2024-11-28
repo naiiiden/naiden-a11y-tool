@@ -5,9 +5,15 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function hasPresentationOrNoneRoleConflict(auditResults) {
     const hasPresentationOrNoneRoleConflict = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll(\`
-            :is([role='none'], [role='presentation']):is([tabindex]:not([tabindex^='-'], [tabindex='']))
-        \`))
+
+        const selector = [
+            ":is([role='none'], [role='presentation'])",
+                ":is([tabindex]:not([tabindex^='-']))"
+        ].join("");
+        
+        console.log(selector)
+
+        return Array.from(document.querySelectorAll(selector))
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element)
