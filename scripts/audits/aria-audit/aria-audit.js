@@ -20,7 +20,7 @@ import { ariaTreeitemNames } from "./aria-treeitem-names/aria-treeitem-names.js"
 import { ariaValidAttributes } from "./aria-valid-attributes/aria-valid-attributes.js";
 import { hasAriaDeprecatedRoles } from "./has-aria-deprecated-roles/has-aria-deprecated-roles.js";
 import { hasAriaHiddenBody } from "./has-aria-hidden-body/has-aria-hidden-body.js";
-import { hasPresentationOrNoneRoleConflict } from "./has-presentation-or-none-role-conflict/has-presentation-or-none-role-conflict.js";
+import { hasRolePresentationOrNoneConflict } from "./has-role-presentation-or-none-conflict/has-role-presentation-or-none-conflict.js";
 
 export async function ariaAudit(auditResults) {
     await hasAriaHiddenBody(auditResults);
@@ -45,5 +45,5 @@ export async function ariaAudit(auditResults) {
     await ariaRoleRequiredParent(auditResults);
     await ariaRoleProhibitedAttributes(auditResults);
     await ariaConditionalAttributes(auditResults);
-    await hasPresentationOrNoneRoleConflict(auditResults);
+    await hasRolePresentationOrNoneConflict(auditResults);
 }
