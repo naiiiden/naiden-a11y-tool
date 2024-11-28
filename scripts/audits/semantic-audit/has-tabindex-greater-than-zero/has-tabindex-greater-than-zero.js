@@ -5,7 +5,7 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function hasTabindexGreaterThanZero(auditResults) {
     const hasTabindexGreaterThanZero = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll("[tabindex]:not([tabindex='0'])"))
+        return Array.from(document.querySelectorAll("[tabindex]:not([tabindex='0'], [tabindex^='-'])"))
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element)
