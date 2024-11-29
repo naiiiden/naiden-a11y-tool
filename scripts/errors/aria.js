@@ -159,5 +159,12 @@ export const ariaErrors = [
         description: "elements marked as presentational or none should be consistently ignored",
         wcagLink: "",
         fix: "check all elements with role=none or role=presentation to ensure they do not have a global ARIA attribute and are not focusable"
+    }, 
+    {
+        id: 23,
+        name: "elements must have their visible text as part of their accessible name",
+        description: "elements must have their visible text as part of their accessible name",
+        wcagLink: "",
+        fix: "ensure interactive elements labeled through their content have their visible label as part of their accessible name"
     }
 ]
