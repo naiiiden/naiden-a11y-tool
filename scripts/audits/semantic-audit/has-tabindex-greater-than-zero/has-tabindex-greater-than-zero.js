@@ -7,15 +7,20 @@ export async function hasTabindexGreaterThanZero(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[tabindex]:not([tabindex='0'], [tabindex^='-'])"))
             .filter(element => {
-                const tabindexValue = element.getAttribute("tabindex");
-                return /^-?\\d+$/.test(tabindexValue);
+                const tabindexValue = element.getAttribute("tabindex").trim();
+
+                if (!/^\\d+(\\s.*)?$/.test(tabindexValue)) {
+                    return false;
+                }
+
+                return parseInt(tabindexValue.split(' ')[0], 10) > 0;
             })
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element)
             }));
     `) 
-    
+
     hasTabindexGreaterThanZero.forEach(element => {
         auditResults.push({
             ...semanticErrors[20],
