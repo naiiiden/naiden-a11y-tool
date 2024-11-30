@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("run-iframe-audit-btn").addEventListener("click", () => {
     runAudit([iframeAudit]).then(() => {
-      emptyErrorMessage("No form errors.");
+      emptyErrorMessage("No iframe errors.");
     });
   });
 
