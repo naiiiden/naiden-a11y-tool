@@ -6,7 +6,11 @@ export async function ariaLabelContentNameMismatch(auditResults) {
     const ariaLabelContentNameMismatch = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(":is([role='button'], [role='checkbox'], [role='gridcell'], [role='link'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='searchbox'], [role='switch'], [role='tab'], [role='treeitem'])[aria-label]:not([aria-label=''])"))
-            
+            .filter(element => {
+                const elementTextContent = element.textContent.trim().toLowerCase();
+                const elementAriaLabel = element.getAttribute("aria-label");
+                return !elementAriaLabel.includes(elementTextContent);
+            })
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element)
