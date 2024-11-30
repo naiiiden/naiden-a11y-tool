@@ -13,6 +13,6 @@ export async function hasEmptyIframeTitles(auditResults) {
     `) 
   
     iframeTitles.forEach(iframe => {
-        auditResults.push({ ...iframeErrors[2], element: iframe.outerHTML, selector: iframe.selector });
+        auditResults.push({ ...iframeErrors[0], element: iframe.outerHTML, selector: iframe.selector });
     });
 }
