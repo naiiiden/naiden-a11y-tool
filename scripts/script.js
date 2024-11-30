@@ -1,5 +1,6 @@
 import { emptyAudit } from "./audits/empty-elements-audit/empty-audit.js";
 import { formAudit } from "./audits/form-audit/form-audit.js";
+import { iframeAudit } from "./audits/iframe-audit/iframe-audit.js";
 import { rootAndMetadataAudit } from "./audits/root-and-metadata-audit/root-and-metadata-audit.js";
 import { imagesAudit } from "./audits/images-audit/images-audit.js";
 import { linksAndButtonsAudit } from "./audits/links-and-buttons-audit/links-and-buttons-audit.js";
@@ -55,6 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  document.getElementById("run-iframe-audit-btn").addEventListener("click", () => {
+    runAudit([iframeAudit]).then(() => {
+      emptyErrorMessage("No form errors.");
+    });
+  });
+
   document.getElementById("run-semantic-audit-btn").addEventListener("click", () => {
     runAudit([semanticAudit]).then(() => {
       emptyErrorMessage("No semantic errors.");
@@ -68,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
-    runAudit([rootAndMetadataAudit, linksAndButtonsAudit, emptyAudit, formAudit, semanticAudit, ariaAudit]).then(() => {
+    runAudit([rootAndMetadataAudit, linksAndButtonsAudit, emptyAudit, formAudit, iframeAudit, semanticAudit, ariaAudit]).then(() => {
       emptyErrorMessage("No errors found.");
     });
   });
