@@ -6,6 +6,10 @@ export async function hasTabindexGreaterThanZero(auditResults) {
     const hasTabindexGreaterThanZero = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("[tabindex]:not([tabindex='0'], [tabindex^='-'])"))
+            .filter(element => {
+                const tabindexValue = element.getAttribute("tabindex");
+                return /^-?\\d+$/.test(tabindexValue);
+            })
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element)
