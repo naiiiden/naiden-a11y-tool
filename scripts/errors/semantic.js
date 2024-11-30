@@ -145,5 +145,12 @@ export const semanticErrors = [
       description: "elements should not have tabindex greater than 0",
       wcagLink: "",
       fix: "ensure tabindex values greater than 0 are never used",
+    },
+    {
+      id: 21,
+      name: "accesskeys must be unique",
+      description: "accesskeys must be unique",
+      wcagLink: "",
+      fix: "ensure accesskeys are not duplicated",
     }
 ]
