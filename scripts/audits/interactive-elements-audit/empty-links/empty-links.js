@@ -1,4 +1,4 @@
-import { linksAndButtonsErrors } from "../../../errors/links-and-buttons.js";
+import { interactiveElementsErrors } from "../../../errors/interactive-elements.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
@@ -22,6 +22,6 @@ export async function hasEmptyLinks(auditResults) {
     `) 
   
     emptyLinks.forEach(link => {
-        auditResults.push({ ...linksAndButtonsErrors[0], element: link.outerHTML, selector: link.selector });
+        auditResults.push({ ...interactiveElementsErrors[0], element: link.outerHTML, selector: link.selector });
     });
 }

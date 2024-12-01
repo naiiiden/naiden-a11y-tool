@@ -1,4 +1,4 @@
-import { linksAndButtonsErrors } from "../../../errors/links-and-buttons.js";
+import { interactiveElementsErrors } from "../../../errors/interactive-elements.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
@@ -34,7 +34,7 @@ export async function hasInteractiveControlsWithInteractiveControlsAsChildren(au
       
     interactiveControlsWithInteractiveControlsAsChildren.forEach((element) => {
         auditResults.push({
-            ...linksAndButtonsErrors[3],
+            ...interactiveElementsErrors[3],
             element: element.outerHTML,
             selector: element.selector
         });

@@ -1,4 +1,4 @@
-import { linksAndButtonsErrors } from "../../../errors/links-and-buttons.js";
+import { interactiveElementsErrors } from "../../../errors/interactive-elements.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
@@ -25,7 +25,7 @@ export async function hasBrokenSkipLinks(auditResults) {
     .filter(link => (link.linkText.includes('skip') || link.linkText.includes('jump')) && (!link.targetExists || link.isHidden))
     .forEach(link => {
         auditResults.push({
-        ...linksAndButtonsErrors[2],
+        ...interactiveElementsErrors[2],
         element: link.linkOuterHTML,
         selector: link.linkSelector
         });

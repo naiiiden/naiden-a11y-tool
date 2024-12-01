@@ -1,4 +1,4 @@
-export const linksAndButtonsErrors = [
+export const interactiveElementsErrors = [
     {
         id: 0,
         name: "Empty link",

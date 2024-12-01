@@ -3,7 +3,7 @@ import { formAudit } from "./audits/form-audit/form-audit.js";
 import { iframeAudit } from "./audits/iframe-audit/iframe-audit.js";
 import { rootAndMetadataAudit } from "./audits/root-and-metadata-audit/root-and-metadata-audit.js";
 import { imagesAudit } from "./audits/images-audit/images-audit.js";
-import { linksAndButtonsAudit } from "./audits/links-and-buttons-audit/links-and-buttons-audit.js";
+import { interactiveElementsAudit } from "./audits/interactive-elements-audit/interactive-elements-audit.js";
 import { semanticAudit } from "./audits/semantic-audit/semantic-audit.js";
 import { ariaAudit } from "./audits/aria-audit/aria-audit.js";
 import { escapeHtml } from "./utils/escape-html.js";
@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.getElementById("run-link-and-button-audit-btn").addEventListener("click", () => {
-    runAudit([linksAndButtonsAudit]).then(() => {
-      emptyErrorMessage("No link and button errors.");
+  document.getElementById("run-interactive-elements-audit-btn").addEventListener("click", () => {
+    runAudit([interactiveElementsAudit]).then(() => {
+      emptyErrorMessage("No interactive elements errors.");
     });
   });
 
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
-    runAudit([rootAndMetadataAudit, linksAndButtonsAudit, emptyAudit, formAudit, iframeAudit, semanticAudit, ariaAudit]).then(() => {
+    runAudit([rootAndMetadataAudit, interactiveElementsAudit, emptyAudit, formAudit, iframeAudit, semanticAudit, ariaAudit]).then(() => {
       emptyErrorMessage("No errors found.");
     });
   });

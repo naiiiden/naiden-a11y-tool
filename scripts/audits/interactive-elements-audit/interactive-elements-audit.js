@@ -4,7 +4,7 @@ import { hasEmptyButtons } from "./empty-buttons/empty-buttons.js";
 import { hasEmptyLinks } from "./empty-links/empty-links.js";
 import { hasInteractiveControlsWithInteractiveControlsAsChildren } from "./interactive-controls-w-interactive-children/interactive-controls-w-interactive-children.js";
 
-export async function linksAndButtonsAudit(auditResults) {
+export async function interactiveElementsAudit(auditResults) {
     await hasEmptyLinks(auditResults);
     await hasEmptyButtons(auditResults);
     await hasBrokenSkipLinks(auditResults);
