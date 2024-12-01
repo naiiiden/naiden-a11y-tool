@@ -6,13 +6,12 @@ export async function hasInteractiveControlsWithInteractiveControlsAsChildren(au
     const interactiveControlsWithInteractiveControlsAsChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`:is(button, 
-                                                         a, 
+                                                         a[href], 
                                                          [role="button"], 
                                                          [role="link"], 
                                                          [contenteditable]:not([contenteditable='false']), 
-                                                         [tabindex]:not([tabindex^="-"])):has(a, 
-                                                                                              button, 
-                                                                                              a, 
+                                                         [tabindex]:not([tabindex^="-"])):has(button, 
+                                                                                              a[href], 
                                                                                               [role="button"], 
                                                                                               [role="link"], 
                                                                                               [contenteditable]:not([contenteditable='false']), 
