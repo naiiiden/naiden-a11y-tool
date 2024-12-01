@@ -10,15 +10,15 @@ export async function hasInteractiveControlsWithInteractiveControlsAsChildren(au
                                                          [role="button"], 
                                                          [role="link"], 
                                                          [contenteditable]:not([contenteditable='false']), 
-                                                         [tabindex]:not([tabindex^="-"])):has(button, 
-                                                                                              a[href], 
-                                                                                              [role="button"], 
-                                                                                              [role="link"], 
-                                                                                              [contenteditable]:not([contenteditable='false']), 
-                                                                                              [tabindex]:not([tabindex^="-"]), 
-                                                                                              input, 
-                                                                                              textarea, 
-                                                                                              select)\`))
+                                                         [tabindex]:not([tabindex^="-"], [tabindex=''])):has(button, 
+                                                                                                             a[href], 
+                                                                                                             [role="button"], 
+                                                                                                             [role="link"], 
+                                                                                                             [contenteditable]:not([contenteditable='false']), 
+                                                                                                             [tabindex]:not([tabindex^="-"], [tabindex='']), 
+                                                                                                             input, 
+                                                                                                             textarea, 
+                                                                                                             select)\`))
             .map(element => {
                 return {
                     outerHTML: element.outerHTML,
