@@ -16,9 +16,10 @@ export async function hasInteractiveControlsWithInteractiveControlsAsChildren(au
                                                                                                              [role="link"], 
                                                                                                              [contenteditable]:not([contenteditable='false']), 
                                                                                                              [tabindex]:not([tabindex^="-"], [tabindex='']), 
-                                                                                                             input, 
+                                                                                                             input:not[type='hidden'], 
                                                                                                              textarea, 
-                                                                                                             select)\`))
+                                                                                                             select, 
+                                                                                                             details)\`))
             .map(element => {
                 return {
                     outerHTML: element.outerHTML,
