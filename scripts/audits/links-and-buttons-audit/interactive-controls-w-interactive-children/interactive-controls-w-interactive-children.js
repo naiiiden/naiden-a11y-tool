@@ -5,7 +5,21 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function hasInteractiveControlsWithInteractiveControlsAsChildren(auditResults) {
     const interactiveControlsWithInteractiveControlsAsChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll(':is(button, a, [role="button"], [role="link"], [tabindex]:not([tabindex^="-"])):has(a, button, [role="button"], [role="link"], input, [tabindex]:not([tabindex^="-"]), textarea, select)'))
+        return Array.from(document.querySelectorAll(\`:is(button, 
+                                                         a, 
+                                                         [role="button"], 
+                                                         [role="link"], 
+                                                         [contenteditable]:not([contenteditable='false']), 
+                                                         [tabindex]:not([tabindex^="-"])):has(a, 
+                                                                                              button, 
+                                                                                              a, 
+                                                                                              [role="button"], 
+                                                                                              [role="link"], 
+                                                                                              [contenteditable]:not([contenteditable='false']), 
+                                                                                              [tabindex]:not([tabindex^="-"]), 
+                                                                                              input, 
+                                                                                              textarea, 
+                                                                                              select)\`))
             .map(element => {
                 return {
                     outerHTML: element.outerHTML,
