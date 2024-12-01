@@ -11,8 +11,9 @@ export async function hasEmptyHeadings(auditResults) {
                 const ariaLabelledby = heading.hasAttribute('aria-labelledby') 
                     ? document.getElementById(heading.getAttribute('aria-labelledby')) 
                     : null;
+                const title = heading.hasAttribute('title') ? heading.getAttribute('title').trim() : null;
                 
-                return heading.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+                return heading.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
             })
             .map(heading => ({
                 outerHTML: heading.outerHTML,
