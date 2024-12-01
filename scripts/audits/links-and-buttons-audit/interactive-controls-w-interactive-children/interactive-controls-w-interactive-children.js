@@ -21,7 +21,9 @@ export async function hasInteractiveControlsWithInteractiveControlsAsChildren(au
                                                                                                              select, 
                                                                                                              summary:not([tabindex^="-"], [tabindex='']), 
                                                                                                              :is(audio, video)[controls],
-                                                                                                             embed)\`))
+                                                                                                             embed,
+                                                                                                             area[href]:is(map[name]:not([name='']) area)
+                                                                                                            )\`))
             .map(element => {
                 return {
                     outerHTML: element.outerHTML,
