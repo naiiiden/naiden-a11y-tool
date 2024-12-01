@@ -19,7 +19,7 @@ export async function hasInteractiveControlsWithInteractiveControlsAsChildren(au
                                                                                                              input:not([type='hidden']), 
                                                                                                              textarea, 
                                                                                                              select, 
-                                                                                                             details, 
+                                                                                                             summary:not([tabindex^="-"], [tabindex='']), 
                                                                                                              :is(audio, video)[controls],
                                                                                                              embed)\`))
             .map(element => {
