@@ -10,6 +10,7 @@ export async function ariaTextNoFocusableChildren(auditResults) {
         return Array.from(document.querySelectorAll("[role='text']"))
             .map(element => {
                 const focusableDescendants = Array.from(element.querySelectorAll(\`
+                                                                                   :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
                                                                                    a[href], 
                                                                                    :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
                                                                                    [tabindex]:not([tabindex^='-'], [tabindex='']), 
