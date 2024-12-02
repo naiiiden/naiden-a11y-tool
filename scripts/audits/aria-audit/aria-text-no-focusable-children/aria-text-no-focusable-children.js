@@ -9,14 +9,7 @@ export async function ariaTextNoFocusableChildren(auditResults) {
 
         return Array.from(document.querySelectorAll("[role='text']"))
             .map(element => {
-                const focusableDescendants = Array.from(element.querySelectorAll(\`a, 
-                                                                                   input:not(:disabled), 
-                                                                                   textarea:not(:disabled), 
-                                                                                   select:not(:disabled), 
-                                                                                   button:not(:disabled), 
-                                                                                   [tabindex]:not([tabindex^="-"], [tabindex=''])
-                                                                                \`)
-
+                const focusableDescendants = Array.from(element.querySelectorAll("a, input:not(:disabled), textarea:not(:disabled), select:not(:disabled), button:not(:disabled), [tabindex]:not([tabindex^='-'])"));
 
                 if (focusableDescendants.length > 0) {
                     return {
@@ -34,15 +27,15 @@ export async function ariaTextNoFocusableChildren(auditResults) {
             .filter(result => result !== null);
     `);
 
-    // ariaTextNoFocusableChildren.forEach(element => {
-    //     auditResults.push({
-    //         ...ariaErrors[11],
-    //         element: element.outerHTML,
-    //         selector: element.selector,
-    //         message: 
-    //             `The element with role="text" contains focusable descendants, which is not allowed. Focusable descendants:${element.focusableDescendants
-    //             .map(descendant => `\n- Focusable element: ${descendant.outerHTML}`)
-    //             .join("")}`
-    //     });
-    // });
+    ariaTextNoFocusableChildren.forEach(element => {
+        auditResults.push({
+            ...ariaErrors[11],
+            element: element.outerHTML,
+            selector: element.selector,
+            message: 
+                `The element with role="text" contains focusable descendants, which is not allowed. Focusable descendants:${element.focusableDescendants
+                .map(descendant => `\n- Focusable element: ${descendant.outerHTML}`)
+                .join("")}`
+        });
+    });
 }
