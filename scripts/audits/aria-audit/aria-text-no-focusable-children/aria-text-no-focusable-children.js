@@ -34,15 +34,15 @@ export async function ariaTextNoFocusableChildren(auditResults) {
             .filter(result => result !== null);
     `);
 
-    ariaTextNoFocusableChildren.forEach(element => {
-        auditResults.push({
-            ...ariaErrors[11],
-            element: element.outerHTML,
-            selector: element.selector,
-            message: 
-                `The element with role="text" contains focusable descendants, which is not allowed. Focusable descendants:${element.focusableDescendants
-                .map(descendant => `\n- Focusable element: ${descendant.outerHTML}`)
-                .join("")}`
-        });
-    });
+    // ariaTextNoFocusableChildren.forEach(element => {
+    //     auditResults.push({
+    //         ...ariaErrors[11],
+    //         element: element.outerHTML,
+    //         selector: element.selector,
+    //         message: 
+    //             `The element with role="text" contains focusable descendants, which is not allowed. Focusable descendants:${element.focusableDescendants
+    //             .map(descendant => `\n- Focusable element: ${descendant.outerHTML}`)
+    //             .join("")}`
+    //     });
+    // });
 }
