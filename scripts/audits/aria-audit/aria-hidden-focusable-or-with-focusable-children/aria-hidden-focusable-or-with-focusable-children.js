@@ -6,11 +6,17 @@ export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus
     const ariaHiddenFocusableOrWithFocusableChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        const focusableElementSelector = \`a, 
-                                    [contenteditable]:not([contenteditable='false']), 
-                                    :is(input, textarea, select, button):not(:disabled), 
-                                    [tabindex]:not([tabindex^='-'])
-                                  \`;
+        const focusableElementSelector = \`
+                                          :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+                                          a[href], 
+                                          :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
+                                          [tabindex]:not([tabindex^='-'], [tabindex='']), 
+                                          [contenteditable]:not([contenteditable='false']), 
+                                          summary:not([tabindex^="-"], [tabindex='']), 
+                                          :is(audio, video)[controls],
+                                          embed,
+                                          area[href]:is(map[name]:not([name='']) area)
+                                        \`;
 
         return Array.from(document.querySelectorAll("[aria-hidden='true']"))
             .filter(element => {
