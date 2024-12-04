@@ -5,18 +5,15 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function hasInteractiveControlsWithInteractiveControlsAsChildren(auditResults) {
     const interactiveControlsWithInteractiveControlsAsChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll(\`:is(button, 
+        return Array.from(document.querySelectorAll(\`:is(button:not(:disabled), 
                                                          a[href], 
                                                          :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
                                                          [contenteditable]:not([contenteditable='false']), 
-                                                         [tabindex]:not([tabindex^="-"], [tabindex=''])):has(button, 
-                                                                                                             a[href], 
+                                                         [tabindex]:not([tabindex^="-"], [tabindex=''])):has(a[href], 
                                                                                                              :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
                                                                                                              [contenteditable]:not([contenteditable='false']), 
                                                                                                              [tabindex]:not([tabindex^="-"], [tabindex='']), 
-                                                                                                             input:not([type='hidden']), 
-                                                                                                             textarea, 
-                                                                                                             select, 
+                                                                                                             :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
                                                                                                              summary:not([tabindex^="-"], [tabindex='']), 
                                                                                                              :is(audio, video)[controls],
                                                                                                              embed,
