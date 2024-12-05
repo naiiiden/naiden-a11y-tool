@@ -20,7 +20,7 @@ export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
                                           ):not([tabindex='-1'])
                                         \`;
 
-        return Array.from(document.querySelectorAll("[aria-hidden='true']"))
+        return Array.from(document.querySelectorAll("[aria-hidden='true']:not([tabindex='-1'])"))
             .filter(element => {
                 return Array.from(element.querySelectorAll(focusableElementSelector))
                     .some(child => window.getComputedStyle(child).display !== 'none');
