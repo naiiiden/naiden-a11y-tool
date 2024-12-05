@@ -53,7 +53,17 @@ export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
     const ariaHiddenFocusable = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(\`
-            button[aria-hidden='true']
+            :is(
+                :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+                a[href], 
+                :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
+                [tabindex]:not([tabindex^='-'], [tabindex='']), 
+                [contenteditable]:not([contenteditable='false']), 
+                summary:not([tabindex^="-"], [tabindex='']), 
+                :is(audio, video)[controls],
+                embed,
+                area[href]:is(map[name]:not([name='']) area)
+            )[aria-hidden='true']:
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
