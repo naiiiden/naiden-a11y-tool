@@ -12,8 +12,9 @@ export async function hasMissingAltImages(auditResults) {
                 const ariaLabelledby = img.hasAttribute('aria-labelledby') 
                     ? document.getElementById(img.getAttribute('aria-labelledby')) 
                     : null;
+                const role = img.hasAttribute('role') ? img.getAttribute('role').trim() : null;
 
-                return alt === null && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()));
+                return alt === null && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim())) && (!role || (role !== 'none' && role !== 'presentation'));
             })
             .map(img => ({
                 outerHTML: img.outerHTML,
