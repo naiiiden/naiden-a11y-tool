@@ -7,15 +7,17 @@ export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
     const ariaHiddenWithFocusableChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const focusableElementSelector = \`
-                                          :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
-                                          a[href], 
-                                          :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
-                                          [tabindex]:not([tabindex^='-'], [tabindex='']), 
-                                          [contenteditable]:not([contenteditable='false']), 
-                                          summary:not([tabindex^="-"], [tabindex='']), 
-                                          :is(audio, video)[controls],
-                                          embed,
-                                          area[href]:is(map[name]:not([name='']) area)
+                                          :is(
+                                            :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+                                            a[href], 
+                                            :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
+                                            [tabindex]:not([tabindex^='-'], [tabindex='']), 
+                                            [contenteditable]:not([contenteditable='false']), 
+                                            summary:not([tabindex^="-"], [tabindex='']), 
+                                            :is(audio, video)[controls],
+                                            embed,
+                                            area[href]:is(map[name]:not([name='']) area)
+                                          ):not([tabindex='-1'])
                                         \`;
 
         return Array.from(document.querySelectorAll("[aria-hidden='true']"))
