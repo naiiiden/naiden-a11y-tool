@@ -9,16 +9,19 @@ export async function hasInteractiveControlsWithInteractiveControlsAsChildren(au
                                                          a[href], 
                                                          :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
                                                          [contenteditable]:not([contenteditable='false']), 
-                                                         [tabindex]:not([tabindex^="-"], [tabindex=''])):has(a[href], 
-                                                                                                             :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
-                                                                                                             [contenteditable]:not([contenteditable='false']), 
-                                                                                                             [tabindex]:not([tabindex^="-"], [tabindex='']), 
-                                                                                                             :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
-                                                                                                             summary:not([tabindex^="-"], [tabindex='']), 
-                                                                                                             :is(audio, video)[controls],
-                                                                                                             embed,
-                                                                                                             area[href]:is(map[name]:not([name='']) area)
-                                                                                                            )\`))
+                                                         [tabindex]:not([tabindex^="-"], [tabindex=''])):has(
+                                                                                                            :is(
+                                                                                                                a[href], 
+                                                                                                                :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+                                                                                                                [contenteditable]:not([contenteditable='false']), 
+                                                                                                                [tabindex]:not([tabindex^="-"], [tabindex='']), 
+                                                                                                                :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
+                                                                                                                summary:not([tabindex^="-"], [tabindex='']), 
+                                                                                                                :is(audio, video)[controls],
+                                                                                                                embed,
+                                                                                                                area[href]:is(map[name]:not([name='']) area
+                                                                                                            )):not([tabindex='-1'])
+                                                                                                        )\`))
             .map(element => {
                 return {
                     outerHTML: element.outerHTML,
