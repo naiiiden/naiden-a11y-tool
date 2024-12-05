@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
-    runAudit([rootAndMetadataAudit, interactiveElementsAudit, emptyAudit, formAudit, iframeAudit, semanticAudit, ariaAudit]).then(() => {
+    runAudit([rootAndMetadataAudit, imagesAudit, interactiveElementsAudit, emptyAudit, formAudit, iframeAudit, semanticAudit, ariaAudit]).then(() => {
       emptyErrorMessage("No errors found.");
     });
   });
