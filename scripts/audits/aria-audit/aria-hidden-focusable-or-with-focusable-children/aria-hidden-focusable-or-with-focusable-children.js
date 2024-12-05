@@ -63,7 +63,17 @@ export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
                 :is(audio, video)[controls],
                 embed,
                 area[href]:is(map[name]:not([name='']) area)
-            )[aria-hidden='true']:
+            )[aria-hidden='true']:not(:has(
+                :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+                a[href], 
+                :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
+                [tabindex]:not([tabindex^='-'], [tabindex='']), 
+                [contenteditable]:not([contenteditable='false']), 
+                summary:not([tabindex^="-"], [tabindex='']), 
+                :is(audio, video)[controls],
+                embed,
+                area[href]:is(map[name]:not([name='']) area)
+            ))
         \`))
             .map(element => ({
                 outerHTML: element.outerHTML,
