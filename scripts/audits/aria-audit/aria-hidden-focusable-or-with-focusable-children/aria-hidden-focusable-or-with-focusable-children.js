@@ -4,7 +4,7 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus
-    const ariaHiddenFocusableOrWithFocusableChildren = await inspectedWindowEval(`
+    const ariaHiddenWithFocusableChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const focusableElementSelector = \`
                                           :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
@@ -38,7 +38,7 @@ export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
             });
     `);
 
-    ariaHiddenFocusableOrWithFocusableChildren.forEach(element => {
+    ariaHiddenWithFocusableChildren.forEach(element => {
         auditResults.push({
             ...ariaErrors[8],
             element: element.outerHTML,
@@ -48,5 +48,20 @@ export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
                   .map(child => `\n- Focusable element: ${child.outerHTML}`)
                   .join("")}`
         });
+    });
+
+    const ariaHiddenFocusable = await inspectedWindowEval(`
+        const getUniqueSelector = ${getUniqueSelector.toString()};
+        return Array.from(document.querySelectorAll(\`
+            button[aria-hidden='true']
+        \`))
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            }))
+    `)
+
+    ariaHiddenFocusable.forEach(element => {
+        auditResults.push({ ...ariaErrors[8], element: element.outerHTML, selector: element.selector });
     });
 }
