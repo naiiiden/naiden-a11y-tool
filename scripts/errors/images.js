@@ -41,4 +41,11 @@ export const imageErrors = [
         wcagLink: "",
         fix: "Add alt text to all role='img' elements.",
     },
+    {
+        id: 6,
+        name: "server side img maps must not be used",
+        description: "server side img maps must not be used",
+        wcagLink: "",
+        fix: "ensure server side img maps are not used",
+    }
 ]
