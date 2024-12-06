@@ -47,5 +47,12 @@ export const imageErrors = [
         description: "server side img maps must not be used",
         wcagLink: "",
         fix: "ensure server side img maps are not used",
-    }
+    },
+    {
+        id: 7,
+        name: "svg elements with role='img' must have an alt text",
+        description: "svg elements with role='img' must have an alt text.",
+        wcagLink: "",
+        fix: "Add alt text to all svg elements with role='img'",
+    },
 ]
