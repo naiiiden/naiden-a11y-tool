@@ -152,12 +152,5 @@ export const semanticErrors = [
       description: "accesskeys must be unique",
       wcagLink: "",
       fix: "ensure accesskeys are not duplicated",
-    },
-    {
-      id: 22,
-      name: "object elements must have alt text",
-      description: "object elements must have alt text",
-      wcagLink: "",
-      fix: "Ensures every object element has alt text",
     }
 ]
