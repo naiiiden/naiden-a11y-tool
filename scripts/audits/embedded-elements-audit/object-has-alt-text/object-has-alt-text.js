@@ -12,8 +12,9 @@ export async function objectHasAltText(auditResults) {
                     ? document.getElementById(element.getAttribute('aria-labelledby')) 
                     : null;
                 const title = element.hasAttribute('title') ? element.getAttribute('title').trim() : null;
+                const role = element.hasAttribute('role') ? element.getAttribute('role').trim() : null;
                 
-                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title) && (!role || (role !== 'none' && role !== 'presentation'));
             })
             .map(element => ({
                 outerHTML: element.outerHTML,
