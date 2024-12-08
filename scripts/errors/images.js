@@ -55,4 +55,11 @@ export const imageErrors = [
         wcagLink: "",
         fix: "Add alt text to all svg elements with role='img'",
     },
+    {
+        id: 8,
+        name: "alt text of button and link images should not be repeated as text",
+        description: "alt text of button or link images should not be repeated as text",
+        wcagLink: "",
+        fix: "ensure button and link text is not repeated as img alt text",
+    },
 ]
