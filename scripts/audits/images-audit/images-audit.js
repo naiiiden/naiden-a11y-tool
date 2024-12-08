@@ -4,6 +4,7 @@ import { hasLinkedImages } from "./linked-images/linked-images.js";
 import { hasMissingAltImages } from "./missing-alt-images/missing-alt-images.js";
 import { hasRoleImg } from "./role-img/role-img.js";
 import { hasServerSideImgMaps } from "./server-side-img-maps/server-side-img-maps.js";
+import { hasSvgRoleImgMissingAlt } from "./svg-role-img-missing-alt/svg-role-img-missing-alt.js";
 
 export async function imagesAudit(auditResults) {
     await hasMissingAltImages(auditResults);
@@ -12,4 +13,5 @@ export async function imagesAudit(auditResults) {
     await hasImageMaps(auditResults);
     await hasRoleImg(auditResults);
     await hasServerSideImgMaps(auditResults);
+    await hasSvgRoleImgMissingAlt(auditResults);
 }
