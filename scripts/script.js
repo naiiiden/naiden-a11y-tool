@@ -7,6 +7,7 @@ import { interactiveElementsAudit } from "./audits/interactive-elements-audit/in
 import { semanticAudit } from "./audits/semantic-audit/semantic-audit.js";
 import { ariaAudit } from "./audits/aria-audit/aria-audit.js";
 import { escapeHtml } from "./utils/escape-html.js";
+import { cssAudit } from "./audits/css-audit/css-audit.js";
 
 const errorsIndicator = document.getElementById("errors-indicator");
 const errorsList = document.getElementById('errors-list');
@@ -74,8 +75,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  document.getElementById("run-css-audit-btn").addEventListener("click", () => {
+    runAudit([cssAudit]).then(() => {
+      emptyErrorMessage("No css errors.");
+    });
+  });
+
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
-    runAudit([rootAndMetadataAudit, imagesAudit, interactiveElementsAudit, emptyAudit, formAudit, embeddedElementsAudit, semanticAudit, ariaAudit]).then(() => {
+    runAudit([rootAndMetadataAudit, imagesAudit, interactiveElementsAudit, emptyAudit, formAudit, embeddedElementsAudit, semanticAudit, ariaAudit, cssAudit]).then(() => {
       emptyErrorMessage("No errors found.");
     });
   });
