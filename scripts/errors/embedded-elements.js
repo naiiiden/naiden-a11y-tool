@@ -12,5 +12,12 @@ export const embeddedElementsErrors = [
         description: "object elements must have alt text",
         wcagLink: "",
         fix: "Ensures every object element has alt text",
+    },
+    {
+        id: 2,
+        name: "frames must have a unique title attribute",
+        description: "frames must have a unique title attribute",
+        wcagLink: "",
+        fix: "Ensure all iframe/frame elements contain a unique title attribute",
     }
 ]
