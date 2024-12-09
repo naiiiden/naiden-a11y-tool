@@ -10,7 +10,7 @@ export async function hasVerySmallText(auditResults) {
             .filter(element => {
                 const computedStyle = window.getComputedStyle(element);
                 const fontSize = parseFloat(computedStyle.fontSize);
-                return fontSize > 0 && fontSize <= 10;
+                return fontSize > 0 && fontSize <= 10 && element.textContent.trim().length > 0;
             })
             .map(element => ({
                 outerHTML: element.outerHTML,
