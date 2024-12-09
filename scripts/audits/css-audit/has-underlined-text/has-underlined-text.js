@@ -12,7 +12,7 @@ export async function hasUnderlinedText(auditResults) {
                 const isExplicitUElement = element.tagName.toLowerCase() === 'u';
                 const isNotLink = element.tagName.toLowerCase() !== 'a';
 
-                return (isUnderlined || isExplicitUElement) && isNotLink;
+                return (isUnderlined || isExplicitUElement) && isNotLink && element.textContent.trim().length > 0;
             })
             .map(element => ({
                 outerHTML: element.outerHTML,
