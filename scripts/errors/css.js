@@ -1,4 +1,4 @@
-const cssErrors = [
+export const cssErrors = [
     {
       id: 0,
       name: "Very small text",
