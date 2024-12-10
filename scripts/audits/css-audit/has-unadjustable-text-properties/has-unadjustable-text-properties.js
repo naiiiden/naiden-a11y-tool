@@ -37,11 +37,25 @@ export async function hasUnadjustableTextProperties(auditResults) {
                     (style && new RegExp(\`\\\\b\${property}\\\\s*:\\\\s*[^;]+!important\`).test(style))
                 );
             })
-            .map(element => ({
-                outerHTML: element.outerHTML,
-                selector: getUniqueSelector(element),
-                offendingStyles: propertiesToCheck.filter(property => hasImportantProperty(element, property))
-            }));
+            .map(element => {
+                const style = element.getAttribute('style');
+                const offendingStyles = propertiesToCheck.filter(property => 
+                    hasImportantProperty(element, property) || 
+                    (style && new RegExp(\`\\\\b\${property}\\\\s*:\\\\s*[^;]+!important\`).test(style))
+                );
+
+                const inlineOffendingStyles = style 
+                    ? propertiesToCheck.filter(property => 
+                        new RegExp(\`\\\\b\${property}\\\\s*:\\\\s*[^;]+!important\`).test(style)
+                      )
+                    : [];
+
+                return {
+                    outerHTML: element.outerHTML,
+                    selector: getUniqueSelector(element),
+                    offendingStyles: [...new Set([...offendingStyles, ...inlineOffendingStyles])]
+                };
+            });
     `);
 
     hasUnadjustableTextProperties.forEach(element => {
