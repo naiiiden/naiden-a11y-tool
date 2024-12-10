@@ -34,4 +34,11 @@ export const rootAndMetadataErrors = [
       wcagLink: "",
       fix: "Remove the meta viewport 'user-scalable=no' attribute or set its value to yes or 1, but not no or 1.",
     },
+    {
+      id: 5,
+      name: "Users should be able to zoom and scale the text up to 500%",
+      description: "Users should be able to zoom and scale the text up to 500%",
+      wcagLink: "",
+      fix: "Ensures that the user-scalable=no parameter is not present in the <meta name=viewport> element and the maximum-scale parameter is not less than 500%",
+    },
 ];
