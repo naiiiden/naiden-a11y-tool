@@ -6,15 +6,15 @@ export async function hasUnadjustableTextProperties(auditResults) {
     const hasUnadjustableTextProperties = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const propertiesToCheck = ['line-height', 'letter-spacing', 'word-spacing', 'font-size'];
+        const importantRegex = (property) => new RegExp(\`\\\\b\${property}\\\\s*:\\\\s*[^;]+!important\`, 'i');
 
         function hasImportantProperty(element, property) {
-            const importantRegex = new RegExp(\`\\\\b\${property}\\\\s*:\\\\s*[^;]+!important\`, 'i');
 
             for (let i = 0; i < document.styleSheets.length; i++) {
                 try {
                     const rules = document.styleSheets[i].cssRules || document.styleSheets[i].rules;
                     for (let j = 0; j < rules.length; j++) {
-                        if (rules[j].style && importantRegex.test(rules[j].cssText)) {
+                        if (rules[j].style && importantRegex(property).test(rules[j].cssText)) {
                             const selector = rules[j].selectorText;
                             if (selector && element.matches(selector)) {
                                 return true;
@@ -34,19 +34,19 @@ export async function hasUnadjustableTextProperties(auditResults) {
                 const style = element.getAttribute('style');
                 return propertiesToCheck.some(property => 
                     hasImportantProperty(element, property) || 
-                    (style && new RegExp(\`\\\\b\${property}\\\\s*:\\\\s*[^;]+!important\`).test(style))
+                    (style && importantRegex(property).test(style))
                 );
             })
             .map(element => {
                 const style = element.getAttribute('style');
                 const offendingStyles = propertiesToCheck.filter(property => 
                     hasImportantProperty(element, property) || 
-                    (style && new RegExp(\`\\\\b\${property}\\\\s*:\\\\s*[^;]+!important\`).test(style))
+                    (style && importantRegex(property).test(style))
                 );
 
                 const inlineOffendingStyles = style 
                     ? propertiesToCheck.filter(property => 
-                        new RegExp(\`\\\\b\${property}\\\\s*:\\\\s*[^;]+!important\`).test(style)
+                        importantRegex(property).test(style)
                       )
                     : [];
 
