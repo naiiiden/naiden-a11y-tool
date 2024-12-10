@@ -7,8 +7,8 @@ export async function hasRedundantImgAlt(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(':is([role="button"], [role="link"], button, a) img'))
             .filter(element => {
-                const imgParentText = element.parentElement.textContent.trim();
-                const imgAlt = element.hasAttribute('alt') ? element.getAttribute('alt').trim() : null;
+                const imgParentText = element.parentElement.textContent.trim().toLowerCase();
+                const imgAlt = element.hasAttribute('alt') ? element.getAttribute('alt').trim().toLowerCase() : null;
 
                 return imgParentText === imgAlt;
             })
