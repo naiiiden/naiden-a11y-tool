@@ -30,9 +30,13 @@ export async function hasUnadjustableTextProperties(auditResults) {
         }
 
         return Array.from(document.querySelectorAll('*'))
-            .filter(element => 
-                propertiesToCheck.some(property => hasImportantProperty(element, property))
-            )
+            .filter(element => {
+                const style = element.getAttribute('style');
+                return propertiesToCheck.some(property => 
+                    hasImportantProperty(element, property) || 
+                    (style && new RegExp(\`\\\\b\${property}\\\\s*:\\\\s*[^;]+!important\`).test(style))
+                );
+            })
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element),
@@ -45,6 +49,7 @@ export async function hasUnadjustableTextProperties(auditResults) {
             ...cssErrors[2],
             element: element.outerHTML,
             selector: element.selector,
+            offendingStyles: element.offendingStyles,
         });
     });
 }
