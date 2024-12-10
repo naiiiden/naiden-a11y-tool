@@ -47,5 +47,12 @@ export const formErrors = [
       description: "Image input must have alt text",
       wcagLink: "",
       fix: "Add alt text to image inputs",
+    },
+    {
+      id: 7,
+      name: "Form elements should have a visible label",
+      description: "Form elements should have a visible label",
+      wcagLink: "",
+      fix: "Ensures that every <input> that requires a label is has a label other than the title or aria-describedby attributes",
     }
 ]
