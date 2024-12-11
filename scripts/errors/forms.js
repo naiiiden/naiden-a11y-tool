@@ -53,6 +53,6 @@ export const formErrors = [
       name: "Form elements should have a visible label",
       description: "Form elements should have a visible label",
       wcagLink: "",
-      fix: "Ensures that every <input> that requires a label is has a label other than the title or aria-describedby attributes",
+      fix: "Ensures that every input that requires a label is has a label other than the title or aria-describedby attributes",
     }
 ]
