@@ -14,6 +14,7 @@ export async function hasFormControlLabels(auditResults) {
                 const ariaLabelledby = element.hasAttribute('aria-labelledby') 
                     ? document.getElementById(element.getAttribute('aria-labelledby')) 
                     : null;
+                const title = element.hasAttribute('title') ? element.getAttribute('title').trim() : null;
                 const hasAriaLabel = ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim());
 
                 return { 
@@ -21,13 +22,14 @@ export async function hasFormControlLabels(auditResults) {
                     labelCount: labelCount,
                     hasWrappingLabelWithText: hasWrappingLabelWithText,
                     hasAriaLabel: !!hasAriaLabel,
-                    selector: getUniqueSelector(element)
+                    selector: getUniqueSelector(element),
+                    title: title
                 };
           });
     `);
     
     formControlLabels.forEach((element) => {
-        if (element.labelCount === 0 && !element.hasWrappingLabelWithText && !element.hasAriaLabel) {
+        if (element.labelCount === 0 && !element.title && !element.hasWrappingLabelWithText && !element.hasAriaLabel) {
             auditResults.push({ ...formErrors[1], element: element.outerHTML, selector: element.selector });
         } else if (element.labelCount > 1) {
             auditResults.push({ ...formErrors[2], element: element.outerHTML, selector: element.selector });
