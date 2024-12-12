@@ -6,7 +6,7 @@ export async function hasVisibleFormControlLabels(auditResults) {
     const hasVisibleFormControlLabels = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         
-        return Array.from(document.querySelectorAll('input, select, textarea, input[id]:not(:is([type="submit"], [type="button"], [type="reset"], [type="hidden"])), select[id], textarea[id]'))
+        return Array.from(document.querySelectorAll(':is(input, select, textarea, input[id]:not(:is([type="submit"], [type="button"], [type="reset"], [type="hidden"])), select[id], textarea[id])[title]:not([title=""])'))
             .filter(element => {
                 const labelCount = document.querySelectorAll('label[for="' + element.id + '"]').length;
                 const wrappingLabel = element.closest('label');
