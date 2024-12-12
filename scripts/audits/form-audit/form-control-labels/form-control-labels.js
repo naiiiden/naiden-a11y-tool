@@ -6,7 +6,7 @@ export async function hasFormControlLabels(auditResults) {
     const formControlLabels = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll('input, select, textarea, input[id]:not(:is([type="submit"], [type="button"], [type="reset"], [type="hidden"])), select[id], textarea[id]'))
-            .map(element => {
+            .filter(element => {
                 const labelCount = document.querySelectorAll('label[for="' + element.id + '"]').length;
                 const wrappingLabel = element.closest('label');
                 const hasWrappingLabelWithText = wrappingLabel && wrappingLabel.innerText.trim().length > 0;
@@ -17,19 +17,20 @@ export async function hasFormControlLabels(auditResults) {
                 const title = element.hasAttribute('title') ? element.getAttribute('title').trim() : null;
                 const hasAriaLabel = ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim());
 
-                return { 
-                    outerHTML: element.outerHTML,
-                    labelCount: labelCount,
-                    hasWrappingLabelWithText: hasWrappingLabelWithText,
-                    hasAriaLabel: !!hasAriaLabel,
-                    selector: getUniqueSelector(element),
-                    title: title
-                };
-          });
+                if ((labelCount === 0 && !title && !hasWrappingLabelWithText && !hasAriaLabel) || labelCount > 1) {
+                    return true;
+                }
+                return false;
+            })
+            .map(element => ({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element),
+                labelCount: document.querySelectorAll('label[for="' + element.id + '"]').length
+            }));
     `);
     
     formControlLabels.forEach((element) => {
-        if (element.labelCount === 0 && !element.title && !element.hasWrappingLabelWithText && !element.hasAriaLabel) {
+        if (element.labelCount === 0) {
             auditResults.push({ ...formErrors[1], element: element.outerHTML, selector: element.selector });
         } else if (element.labelCount > 1) {
             auditResults.push({ ...formErrors[2], element: element.outerHTML, selector: element.selector });
