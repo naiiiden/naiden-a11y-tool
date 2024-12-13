@@ -26,5 +26,12 @@ export const embeddedElementsErrors = [
         description: "video or audio elements must not autoplay",
         wcagLink: "",
         fix: "Ensure all video or audio elements do not autoplay",
+    },
+    {
+        id: 4,
+        name: "video elements must have captions",
+        description: "video elements must have captions",
+        wcagLink: "",
+        fix: "ensure video elements have captions",
     }
 ]
