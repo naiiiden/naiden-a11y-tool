@@ -6,6 +6,9 @@ export async function videOrAudioHasAutoplay(auditResults) {
     const videOrAudioHasAutoplay = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(":is(audio, video)[autoplay]:not([controls])"))
+            .filter(element => {
+                return (element.duration || 0) > 3;    
+            })
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element)
