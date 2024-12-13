@@ -19,5 +19,12 @@ export const embeddedElementsErrors = [
         description: "frames must have a unique title attribute",
         wcagLink: "",
         fix: "Ensure all iframe/frame elements contain a unique title attribute",
+    },
+    {
+        id: 3,
+        name: "video or audio elements must not autoplay",
+        description: "video or audio elements must not autoplay",
+        wcagLink: "",
+        fix: "Ensure all video or audio elements do not autoplay",
     }
 ]
