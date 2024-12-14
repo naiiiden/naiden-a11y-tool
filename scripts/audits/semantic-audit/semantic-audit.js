@@ -18,6 +18,7 @@ import { hasNoMainLandmarkOrMore } from "./has-no-main-landmark-or-more/has-no-m
 import { hasRegionsOrLandmarks } from "./has-regions-or-landmarks/has-regions-or-landmarks.js";
 import { hasTabindexGreaterThanZero } from "./has-tabindex-greater-than-zero/has-tabindex-greater-than-zero.js";
 import { hasHeadingLevels } from "./heading-levels/heading-levels.js";
+import { hasUniqueLandmarks } from "./landmarks-unique/landmarks-unique.js";
 import { hasPossibleHeadings } from "./possible-headings/possible-headings.js";
 
 export async function semanticAudit(auditResults) {
@@ -35,6 +36,7 @@ export async function semanticAudit(auditResults) {
     await hasContentinfoInOtherLandmarks(auditResults);
     await hasMainInOtherLandmarks(auditResults);
     await hasContentOutsideLandmarks(auditResults);
+    await hasUniqueLandmarks(auditResults);
     
     await hasInvalidListContent(auditResults);
     await hasLiOutsideList(auditResults);
