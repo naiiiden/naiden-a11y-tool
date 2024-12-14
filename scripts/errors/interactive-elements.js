@@ -33,5 +33,12 @@ export const interactiveElementsErrors = [
         description: "Link to another location within the page is present but doesn't have a corresponding target",
         wcagLink: "",
         fix: "Ensure the target for the link exists or remove the link"
+    },
+    {
+        id: 5,
+        name: "Scrollable region must have keyboard access",
+        description: "Scrollable region must have keyboard access",
+        wcagLink: "",
+        fix: "Ensure that scrollable region has keyboard access"
     }
 ]
