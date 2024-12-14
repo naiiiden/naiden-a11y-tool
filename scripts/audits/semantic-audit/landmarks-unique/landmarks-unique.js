@@ -37,7 +37,7 @@ export async function hasUniqueLandmarks(auditResults) {
     
     hasUniqueLandmarks.forEach(element => {
         auditResults.push({
-            ...semanticErrors[22],
+            ...semanticErrors[21],
             element: element.outerHTML,
             selector: element.selector
         });

@@ -148,13 +148,6 @@ export const semanticErrors = [
     },
     {
       id: 21,
-      name: "accesskeys must be unique",
-      description: "accesskeys must be unique",
-      wcagLink: "",
-      fix: "ensure accesskeys are not duplicated",
-    },
-    {
-      id: 22,
       name: "landmarks should be unique",
       description: "landmarks should be unique",
       wcagLink: "",
