@@ -3,7 +3,6 @@ import { hasBannersInOtherLandmarks } from "./has-banners-in-other-landmarks/has
 import { hasBypass } from "./has-bypass/has-bypass.js";
 import { hasContentOutsideLandmarks } from "./has-content-outside-landmarks/has-content-outside-landmarks.js";
 import { hasContentinfoInOtherLandmarks } from "./has-contentinfo-in-other-landmarks/has-contentinfo-in-other-landmarks.js";
-import { hasDuplicateAccesskeys } from "./has-duplicate-accesskey/has-duplicate-accesskey.js";
 import { hasDuplicateIds } from "./has-duplicate-ids/has-duplicate-ids.js";
 import { hasHeadingLevelOne } from "./has-heading-level-one/has-heading-level-one.js";
 import { hasHeadings } from "./has-headings/has-headings.js";
@@ -46,5 +45,4 @@ export async function semanticAudit(auditResults) {
     await hasBypass(auditResults);
     await hasDuplicateIds(auditResults);
     await hasTabindexGreaterThanZero(auditResults);
-    await hasDuplicateAccesskeys(auditResults);
 }

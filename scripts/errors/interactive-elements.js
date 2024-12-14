@@ -40,5 +40,12 @@ export const interactiveElementsErrors = [
         description: "Scrollable region must have keyboard access",
         wcagLink: "",
         fix: "Ensure that scrollable region has keyboard access"
-    }
+    },
+    {
+        id: 6,
+        name: "accesskeys must be unique",
+        description: "accesskeys must be unique",
+        wcagLink: "",
+        fix: "ensure accesskeys are not duplicated",
+      },
 ]

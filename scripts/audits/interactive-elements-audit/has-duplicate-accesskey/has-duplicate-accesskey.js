@@ -1,4 +1,4 @@
-import { semanticErrors } from "../../../errors/semantic.js";
+import { interactiveElementsErrors } from "../../../errors/interactive-elements.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
@@ -29,7 +29,7 @@ export async function hasDuplicateAccesskeys(auditResults) {
             group.map(d => `- Selector: ${d.selector}`).join("\n");
 
         auditResults.push({
-            ...semanticErrors[21],
+            ...interactiveElementsErrors[6],
             message,
             elements: group.map(d => d.outerHTML),
         });
