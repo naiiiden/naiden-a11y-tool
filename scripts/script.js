@@ -8,6 +8,7 @@ import { semanticAudit } from "./audits/semantic-audit/semantic-audit.js";
 import { ariaAudit } from "./audits/aria-audit/aria-audit.js";
 import { escapeHtml } from "./utils/escape-html.js";
 import { cssAudit } from "./audits/css-audit/css-audit.js";
+import { deprecatedElementsAudit } from "./audits/deprecated-elements-audit/deprecated-elements-audit.js";
 
 const errorsIndicator = document.getElementById("errors-indicator");
 const errorsList = document.getElementById('errors-list');
@@ -81,8 +82,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  document.getElementById("run-deprecated-elements-audit-btn").addEventListener("click", () => {
+    runAudit([deprecatedElementsAudit]).then(() => {
+      emptyErrorMessage("No deprecated elements errors.");
+    });
+  });
+
   document.getElementById("run-full-audit-btn").addEventListener("click", () => {
-    runAudit([rootAndMetadataAudit, imagesAudit, interactiveElementsAudit, emptyAudit, formAudit, embeddedElementsAudit, semanticAudit, ariaAudit, cssAudit]).then(() => {
+    runAudit([rootAndMetadataAudit, imagesAudit, interactiveElementsAudit, emptyAudit, formAudit, embeddedElementsAudit, semanticAudit, ariaAudit, cssAudit, deprecatedElementsAudit]).then(() => {
       emptyErrorMessage("No errors found.");
     });
   });
