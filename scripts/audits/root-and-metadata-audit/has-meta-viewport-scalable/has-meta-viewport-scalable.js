@@ -15,7 +15,7 @@ export async function hasMetaViewportUserScalableNoOrZero(auditResults) {
         }
     `)
 
-    if (metaViewport.hasContentAttr && (metaViewport.hasContentAttr.includes('user-scalable=no') || metaViewport.hasContentAttr.includes('user-scalable=0'))) {
+    if (metaViewport && metaViewport.hasContentAttr && (metaViewport.hasContentAttr.includes('user-scalable=no') || metaViewport.hasContentAttr.includes('user-scalable=0'))) {
         auditResults.push({... rootAndMetadataErrors[4], element: metaViewport.outerHTML, selector: metaViewport.selector });
     }
 }
