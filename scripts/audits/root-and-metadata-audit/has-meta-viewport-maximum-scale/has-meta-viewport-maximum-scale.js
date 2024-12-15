@@ -6,31 +6,20 @@ export async function hasMetaViewportMaximumScale(auditResults) {
     const metaViewport = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const metaViewport = document.querySelector('meta[name="viewport"]');
-        if (!metaViewport) return null;
-
-        const contentAttr = metaViewport.getAttribute('content');
-        let maximumScale = null;
-
-        if (contentAttr) {
-            const maxScaleMatch = contentAttr.match(/maximum-scale=([\d.]+)/);
-            if (maxScaleMatch) {
-                maximumScale = parseFloat(maxScaleMatch[1]);
-            }
-        }
+        const hasContentAttr = metaViewport.getAttribute('content');
 
         return {
-            contentAttr,
-            maximumScale,
+            hasContentAttr,
             outerHTML: metaViewport.outerHTML,
             selector: getUniqueSelector(metaViewport)
         };
     `);
 
-    if (metaViewport) {
-        if (metaViewport.maximumScale !== null && metaViewport.maximumScale < 5.0) {
-            auditResults.push({
-                ...rootAndMetadataErrors[5], element: metaViewport.outerHTML, selector: metaViewport.selector
-            });
+    if (metaViewport && metaViewport.hasContentAttr) {
+        const maxScaleMatch = metaViewport.hasContentAttr.match(/maximum-scale\s*=\s*([\d.]+)/i);
+
+        if (maxScaleMatch && parseFloat(maxScaleMatch[1]) < 5.0) {
+            auditResults.push({ ...rootAndMetadataErrors[5], element: metaViewport.outerHTML, selector: metaViewport.selector });
         }
     }
 }
