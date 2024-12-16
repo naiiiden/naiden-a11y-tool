@@ -48,4 +48,11 @@ export const interactiveElementsErrors = [
         wcagLink: "",
         fix: "ensure accesskeys are not duplicated",
       },
+      {
+        id: 7,
+        name: "all touch targets must be 24px large, or leave sufficient space",
+        description: "all touch targets must be 24px large, or leave sufficient space",
+        wcagLink: "",
+        fix: "touch targets must be at least 24 by 24 CSS pixels in size",
+      },
 ]
