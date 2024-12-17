@@ -4,6 +4,7 @@ import { hasEmptyButtons } from "./empty-buttons/empty-buttons.js";
 import { hasEmptyLinks } from "./empty-links/empty-links.js";
 import { hasDuplicateAccesskeys } from "./has-duplicate-accesskey/has-duplicate-accesskey.js";
 import { hasInteractiveControlsWithInteractiveControlsAsChildren } from "./interactive-controls-w-interactive-children/interactive-controls-w-interactive-children.js";
+import { touchTargetSize } from "./touch-target-size/touch-target-size.js";
 
 export async function interactiveElementsAudit(auditResults) {
     await hasEmptyLinks(auditResults);
@@ -12,4 +13,5 @@ export async function interactiveElementsAudit(auditResults) {
     await hasInteractiveControlsWithInteractiveControlsAsChildren(auditResults);
     await hasBrokenSamePageLinks(auditResults);
     await hasDuplicateAccesskeys(auditResults);
+    await touchTargetSize(auditResults);
 }
