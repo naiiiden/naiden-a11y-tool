@@ -6,7 +6,11 @@ export async function touchTargetSize(auditResults) {
     const touchTargetSize = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const MIN_TOUCH_SIZE = 24;
-        const targets = Array.from(document.querySelectorAll('button, a, input, [role="button"], [role="link"]'));
+        const targets = Array.from(document.querySelectorAll(\`
+            a[href],  
+            :is([role="button"], [role="link"])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+            :is(input:not([type='hidden']), textarea, select, button):not(:disabled)
+        \`));
         
         const results = [];
 
