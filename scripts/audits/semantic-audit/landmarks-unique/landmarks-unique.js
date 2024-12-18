@@ -6,7 +6,7 @@ export async function hasUniqueLandmarks(auditResults) {
     const hasUniqueLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const seenLandmarks = new Map();
-        return Array.from(document.querySelectorAll('header, footer, main, nav, section, form, [role="banner"], [role="main"], [role="complementary"], [role="contentinfo"], [role="region"], [role="search"], [role="navigation"], [role="form"]'))
+        return Array.from(document.querySelectorAll('header, footer, main, nav, article, aside section, form, [role="banner"], [role="main"], [role="complementary"], [role="contentinfo"], [role="region"], [role="search"], [role="article"], [role="navigation"], [role="form"]'))
             .filter(element => {
                 const role = element.getAttribute("role") || element.tagName.toLowerCase();
 
