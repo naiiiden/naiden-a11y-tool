@@ -54,5 +54,12 @@ export const formErrors = [
       description: "Form elements should have a visible label",
       wcagLink: "",
       fix: "Ensures that every input that requires a label is has a label other than the title or aria-describedby attributes",
-    }
+    },
+    {
+      id: 8,
+      name: "autocomplete attribute must be used correctly",
+      description: "autocomplete attribute must be used correctly",
+      wcagLink: "",
+      fix: "Confirm that the autocomplete attribute is set with the appropriate value",
+    },
 ]
