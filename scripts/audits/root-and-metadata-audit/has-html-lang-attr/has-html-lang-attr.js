@@ -2,6 +2,7 @@ import { rootAndMetadataErrors } from "../../../errors/root-and-metadata.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
+// https://www.w3.org/WAI/WCAG22/Techniques/html/H57
 export async function hasHtmlLangAttr(auditResults) {
     const rootDocument = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
@@ -16,6 +17,10 @@ export async function hasHtmlLangAttr(auditResults) {
     `)
     
     if (!rootDocument.hasLangAttr) {
-        auditResults.push({ ...rootAndMetadataErrors[0], element: rootDocument.outerHTML, selector: rootDocument.selector });
+        auditResults.push({ 
+            ...rootAndMetadataErrors[0], 
+            element: rootDocument.outerHTML, 
+            selector: rootDocument.selector 
+        });
     }
 }
