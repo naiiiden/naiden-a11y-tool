@@ -130,7 +130,14 @@ function displayAuditResults(auditResults) {
       </a>
       <br>
       ${error.selector ? `<p>Location: ${error.selector}</p>` : ``}
-      ${error.selector ? `<button id="highlight-btn-${index}">Highlight</button>` : ``}
+      ${
+        error.selector 
+          ? `<button id="highlight-btn-${index}">
+              <img src="assets/highlight.svg" alt=""/>
+              Highlight
+            </button>` 
+          : ``
+      }
       ${error.element ? `<pre><code>${escapeHtml(error.element)}</code></pre>` : ``}
       <p>How to fix: ${error.fix}</p>
     `;
