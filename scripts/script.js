@@ -129,10 +129,10 @@ function displayAuditResults(auditResults) {
         <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
       </a>
       <br>
-      <p>Fix: ${error.fix}</p>
       ${error.selector ? `<p>Location: ${error.selector}</p>` : ``}
-      ${error.element ? `<pre><code>${escapeHtml(error.element)}</code></pre>` : ``}
       ${error.selector ? `<button id="highlight-btn-${index}">Highlight</button>` : ``}
+      ${error.element ? `<pre><code>${escapeHtml(error.element)}</code></pre>` : ``}
+      <p>How to fix: ${error.fix}</p>
     `;
 
     if (error.selector) {
