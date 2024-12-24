@@ -124,7 +124,11 @@ function displayAuditResults(auditResults) {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
       <strong>${escapeHtml(error.name)}</strong> - ${error.description}<br>
-      <a href="${error.wcagLink}" target="_blank">Learn more</a><br>
+      <a href="${error.wcagLink}" target="_blank">
+        Learn more
+        <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
+      </a>
+      <br>
       <p>Fix: ${error.fix}</p>
       ${error.element ? `<pre><code>${escapeHtml(error.element)}</code></pre>` : ``}
       ${error.selector ? `<button id="highlight-btn-${index}">Highlight</button>` : ``}
