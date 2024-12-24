@@ -12,7 +12,8 @@ export async function hasAutocompleteValidValues(auditResults) {
         "cc-exp-month", "cc-exp-year", "cc-csc", "cc-type", "transaction-currency", "transaction-amount",
         "language", "bday", "bday-day", "bday-month", "bday-year", "sex", "tel", "tel-country-code",
         "tel-national", "tel-area-code", "tel-local", "tel-local-prefix", "tel-local-suffix",
-        "tel-extension", "impp", "url", "photo"
+        "tel-extension", "impp", "url", "photo", "billing", "fax", "home", "mobile", "off", "on", "pager",
+        "shipping", "work"
     ];
 
     const hasAutocompleteValidValues = await inspectedWindowEval(`
