@@ -1,4 +1,4 @@
-import { formElementsErrors } from "../../../errors/forms.js";
+import { formErrors } from "../../../errors/forms.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
@@ -16,34 +16,17 @@ export async function hasAutocompleteValidValues(auditResults) {
     ];
 
     const hasAutocompleteValidValues = await inspectedWindowEval(`
+        const validAutocompleteValues = new Set(${JSON.stringify(validAutocompleteValues)});
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        const inputs = Array.from(document.querySelectorAll('input, textarea, select'));
-        return inputs.map(input => ({
-            outerHTML: input.outerHTML,
-            selector: getUniqueSelector(input),
-            autocomplete: input.getAttribute('autocomplete'),
-            type: input.getAttribute('type'),
-            name: input.getAttribute('name'),
-        }));
+        return Array.from(document.querySelectorAll("[autocomplete]"))
+            .filter(element => !validAutocompleteValues.has(element.getAttribute("autocomplete").trim()))
+            .map(element => ({
+                outerHTML: element.cloneNode().outerHTML,
+                selector: getUniqueSelector(element),
+            }));
     `);
 
-    hasAutocompleteValidValues.forEach(input => {
-        const { autocomplete, outerHTML, selector } = input;
-        
-        const isPersonalDataField = validAutocompleteValues.some(value => 
-            (autocomplete || "").startsWith(value)
-        );
-
-        if (!autocomplete || !isPersonalDataField) {
-            auditResults.push({
-                ...formElementsErrors[8],
-                element: outerHTML,
-                selector,
-                issues: {
-                    missingAutocomplete: !autocomplete,
-                    invalidAutocomplete: autocomplete && !validAutocompleteValues.includes(autocomplete),
-                },
-            });
-        }
+    hasAutocompleteValidValues.forEach(element => {
+        auditResults.push({ ...formErrors[8], element: element.outerHTML, selector: element.selector });
     });
 }
