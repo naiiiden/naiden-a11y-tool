@@ -133,8 +133,8 @@ function displayAuditResults(auditResults) {
       ${
         error.selector 
           ? `<button id="highlight-btn-${index}">
-              <img src="assets/highlight.svg" alt=""/>
               Highlight
+              <img src="assets/highlight.svg" alt=""/>
             </button>` 
           : ``
       }
