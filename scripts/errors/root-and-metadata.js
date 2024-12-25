@@ -8,10 +8,10 @@ export const rootAndMetadataErrors = [
     },
     {
       id: 1,
-      name: "Page lang attribute invalid",
-      description: "The page's language attribute value is invalid",
-      wcagLink: "",
-      fix: "Add a valid lang attribute value",
+      name: "<html> element has an invalid \"lang\" attribute value",
+      description: "The page's \"lang\" attribute value is invalid",
+      wcagLink: "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+      fix: "Ensure that the <html> element has a valid \"lang\" attribute value",
     },
     {
       id: 2,
