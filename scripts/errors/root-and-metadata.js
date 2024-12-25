@@ -15,10 +15,10 @@ export const rootAndMetadataErrors = [
     },
     {
       id: 2,
-      name: "Page title missing",
-      description: "The page is missing a title or the title is empty.",
-      wcagLink: "",
-      fix: "Add a descriptive title to the page.",
+      name: "Document <title> element is missing or it's empty",
+      description: "The document is missing a <title> element or it has one but it's empty",
+      wcagLink: "https://www.w3.org/WAI/WCAG22/Techniques/html/H25",
+      fix: "Add a non-empty <title> to the page",
     },
     {
       id: 3,
