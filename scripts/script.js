@@ -123,7 +123,7 @@ function displayAuditResults(auditResults) {
   auditResults.forEach((error, index) => {
     const listItem = document.createElement('li');
     listItem.innerHTML = `
-      <strong>${escapeHtml(error.name)}</strong> - ${error.description}<br>
+      <strong>${escapeHtml(error.name)}</strong> - ${escapeHtml(error.description)}<br>
       <a href="${error.wcagLink}" target="_blank">
         Learn more
         <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
