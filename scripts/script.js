@@ -122,12 +122,21 @@ function displayAuditResults(auditResults) {
 
   auditResults.forEach((error, index) => {
     const listItem = document.createElement('li');
+
+    let wcagLinks = '';
+    if (error.wcagLinks) {
+      for (const wcagLink of error.wcagLinks) {
+        wcagLinks += `
+          <a href="${wcagLink.url}" target="_blank">
+            ${wcagLink.name} <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
+          </a>
+        `;
+      }
+    }
+
     listItem.innerHTML = `
       <strong>${escapeHtml(error.name)}</strong> - ${escapeHtml(error.description)}<br>
-      <a href="${error.wcagLink}" target="_blank">
-        Learn more
-        <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
-      </a>
+      ${wcagLinks}
       <br>
       ${error.selector ? `<p>Location: ${error.selector}</p>` : ``}
       ${
