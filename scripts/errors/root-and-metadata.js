@@ -3,7 +3,20 @@ export const rootAndMetadataErrors = [
       id: 0,
       name: "<html> element is missing a\"lang\" attribute",
       description: "The page is missing a \"lang\" attribute",
-      wcagLink: "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+      wcagLinks: [
+        {
+          "name": "Using the language attribute on the HTML element",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+        }, 
+        {
+          "name": "HTML page has lang attribute",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/b5c3f8/",
+        },
+        {
+          "name": "HTML page lang attribute has valid language tag",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/bf051a/",
+        }
+      ],
       fix: "Ensure that the <html> element has a \"lang\" attribute",
     },
     {
