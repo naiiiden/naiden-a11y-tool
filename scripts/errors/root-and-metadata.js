@@ -5,15 +5,15 @@ export const rootAndMetadataErrors = [
       description: "The page is missing a \"lang\" attribute",
       wcagLinks: [
         {
-          "name": "Using the language attribute on the HTML element",
+          "name": "Using the \"lang\" attribute on the <html> element",
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
         }, 
         {
-          "name": "HTML page has lang attribute",
+          "name": "<html> page has \"lang\" attribute",
           "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/b5c3f8/",
         },
         {
-          "name": "HTML page lang attribute has valid language tag",
+          "name": "<html> page \"lang\" attribute has valid language tag",
           "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/bf051a/",
         }
       ],
