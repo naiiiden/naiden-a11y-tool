@@ -3,7 +3,24 @@ export const formErrors = [
       id: 0,
       name: "Empty form label",
       description: "Form label is empty",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using label elements to associate text labels with form controls",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H44"
+        },
+        {
+          "name": "Using the title attribute to identify form controls when the label element cannot be used",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H65"
+        },
+        {
+          "name": "Using aria-label to provide an invisible label where a visible label cannot be used",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA14"
+        },
+        {
+          "name": "Using aria-labelledby to provide a name for user interface controls",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA16"
+        },
+      ],
       fix: "Add text to the empty form label",
     },
     {
