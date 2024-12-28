@@ -92,7 +92,16 @@ export const rootAndMetadataErrors = [
       id: 5,
       name: "Users should be able to zoom and scale the text up to 500%",
       description: "Users should be able to zoom and scale the text up to 500%",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Resize Text (Level AA)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html"
+        },
+        {
+          "name": "Meta viewport allows for zoom",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/b4f0c3/"
+        }
+      ],
       fix: "Ensures that the user-scalable=no parameter is not present in the <meta name=viewport> element and the maximum-scale parameter is not less than 500%",
     },
 ];
