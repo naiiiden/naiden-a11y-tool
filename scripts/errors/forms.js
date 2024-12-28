@@ -121,7 +121,12 @@ export const formErrors = [
       id: 8,
       name: "autocomplete attribute must be used correctly",
       description: "autocomplete attribute must be used correctly",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Identify Input Purpose (Level AA)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose"
+        }
+      ],
       fix: "Confirm that the autocomplete attribute is set with the appropriate value",
     },
 ]
