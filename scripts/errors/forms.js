@@ -27,7 +27,24 @@ export const formErrors = [
       id: 1,
       name: "Form control missing label",
       description: "Form control doesn't have a label",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using label elements to associate text labels with form controls",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H44"
+        },
+        {
+          "name": "Using the title attribute to identify form controls when the label element cannot be used",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H65"
+        },
+        {
+          "name": "Using aria-label to provide an invisible label where a visible label cannot be used",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA14"
+        },
+        {
+          "name": "Using aria-labelledby to provide a name for user interface controls",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA16"
+        },
+      ],      
       fix: "Add a label for the form control",
     },
     {
