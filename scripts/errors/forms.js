@@ -89,7 +89,12 @@ export const formErrors = [
       id: 6,
       name: "Image input must have alt text",
       description: "Image input must have alt text",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using alt attributes on images used as submit buttons",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H36"
+        }
+      ],
       fix: "Add alt text to image inputs",
     },
     {
