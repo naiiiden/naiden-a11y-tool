@@ -23,7 +23,16 @@ export const rootAndMetadataErrors = [
       id: 1,
       name: "<html> element has an invalid \"lang\" attribute value",
       description: "The page's \"lang\" attribute value is invalid",
-      wcagLinks: "https://www.w3.org/WAI/WCAG22/Techniques/html/H57",
+      wcagLinks: [
+        {
+          "name": "Using the \"lang\" attribute on the <html> element",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H57"
+        },
+        {
+          "name": "<html> page \"lang\" attribute has valid language tag",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/bf051a/",
+        }
+      ],
       fix: "Ensure that the <html> element has a valid \"lang\" attribute value",
     },
     {
