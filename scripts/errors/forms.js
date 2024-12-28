@@ -114,7 +114,12 @@ export const formErrors = [
       id: 7,
       name: "Form elements should have a visible label",
       description: "Form elements should have a visible label",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using label elements to associate text labels with form controls",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H44"
+        }
+      ],
       fix: "Ensures that every input that requires a label is has a label other than the title or aria-describedby attributes",
     },
     {
