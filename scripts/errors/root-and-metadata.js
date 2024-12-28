@@ -39,7 +39,17 @@ export const rootAndMetadataErrors = [
       id: 2,
       name: "Document <title> element is missing or it's empty",
       description: "The document is missing a <title> element or it has one but it's empty",
-      wcagLinks: "https://www.w3.org/WAI/WCAG22/Techniques/html/H25",
+      wcagLinks: [
+        {
+          "name": "Providing a document title using the <title> element",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H25",
+        },
+        {
+          "name": "HTML page has non-empty title",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/2779a5/"
+        }
+        // descriptive title here
+      ],
       fix: "Add a non-empty <title> to the page",
     },
     {
