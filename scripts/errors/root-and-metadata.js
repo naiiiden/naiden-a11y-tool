@@ -76,7 +76,16 @@ export const rootAndMetadataErrors = [
       id: 4,
       name: "Disabled text scaling and zooming",
       description: "viewport meta disables text scaling and zooming.",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Reflow (Level AA)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
+        },
+        {
+          "name": "Meta viewport allows for zoom",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/b4f0c3/"
+        }
+      ],
       fix: "Remove the meta viewport 'user-scalable=no' attribute or set its value to yes or 1, but not no or 1.",
     },
     {
