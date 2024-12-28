@@ -56,7 +56,20 @@ export const rootAndMetadataErrors = [
       id: 3,
       name: "Page refreshes or redirects automatically",
       description: "Page refreshes or redirects automatically.",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using <meta> \"refresh\" to create an instant client-side redirect",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H76"
+        },
+        {
+          "name": "<meta> element has no refresh delay",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/bc659a/"
+        },
+        {
+          "name": "<meta> element has no refresh delay (no exception)",
+          "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/bisz58/"
+        }
+      ],
       fix: "Remove the <meta> refresh tag.",
     },
     {
