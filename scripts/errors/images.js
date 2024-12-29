@@ -15,14 +15,24 @@ export const imageErrors = [
         id: 1,
         name: "Linked image missing alt attribute or alt value is empty",
         description: "Some linked images are missing an alt attribute or its value is empty.",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Using alt attributes on img elements",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H37"
+            }
+        ],
         fix: "Add descriptive alt text to all linked images.",
     },
     {
         id: 2,
         name: "Button image missing alt attribute or alt value is empty",
         description: "Some button images are missing an alt attribute or its value is empty.",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Using alt attributes on img elements",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H37"
+            }
+        ],
         fix: "Add descriptive alt text to all button images.",
     },
     {
