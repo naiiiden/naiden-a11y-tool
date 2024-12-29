@@ -102,7 +102,12 @@ export const imageErrors = [
         id: 8,
         name: "alt text of button and link images should not be repeated as text",
         description: "alt text of button or link images should not be repeated as text",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Combining adjacent image and text links for the same resource",
+                "url": "https://www.w3.org/WAI/WCAG21/Techniques/html/H2.html"
+            }
+        ],
         fix: "ensure button and link text is not repeated as img alt text",
     },
 ]
