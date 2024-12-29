@@ -46,7 +46,12 @@ export const imageErrors = [
         id: 4,
         name: "Image map area missing alt text",
         description: "Image map area missing alt text.",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Providing text alternatives for the area elements of image maps",
+                "url": "https://www.w3.org/WAI/WCAG21/Techniques/html/H24.html"
+            }
+        ],
         fix: "Add alt text to all img map areas.",
     },
     {
