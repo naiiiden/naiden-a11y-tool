@@ -3,7 +3,12 @@ export const imageErrors = [
         id: 0,
         name: "Image missing alt attribute",
         description: "Some images are missing an alt attribute.",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Using alt attributes on img elements",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H37"
+            }
+        ],
         fix: "Add descriptive alt text to all images.",
     },
     {
