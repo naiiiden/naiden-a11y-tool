@@ -37,9 +37,14 @@ export const imageErrors = [
     },
     {
         id: 3,
-        name: "Image map missing alt text",
+        name: "Image \"img[usemap]\" map missing alt text",
         description: "Image map missing alt text.",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Using alt attributes on img elements",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H37"
+            }
+        ],
         fix: "Add alt text to all img maps.",
     },
     {
