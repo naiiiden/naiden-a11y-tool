@@ -86,7 +86,16 @@ export const imageErrors = [
         id: 7,
         name: "svg elements with role='img' must have an alt text",
         description: "svg elements with role='img' must have an alt text.",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Using aria-label to provide labels for objects",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA6"
+            }, 
+            {
+                "name": "Using aria-describedby to provide descriptions of images",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA15"
+            }
+        ],
         fix: "Add alt text to all svg elements with role='img'",
     },
     {
