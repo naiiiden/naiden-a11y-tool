@@ -47,7 +47,12 @@ export const interactiveElementsErrors = [
         id: 2,
         name: "Broken skip link",
         description: "Skip link's target doesn't exist or it's not accessible by keyboard",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Adding a link at the top of each page that goes directly to the main content area",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G1"
+            }
+        ],
         fix: "Skip link's target should match the id or name value of landmark element"
     },
     {
