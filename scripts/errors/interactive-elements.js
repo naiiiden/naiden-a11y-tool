@@ -27,7 +27,20 @@ export const interactiveElementsErrors = [
         id: 1,
         name: "Empty button",
         description: "Some button don't have text.",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Using aria-label to provide an invisible label where a visible label cannot be used",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA14"
+            },
+            {
+                "name": "Using aria-label to provide labels for objects",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA6"
+            }, 
+            {
+                "name": "Using aria-labelledby to provide a name for user interface controls",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA16"
+            }
+        ],
         fix: "Add descriptive text to all buttons.",
     },
     {
