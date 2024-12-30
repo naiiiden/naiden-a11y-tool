@@ -58,7 +58,20 @@ export const embeddedElementsErrors = [
         id: 4,
         name: "video elements must have captions",
         description: "video elements must have captions",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Providing closed captions",
+                "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G87.html"
+            },
+            {
+                "name": "Providing open (always visible) captions",
+                "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G93.html"
+            },
+            {
+                "name": "Using the track element to provide captions",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H95"
+            }
+        ],
         fix: "ensure video elements have captions",
     }
 ]
