@@ -15,7 +15,12 @@ export const embeddedElementsErrors = [
         id: 1,
         name: "object elements must have alt text",
         description: "object elements must have alt text",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Using the body of the object element",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H53"
+            }
+        ],
         fix: "Ensures every object element has alt text",
     },
     {
