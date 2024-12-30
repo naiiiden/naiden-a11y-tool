@@ -34,7 +34,24 @@ export const embeddedElementsErrors = [
         id: 3,
         name: "video or audio elements must not autoplay",
         description: "video or audio elements must not autoplay",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Audio Control (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/audio-control"
+            },
+            {
+                "name": "Playing a sound that turns off automatically within three seconds",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G60"
+            },
+            {
+                "name": "Providing a control near the beginning of the Web page that turns off sounds that play automatically",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G170"
+            },
+            {
+                "name": "Playing sounds only on user request",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G171"
+            }
+        ],
         fix: "Ensure all video or audio elements do not autoplay",
     },
     {
