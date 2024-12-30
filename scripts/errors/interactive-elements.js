@@ -91,7 +91,16 @@ export const interactiveElementsErrors = [
         id: 7,
         name: "all touch targets must be 24px large, or leave sufficient space",
         description: "all touch targets must be 24px large, or leave sufficient space",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Target Size (Minimum) (Level AA)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum"
+            },
+            {
+                "name": "Using min-height and min-width to ensure sufficient target spacing",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/css/C42"
+            }
+        ],
         fix: "touch targets must be at least 24 by 24 CSS pixels in size",
       },
 ]
