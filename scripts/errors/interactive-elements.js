@@ -9,6 +9,10 @@ export const interactiveElementsErrors = [
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H30"
             },
             {
+                "name": "Supplementing link text with the title attribute",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H33"
+            },
+            {
                 "name": "Providing link text that describes the purpose of a link",
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G91"
             },
