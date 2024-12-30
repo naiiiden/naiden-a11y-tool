@@ -3,7 +3,12 @@ export const embeddedElementsErrors = [
         id: 0,
         name: "Empty or missing iframe title",
         description: "Some iframes have an empty or missing title.",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+              "name": "Using the title attribute of the iframe element",
+              "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H64"
+            }
+          ],
         fix: "Add text to the empty iframe.",
     },
     {
