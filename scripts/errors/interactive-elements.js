@@ -3,7 +3,24 @@ export const interactiveElementsErrors = [
         id: 0,
         name: "Empty link",
         description: "Some links don't have text.",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Providing link text that describes the purpose of a link for anchor elements",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H30"
+            },
+            {
+                "name": "Providing link text that describes the purpose of a link",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G91"
+            },
+            {
+                "name": "Using aria-labelledby for link purpose", 
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA7"
+            },
+            {
+                "name": "Using aria-label for link purpose", 
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA8"
+            }
+        ],
         fix: "Add descriptive alt text to all button images.",
     },
     {
