@@ -29,6 +29,6 @@ export async function hasEmptyOrMissingSummaries(auditResults) {
     `);
       
     emptyOrMissingSummaries.forEach(summary => {
-        auditResults.push({ ...emptyErrors[3], element: summary.outerHTML, selector: summary.selector });
+        auditResults.push({ ...emptyErrors[2], element: summary.outerHTML, selector: summary.selector });
     });
 }
