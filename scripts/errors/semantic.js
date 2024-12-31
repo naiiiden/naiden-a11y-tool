@@ -199,7 +199,16 @@ export const semanticErrors = [
       id: 11,
       name: "Footer or role=\"contentinfo\" landmark should not be contained in another landmark",
       description: "Footer or role=\"contentinfo\" landmark should not be contained in another landmark",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Landmark Regions",
+          "url": "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/#landmarkroles"
+        },
+        {
+          "name": "The banner landmark examples",
+          "url": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/contentinfo.html"
+        }
+      ],
       fix: "Footer or role=\"contentinfo\" landmark should be top level",
     },
     {
