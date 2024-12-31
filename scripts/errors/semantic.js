@@ -123,7 +123,12 @@ export const semanticErrors = [
       id: 6,
       name: "Page should not have more than one main tag",
       description: "Page must have only one main tag",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "The <main> element",
+          "url": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-main-element%3Athe-main-element"
+        }
+      ],
       fix: "Leave only one main tag",
     },
     {
