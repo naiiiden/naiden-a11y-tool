@@ -67,7 +67,20 @@ export const semanticErrors = [
       id: 3,
       name: "No headings",
       description: "No headings on the page",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using h1-h6 to identify headings",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H42"
+        },
+        {
+          "name": "Organizing a page using headings",
+          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G141"
+        },
+        {
+          "name": "Using role=heading to identify headings",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA12"
+        }
+      ],
       fix: "Add headings",
     },
     {
