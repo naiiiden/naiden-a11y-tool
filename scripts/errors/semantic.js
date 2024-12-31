@@ -135,7 +135,16 @@ export const semanticErrors = [
       id: 7,
       name: "Page should not have more than one banner landmark",
       description: "Page must have only one banner landmark",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "The banner landmark",
+          "url": "https://www.w3.org/TR/wai-aria-1.3/#banner"
+        },
+        {
+          "name": "The banner landmark examples",
+          "url": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/banner.html"
+        }
+      ],
       fix: "Leave only one banner landmark",
     },
     {
