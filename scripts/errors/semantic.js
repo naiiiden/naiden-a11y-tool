@@ -167,14 +167,32 @@ export const semanticErrors = [
       id: 9,
       name: "Header or role=\"banner\" landmark should not be contained in another landmark",
       description: "Header or role=\"banner\" landmark should not be contained in another landmark",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Landmark Regions",
+          "url": "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/#landmarkroles"
+        },
+        {
+          "name": "The banner landmark examples",
+          "url": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/banner.html"
+        }
+      ],
       fix: "Header or role=\"banner\" landmark should be at top level",
     },
     {
       id: 10,
       name: "Aside or role=\"complementary\" should not be contained in another landmark",
       description: "Aside or role=\"complementary\" should not be contained in another landmark",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Landmark Regions",
+          "url": "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/#landmarkroles"
+        },
+        {
+          "name": "The banner landmark examples",
+          "url": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/complementary.html"
+        }
+      ],
       fix: "Aside or role=\"complementary\" should be top level",
     },
     {
