@@ -215,7 +215,16 @@ export const semanticErrors = [
       id: 12,
       name: "Main or role=\"main\" landmark should not be contained in another landmark",
       description: "Main or role=\"main\" landmark should not be contained in another landmark",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Landmark Regions",
+          "url": "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/#landmarkroles"
+        },
+        {
+          "name": "The banner landmark examples",
+          "url": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/main.html"
+        }
+      ],
       fix: "Main or role=\"main\" landmark should be top level",
     },
     {
