@@ -31,7 +31,16 @@ export const semanticErrors = [
       id: 1,
       name: "Skipped heading level",
       description: "Heading level skipped",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using h1-h6 to identify headings",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H42"
+        },
+        {
+          "name": "Organizing a page using headings",
+          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G141"
+        }
+      ],
       fix: "Reorder headings and make sure levels are in order",
     },
     {
