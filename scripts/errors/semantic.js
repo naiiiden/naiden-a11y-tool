@@ -107,7 +107,16 @@ export const semanticErrors = [
       id: 5,
       name: "Page must have one <main> tag",
       description: "Page must have a main tag",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using ARIA landmarks to identify regions of a page",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA11"
+        },
+        {
+          "name": "Using semantic HTML elements to identify regions of a page",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H101"
+        }
+      ],
       fix: "Add main tag",
     },
     {
