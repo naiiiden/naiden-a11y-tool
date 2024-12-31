@@ -87,7 +87,20 @@ export const semanticErrors = [
       id: 4,
       name: "No page regions",
       description: "No page regions or aria landmarks on the page",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using ARIA landmarks to identify regions of a page",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA11"
+        },
+        {
+          "name": "Using the region role to identify a region of the page",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA20"
+        },
+        {
+          "name": "Using semantic HTML elements to identify regions of a page",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H101"
+        }
+      ],
       fix: "Use semantic tags to define regions",
     },
     {
