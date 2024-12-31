@@ -115,6 +115,10 @@ export const semanticErrors = [
         {
           "name": "Using semantic HTML elements to identify regions of a page",
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H101"
+        },
+        {
+          "name": "The banner landmark examples",
+          "url": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/main.html"
         }
       ],
       fix: "Add main tag",
@@ -127,6 +131,10 @@ export const semanticErrors = [
         {
           "name": "The <main> element",
           "url": "https://html.spec.whatwg.org/multipage/grouping-content.html#the-main-element%3Athe-main-element"
+        },
+        {
+          "name": "The banner landmark examples",
+          "url": "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/main.html"
         }
       ],
       fix: "Leave only one main tag",
