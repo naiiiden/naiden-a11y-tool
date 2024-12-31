@@ -3,7 +3,28 @@ export const semanticErrors = [
       id: 0,
       name: "No first level heading",
       description: "No first level heading on the page",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using h1-h6 to identify headings",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H42"
+        }, 
+        {
+          "name": "Headings and Labels (Level AA)",
+          "url": "https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html"
+        },
+        {
+          "name": "Using role=heading to identify headings",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA12"
+        },
+        {
+          "name": "Providing descriptive headings",
+          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G130"
+        },
+        {
+          "name": "Organizing a page using headings",
+          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G141"
+        }
+      ],
       fix: "Add h1 tag",
     },
     {
