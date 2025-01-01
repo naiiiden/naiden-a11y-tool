@@ -17,7 +17,12 @@ export const cssErrors = [
       id: 2,
       name: "Text properties unadjustable with custom stylesheets",
       description: "Text properties unadjustable with custom stylesheets",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Text Spacing (Level AA)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html"
+        }
+      ],
       fix: "Ensure text properties are adjustable with custom stylesheets",
     },
 ]
