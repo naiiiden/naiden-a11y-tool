@@ -319,7 +319,32 @@ export const semanticErrors = [
       id: 18,
       name: "page must have means to bypass repeated blocks",
       description: "page must have means to bypass repeated blocks",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Bypass Blocks (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks"
+        },
+        {
+          "name": "Adding a link at the top of each page that goes directly to the main content area",
+          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G1.html"
+        },
+        {
+          "name": "Providing heading elements at the beginning of each section of content",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H69"
+        },
+        {
+          "name": "Adding a link at the beginning of a block of repeated content to go to the end of the block",
+          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G123"
+        },
+        {
+          "name": "Adding links at the top of the page to each area of the content",
+          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G124"
+        },
+        {
+          "name": "Using ARIA landmarks to identify regions of a page",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA11"
+        }
+      ],
       fix: "each page must have a main landmark to provide a mechanism to bypass repeated blocks of content or interface elements",
     },
     {
