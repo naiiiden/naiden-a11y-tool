@@ -374,7 +374,12 @@ export const semanticErrors = [
       id: 21,
       name: "landmarks should be unique",
       description: "landmarks should be unique",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "General Principles of Landmark Design",
+          "url": "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/#generalprinciplesoflandmarkdesign"
+        }
+      ],
       fix: "ensure landmarks have a unique label/title",
     }
 ]
