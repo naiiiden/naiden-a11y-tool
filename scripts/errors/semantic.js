@@ -239,7 +239,24 @@ export const semanticErrors = [
       id: 13,
       name: "Page content should be contained by landmarks",
       description: "Page content should be contained by landmarks",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using ARIA landmarks to identify regions of a page",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA11"
+        },
+        {
+          "name": "Using the region role to identify a region of the page",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA20"
+        },
+        {
+          "name": "Using semantic HTML elements to identify regions of a page",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H101"
+        },
+        {
+          "name": "Info and Relationships (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
+        }
+      ],
       fix: "Ensure all page content is contained by landmarks",
     },
     {
