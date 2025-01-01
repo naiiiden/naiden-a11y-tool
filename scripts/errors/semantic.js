@@ -287,7 +287,16 @@ export const semanticErrors = [
       id: 16,
       name: "dl elements must only directly contain properly-ordered dt and dd groups, script, template or div elements",
       description: "dl elements must only directly contain properly-ordered dt and dd groups, script, template or div elements",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using description lists",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H40"
+        },
+        {
+          "name": "Using ol, ul and dl for lists or groups of links",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H48"
+        }
+      ],
       fix: "Ensure that all dl elements are structured correctly.",
     },
     {
