@@ -263,14 +263,24 @@ export const semanticErrors = [
       id: 14,
       name: "ul and ol must only directly contain li, script or template elements",
       description: "ul and ol must only directly contain li, script or template elements",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using ol, ul and dl for lists or groups of links",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H48"
+        }
+      ],
       fix: "Ensure that lists are structured properly",
     },
     {
       id: 15,
       name: "li elements must be contained in an ul or ol",
       description: "li elements must be contained in an ul or ol",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using ol, ul and dl for lists or groups of links",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H48"
+        }
+      ],
       fix: "Ensures li elements are used semantically",
     },
     {
