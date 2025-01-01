@@ -358,7 +358,16 @@ export const semanticErrors = [
       id: 20,
       name: "elements should not have tabindex greater than 0",
       description: "elements should not have tabindex greater than 0",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Focus Order (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-order"
+        },
+        {
+          "name": "Failure of Success Criterion 2.4.3 due to using tabindex to create a tab order that does not preserve meaning and operability",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F44.html"
+        }
+      ],
       fix: "ensure tabindex values greater than 0 are never used",
     },
     {
