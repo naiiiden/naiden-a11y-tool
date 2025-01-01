@@ -303,7 +303,16 @@ export const semanticErrors = [
       id: 17,
       name: "dt and dd elements must be contained by a dl element",
       description: "dt and dd elements must be contained by a dl element",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Using description lists",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H40"
+        },
+        {
+          "name": "Using ol, ul and dl for lists or groups of links",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H48"
+        }
+      ],
       fix: "Ensure that all dt and dd elements are contained dl.",
     },
     {
