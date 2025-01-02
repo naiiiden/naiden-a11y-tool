@@ -19,7 +19,20 @@ export const ariaErrors = [
         id: 1,
         name: "aria commands must have an accessible name",
         description: "aria commands must have an accessible name",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Using aria-labelledby for link purpose", 
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA7"
+            },
+            {
+                "name": "Using aria-label for link purpose", 
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA8"
+            },
+            {
+                "name": "The title attribute",
+                "url": "https://html.spec.whatwg.org/#the-title-attribute"
+            }
+        ],
         fix: "ensure elements with role (link, button, menuitem) have accessible names"
     },
     {
