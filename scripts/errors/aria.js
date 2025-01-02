@@ -3,7 +3,16 @@ export const ariaErrors = [
         id: 0,
         name: "aria-hidden='true' must not be present on document body",
         description: "aria-hidden='true' must not be present on document body",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "aria-hidden state",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#aria-hidden"
+            },
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+            }
+        ],
         fix: "remove aria-hidden='true' from document body",
     },
     {
