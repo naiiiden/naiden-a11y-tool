@@ -111,7 +111,24 @@ export const ariaErrors = [
         id: 6,
         name: "aria input fields must have an accessible names",
         description: "aria input fields must have an accessible names",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+            },
+            {
+                "name": "Using aria-label to provide labels for objects",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA6"
+            },
+            {
+                "name": "Using aria-labelledby to provide a name for user interface controls",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA16"
+            },
+            {
+                "name": "The title attribute",
+                "url": "https://html.spec.whatwg.org/#the-title-attribute"
+            }
+        ],
         fix: "ensure elements with role (combobox, listbox, searchbox, slider, spinbutton, textbox) have accessible names"
     },
     {
