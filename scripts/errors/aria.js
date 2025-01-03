@@ -21,6 +21,10 @@ export const ariaErrors = [
         description: "aria commands must have an accessible name",
         wcagLinks: [
             {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+            },
+            {
                 "name": "Using aria-labelledby for link purpose", 
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA7"
             },
