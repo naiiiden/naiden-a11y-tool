@@ -25,14 +25,6 @@ export const ariaErrors = [
                 "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
             },
             {
-                "name": "Using aria-labelledby for link purpose", 
-                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA7"
-            },
-            {
-                "name": "Using aria-label for link purpose", 
-                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA8"
-            },
-            {
                 "name": "The title attribute",
                 "url": "https://html.spec.whatwg.org/#the-title-attribute"
             }
