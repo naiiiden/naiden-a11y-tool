@@ -63,7 +63,24 @@ export const ariaErrors = [
         id: 3,
         name: "aria progressbar elements must have an accessible name",
         description: "aria progressbar elements must have an accessible name",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Non-text Content (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html"
+            },
+            {
+                "name": "Using aria-label to provide labels for objects",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA6"
+            },
+            {
+                "name": "Using aria-labelledby to provide a name for user interface controls",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA16"
+            },
+            {
+                "name": "The title attribute",
+                "url": "https://html.spec.whatwg.org/#the-title-attribute"
+            }
+        ],
         fix: "ensure elements with role progressbar have accessible names"
     },
     {
