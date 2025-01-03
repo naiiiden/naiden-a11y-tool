@@ -99,7 +99,12 @@ export const ariaErrors = [
         id: 5,
         name: "deprecated aria roles must not be used",
         description: "deprecated aria roles must not be used",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "The roles model",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#roles"
+            }
+        ],
         fix: "make sure all that all role attributes are not using deprecated values"
     },
     {
