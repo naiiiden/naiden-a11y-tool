@@ -159,7 +159,28 @@ export const ariaErrors = [
         id: 8,
         name: "aria hidden elements must not be focusable or contain focusable children",
         description: "aria hidden elements must not be focusable or contain focusable children",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+            },
+            {
+                "name": "Info and Relationships (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
+            },
+            {
+                "name": "Element with aria-hidden has no content in sequential focus navigation",
+                "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/6cfa84/"
+            },
+            {
+                "name": "Fourth Rule of ARIA Use",
+                "url": "https://www.w3.org/TR/using-aria/#4thrule"
+            },
+            {
+                "name": "aria-hidden state",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#aria-hidden"
+            }
+        ],
         fix: "ensure aria hidden elements are not focusable and don't contain focusable children"
     },
     {
