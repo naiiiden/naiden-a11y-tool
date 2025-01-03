@@ -187,7 +187,20 @@ export const ariaErrors = [
         id: 9,
         name: "aria roles must conform to valid values",
         description: "aria roles must conform to valid values",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+            },
+            {
+                "name": "Info and Relationships (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
+            },
+            {
+                "name": "The roles model",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#roles"
+            }
+        ],
         fix: "ensure all aria role elements have a valid value"
     },
     {
