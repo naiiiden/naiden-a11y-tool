@@ -4,7 +4,7 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function ariaRoleProhibitedAttributes(auditResults) {
     const ariaRoleProhibitedAttributesList = {
-        caption: ["aria-label", "aria-labelledby"],
+        caption: ["aria-label", "aria-labelledby", "aria-braillelabel"],
         code: ["aria-label", "aria-labelledby"],
         deletion: ["aria-label", "aria-labelledby"],
         emphasis: ["aria-label", "aria-labelledby"],
