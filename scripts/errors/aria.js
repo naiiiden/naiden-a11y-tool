@@ -270,7 +270,16 @@ export const ariaErrors = [
         id: 14,
         name: "aria attributes must conform to valid values",
         description: "aria attributes must conform to valid values",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+            },
+            {
+                "name": "6. Supported states and properties",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#states_and_properties"
+            }
+        ],
         fix: "ensure all aria attributes have valid values"
     },
     {
