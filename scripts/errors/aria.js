@@ -207,7 +207,12 @@ export const ariaErrors = [
         id: 10,
         name: "aria dialog and alertdialog elements must have an accessible name",
         description: "aria dialog and alertdialog elements must have an accessible name",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Using aria-alertdialog to identify errors",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA18"
+            }
+        ],
         fix: "ensure elements with role dialog and alertdialog have accessible names"
     },
     {
