@@ -302,7 +302,20 @@ export const ariaErrors = [
         id: 16,
         name: "elements with aria roles must only use supported aria attributes",
         description: "elements with aria roles must only use supported aria attributes",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+            },
+            {
+                "name": "Categorization of roles",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#roles_categorization"
+            },
+            {
+                "name": "Taxonomy of WAI-ARIA states and properties",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#state_prop_taxonomy"
+            }
+        ],
         fix: "ensure element with aria roles use aria attributes allowed for their role"
     },
     {
