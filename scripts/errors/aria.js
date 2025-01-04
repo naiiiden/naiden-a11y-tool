@@ -338,7 +338,16 @@ export const ariaErrors = [
         id: 18,
         name: "certain aria roles must contain particular children",
         description: "certain aria roles must contain particular children",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Info and Relationships (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
+            },
+            {
+                "name": "Definition of roles",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#role_definitions"
+            }
+        ],
         fix: "ensure aria role elements have required children role"
     },
     {
