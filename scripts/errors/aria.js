@@ -86,7 +86,7 @@ export const ariaErrors = [
         wcagLinks: [
             {
                 "name": "Name, Role, Value (Level A)",
-                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
             },
             {
                 "name": "The title attribute",
@@ -114,7 +114,7 @@ export const ariaErrors = [
         wcagLinks: [
             {
                 "name": "Name, Role, Value (Level A)",
-                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
             },
             {
                 "name": "Using aria-label to provide labels for objects",
@@ -162,7 +162,7 @@ export const ariaErrors = [
         wcagLinks: [
             {
                 "name": "Name, Role, Value (Level A)",
-                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
             },
             {
                 "name": "Info and Relationships (Level A)",
@@ -190,7 +190,7 @@ export const ariaErrors = [
         wcagLinks: [
             {
                 "name": "Name, Role, Value (Level A)",
-                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
             },
             {
                 "name": "Info and Relationships (Level A)",
@@ -237,7 +237,7 @@ export const ariaErrors = [
             },
             {
                 "name": "Name, Role, Value (Level A)",
-                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
             },
             {
                 "name": "Info and Relationships (Level A)",
@@ -273,7 +273,7 @@ export const ariaErrors = [
         wcagLinks: [
             {
                 "name": "Name, Role, Value (Level A)",
-                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
             },
             {
                 "name": "6. Supported states and properties",
@@ -289,7 +289,7 @@ export const ariaErrors = [
         wcagLinks: [
             {
                 "name": "Name, Role, Value (Level A)",
-                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
             },
             {
                 "name": "6. Supported states and properties",
