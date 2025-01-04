@@ -226,7 +226,24 @@ export const ariaErrors = [
         id: 12,
         name: "aria role should be appropriate for the element",
         description: "aria role should be appropriate for the element",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "The roles model",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#roles"
+            },
+            {
+                "name": "Document conformance requirements for use of ARIA attributes in HTML",
+                "url": "https://www.w3.org/TR/html-aria/#docconformance"
+            },
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+            },
+            {
+                "name": "Info and Relationships (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
+            },
+        ],
         fix: "ensure elements with role attribute have appropriate value for the element"
     },
     {
