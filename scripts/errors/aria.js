@@ -250,7 +250,20 @@ export const ariaErrors = [
         id: 13,
         name: "aria treeitem elements must have an accessible name",
         description: "aria treeitem elements must have an accessible name",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Using aria-label to provide labels for objects",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA6"
+            },
+            {
+                "name": "aria-labelledby property",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#aria-labelledby"
+            },
+            {
+                "name": "The title attribute",
+                "url": "https://html.spec.whatwg.org/#the-title-attribute"
+            }
+        ],
         fix: "ensure aria treeitem elements have accessible names"
     },
     {
