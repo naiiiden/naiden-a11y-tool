@@ -5,16 +5,16 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function ariaRoleProhibitedAttributes(auditResults) {
     const ariaRoleProhibitedAttributesList = {
         caption: ["aria-label", "aria-labelledby", "aria-braillelabel"],
-        code: ["aria-label", "aria-labelledby"],
-        deletion: ["aria-label", "aria-labelledby"],
-        emphasis: ["aria-label", "aria-labelledby"],
+        code: ["aria-label", "aria-labelledby", "aria-braillelabel"],
+        deletion: ["aria-label", "aria-labelledby", "aria-braillelabel"],
+        emphasis: ["aria-label", "aria-labelledby", "aria-braillelabel"],
         generic: ["aria-label", "aria-labelledby", "aria-roledescription"],
-        insertion: ["aria-label", "aria-labelledby"],
-        paragraph: ["aria-label", "aria-labelledby"],
+        insertion: ["aria-label", "aria-labelledby", "aria-braillelabel", "aria-brailleroledescription"],
+        paragraph: ["aria-label", "aria-labelledby", "aria-braillelabel"],
         presentation: ["aria-label", "aria-labelledby"],
-        strong: ["aria-label", "aria-labelledby"],
-        subscript: ["aria-label", "aria-labelledby"],
-        superscript: ["aria-label", "aria-labelledby"],
+        strong: ["aria-label", "aria-labelledby", "aria-braillelabel"],
+        subscript: ["aria-label", "aria-labelledby", "aria-braillelabel"],
+        superscript: ["aria-label", "aria-labelledby", "aria-braillelabel"],
     };
 
     // https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr
