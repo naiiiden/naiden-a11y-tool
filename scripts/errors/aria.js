@@ -354,7 +354,16 @@ export const ariaErrors = [
         id: 19,
         name: "certain aria roles must be contained by particular parents",
         description: "certain aria roles must be contained by particular parents",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Info and Relationships (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
+            },
+            {
+                "name": "Definition of roles",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#role_definitions"
+            }
+        ],
         fix: "ensure aria role elements are contained by parent role"
     },
     {
