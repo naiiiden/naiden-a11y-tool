@@ -322,7 +322,16 @@ export const ariaErrors = [
         id: 17,
         name: "required aria attributes must be provided for elements with aria role",
         description: "required aria attributes must be provided for elements with aria role",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+            },
+            {
+                "name": "Definition of roles",
+                "url": "https://www.w3.org/TR/wai-aria-1.3/#role_definitions"
+            }
+        ],
         fix: "ensure all elements with aria role have required attributes defined"
     },
     {
