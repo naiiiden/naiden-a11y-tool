@@ -10,7 +10,12 @@ export const cssErrors = [
       id: 1,
       name: "Underlined text",
       description: "Text is underlined and looks like a link",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Underlining",
+          "url": "https://design.canada.ca/style-guide/#wp4-2"
+        }
+      ],
       fix: "Remove underline",
     },
     {
