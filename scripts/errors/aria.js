@@ -434,6 +434,14 @@ export const ariaErrors = [
                 "name": "Using aria-labelledby to provide a name for user interface controls",
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA16"
             },
+            {
+                "name": "Label in name",
+                "url": "https://www.w3.org/TR/WCAG22/#label-in-name"
+            },
+            {
+                "name": "Failure of Success Criterion 4.1.2 due to a user interface control not having a programmatically determined name",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F68"
+            }
         ],
         fix: "ensure interactive elements labeled through their content have their visible label as part of their accessible name"
     }
