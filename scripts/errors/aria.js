@@ -417,7 +417,24 @@ export const ariaErrors = [
         id: 23,
         name: "elements must have their visible text as part of their accessible name",
         description: "elements must have their visible text as part of their accessible name",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Using label elements to associate text labels with form controls",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H44"
+            },
+            {
+                "name": "Using the title attribute to identify form controls when the label element cannot be used",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H65"
+            },
+            {
+                "name": "Using aria-label to provide an invisible label where a visible label cannot be used",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA14"
+            },
+            {
+                "name": "Using aria-labelledby to provide a name for user interface controls",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA16"
+            },
+        ],
         fix: "ensure interactive elements labeled through their content have their visible label as part of their accessible name"
     }
 ]
