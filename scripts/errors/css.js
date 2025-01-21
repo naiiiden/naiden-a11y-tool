@@ -2,9 +2,9 @@ export const cssErrors = [
     {
       id: 0,
       name: "Very small text",
-      description: "Text with font-size of 10px or less is difficult to read",
+      description: "Text has font-size of 10px or less which is difficult to read",
       wcagLinks: "",
-      fix: "Ensure the font-size of all texts is larger than 10px",
+      fix: "Ensure the font-size of each text is larger than 10px",
     },
     {
       id: 1,
