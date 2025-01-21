@@ -9,14 +9,14 @@ export const cssErrors = [
     {
       id: 1,
       name: "Underlined text",
-      description: "Text is underlined and looks like a link",
+      description: "Underlined text appears as a clickable link which can confuse users",
       wcagLinks: [
         {
           "name": "Underlining",
           "url": "https://design.canada.ca/style-guide/#wp4-2"
         }
       ],
-      fix: "Remove underline",
+      fix: "Remove underline from non-link text to prevent confusion",
     },
     {
       id: 2,
