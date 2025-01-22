@@ -10,7 +10,7 @@ export const emptyErrors = [
         },
         {
           "name": "Providing descriptive headings",
-          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G130.html"
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G130.html"
         }
       ],
       fix: "Add text to the empty heading.",

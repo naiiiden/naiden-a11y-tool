@@ -54,7 +54,7 @@ export const imageErrors = [
         wcagLinks: [
             {
                 "name": "Providing text alternatives for the area elements of image maps",
-                "url": "https://www.w3.org/WAI/WCAG21/Techniques/html/H24.html"
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H24.html"
             }
         ],
         fix: "Add alt text to all img map areas.",
@@ -105,7 +105,7 @@ export const imageErrors = [
         wcagLinks: [
             {
                 "name": "Combining adjacent image and text links for the same resource",
-                "url": "https://www.w3.org/WAI/WCAG21/Techniques/html/H2.html"
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H2.html"
             }
         ],
         fix: "ensure button and link text is not repeated as img alt text",
