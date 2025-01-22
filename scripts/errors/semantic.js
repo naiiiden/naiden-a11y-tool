@@ -10,7 +10,7 @@ export const semanticErrors = [
         }, 
         {
           "name": "Headings and Labels (Level AA)",
-          "url": "https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html"
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html"
         },
         {
           "name": "Using role=heading to identify headings",
@@ -18,11 +18,11 @@ export const semanticErrors = [
         },
         {
           "name": "Providing descriptive headings",
-          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G130"
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G130"
         },
         {
           "name": "Organizing a page using headings",
-          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G141"
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G141"
         }
       ],
       fix: "Add h1 tag",
@@ -38,7 +38,7 @@ export const semanticErrors = [
         },
         {
           "name": "Organizing a page using headings",
-          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G141"
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G141"
         },
         {
           "name": "Using role=heading to identify headings",
@@ -74,7 +74,7 @@ export const semanticErrors = [
         },
         {
           "name": "Organizing a page using headings",
-          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G141"
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G141"
         },
         {
           "name": "Using role=heading to identify headings",
@@ -322,11 +322,11 @@ export const semanticErrors = [
       wcagLinks: [
         {
           "name": "Bypass Blocks (Level A)",
-          "url": "https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks"
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks"
         },
         {
           "name": "Adding a link at the top of each page that goes directly to the main content area",
-          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G1.html"
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G1.html"
         },
         {
           "name": "Providing heading elements at the beginning of each section of content",
@@ -334,11 +334,11 @@ export const semanticErrors = [
         },
         {
           "name": "Adding a link at the beginning of a block of repeated content to go to the end of the block",
-          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G123"
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G123"
         },
         {
           "name": "Adding links at the top of the page to each area of the content",
-          "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G124"
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G124"
         },
         {
           "name": "Using ARIA landmarks to identify regions of a page",
