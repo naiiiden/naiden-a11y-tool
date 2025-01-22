@@ -21,13 +21,13 @@ export const cssErrors = [
     {
       id: 2,
       name: "Text properties unadjustable with custom stylesheets",
-      description: "Text properties unadjustable with custom stylesheets",
+      description: "Text properties (line-height, letter-spacing, word-spacing, font-size) cannot be modified with custom stylesheets",
       wcagLinks: [
         {
           "name": "Text Spacing (Level AA)",
           "url": "https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html"
         }
       ],
-      fix: "Ensure text properties are adjustable with custom stylesheets",
+      fix: "Ensure users can override text properties with custom stylesheets",
     },
 ]
