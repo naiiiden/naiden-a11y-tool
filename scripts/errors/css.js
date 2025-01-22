@@ -16,7 +16,7 @@ export const cssErrors = [
           "url": "https://design.canada.ca/style-guide/#wp4-2"
         }
       ],
-      fix: "Remove underline from non-link text to prevent confusion",
+      fix: "Remove underline (element with text-decoration: underline style or <u> element) from non-link text to prevent confusion",
     },
     {
       id: 2,
