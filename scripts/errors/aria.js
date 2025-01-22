@@ -2,7 +2,7 @@ export const ariaErrors = [
     {
         id: 0,
         name: "aria-hidden='true' must not be present on document body",
-        description: "aria-hidden='true' must not be present on document body",
+        description: "Document is not accessible to assistive technologies when the body element has aria-hidden='true'",
         wcagLinks: [
             {
                 "name": "aria-hidden state",
@@ -13,7 +13,7 @@ export const ariaErrors = [
                 "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
             }
         ],
-        fix: "remove aria-hidden='true' from document body",
+        fix: "Ensure the document body element doesn't have aria-hidden=true attribute",
     },
     {
         id: 1,
