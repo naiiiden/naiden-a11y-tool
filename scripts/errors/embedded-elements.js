@@ -61,11 +61,11 @@ export const embeddedElementsErrors = [
         wcagLinks: [
             {
                 "name": "Providing closed captions",
-                "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G87.html"
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G87.html"
             },
             {
                 "name": "Providing open (always visible) captions",
-                "url": "https://www.w3.org/WAI/WCAG21/Techniques/general/G93.html"
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G93.html"
             },
             {
                 "name": "Using the track element to provide captions",
