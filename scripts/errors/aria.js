@@ -18,7 +18,7 @@ export const ariaErrors = [
     {
         id: 1,
         name: "ARIA commands must have an accessible name",
-        description: "ARIA commands must have an accessible name",
+        description: "ARIA commands must have an accessible name that describes the destination, purpose, function or action for screen readers",
         wcagLinks: [
             {
                 "name": "Name, Role, Value (Level A)",
@@ -29,7 +29,7 @@ export const ariaErrors = [
                 "url": "https://html.spec.whatwg.org/#the-title-attribute"
             }
         ],
-        fix: "ensure elements with role (link, button, menuitem) have accessible names"
+        fix: "ensure elements with role=link, role=button or role=menuitem have an accessible name"
     },
     {
         id: 2,
