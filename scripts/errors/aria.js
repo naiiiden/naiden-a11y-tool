@@ -270,7 +270,11 @@ export const ariaErrors = [
             {
                 "name": "The title attribute",
                 "url": "https://html.spec.whatwg.org/#the-title-attribute"
-            }
+            },
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+            },
         ],
         fix: "ensure ARIA treeitem elements have accessible names"
     },
