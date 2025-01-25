@@ -35,6 +35,10 @@ export const rootAndMetadataErrors = [
         {
           "name": "<html> page \"lang\" attribute has valid language tag",
           "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/bf051a/",
+        },
+        {
+          "name": "Language of Page (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html"
         }
       ],
       fix: "Ensure that the <html> element has a valid \"lang\" attribute value",
