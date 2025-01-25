@@ -26,7 +26,12 @@ export const emptyErrors = [
       id: 2,
       name: "Empty or missing summary",
       description: "Summary element is empty or missing.",
-      wcagLinks: "",
+      wcagLinks: [
+        {
+          "name": "Name, Role, Value (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+        },
+      ],
       fix: "Add summary.",
     },
 ]
