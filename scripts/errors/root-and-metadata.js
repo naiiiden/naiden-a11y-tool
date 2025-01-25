@@ -55,6 +55,10 @@ export const rootAndMetadataErrors = [
         {
           "name": "HTML page has non-empty title",
           "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/2779a5/"
+        },
+        {
+          "name": "Page Titled (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html"
         }
         // descriptive title here
       ],
