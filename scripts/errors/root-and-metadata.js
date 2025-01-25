@@ -18,7 +18,7 @@ export const rootAndMetadataErrors = [
         },
         {
           "name": "Language of Page (Level A)",
-          "url": "https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html"
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html"
         }
       ],
       fix: "Ensure that the <html> element has a \"lang\" attribute",
@@ -38,7 +38,7 @@ export const rootAndMetadataErrors = [
         },
         {
           "name": "Language of Page (Level A)",
-          "url": "https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html"
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html"
         }
       ],
       fix: "Ensure that the <html> element has a valid \"lang\" attribute value",
