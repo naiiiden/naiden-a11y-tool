@@ -40,6 +40,10 @@ export const embeddedElementsErrors = [
                 "name": "Name, Role, Value (Level A)",
                 "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
             },
+            {
+                "name": "Using the title attribute of the iframe element",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H64"
+            },
         ],
         fix: "Ensure all iframe/frame elements contain a unique title attribute",
     },
