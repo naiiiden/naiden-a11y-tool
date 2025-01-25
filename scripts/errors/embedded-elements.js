@@ -7,7 +7,11 @@ export const embeddedElementsErrors = [
             {
               "name": "Using the title attribute of the iframe element",
               "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H64"
-            }
+            },
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+            },
           ],
         fix: "Add text to the empty iframe.",
     },
