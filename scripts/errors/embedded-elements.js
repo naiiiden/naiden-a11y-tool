@@ -23,7 +23,11 @@ export const embeddedElementsErrors = [
             {
                 "name": "Using the body of the object element",
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H53"
-            }
+            },
+            {
+                "name": "Non-text Content (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html"
+            },
         ],
         fix: "Ensures every object element has alt text",
     },
