@@ -87,6 +87,10 @@ export const embeddedElementsErrors = [
             {
                 "name": "Using the track element to provide captions",
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H95"
+            },
+            {
+                "name": "Captions (Prerecorded) (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded.html"
             }
         ],
         fix: "ensure video elements have captions",
