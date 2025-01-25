@@ -35,7 +35,12 @@ export const embeddedElementsErrors = [
         id: 2,
         name: "frames must have a unique title attribute",
         description: "frames must have a unique title attribute",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+            },
+        ],
         fix: "Ensure all iframe/frame elements contain a unique title attribute",
     },
     {
