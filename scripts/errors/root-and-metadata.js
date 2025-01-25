@@ -80,6 +80,10 @@ export const rootAndMetadataErrors = [
         {
           "name": "<meta> element has no refresh delay (no exception)",
           "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/bisz58/"
+        },
+        {
+          "name": "Failure of Success Criterion 2.2.1, 2.2.4, and 3.2.5 due to using meta refresh to reload the page",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F41.html"
         }
       ],
       fix: "Remove the <meta> refresh tag.",
