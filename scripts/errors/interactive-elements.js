@@ -123,7 +123,12 @@ export const interactiveElementsErrors = [
         id: 5,
         name: "Scrollable region must have keyboard access",
         description: "Scrollable region must have keyboard access",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Keyboard (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard"
+            }
+        ],
         fix: "Ensure that scrollable region has keyboard access"
     },
     {
