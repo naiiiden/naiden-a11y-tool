@@ -28,6 +28,10 @@ export const interactiveElementsErrors = [
                 "name": "Name, Role, Value (Level A)",
                 "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
             },
+            {
+                "name": "Link Purpose (In Context) (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html"
+            },
         ],
         fix: "Add descriptive alt text to all button images.",
     },
