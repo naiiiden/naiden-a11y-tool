@@ -51,7 +51,11 @@ export const interactiveElementsErrors = [
             {
                 "name": "Using aria-labelledby to provide a name for user interface controls",
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA16"
-            }
+            },
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+            },
         ],
         fix: "Add descriptive text to all buttons.",
     },
