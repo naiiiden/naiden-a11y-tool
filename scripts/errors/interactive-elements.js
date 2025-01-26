@@ -67,7 +67,11 @@ export const interactiveElementsErrors = [
             {
                 "name": "Adding a link at the top of each page that goes directly to the main content area",
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G1"
-            }
+            },
+            {
+                "name": "Bypass Blocks (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks"
+            },
         ],
         fix: "Skip link's target should match the id or name value of landmark element"
     },
