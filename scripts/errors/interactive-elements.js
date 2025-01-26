@@ -127,6 +127,18 @@ export const interactiveElementsErrors = [
             {
                 "name": "Keyboard (Level A)",
                 "url": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard"
+            },
+            {
+                "name": "Keyboard (No Exception) (Level AAA)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard-no-exception.html"
+            },
+            {
+                "name": "Ensuring keyboard control for all functionality",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G202"
+            },
+            {
+                "name": "Scrollable content can be reached with sequential focus navigation",
+                "url": "https://www.w3.org/WAI/standards-guidelines/act/rules/0ssw9k/"
             }
         ],
         fix: "Ensure that scrollable region has keyboard access"
