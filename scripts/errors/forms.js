@@ -67,7 +67,15 @@ export const formErrors = [
         {
           "name": "Labels or Instructions (Level A)",
           "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"
-        }
+        },
+        {
+          "name": "Using the aria-describedby property to provide a descriptive label for user interface controls",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA1"
+        },
+        {
+          "name": "https://www.w3.org/WAI/WCAG22/Techniques/general/G131",
+          "url": "Providing descriptive labels"
+        },
       ],      
       fix: "Add a label for the form control",
     },
