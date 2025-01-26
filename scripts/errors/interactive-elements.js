@@ -23,7 +23,11 @@ export const interactiveElementsErrors = [
             {
                 "name": "Using aria-label for link purpose", 
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA8"
-            }
+            },
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+            },
         ],
         fix: "Add descriptive alt text to all button images.",
     },
