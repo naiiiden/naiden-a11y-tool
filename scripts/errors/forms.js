@@ -21,9 +21,13 @@ export const formErrors = [
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA16"
         },
         {
-          "name": "Name, Role, Value (Level A)",
-          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+          "name": "Headings and Labels (Level AA)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels"
         },
+        {
+          "name": "Labels or Instructions (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"
+        }
       ],
       fix: "Add text to the empty form label",
     },
