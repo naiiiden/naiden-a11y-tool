@@ -79,14 +79,24 @@ export const interactiveElementsErrors = [
         id: 3,
         name: "Interactive control element has focusable children",
         description: "Interactive control element has focusable children",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Name, Role, Value (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+            },
+        ],
         fix: "Control must not have focusable children"
     },
     {
         id: 4,
         name: "Broken same-page link",
         description: "Link to another location within the page is present but doesn't have a corresponding target",
-        wcagLinks: "",
+        wcagLinks: [
+            {
+                "name": "Bypass Blocks (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/bypass-blocks"
+            },
+        ],
         fix: "Ensure the target for the link exists or remove the link"
     },
     {
