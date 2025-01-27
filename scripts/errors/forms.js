@@ -33,8 +33,8 @@ export const formErrors = [
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA1"
         },
         {
-          "name": "https://www.w3.org/WAI/WCAG22/Techniques/general/G131",
-          "url": "Providing descriptive labels"
+          "name": "Providing descriptive labels",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G131"
         },
         {
           "name": "Failure of Success Criterion 4.1.2 due to a user interface control not having a programmatically determined name",
