@@ -166,6 +166,22 @@ export const formErrors = [
         {
           "name": "Using alt attributes on images used as submit buttons",
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H36"
+        },
+        {
+          "name": "Name, Role, Value (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html"
+        },
+        {
+          "name": "Non-text Content (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html"
+        },
+        {
+          "name": "Example 5: Image used in a button",
+          "url": "https://www.w3.org/WAI/tutorials/images/functional/#example-5-image-used-in-a-button"
+        },
+        {
+          "name": "Failure of Success Criterion 1.1.1 due to omitting the alt attribute or text alternative on img elements, area elements, and input elements of type \"image\"",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F65.html"
         }
       ],
       fix: "Add alt text to image inputs",
