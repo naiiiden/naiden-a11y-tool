@@ -202,6 +202,10 @@ export const formErrors = [
         {
           "name": "Using label elements to associate text labels with form controls",
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H44"
+        },
+        {
+          "name": "Label in Name (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/label-in-name"
         }
       ],
       fix: "Ensures that every input that requires a label is has a label other than the title or aria-describedby attributes",
