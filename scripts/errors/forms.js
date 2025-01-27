@@ -122,6 +122,10 @@ export const formErrors = [
         {
           "name": "Providing a description for groups of form controls using fieldset and legend elements",
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H71"
+        },
+        {
+          "name": "Grouping Controls",
+          "url": "https://www.w3.org/WAI/tutorials/forms/grouping/"
         }
       ],
       fix: "Add fieldset",
