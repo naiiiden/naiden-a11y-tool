@@ -126,6 +126,10 @@ export const formErrors = [
         {
           "name": "Grouping Controls",
           "url": "https://www.w3.org/WAI/tutorials/forms/grouping/"
+        },
+        {
+          "name": "Using grouping roles to identify related form controls",
+          "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA17"
         }
       ],
       fix: "Add fieldset",
