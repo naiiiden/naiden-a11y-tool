@@ -84,6 +84,10 @@ export const imageErrors = [
                 "name": "An alt Decision Tree",
                 "url": "https://www.w3.org/WAI/tutorials/images/decision-tree/"
             },
+            {
+                "name": "Non-text Content (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html"
+            },
         ],
         fix: "Add descriptive alt text to all button images.",
     },
