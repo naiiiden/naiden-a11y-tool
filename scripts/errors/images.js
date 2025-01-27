@@ -7,6 +7,26 @@ export const imageErrors = [
             {
                 "name": "Using alt attributes on img elements",
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H37"
+            },
+            {
+                "name": "Non-text Content (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html"
+            },
+            {
+                "name": "Failure of Success Criterion 1.1.1 due to omitting the alt attribute or text alternative on img elements, area elements, and input elements of type \"image\"",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F65.html"
+            },
+            {
+                "name": "An alt Decision Tree",
+                "url": "https://www.w3.org/WAI/tutorials/images/decision-tree/"
+            },
+            {
+                "name": "Using aria-labelledby to provide a text alternative for non-text content",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA10.html"
+            },
+            {
+                "name": "Using null alt text and no title attribute on img elements for images that assistive technology should ignore",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H67.html"
             }
         ],
         fix: "Add descriptive alt text to all images.",
