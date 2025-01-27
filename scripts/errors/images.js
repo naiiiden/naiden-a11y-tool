@@ -67,7 +67,19 @@ export const imageErrors = [
             {
                 "name": "Using alt attributes on img elements",
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H37"
-            }
+            },
+            {
+                "name": "Using alt attributes on images used as submit buttons",
+                "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H36"
+            },
+            {
+                "name": "Example 5: Image used in a button",
+                "url": "https://www.w3.org/WAI/tutorials/images/functional/#example-5-image-used-in-a-button"
+            },
+            {
+                "name": "An alt Decision Tree",
+                "url": "https://www.w3.org/WAI/tutorials/images/decision-tree/"
+            },
         ],
         fix: "Add descriptive alt text to all button images.",
     },
