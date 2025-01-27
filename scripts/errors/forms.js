@@ -39,6 +39,10 @@ export const formErrors = [
         {
           "name": "Failure of Success Criterion 4.1.2 due to a user interface control not having a programmatically determined name",
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F68"
+        },
+        {
+          "name": "Labeling Controls",
+          "url": "https://www.w3.org/WAI/tutorials/forms/labels/"
         }
       ],
       fix: "Add text to the empty form label",
@@ -83,6 +87,10 @@ export const formErrors = [
         {
           "name": "Failure of Success Criterion 4.1.2 due to a user interface control not having a programmatically determined name",
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F68"
+        },
+        {
+          "name": "Labeling Controls",
+          "url": "https://www.w3.org/WAI/tutorials/forms/labels/"
         }
       ],      
       fix: "Add a label for the form control",
