@@ -39,7 +39,23 @@ export const imageErrors = [
             {
                 "name": "Using alt attributes on img elements",
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H37"
-            }
+            },
+            {
+                "name": "Example 1: Image used alone as a linked logo",
+                "url": "https://www.w3.org/WAI/tutorials/images/functional/#example-1-image-used-alone-as-a-linked-logo"
+            },
+            {
+                "name": "Example 2: Logo image within link text",
+                "url": "https://www.w3.org/WAI/tutorials/images/functional/#logo-image-within-link-text"
+            },
+            {
+                "name": "Example 3: Icon image conveying information within link text",
+                "url": "https://www.w3.org/WAI/tutorials/images/functional/#logo-image-within-link-text"
+            },
+            {
+                "name": "An alt Decision Tree",
+                "url": "https://www.w3.org/WAI/tutorials/images/decision-tree/"
+            },
         ],
         fix: "Add descriptive alt text to all linked images.",
     },
