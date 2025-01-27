@@ -130,7 +130,11 @@ export const formErrors = [
         {
           "name": "Using grouping roles to identify related form controls",
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA17"
-        }
+        },
+        {
+          "name": "Info and Relationships (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
+        },
       ],
       fix: "Add fieldset",
     },
