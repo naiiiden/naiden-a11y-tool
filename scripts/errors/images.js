@@ -158,6 +158,14 @@ export const imageErrors = [
             {
                 "name": "Using aria-describedby to provide descriptions of images",
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA15"
+            },
+            {
+                "name": "Non-text Content (Level A)",
+                "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html"
+            },
+            {
+                "name": "Using aria-labelledby to provide a text alternative for non-text content",
+                "url": "https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA10.html"
             }
         ],
         fix: "Add alt text to all svg elements with role='img'",
