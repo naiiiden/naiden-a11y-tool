@@ -267,7 +267,11 @@ export const semanticErrors = [
         {
           "name": "Using ol, ul and dl for lists or groups of links",
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H48"
-        }
+        },
+        {
+          "name": "Info and Relationships (Level A)",
+          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
+        },
       ],
       fix: "Ensure that lists are structured properly",
     },
