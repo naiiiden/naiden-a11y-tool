@@ -59,11 +59,7 @@ export const semanticErrors = [
         {
           "name": "Failure of Success Criterion 1.3.1 due to using changes in text presentation to convey information without using the appropriate markup or text",
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F2"
-        },
-        {
-          "name": "Info and Relationships (Level A)",
-          "url": "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships"
-        },
+        }
       ],
       fix: "Use a heading element",
     },
