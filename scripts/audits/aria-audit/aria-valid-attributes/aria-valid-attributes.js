@@ -44,7 +44,7 @@ export async function ariaValidAttributes(auditResults) {
             ...ariaErrors[15],
             element: element.outerHTML,
             selector: element.selector,
-            message: `The element contains unrecognized ARIA attributes: ${element.invalidAttributes.map(attr => `${attr.attribute}`).join(", ")}. Ensure these attributes are spelled correctly and are valid ARIA attributes.`
+            helperText: `The element contains unrecognized ARIA attributes: ${element.invalidAttributes.map(attr => `${attr.attribute}`).join(", ")}. Ensure these attributes are spelled correctly and are valid ARIA attributes.`
         });
     });
 }

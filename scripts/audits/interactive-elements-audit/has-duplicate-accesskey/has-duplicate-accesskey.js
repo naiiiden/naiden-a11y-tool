@@ -25,12 +25,12 @@ export async function hasDuplicateAccesskeys(auditResults) {
     `);
 
     hasDuplicateAccesskeys.forEach(group => {
-        const message = `Duplicate ID found on the following elements:\n` +
+        const helperText = `Duplicate ID found on the following elements:\n` +
             group.map(d => `- Selector: ${d.selector}`).join("\n");
 
         auditResults.push({
             ...interactiveElementsErrors[6],
-            message,
+            helperText,
             elements: group.map(d => d.outerHTML),
         });
     });

@@ -41,6 +41,6 @@ export async function ariaRoleProhibitedAttributes(auditResults) {
     `)
 
     ariaRoleProhibitedAttributes.forEach(element => {
-        auditResults.push({ ...ariaErrors[20], element: element.outerHTML, selector: element.selector, message: `The element contains prohibited attributes: ${element.prohibitedAttributes.join(", ")}.`, });
+        auditResults.push({ ...ariaErrors[20], element: element.outerHTML, selector: element.selector, helperText: `The element contains prohibited attributes: ${element.prohibitedAttributes.join(", ")}.`, });
     });
 }

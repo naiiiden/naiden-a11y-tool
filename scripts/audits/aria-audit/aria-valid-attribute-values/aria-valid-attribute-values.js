@@ -119,7 +119,7 @@ export async function ariaValidAttributeValues(auditResults) {
             ...ariaErrors[14],
             element: element.outerHTML,
             selector: element.selector,
-            message: 
+            helperText: 
                 element.invalidAttributes.map(attrInfo => 
                     `The attribute "${attrInfo.attribute}" has an invalid value "${attrInfo.value}". ${Array.isArray(attrInfo.validValues) ? `Valid values are: ${attrInfo.validValues.join(", ")}.` : attrInfo.validValues}`
                 ).join(" ")

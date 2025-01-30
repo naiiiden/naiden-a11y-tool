@@ -51,7 +51,7 @@ export async function ariaRoleRequiredChildren(auditResults) {
             ...ariaErrors[18],
             element: element.outerHTML,
             selector: element.selector,
-            message: `The element with role is missing required children with the following roles: ${element.missingChildren.join(", ")}.`,
+            helperText: `The element with role is missing required children with the following roles: ${element.missingChildren.join(", ")}.`,
         });
     });
 }

@@ -60,7 +60,7 @@ export async function hasInvalidDlElements(auditResults) {
             ...semanticErrors[16],
             element: element.outerHTML,
             selector: element.selector,
-            message: "Invalid <dl> structure detected. Ensure <dt> and <dd> elements are properly ordered and not nested inside <div> or other containers."
+            helperText: "Invalid <dl> structure detected. Ensure <dt> and <dd> elements are properly ordered and not nested inside <div> or other containers."
         });
     });
 }

@@ -45,7 +45,7 @@ export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
             ...ariaErrors[8],
             element: element.outerHTML,
             selector: element.selector,
-            message: `The element with \`aria-hidden="true"\` contains the following focusable or interactive children, which should not be focusable:
+            helperText: `The element with \`aria-hidden="true"\` contains the following focusable or interactive children, which should not be focusable:
                 ${element.focusableChildren
                   .map(child => `\n- Focusable element: ${child.outerHTML}`)
                   .join("")}`

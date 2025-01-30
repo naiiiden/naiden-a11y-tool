@@ -25,12 +25,12 @@ export async function hasDuplicateIds(auditResults) {
     `);
 
     hasDuplicateIds.forEach(group => {
-        const message = `Duplicate ID found on the following elements:\n` +
+        const helperText = `Duplicate ID found on the following elements:\n` +
             group.map(d => `- Selector: ${d.selector}`).join("\n");
 
         auditResults.push({
             ...semanticErrors[19],
-            message,
+            helperText,
             elements: group.map(d => d.outerHTML),
         });
     });

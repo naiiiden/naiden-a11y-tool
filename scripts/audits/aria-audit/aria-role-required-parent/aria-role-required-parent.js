@@ -51,7 +51,7 @@ export async function ariaRoleRequiredParent(auditResults) {
             ...ariaErrors[19],
             element: element.outerHTML,
             selector: element.selector,
-            message: `The element with role is missing a required parent with one of the following roles: ${element.missingParents.join(", ")}.`,
+            helperText: `The element with role is missing a required parent with one of the following roles: ${element.missingParents.join(", ")}.`,
         });
     });
 }
