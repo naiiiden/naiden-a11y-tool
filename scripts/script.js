@@ -95,9 +95,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+const auditFuncsArray = [];
+
 document.querySelectorAll("input[type='checkbox'][id$='checkbox'").forEach(input => {
   input.addEventListener("click", (e) => {
     console.log(e.target.value);
+    auditFuncsArray.push(e.target.value);
+    console.log(auditFuncsArray);
   });
 });
 
