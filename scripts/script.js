@@ -93,17 +93,32 @@ document.addEventListener("DOMContentLoaded", () => {
       emptyErrorMessage("No errors found.");
     });
   });
+
+  const auditFuncsMap = {
+    "root-and-metadata": rootAndMetadataAudit,
+    "image": imagesAudit,
+    "interactive-elements": interactiveElementsAudit,
+    "empty-elements": emptyAudit,
+    "form": formAudit,
+    "embedded-elements": embeddedElementsAudit,
+    "semantic": semanticAudit,
+    "aria": ariaAudit,
+    "css": cssAudit,
+    "deprecated-elements": deprecatedElementsAudit
+  };
   
   const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
   const auditFuncsArray = [];
   
   auditCheckboxes.forEach(input => {
     input.addEventListener("click", (e) => {
-      console.log(e.target.value);
-      if (!auditFuncsArray.includes(e.target.value)) {
-        auditFuncsArray.push(e.target.value);
+      const selectedAudit = auditFuncsMap[e.target.value];
+
+      if (!auditFuncsArray.includes(selectedAudit)) {
+        auditFuncsArray.push(selectedAudit);
+        console.log(auditFuncsArray)
       } else if (auditFuncsArray.includes(e.target.value)) {
-        auditFuncsArray.splice(auditFuncsArray.indexOf(e.target.value), 1);
+        auditFuncsArray.splice(auditFuncsArray.indexOf(selectedAudit), 1);
       }
     });
   });
