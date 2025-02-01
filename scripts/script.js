@@ -101,6 +101,13 @@ document.querySelectorAll("input[type='checkbox'][id$='checkbox'").forEach(input
   });
 });
 
+document.querySelector("input[type='checkbox'][id='select-all']").addEventListener('click', () => {
+  document.querySelectorAll("input[type='checkbox'][id$='checkbox'").forEach(input => {
+    input.checked = true;
+    //wip
+  });
+});
+
 function toggleStylesheets(disable) {
   const stylesheets = document.styleSheets;
   for (let i = 0; i < stylesheets.length; i++) {
