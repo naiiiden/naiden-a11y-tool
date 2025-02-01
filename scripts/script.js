@@ -95,6 +95,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+document.querySelectorAll("input[type='checkbox'][id$='checkbox'").forEach(input => {
+  input.addEventListener("click", () => {
+    console.log(1);
+  });
+});
+
 function toggleStylesheets(disable) {
   const stylesheets = document.styleSheets;
   for (let i = 0; i < stylesheets.length; i++) {
