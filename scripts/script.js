@@ -93,25 +93,31 @@ document.addEventListener("DOMContentLoaded", () => {
       emptyErrorMessage("No errors found.");
     });
   });
-});
-
-const auditFuncsArray = [];
-
-document.querySelectorAll("input[type='checkbox'][id$='checkbox'").forEach(input => {
-  input.addEventListener("click", (e) => {
-    console.log(e.target.value);
-    if (!auditFuncsArray.includes(e.target.value)) {
-      auditFuncsArray.push(e.target.value);
-    } else if (auditFuncsArray.includes(e.target.value)) {
-      auditFuncsArray.splice(auditFuncsArray.indexOf(e.target.value), 1);
-    }
-  });
-});
-
-document.querySelector("input[type='checkbox'][id='select-all']").addEventListener('click', () => {
+  
+  const auditFuncsArray = [];
+  
   document.querySelectorAll("input[type='checkbox'][id$='checkbox'").forEach(input => {
-    input.checked = true;
-    //wip
+    input.addEventListener("click", (e) => {
+      console.log(e.target.value);
+      if (!auditFuncsArray.includes(e.target.value)) {
+        auditFuncsArray.push(e.target.value);
+      } else if (auditFuncsArray.includes(e.target.value)) {
+        auditFuncsArray.splice(auditFuncsArray.indexOf(e.target.value), 1);
+      }
+    });
+  });
+  
+  document.querySelector("input[type='checkbox'][id='select-all']").addEventListener('click', () => {
+    document.querySelectorAll("input[type='checkbox'][id$='checkbox'").forEach(input => {
+      input.checked = true;
+      //wip
+    });
+  });
+
+  document.getElementById("run-audit-btn").addEventListener("click", () => {
+    runAudit(auditFuncsArray).then(() => {
+      emptyErrorMessage("No errors found.");
+    });
   });
 });
 
