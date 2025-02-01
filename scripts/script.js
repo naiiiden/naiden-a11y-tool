@@ -96,8 +96,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.querySelectorAll("input[type='checkbox'][id$='checkbox'").forEach(input => {
-  input.addEventListener("click", () => {
-    console.log(1);
+  input.addEventListener("click", (e) => {
+    console.log(e.target.value);
   });
 });
 
