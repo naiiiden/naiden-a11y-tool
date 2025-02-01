@@ -28,72 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  document.getElementById("run-root-and-metadata-audit-btn").addEventListener("click", () => {
-    runAudit([rootAndMetadataAudit]).then(() => {
-      emptyErrorMessage("No html and head errors.");
-    });
-  });
-
-  document.getElementById("run-image-audit-btn").addEventListener("click", () => {
-    runAudit([imagesAudit]).then(() => {
-      emptyErrorMessage("No image errors.");
-    });
-  });
-
-  document.getElementById("run-interactive-elements-audit-btn").addEventListener("click", () => {
-    runAudit([interactiveElementsAudit]).then(() => {
-      emptyErrorMessage("No interactive elements errors.");
-    });
-  });
-
-  document.getElementById("run-empty-audit-btn").addEventListener("click", () => {
-    runAudit([emptyAudit]).then(() => {
-      emptyErrorMessage("No empty element errors.");
-    });
-  });
-
-  document.getElementById("run-form-audit-btn").addEventListener("click", () => {
-    runAudit([formAudit]).then(() => {
-      emptyErrorMessage("No form errors.");
-    });
-  });
-
-  document.getElementById("run-embedded-elements-audit-btn").addEventListener("click", () => {
-    runAudit([embeddedElementsAudit]).then(() => {
-      emptyErrorMessage("No embedded elements errors.");
-    });
-  });
-
-  document.getElementById("run-semantic-audit-btn").addEventListener("click", () => {
-    runAudit([semanticAudit]).then(() => {
-      emptyErrorMessage("No semantic errors.");
-    });
-  });
-
-  document.getElementById("run-aria-audit-btn").addEventListener("click", () => {
-    runAudit([ariaAudit]).then(() => {
-      emptyErrorMessage("No aria errors.");
-    });
-  });
-
-  document.getElementById("run-css-audit-btn").addEventListener("click", () => {
-    runAudit([cssAudit]).then(() => {
-      emptyErrorMessage("No css errors.");
-    });
-  });
-
-  document.getElementById("run-deprecated-elements-audit-btn").addEventListener("click", () => {
-    runAudit([deprecatedElementsAudit]).then(() => {
-      emptyErrorMessage("No deprecated elements errors.");
-    });
-  });
-
-  document.getElementById("run-full-audit-btn").addEventListener("click", () => {
-    runAudit([rootAndMetadataAudit, imagesAudit, interactiveElementsAudit, emptyAudit, formAudit, embeddedElementsAudit, semanticAudit, ariaAudit, cssAudit, deprecatedElementsAudit]).then(() => {
-      emptyErrorMessage("No errors found.");
-    });
-  });
-
   const auditFuncsMap = {
     "root-and-metadata": rootAndMetadataAudit,
     "image": imagesAudit,
@@ -126,7 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector("input[type='checkbox'][id='select-all']").addEventListener('click', () => {
     auditCheckboxes.forEach(input => {
       input.checked = true;
-      //wip
+      const selectedAudit = auditFuncsMap[input.value];
+      if (!auditFuncsArray.includes(selectedAudit)) {
+        auditFuncsArray.push(selectedAudit);
+      }
     });
   });
 
