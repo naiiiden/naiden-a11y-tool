@@ -58,13 +58,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
   document.querySelector("input[type='button'][id='select-all']").addEventListener('click', () => {
-    auditCheckboxes.forEach(input => {
-      input.checked = true;
-      const selectedAudit = auditFuncsMap[input.value];
-      if (!auditFuncsArray.includes(selectedAudit)) {
-        auditFuncsArray.push(selectedAudit);
-      }
-    });
+    const allCheckboxesChecked = Array.from(auditCheckboxes).every(checkbox => checkbox.checked);
+
+    if (!allCheckboxesChecked) {
+      auditCheckboxes.forEach(input => {
+        input.checked = true;
+        const selectedAudit = auditFuncsMap[input.value];
+
+        if (!auditFuncsArray.includes(selectedAudit)) {
+          auditFuncsArray.push(selectedAudit);
+        }
+      });
+    } else if (allCheckboxesChecked) {
+      auditCheckboxes.forEach(input => {
+        input.checked = false;
+        const selectedAudit = auditFuncsMap[input.value];
+        
+        if (auditFuncsArray.includes(selectedAudit)) {
+          auditFuncsArray.splice(auditFuncsArray.indexOf(selectedAudit), 1);
+        }
+      })
+    }
   });
 
   document.getElementById("run-audit-btn").addEventListener("click", () => {
