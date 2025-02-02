@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
-  document.querySelector("input[type='checkbox'][id='select-all']").addEventListener('click', () => {
+  document.querySelector("input[type='button'][id='select-all']").addEventListener('click', () => {
     auditCheckboxes.forEach(input => {
       input.checked = true;
       const selectedAudit = auditFuncsMap[input.value];
