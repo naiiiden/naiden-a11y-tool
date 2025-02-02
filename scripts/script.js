@@ -43,6 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
   
   const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
   const auditFuncsArray = [];
+
+  function updateSelectAllButton() {
+    const allCheckboxesChecked = Array.from(auditCheckboxes).every(checkbox => checkbox.checked);
+    document.querySelector("input[type='button'][id='select-all']").value = allCheckboxesChecked ? "deselect all" : "select all"  
+  }
   
   auditCheckboxes.forEach(input => {
     input.addEventListener("click", (e) => {
@@ -54,6 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
       } else if (auditFuncsArray.includes(e.target.value)) {
         auditFuncsArray.splice(auditFuncsArray.indexOf(selectedAudit), 1);
       }
+
+      updateSelectAllButton();
     });
   });
   
@@ -79,6 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })
     }
+
+    updateSelectAllButton();
   });
 
   document.getElementById("run-audit-btn").addEventListener("click", () => {
