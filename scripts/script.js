@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!auditFuncsArray.includes(selectedAudit)) {
         auditFuncsArray.push(selectedAudit);
-        console.log(auditFuncsArray)
       } else if (auditFuncsArray.includes(e.target.value)) {
         auditFuncsArray.splice(auditFuncsArray.indexOf(selectedAudit), 1);
       }
