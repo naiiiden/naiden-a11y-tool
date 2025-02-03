@@ -42,11 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   
   const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
+  const selectAllBtn = document.querySelector("input[type='button'][id='select-all']");
   const auditFuncsArray = [];
 
   function updateSelectAllButton() {
     const allCheckboxesChecked = Array.from(auditCheckboxes).every(checkbox => checkbox.checked);
-    document.querySelector("input[type='button'][id='select-all']").value = allCheckboxesChecked ? "deselect all" : "select all"  
+    selectAllBtn.value = allCheckboxesChecked ? "deselect all" : "select all"  
   }
   
   auditCheckboxes.forEach(input => {
@@ -64,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
-  document.querySelector("input[type='button'][id='select-all']").addEventListener('click', () => {
+  selectAllBtn.addEventListener('click', () => {
     const allCheckboxesChecked = Array.from(auditCheckboxes).every(checkbox => checkbox.checked);
 
     if (!allCheckboxesChecked) {
