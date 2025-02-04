@@ -55,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const someCheckboxesChecked = Array.from(auditCheckboxes).some(checkbox => checkbox.checked);
     runAuditBtn.disabled = someCheckboxesChecked ? false : true;
   }
+
+  updateRunButton();
   
   auditCheckboxes.forEach(input => {
     input.addEventListener("click", (e) => {
