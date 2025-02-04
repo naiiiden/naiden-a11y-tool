@@ -147,8 +147,8 @@ function displayAuditResults(auditResults) {
     }
 
     listItem.innerHTML = `
-      <strong>${escapeHtml(error.name)}</strong> - ${escapeHtml(error.description)}<br>
-      <br>
+      <p><strong>${escapeHtml(error.name)}</strong></p>
+      <p>${escapeHtml(error.description)}</p>
       ${error.selector ? `<p>Location: ${error.selector}</p>` : ``}
       ${
         error.selector 
