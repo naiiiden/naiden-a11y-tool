@@ -43,11 +43,17 @@ document.addEventListener("DOMContentLoaded", () => {
   
   const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
   const selectAllBtn = document.querySelector("input[type='button'][id='select-all']");
+  const runAuditBtn = document.querySelector("#run-audit-btn");
   const auditFuncsArray = [];
 
   function updateSelectAllButton() {
     const allCheckboxesChecked = Array.from(auditCheckboxes).every(checkbox => checkbox.checked);
-    selectAllBtn.value = allCheckboxesChecked ? "deselect all" : "select all"  
+    selectAllBtn.value = allCheckboxesChecked ? "deselect all" : "select all";  
+  }
+
+  function updateRunButton() {
+    const someCheckboxesChecked = Array.from(auditCheckboxes).some(checkbox => checkbox.checked);
+    runAuditBtn.disabled = someCheckboxesChecked ? false : true;
   }
   
   auditCheckboxes.forEach(input => {
@@ -61,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       updateSelectAllButton();
+      updateRunButton();
     });
   });
   
@@ -88,9 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateSelectAllButton();
+    updateRunButton();
   });
 
-  document.getElementById("run-audit-btn").addEventListener("click", () => {
+  runAuditBtn.addEventListener("click", () => {
     runAudit(auditFuncsArray).then(() => {
       emptyErrorMessage("No errors found.");
     });
