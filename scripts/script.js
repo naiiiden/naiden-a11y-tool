@@ -138,7 +138,6 @@ function displayAuditResults(auditResults) {
 
     listItem.innerHTML = `
       <strong>${escapeHtml(error.name)}</strong> - ${escapeHtml(error.description)}<br>
-      ${wcagLinks}
       <br>
       ${error.selector ? `<p>Location: ${error.selector}</p>` : ``}
       ${
@@ -151,6 +150,7 @@ function displayAuditResults(auditResults) {
       }
       ${error.element ? `<pre><code>${escapeHtml(error.element)}</code></pre>` : ``}
       <p>How to fix: ${error.fix}</p>
+      ${wcagLinks}
     `;
 
     if (error.selector) {
