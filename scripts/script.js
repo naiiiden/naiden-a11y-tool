@@ -46,6 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const runAuditBtn = document.querySelector("#run-audit-btn");
   const auditFuncsArray = [];
 
+  auditCheckboxes.forEach(checkbox => {
+    checkbox.checked = true;
+    const selectedAudit = auditFuncsMap[checkbox.value];
+    auditFuncsArray.push(selectedAudit);
+  });
+
   function updateSelectAllButton() {
     const allCheckboxesChecked = Array.from(auditCheckboxes).every(checkbox => checkbox.checked);
     selectAllBtn.value = allCheckboxesChecked ? "deselect all" : "select all";  
