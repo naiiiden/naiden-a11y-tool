@@ -139,9 +139,11 @@ function displayAuditResults(auditResults) {
     if (error.wcagLinks) {
       for (const wcagLink of error.wcagLinks) {
         wcagLinks += `
-          <a href="${wcagLink.url}" target="_blank">
-            ${wcagLink.name} <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
-          </a>
+          <li>
+            <a href="${wcagLink.url}" target="_blank">
+              ${wcagLink.name} <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
+            </a>
+          </li>
         `;
       }
     }
@@ -160,7 +162,10 @@ function displayAuditResults(auditResults) {
       }
       ${error.element ? `<pre><code>${escapeHtml(error.element)}</code></pre>` : ``}
       <p>How to fix: ${error.fix}</p>
-      ${wcagLinks}
+      ${wcagLinks 
+        ? `${wcagLinks}` 
+        : ``
+      }
     `;
 
     if (error.selector) {
