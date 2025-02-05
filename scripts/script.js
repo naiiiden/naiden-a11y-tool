@@ -166,6 +166,14 @@ function displayAuditResults(auditResults) {
             </button>` 
           : ``
       }
+      ${
+        error.selector
+          ? `<button id="inspect-btn-${index}">
+              Inspect
+              <img src="assets/highlight.svg" alt=""/>
+            </button>` 
+          : ``
+      }
       ${error.element ? `<pre><code>${escapeHtml(error.element)}</code></pre>` : ``}
       <p>How to fix: ${error.fix}</p>
       ${wcagLinks 
@@ -177,6 +185,10 @@ function displayAuditResults(auditResults) {
     if (error.selector) {
       listItem.querySelector(`#highlight-btn-${index}`).addEventListener('click', () => {
         highlightElement(error.selector);
+      });
+
+      listItem.querySelector(`#inspect-btn-${index}`).addEventListener('click', () => {
+        highlightElementInDevTools(error.selector);
       });
     }
 
@@ -196,6 +208,17 @@ function highlightElement(selector) {
           element.classList.add('highlighted');
           element.style.outline = '3px solid red';
         }
+      }
+    })();
+  `);
+}
+
+function highlightElementInDevTools(selector) {
+  chrome.devtools.inspectedWindow.eval(`
+    (() => {
+      const element = document.querySelector('${selector}');
+      if (element) {
+        inspect(element);
       }
     })();
   `);
