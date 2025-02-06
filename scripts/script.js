@@ -174,7 +174,7 @@ function displayAuditResults(auditResults) {
             </button>` 
           : ``
       }
-      ${error.element ? `<pre><code>${escapeHtml(error.element)}</code></pre>` : ``}
+      ${error.element ? `<pre style="max-height: 200px;"><code>${escapeHtml(error.element)}</code></pre>` : ``}
       <p>How to fix: ${error.fix}</p>
       ${wcagLinks 
         ? `${wcagLinks}` 
