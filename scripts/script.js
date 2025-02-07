@@ -134,6 +134,21 @@ function toggleStylesheets(disable) {
   });
 }
 
+function truncateElementHtml(html, maxLength = 200) {
+  const openingTagMatch = html.match(/^<[^>]+>/);
+  const openingTag = openingTagMatch ? openingTagMatch[0] : '';
+
+  const closingTagMatch = html.match(/<\/[^>]+>$/);
+  const closingTag = closingTagMatch ? closingTagMatch[0] : '';
+
+  const innerContent = html.replace(openingTag, '').replace(closingTag, '');
+  const truncatedContent = innerContent.length > maxLength
+      ? innerContent.substring(0, maxLength) + '…'
+      : innerContent;
+
+  return `${openingTag}${truncatedContent}${closingTag}`;
+}
+
 function displayAuditResults(auditResults) {
   errorsList.innerHTML = '';
   errorsIndicator.innerHTML = "";
@@ -174,7 +189,7 @@ function displayAuditResults(auditResults) {
             </button>` 
           : ``
       }
-      ${error.element ? `<pre style="max-height: 200px;"><code>${escapeHtml(error.element)}</code></pre>` : ``}
+      ${error.element ? `<pre style="max-height: 200px;"><code>${escapeHtml(truncateElementHtml(error.element, 100000))}</code></pre>` : ``}
       <p>How to fix: ${error.fix}</p>
       ${wcagLinks 
         ? `${wcagLinks}` 
