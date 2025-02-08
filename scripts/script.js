@@ -189,7 +189,7 @@ function displayAuditResults(auditResults) {
             </button>` 
           : ``
       }
-      ${error.element ? `<pre style="max-height: 200px;"><code>${escapeHtml(truncateElementHtml(error.element, 100000))}</code></pre>` : ``}
+      ${error.element ? `<pre style="max-height: 200px;"><code>${escapeHtml(truncateElementHtml(error.element, 2000))}</code></pre>` : ``}
       <p>How to fix: ${error.fix}</p>
       ${wcagLinks 
         ? `${wcagLinks}` 
