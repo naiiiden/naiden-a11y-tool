@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   updateRunButton();
+  updateSelectAllButton();
   
   auditCheckboxes.forEach(input => {
     input.addEventListener("click", (e) => {
