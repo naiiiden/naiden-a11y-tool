@@ -9,6 +9,7 @@ import { ariaAudit } from "./audits/aria-audit/aria-audit.js";
 import { escapeHtml } from "./utils/escape-html.js";
 import { cssAudit } from "./audits/css-audit/css-audit.js";
 import { deprecatedElementsAudit } from "./audits/deprecated-elements-audit/deprecated-elements-audit.js";
+import { colourAudit } from "./audits/colour-audit/colour-audit.js";
 
 const errorsIndicator = document.getElementById("errors-indicator");
 const errorsList = document.getElementById('errors-list');
@@ -38,7 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "semantic": semanticAudit,
     "aria": ariaAudit,
     "css": cssAudit,
-    "deprecated-elements": deprecatedElementsAudit
+    "deprecated-elements": deprecatedElementsAudit,
+    "colour": colourAudit
   };
   
   const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
