@@ -134,19 +134,26 @@ function toggleStylesheets(disable) {
   });
 }
 
-function truncateElementHtml(html, maxLength = 200) {
-  const openingTagMatch = html.match(/^<[^>]+>/);
-  const openingTag = openingTagMatch ? openingTagMatch[0] : '';
+function truncateIfTooManyChildren(html, childrenToshow = 5) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
 
-  const closingTagMatch = html.match(/<\/[^>]+>$/);
-  const closingTag = closingTagMatch ? closingTagMatch[0] : '';
+  const rootElement = doc.body.firstElementChild;
+  if (!rootElement) return html;
 
-  const innerContent = html.replace(openingTag, '').replace(closingTag, '');
-  const truncatedContent = innerContent.length > maxLength
-      ? innerContent.substring(0, maxLength) + '…'
-      : innerContent;
+  const openingTag = rootElement.outerHTML.match(/^<[^>]+>/)?.[0] || "";
+  const closingTag = rootElement.outerHTML.match(/<\/[^>]+>$/)?.[0] || "";
 
-  return `${openingTag}${truncatedContent}${closingTag}`;
+  const childElements = Array.from(rootElement.children);
+
+  let innerContent;
+  if (childElements.length > childrenToshow) {
+      innerContent = childElements.slice(0, childrenToshow).map(el => el.outerHTML).join('') + '…';
+  } else {
+      innerContent = rootElement.innerHTML;
+  }
+
+  return `${openingTag}${innerContent}${closingTag}`;
 }
 
 function displayAuditResults(auditResults) {
@@ -189,7 +196,7 @@ function displayAuditResults(auditResults) {
             </button>` 
           : ``
       }
-      ${error.element ? `<pre style="max-height: 200px;"><code>${escapeHtml(truncateElementHtml(error.element, 2000))}</code></pre>` : ``}
+      ${error.element ? `<pre style="max-height: 200px;"><code>${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>` : ``}
       <p>How to fix: ${error.fix}</p>
       ${wcagLinks 
         ? `${wcagLinks}` 
