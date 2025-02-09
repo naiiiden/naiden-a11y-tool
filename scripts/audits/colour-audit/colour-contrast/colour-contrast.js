@@ -7,4 +7,12 @@ export async function colourContrast(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         console.log(1);
     `)
+
+    colourContrast.forEach(element => {
+        auditResults.push({
+            ...colourErrors[0],
+            element: element.outerHTML,
+            selector: element.selector,
+        });
+    });
 }
