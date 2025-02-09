@@ -146,14 +146,11 @@ function truncateIfTooManyChildren(html) {
 
   const childElements = Array.from(rootElement.children);
 
-  let innerContent;
   if (childElements.length > 3) {
-      innerContent = childElements.slice(0, 3).map(el => el.outerHTML).join('') + '…';
-  } else {
-      innerContent = rootElement.innerHTML;
+      return `${openingTag}${closingTag}`;
   }
 
-  return `${openingTag}${innerContent}${closingTag}`;
+  return `${openingTag}${rootElement.innerHTML}${closingTag}`;
 }
 
 function displayAuditResults(auditResults) {
