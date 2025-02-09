@@ -134,7 +134,7 @@ function toggleStylesheets(disable) {
   });
 }
 
-function truncateIfTooManyChildren(html, childrenToshow = 5) {
+function truncateIfTooManyChildren(html) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
 
@@ -147,8 +147,8 @@ function truncateIfTooManyChildren(html, childrenToshow = 5) {
   const childElements = Array.from(rootElement.children);
 
   let innerContent;
-  if (childElements.length > childrenToshow) {
-      innerContent = childElements.slice(0, childrenToshow).map(el => el.outerHTML).join('') + '…';
+  if (childElements.length > 3) {
+      innerContent = childElements.slice(0, 3).map(el => el.outerHTML).join('') + '…';
   } else {
       innerContent = rootElement.innerHTML;
   }
