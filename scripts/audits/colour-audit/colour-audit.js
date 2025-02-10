@@ -1,4 +1,4 @@
-import { hasInsufficientColourContrast } from "./colour-contrast/colour-contrast.js";
+import { hasInsufficientColourContrast } from "./has-insufficient-colour-contrast/has-insufficient-colour-contrast.js";
 
 export async function colourAudit(auditResults) {
     await hasInsufficientColourContrast(auditResults);
