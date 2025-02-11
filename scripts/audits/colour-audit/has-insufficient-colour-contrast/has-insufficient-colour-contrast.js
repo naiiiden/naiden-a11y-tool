@@ -5,56 +5,120 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function hasInsufficientColourContrast(auditResults) {
     const hasInsufficientColourContrast = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        function getComputedColor(element, property) {
-            return window.getComputedStyle(element)[property];
+
+        function getRGB(color) {
+            // Handle different color formats
+            if (color.startsWith('rgb')) {
+                const [r, g, b] = color.match(/\\d+/g).map(Number);
+                return [r, g, b];
+            }
+            // Handle hex colors
+            if (color.startsWith('#')) {
+                const hex = color.replace('#', '');
+                const r = parseInt(hex.substring(0, 2), 16);
+                const g = parseInt(hex.substring(2, 4), 16);
+                const b = parseInt(hex.substring(4, 6), 16);
+                return [r, g, b];
+            }
+            // For named colors, create a temporary element
+            const temp = document.createElement('div');
+            temp.style.color = color;
+            document.body.appendChild(temp);
+            const computedColor = getComputedStyle(temp).color;
+            document.body.removeChild(temp);
+            return computedColor.match(/\\d+/g).map(Number);
         }
 
-        function luminance(r, g, b) {
-            const a = [r, g, b].map(v => {
-                v /= 255;
-                return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        function getLuminance(r, g, b) {
+            // Convert to sRGB
+            let [sR, sG, sB] = [r, g, b].map(val => {
+                val = val / 255;
+                return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
             });
-            return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+            // Calculate luminance
+            return 0.2126 * sR + 0.7152 * sG + 0.0722 * sB;
         }
 
-        function contrastRatio(color1, color2) {
-            const lum1 = luminance(...color1);
-            const lum2 = luminance(...color2);
-            return (Math.max(lum1, lum2) + 0.05) / (Math.min(lum1, lum2) + 0.05);
-        }
-
-        function parseRGB(color) {
-            const match = color.match(/\d+/g);
-            return match ? match.slice(0, 3).map(Number) : null;
+        function getContrastRatio(l1, l2) {
+            const lighter = Math.max(l1, l2);
+            const darker = Math.min(l1, l2);
+            return (lighter + 0.05) / (darker + 0.05);
         }
 
         function isLargeText(element) {
-            const fontSize = parseFloat(getComputedColor(element, 'font-size'));
-            const fontWeight = getComputedColor(element, 'font-weight');
-            return fontSize >= 24 || (fontSize >= 19 && parseInt(fontWeight) >= 700);
+            const style = window.getComputedStyle(element);
+            const fontSize = parseFloat(style.fontSize);
+            const fontWeight = style.fontWeight;
+            
+            // Convert px to pt (1pt = 1.333px)
+            const fontSizePt = fontSize / 1.333;
+            
+            return fontSizePt >= 18 || (fontSizePt >= 14 && fontWeight >= 700);
         }
 
-        return Array.from(document.querySelectorAll('*'))
-            .filter(element => {
-                const color = parseRGB(getComputedColor(element, 'color'));
-                const bgColor = parseRGB(getComputedColor(element, 'background-color'));
-                if (!color || !bgColor) return false;
-                const ratio = contrastRatio(color, bgColor);
-                return ratio < (isLargeText(element) ? 3 : 4.5);
-            })
-            .map(element => {
-                return {
-                    selector: getUniqueSelector(element),
-                    outerHTML: element.outerHTML,
-                    textColor: getComputedColor(element, 'color'),
-                    backgroundColor: getComputedColor(element, 'background-color'),
-                    contrastRatio: contrastRatio(
-                        parseRGB(getComputedColor(element, 'color')),
-                        parseRGB(getComputedColor(element, 'background-color'))
-                    ).toFixed(2)
-                };
-            });
-    `)
+        function isVisible(element) {
+            const style = window.getComputedStyle(element);
+            return style.display !== 'none' && 
+                   style.visibility !== 'hidden' && 
+                   style.opacity !== '0' &&
+                   element.offsetHeight > 0;
+        }
+
+        function getBackgroundColor(element) {
+            let currentElement = element;
+            let bgColor = 'transparent';
+            
+            while (currentElement && bgColor === 'transparent') {
+                const style = window.getComputedStyle(currentElement);
+                bgColor = style.backgroundColor;
+                if (bgColor === 'transparent' && currentElement.parentElement) {
+                    currentElement = currentElement.parentElement;
+                } else if (bgColor === 'transparent') {
+                    // Default to white if no background color is found
+                    bgColor = 'rgb(255, 255, 255)';
+                }
+            }
+            
+            return bgColor;
+        }
+
+        const textElements = Array.from(document.querySelectorAll('*')).filter(element => {
+            // Check if element has visible text
+            const hasText = element.textContent.trim().length > 0;
+            // Exclude elements that only contain other elements
+            const hasDirectText = Array.from(element.childNodes)
+                .some(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0);
+            return hasText && hasDirectText && isVisible(element);
+        });
+
+        return textElements.map(element => {
+            const style = window.getComputedStyle(element);
+            const foregroundColor = style.color;
+            const backgroundColor = getBackgroundColor(element);
+            
+            const [fR, fG, fB] = getRGB(foregroundColor);
+            const [bR, bG, bB] = getRGB(backgroundColor);
+            
+            const foregroundLuminance = getLuminance(fR, fG, fB);
+            const backgroundLuminance = getLuminance(bR, bG, bB);
+            
+            const contrastRatio = getContrastRatio(foregroundLuminance, backgroundLuminance);
+            const requiredRatio = isLargeText(element) ? 3 : 4.5;
+            
+            const hasInsufficientContrast = contrastRatio < requiredRatio;
+            
+            return {
+                element: element.outerHTML,
+                selector: getUniqueSelector(element),
+                contrastRatio: contrastRatio.toFixed(2),
+                requiredRatio,
+                foregroundColor,
+                backgroundColor,
+                hasInsufficientContrast,
+                isLargeText: isLargeText(element)
+            };
+        }).filter(item => item.hasInsufficientContrast);
+    `);
 
     hasInsufficientColourContrast.forEach(element => {
         auditResults.push({
