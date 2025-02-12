@@ -82,7 +82,7 @@ export async function hasInsufficientColourContrast(auditResults) {
             return bgColor;
         }
 
-        const textElements = Array.from(document.querySelectorAll('*')).filter(element => {
+        const textElements = Array.from(document.querySelectorAll('*:not(script, style)')).filter(element => {
             // Check if element has visible text
             const hasText = element.textContent.trim().length > 0;
             // Exclude elements that only contain other elements
