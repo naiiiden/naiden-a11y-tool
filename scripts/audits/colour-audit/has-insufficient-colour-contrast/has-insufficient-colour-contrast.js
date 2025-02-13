@@ -131,6 +131,10 @@ export async function hasInsufficientColourContrast(auditResults) {
             ...colourErrors[0],
             element: element.outerHTML,
             selector: element.selector,
+            contrastRatio: element.contrastRatio,
+            foregroundColor: element.foregroundColor,
+            backgroundColor: element.backgroundColor,
+            hasInsufficientContrast: element.hasInsufficientContrast
         });
     });
 }
