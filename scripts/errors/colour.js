@@ -13,7 +13,7 @@ export const colourErrors = [
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G18"
         }, 
         {
-          "name": " text is at least 18 point if not bold or at least 14 point if bold: Ensuring that a contrast ratio of at least 3:1 exists between text (and images of text) and background behind the text",
+          "name": "text is at least 18 point if not bold or at least 14 point if bold: Ensuring that a contrast ratio of at least 3:1 exists between text (and images of text) and background behind the text",
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/general/G145"
         }
       ],

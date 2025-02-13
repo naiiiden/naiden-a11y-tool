@@ -20,13 +20,7 @@ export async function hasInsufficientColourContrast(auditResults) {
                 const b = parseInt(hex.substring(4, 6), 16);
                 return [r, g, b];
             }
-            // For named colors, create a temporary element
-            const temp = document.createElement('div');
-            temp.style.color = color;
-            document.body.appendChild(temp);
-            const computedColor = getComputedStyle(temp).color;
-            document.body.removeChild(temp);
-            return computedColor.match(/\\d+/g).map(Number);
+            return color.match(/\\d+/g).map(Number);
         }
 
         function getLuminance(r, g, b) {
