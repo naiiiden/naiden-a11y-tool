@@ -53,21 +53,41 @@ export async function hasInsufficientColourContrast(auditResults) {
                    element.offsetHeight > 0;
         }
 
+        function isTransparent(color) {
+            return color === 'transparent' || color === 'rgba(0, 0, 0, 0)';
+        }
+
         function getBackgroundColor(element) {
             let currentElement = element;
-            let bgColor = 'transparent';
+            let backgrounds = [];
             
-            while (currentElement && bgColor === 'transparent') {
+            while (currentElement && currentElement !== document) {
                 const style = window.getComputedStyle(currentElement);
-                bgColor = style.backgroundColor;
-                if (bgColor === 'transparent' && currentElement.parentElement) {
-                    currentElement = currentElement.parentElement;
-                } else if (bgColor === 'transparent') {
-                    bgColor = 'rgb(255, 255, 255)';
+                const backgroundColor = style.backgroundColor;
+                
+                if (!isTransparent(backgroundColor)) {
+                    backgrounds.push(backgroundColor);
                 }
+                
+                currentElement = currentElement.parentElement;
             }
             
-            return bgColor;
+            if (backgrounds.length > 0) {
+                return backgrounds[0];
+            }
+            
+            const bodyBg = window.getComputedStyle(document.body).backgroundColor;
+            const htmlBg = window.getComputedStyle(document.documentElement).backgroundColor;
+            
+            if (!isTransparent(bodyBg)) {
+                return bodyBg;
+            }
+            
+            if (!isTransparent(htmlBg)) {
+                return htmlBg;
+            }
+            
+            return 'rgb(255, 255, 255)';
         }
 
         const textElements = Array.from(document.querySelectorAll('*:not(script, style)')).filter(element => {
