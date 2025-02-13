@@ -7,12 +7,10 @@ export async function hasInsufficientColourContrast(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
 
         function getRGB(color) {
-            // Handle different color formats
             if (color.startsWith('rgb')) {
                 const [r, g, b] = color.match(/\\d+/g).map(Number);
                 return [r, g, b];
             }
-            // Handle hex colors
             if (color.startsWith('#')) {
                 const hex = color.replace('#', '');
                 const r = parseInt(hex.substring(0, 2), 16);
@@ -24,12 +22,10 @@ export async function hasInsufficientColourContrast(auditResults) {
         }
 
         function getLuminance(r, g, b) {
-            // Convert to sRGB
             let [sR, sG, sB] = [r, g, b].map(val => {
                 val = val / 255;
                 return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
             });
-            // Calculate luminance
             return 0.2126 * sR + 0.7152 * sG + 0.0722 * sB;
         }
 
@@ -44,7 +40,6 @@ export async function hasInsufficientColourContrast(auditResults) {
             const fontSize = parseFloat(style.fontSize);
             const fontWeight = style.fontWeight;
             
-            // Convert px to pt (1pt = 1.333px)
             const fontSizePt = fontSize / 1.333;
             
             return fontSizePt >= 18 || (fontSizePt >= 14 && fontWeight >= 700);
@@ -68,7 +63,6 @@ export async function hasInsufficientColourContrast(auditResults) {
                 if (bgColor === 'transparent' && currentElement.parentElement) {
                     currentElement = currentElement.parentElement;
                 } else if (bgColor === 'transparent') {
-                    // Default to white if no background color is found
                     bgColor = 'rgb(255, 255, 255)';
                 }
             }
@@ -77,9 +71,7 @@ export async function hasInsufficientColourContrast(auditResults) {
         }
 
         const textElements = Array.from(document.querySelectorAll('*:not(script, style)')).filter(element => {
-            // Check if element has visible text
             const hasText = element.textContent.trim().length > 0;
-            // Exclude elements that only contain other elements
             const hasDirectText = Array.from(element.childNodes)
                 .some(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0);
             return hasText && hasDirectText && isVisible(element);
