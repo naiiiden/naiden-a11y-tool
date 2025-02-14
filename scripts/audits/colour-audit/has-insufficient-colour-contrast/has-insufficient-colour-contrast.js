@@ -132,6 +132,7 @@ export async function hasInsufficientColourContrast(auditResults) {
             element: element.outerHTML,
             selector: element.selector,
             contrastRatio: element.contrastRatio,
+            requiredRatio: element.requiredRatio,
             foregroundColor: element.foregroundColor,
             backgroundColor: element.backgroundColor,
             hasInsufficientContrast: element.hasInsufficientContrast
