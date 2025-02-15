@@ -1,5 +1,6 @@
 export const emptyErrors = [
     {
+      type: "empty",
       id: 0,
       name: "Empty heading",
       description: "A heading is empty.",
@@ -16,6 +17,7 @@ export const emptyErrors = [
       fix: "Add text to the empty heading.",
     },
     {
+      type: "empty",
       id: 1,
       name: "Empty table header",
       description: "Some table headers empty.",
@@ -23,6 +25,7 @@ export const emptyErrors = [
       fix: "Add text to the empty table header.",
     },
     {
+      type: "empty",
       id: 2,
       name: "Empty or missing summary",
       description: "Summary element is empty or missing.",
