@@ -1,5 +1,6 @@
 export const imageErrors = [
     {
+        type: "image",
         id: 0,
         name: "Image missing alt attribute",
         description: "Some images are missing an alt attribute.",
@@ -32,6 +33,7 @@ export const imageErrors = [
         fix: "Add descriptive alt text to all images.",
     },
     {
+        type: "image",
         id: 1,
         name: "Linked image missing alt attribute or alt value is empty",
         description: "Some linked images are missing an alt attribute or its value is empty.",
@@ -64,6 +66,7 @@ export const imageErrors = [
         fix: "Add descriptive alt text to all linked images.",
     },
     {
+        type: "image",
         id: 2,
         name: "Button image missing alt attribute or alt value is empty",
         description: "Some button images are missing an alt attribute or its value is empty.",
@@ -92,6 +95,7 @@ export const imageErrors = [
         fix: "Add descriptive alt text to all button images.",
     },
     {
+        type: "image",
         id: 3,
         name: "Image \"img[usemap]\" map missing alt text",
         description: "Image map missing alt text.",
@@ -104,6 +108,7 @@ export const imageErrors = [
         fix: "Add alt text to all img maps.",
     },
     {
+        type: "image",
         id: 4,
         name: "Image map area missing alt text",
         description: "Image map area missing alt text.",
@@ -116,6 +121,7 @@ export const imageErrors = [
         fix: "Add alt text to all img map areas.",
     },
     {
+        type: "image",
         id: 5,
         name: "role='img' elements must have an alt text",
         description: "role='img' elements must have an alt text.",
@@ -140,6 +146,7 @@ export const imageErrors = [
         fix: "Add alt text to all role='img' elements.",
     },
     {
+        type: "image",
         id: 6,
         name: "server side img maps must not be used",
         description: "server side img maps must not be used",
@@ -147,6 +154,7 @@ export const imageErrors = [
         fix: "ensure server side img maps are not used",
     },
     {
+        type: "image",
         id: 7,
         name: "svg elements with role='img' must have an alt text",
         description: "svg elements with role='img' must have an alt text.",
@@ -171,6 +179,7 @@ export const imageErrors = [
         fix: "Add alt text to all svg elements with role='img'",
     },
     {
+        type: "image",
         id: 8,
         name: "alt text of button and link images should not be repeated as text",
         description: "alt text of button or link images should not be repeated as text",
