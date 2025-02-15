@@ -1,5 +1,6 @@
 export const cssErrors = [
     {
+      type: "css",
       id: 0,
       name: "Very small text",
       description: "Text has font-size of 10px or less which is difficult to read",
@@ -7,6 +8,7 @@ export const cssErrors = [
       fix: "Ensure the font-size of each text is larger than 10px",
     },
     {
+      type: "css",
       id: 1,
       name: "Underlined text",
       description: "Underlined text appears as a clickable link which can confuse users",
@@ -19,6 +21,7 @@ export const cssErrors = [
       fix: "Remove underline (element with text-decoration: underline style or <u> element) from non-link text to prevent confusion",
     },
     {
+      type: "css",
       id: 2,
       name: "Text properties unadjustable with custom stylesheets",
       description: "Text properties (line-height, letter-spacing, word-spacing, font-size) cannot be modified with custom stylesheets",
