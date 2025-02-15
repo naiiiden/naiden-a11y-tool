@@ -1,5 +1,6 @@
 export const semanticErrors = [
     {
+      type: "semantic",
       id: 0,
       name: "No first level heading",
       description: "No first level heading on the page",
@@ -28,6 +29,7 @@ export const semanticErrors = [
       fix: "Add h1 tag",
     },
     {
+      type: "semantic",
       id: 1,
       name: "Skipped heading level",
       description: "Heading level skipped",
@@ -48,6 +50,7 @@ export const semanticErrors = [
       fix: "Reorder headings and make sure levels are in order",
     },
     {
+      type: "semantic",
       id: 2,
       name: "Possible heading",
       description: "A <p> element looks like a heading",
@@ -64,6 +67,7 @@ export const semanticErrors = [
       fix: "Use a heading element",
     },
     {
+      type: "semantic",
       id: 3,
       name: "No headings",
       description: "No headings on the page",
@@ -84,6 +88,7 @@ export const semanticErrors = [
       fix: "Add headings",
     },
     {
+      type: "semantic",
       id: 4,
       name: "No page regions",
       description: "No page regions or aria landmarks on the page",
@@ -104,6 +109,7 @@ export const semanticErrors = [
       fix: "Use semantic tags to define regions",
     },
     {
+      type: "semantic",
       id: 5,
       name: "Page must have one <main> tag",
       description: "Page must have a main tag",
@@ -124,6 +130,7 @@ export const semanticErrors = [
       fix: "Add main tag",
     },
     {
+      type: "semantic",
       id: 6,
       name: "Page should not have more than one main tag",
       description: "Page must have only one main tag",
@@ -140,6 +147,7 @@ export const semanticErrors = [
       fix: "Leave only one main tag",
     },
     {
+      type: "semantic",
       id: 7,
       name: "Page should not have more than one banner landmark",
       description: "Page must have only one banner landmark",
@@ -156,6 +164,7 @@ export const semanticErrors = [
       fix: "Leave only one banner landmark",
     },
     {
+      type: "semantic",
       id: 8,
       name: "Page should not have more than one contentinfo landmark",
       description: "Page must have only one contentinfo landmark",
@@ -172,6 +181,7 @@ export const semanticErrors = [
       fix: "Leave only one contentinfo landmark",
     },
     {
+      type: "semantic",
       id: 9,
       name: "Header or role=\"banner\" landmark should not be contained in another landmark",
       description: "Header or role=\"banner\" landmark should not be contained in another landmark",
@@ -188,6 +198,7 @@ export const semanticErrors = [
       fix: "Header or role=\"banner\" landmark should be at top level",
     },
     {
+      type: "semantic",
       id: 10,
       name: "Aside or role=\"complementary\" should not be contained in another landmark",
       description: "Aside or role=\"complementary\" should not be contained in another landmark",
@@ -204,6 +215,7 @@ export const semanticErrors = [
       fix: "Aside or role=\"complementary\" should be top level",
     },
     {
+      type: "semantic",
       id: 11,
       name: "Footer or role=\"contentinfo\" landmark should not be contained in another landmark",
       description: "Footer or role=\"contentinfo\" landmark should not be contained in another landmark",
@@ -220,6 +232,7 @@ export const semanticErrors = [
       fix: "Footer or role=\"contentinfo\" landmark should be top level",
     },
     {
+      type: "semantic",
       id: 12,
       name: "Main or role=\"main\" landmark should not be contained in another landmark",
       description: "Main or role=\"main\" landmark should not be contained in another landmark",
@@ -236,6 +249,7 @@ export const semanticErrors = [
       fix: "Main or role=\"main\" landmark should be top level",
     },
     {
+      type: "semantic",
       id: 13,
       name: "Page content should be contained by landmarks",
       description: "Page content should be contained by landmarks",
@@ -260,6 +274,7 @@ export const semanticErrors = [
       fix: "Ensure all page content is contained by landmarks",
     },
     {
+      type: "semantic",
       id: 14,
       name: "ul and ol must only directly contain li, script or template elements",
       description: "ul and ol must only directly contain li, script or template elements",
@@ -276,6 +291,7 @@ export const semanticErrors = [
       fix: "Ensure that lists are structured properly",
     },
     {
+      type: "semantic",
       id: 15,
       name: "li elements must be contained in an ul or ol",
       description: "li elements must be contained in an ul or ol",
@@ -292,6 +308,7 @@ export const semanticErrors = [
       fix: "Ensures li elements are used semantically",
     },
     {
+      type: "semantic",
       id: 16,
       name: "dl elements must only directly contain properly-ordered dt and dd groups, script, template or div elements",
       description: "dl elements must only directly contain properly-ordered dt and dd groups, script, template or div elements",
@@ -312,6 +329,7 @@ export const semanticErrors = [
       fix: "Ensure that all dl elements are structured correctly.",
     },
     {
+      type: "semantic",
       id: 17,
       name: "dt and dd elements must be contained by a dl element",
       description: "dt and dd elements must be contained by a dl element",
@@ -332,6 +350,7 @@ export const semanticErrors = [
       fix: "Ensure that all dt and dd elements are contained dl.",
     },
     {
+      type: "semantic",
       id: 18,
       name: "page must have means to bypass repeated blocks",
       description: "page must have means to bypass repeated blocks",
@@ -364,6 +383,7 @@ export const semanticErrors = [
       fix: "each page must have a main landmark to provide a mechanism to bypass repeated blocks of content or interface elements",
     },
     {
+      type: "semantic",
       id: 19,
       name: "ids must be unique",
       description: "ids must be unique",
@@ -371,6 +391,7 @@ export const semanticErrors = [
       fix: "ensure ids are not duplicated",
     },
     {
+      type: "semantic",
       id: 20,
       name: "elements should not have tabindex greater than 0",
       description: "elements should not have tabindex greater than 0",
@@ -387,6 +408,7 @@ export const semanticErrors = [
       fix: "ensure tabindex values greater than 0 are never used",
     },
     {
+      type: "semantic",
       id: 21,
       name: "landmarks should be unique",
       description: "landmarks should be unique",
