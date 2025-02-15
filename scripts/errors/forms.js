@@ -1,5 +1,6 @@
 export const formErrors = [
     {
+      type: "form",
       id: 0,
       name: "Empty form label",
       description: "Form label is empty",
@@ -48,6 +49,7 @@ export const formErrors = [
       fix: "Add text to the empty form label",
     },
     {
+      type: "form",
       id: 1,
       name: "Form control missing label",
       description: "Form control doesn't have a label",
@@ -96,6 +98,7 @@ export const formErrors = [
       fix: "Add a label for the form control",
     },
     {
+      type: "form",
       id: 2,
       name: "Form control multiple form labels",
       description: "Form control has more than 1 label",
@@ -103,6 +106,7 @@ export const formErrors = [
       fix: "Leave only one label for the form control",
     },
     {
+      type: "form",
       id: 3,
       name: "Fieldset doesn't have legend",
       description: "Legend describes the elements contained by a fieldset",
@@ -115,6 +119,7 @@ export const formErrors = [
       fix: "Add legend",
     },
     {
+      type: "form",
       id: 4,
       name: "Missing fieldset",
       description: "Two or more radio buttons or checkboxes with the same name are not contained by a fieldset",
@@ -139,6 +144,7 @@ export const formErrors = [
       fix: "Add fieldset",
     },
     {
+      type: "form",
       id: 5,
       name: "Empty submit or button input value",
       description: "Submit or button input value is empty",
@@ -167,6 +173,7 @@ export const formErrors = [
       fix: "Add text to value",
     },
     {
+      type: "form",
       id: 6,
       name: "Image input must have alt text",
       description: "Image input must have alt text",
@@ -195,6 +202,7 @@ export const formErrors = [
       fix: "Add alt text to image inputs",
     },
     {
+      type: "form",
       id: 7,
       name: "Form elements should have a visible label",
       description: "Form elements should have a visible label",
@@ -211,6 +219,7 @@ export const formErrors = [
       fix: "Ensures that every input that requires a label is has a label other than the title or aria-describedby attributes",
     },
     {
+      type: "form",
       id: 8,
       name: "autocomplete attribute must be used correctly",
       description: "autocomplete attribute must be used correctly",
