@@ -1,4 +1,4 @@
-export const emptyErrors = [
+export const emptyElementsErrors = [
     {
       type: "empty",
       id: 0,

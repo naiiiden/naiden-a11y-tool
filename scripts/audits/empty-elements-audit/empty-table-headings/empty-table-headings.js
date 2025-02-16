@@ -1,4 +1,4 @@
-import { emptyErrors } from "../../../errors/empty-elements.js";
+import { emptyElementsErrors } from "../../../errors/empty-elements.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
@@ -16,6 +16,6 @@ export async function hasEmptyTableHeadings(auditResults) {
     `)
       
     emptyTableHeadings.forEach(tableHeading => {
-        auditResults.push({ ...emptyErrors[1], element: tableHeading.outerHTML, selector: tableHeading.selector });
+        auditResults.push({ ...emptyElementsErrors[1], element: tableHeading.outerHTML, selector: tableHeading.selector });
     });
 }

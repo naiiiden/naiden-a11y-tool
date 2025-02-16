@@ -1,4 +1,4 @@
-import { emptyErrors } from "../../../errors/empty-elements.js";
+import { emptyElementsErrors } from "../../../errors/empty-elements.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
@@ -22,7 +22,7 @@ export async function hasEmptyHeadingsWithImages(auditResults) {
       
     emptyHeadingsWithImages.forEach(heading => {
         if (!heading.hasText && heading.hasImage && !heading.hasImageAlt) {
-            auditResults.push({ ...emptyErrors[0], element: heading.outerHTML, selector: heading.selector });
+            auditResults.push({ ...emptyElementsErrors[0], element: heading.outerHTML, selector: heading.selector });
         }
     });
 }
