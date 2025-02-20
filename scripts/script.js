@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
       emptyErrorMessage("No errors found.");
     });
 
-    document.querySelector("#errors-count-total").textContent = `${auditFuncsArray.length} errors`;
+    document.querySelector("#errors-count-total").firstElementChild.textContent = `${auditFuncsArray.length}`;
   });
 });
 
