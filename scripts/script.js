@@ -113,6 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
     runAudit(auditFuncsArray).then(() => {
       emptyErrorMessage("No errors found.");
     });
+
+    document.querySelector("#errors-count-total").textContent = `${auditFuncsArray.length} errors`;
   });
 });
 
