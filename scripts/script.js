@@ -141,7 +141,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    console.log(errorsCountIndividualType);
+    for (const type in errorsCountIndividualType) {
+      if (errorsCountIndividualType.hasOwnProperty(type)) {
+        const elements = document.querySelectorAll(`.${type}`);
+        elements.forEach(element => {
+          element.textContent = errorsCountIndividualType[type];
+        });
+      }
+    }
   });
 
   function toggleStylesheets(disable) {
