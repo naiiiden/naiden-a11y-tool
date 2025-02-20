@@ -10,4 +10,8 @@ pre {
 
 ul {
   list-style-type: none;
+}
+
+#errors-count-total {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

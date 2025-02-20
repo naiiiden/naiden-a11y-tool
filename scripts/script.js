@@ -114,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
       emptyErrorMessage("No errors found.");
     });
 
+    document.querySelector("#errors-count-total").style.display = "unset";
     document.querySelector("#errors-count-total").firstElementChild.textContent = `${auditFuncsArray.length}`;
   });
 });

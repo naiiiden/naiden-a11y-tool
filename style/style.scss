@@ -11,3 +11,8 @@ pre {
 ul {
     list-style-type: none;
 }
+
+// initially hidden eleements
+#errors-count-total {
+    display: none;
+}
