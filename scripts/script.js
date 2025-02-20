@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const runAuditBtn = document.querySelector("#run-audit-btn");
   const errorsCountTotal = document.querySelector("#errors-count-total");
   const auditFuncsArray = [];
+  let auditResults = [];
 
   auditCheckboxes.forEach(checkbox => {
     checkbox.checked = true;
@@ -274,8 +275,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function runAudit(auditFuncs) {
-    const auditResults = [];
-
+    auditResults = [];
+    
     try {
       for (const auditFunc of auditFuncs) {
         await auditFunc(auditResults)
