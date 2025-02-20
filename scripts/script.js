@@ -111,19 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateRunButton();
   });
 
-  const errorsCountIndividualType = {
-    "root-and-metadata": 0,
-    "image": 0,
-    "empty": 0,
-    "form": 0,
-    "embedded": 0,
-    "semantic": 0,
-    "aria": 0,
-    "css": 0,
-    "deprecated": 0,
-    "colour": 0
-  };
-
   runAuditBtn.addEventListener("click", async () => {
     await runAudit(auditFuncsArray);
 
@@ -135,6 +122,18 @@ document.addEventListener("DOMContentLoaded", () => {
     errorsCountTotal.firstElementChild.textContent = `${auditResults.length}`;
     errorsCountTotal.lastElementChild.textContent = `${auditResults.length === 1 ? "error" : "errors"}`;
 
+    const errorsCountIndividualType = {
+      "root-and-metadata": 0,
+      "image": 0,
+      "empty": 0,
+      "form": 0,
+      "embedded": 0,
+      "semantic": 0,
+      "aria": 0,
+      "css": 0,
+      "deprecated": 0,
+      "colour": 0
+    };
 
     auditResults.forEach(error => {
       if (error.type in errorsCountIndividualType) {
