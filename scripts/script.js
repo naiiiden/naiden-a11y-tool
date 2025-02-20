@@ -110,6 +110,19 @@ document.addEventListener("DOMContentLoaded", () => {
     updateRunButton();
   });
 
+  const errorsCountIndividualType = {
+    "root-and-metadata": 0,
+    "image": 0,
+    "empty": 0,
+    "form": 0,
+    "embedded": 0,
+    "semantic": 0,
+    "aria": 0,
+    "css": 0,
+    "deprecated": 0,
+    "colour": 0
+  };
+
   runAuditBtn.addEventListener("click", () => {
     runAudit(auditFuncsArray).then(() => {
       emptyErrorMessage("No errors found.");
@@ -118,150 +131,160 @@ document.addEventListener("DOMContentLoaded", () => {
     errorsCountTotal.style.display = "unset";
     errorsCountTotal.firstElementChild.textContent = `${auditFuncsArray.length}`;
     errorsCountTotal.lastElementChild.textContent = `${auditFuncsArray.length === 1 ? "error" : "errors"}`;
+
+    console.log(auditFuncsArray.length);
+
+    auditFuncsArray.forEach(error => {
+      if (error.type in errorsCountIndividualType) {
+        errorsCountIndividualType[error.type]++;
+      }
+    });
+
+    console.log(errorsCountIndividualType);
   });
-});
 
-function toggleStylesheets(disable) {
-  const stylesheets = document.styleSheets;
-  for (let i = 0; i < stylesheets.length; i++) {
-    stylesheets[i].disabled = disable;
-  }
-
-  document.querySelectorAll('*').forEach((element) => {
-    if (disable) {
-      if (element.hasAttribute('style')) {
-        element.setAttribute('disabled-style', element.getAttribute('style'));
-        element.removeAttribute('style');
-      }
-    } else {
-      if (element.hasAttribute('disabled-style')) {
-        element.setAttribute('style', element.getAttribute('disabled-style'));
-        element.removeAttribute('disabled-style');
-      }
-    }
-  });
-}
-
-function truncateIfTooManyChildren(html) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, 'text/html');
-
-  const rootElement = doc.body.firstElementChild;
-  if (!rootElement) return html;
-
-  const openingTag = rootElement.outerHTML.match(/^<[^>]+>/)?.[0] || "";
-  const closingTag = rootElement.outerHTML.match(/<\/[^>]+>$/)?.[0] || "";
-
-  const childElements = Array.from(rootElement.children);
-
-  if (childElements.length > 3) {
-      return `${openingTag}${closingTag}`;
-  }
-
-  return `${openingTag}${rootElement.innerHTML}${closingTag}`;
-}
-
-function displayAuditResults(auditResults) {
-  errorsList.innerHTML = '';
-  errorsIndicator.innerHTML = "";
-
-  auditResults.forEach((error, index) => {
-    const listItem = document.createElement('li');
-
-    let wcagLinks = '';
-    if (error.wcagLinks) {
-      for (const wcagLink of error.wcagLinks) {
-        wcagLinks += `
-          <li>
-            <a href="${wcagLink.url}" target="_blank">
-              ${wcagLink.name} <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
-            </a>
-          </li>
-        `;
-      }
+  function toggleStylesheets(disable) {
+    const stylesheets = document.styleSheets;
+    for (let i = 0; i < stylesheets.length; i++) {
+      stylesheets[i].disabled = disable;
     }
 
-    listItem.innerHTML = `
-      <p><strong>${escapeHtml(error.name)}</strong></p>
-      <p>${escapeHtml(error.description)}</p>
-      ${error.selector ? `<p>Location: ${error.selector}</p>` : ``}
-      ${
-        error.selector 
-          ? `<button id="highlight-btn-${index}">
-              Highlight
-              <img src="assets/highlight.svg" alt=""/>
-            </button>` 
-          : ``
-      }
-      ${
-        error.selector
-          ? `<button id="inspect-btn-${index}">
-              Inspect
-              <img src="assets/highlight.svg" alt=""/>
-            </button>` 
-          : ``
-      }
-      ${error.element ? `<pre><code>${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>` : ``}
-      <p>How to fix: ${error.fix}</p>
-      ${wcagLinks 
-        ? `${wcagLinks}` 
-        : ``
-      }
-    `;
-
-    if (error.selector) {
-      listItem.querySelector(`#highlight-btn-${index}`).addEventListener('click', () => {
-        highlightElement(error.selector);
-      });
-
-      listItem.querySelector(`#inspect-btn-${index}`).addEventListener('click', () => {
-        highlightElementInDevTools(error.selector);
-      });
-    }
-
-    errorsList.appendChild(listItem);
-  });
-}
-
-function highlightElement(selector) {
-  chrome.devtools.inspectedWindow.eval(`
-    (() => {
-      const element = document.querySelector('${selector}');
-      if (element) {
-        if (element.classList.contains('highlighted')) {
-          element.classList.remove('highlighted');
-          element.style.outline = '';
-        } else {
-          element.classList.add('highlighted');
-          element.style.outline = '3px solid red';
+    document.querySelectorAll('*').forEach((element) => {
+      if (disable) {
+        if (element.hasAttribute('style')) {
+          element.setAttribute('disabled-style', element.getAttribute('style'));
+          element.removeAttribute('style');
+        }
+      } else {
+        if (element.hasAttribute('disabled-style')) {
+          element.setAttribute('style', element.getAttribute('disabled-style'));
+          element.removeAttribute('disabled-style');
         }
       }
-    })();
-  `);
-}
+    });
+  }
 
-function highlightElementInDevTools(selector) {
-  chrome.devtools.inspectedWindow.eval(`
-    (() => {
-      const element = document.querySelector('${selector}');
-      if (element) {
-        inspect(element);
-      }
-    })();
-  `);
-}
+  function truncateIfTooManyChildren(html) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
 
-async function runAudit(auditFuncs) {
-  let auditResults = [];
+    const rootElement = doc.body.firstElementChild;
+    if (!rootElement) return html;
 
-  try {
-    for (const auditFunc of auditFuncs) {
-      await auditFunc(auditResults)
+    const openingTag = rootElement.outerHTML.match(/^<[^>]+>/)?.[0] || "";
+    const closingTag = rootElement.outerHTML.match(/<\/[^>]+>$/)?.[0] || "";
+
+    const childElements = Array.from(rootElement.children);
+
+    if (childElements.length > 3) {
+        return `${openingTag}${closingTag}`;
     }
 
-    console.log("errors:", auditResults);
-    displayAuditResults(auditResults);
-  } catch (err) {
-    console.error("Error during audit:", err);
+    return `${openingTag}${rootElement.innerHTML}${closingTag}`;
   }
-}
+
+  function displayAuditResults(auditResults) {
+    errorsList.innerHTML = '';
+    errorsIndicator.innerHTML = "";
+
+    auditResults.forEach((error, index) => {
+      const listItem = document.createElement('li');
+
+      let wcagLinks = '';
+      if (error.wcagLinks) {
+        for (const wcagLink of error.wcagLinks) {
+          wcagLinks += `
+            <li>
+              <a href="${wcagLink.url}" target="_blank">
+                ${wcagLink.name} <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
+              </a>
+            </li>
+          `;
+        }
+      }
+
+      listItem.innerHTML = `
+        <p><strong>${escapeHtml(error.name)}</strong></p>
+        <p>${escapeHtml(error.description)}</p>
+        ${error.selector ? `<p>Location: ${error.selector}</p>` : ``}
+        ${
+          error.selector 
+            ? `<button id="highlight-btn-${index}">
+                Highlight
+                <img src="assets/highlight.svg" alt=""/>
+              </button>` 
+            : ``
+        }
+        ${
+          error.selector
+            ? `<button id="inspect-btn-${index}">
+                Inspect
+                <img src="assets/highlight.svg" alt=""/>
+              </button>` 
+            : ``
+        }
+        ${error.element ? `<pre><code>${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>` : ``}
+        <p>How to fix: ${error.fix}</p>
+        ${wcagLinks 
+          ? `${wcagLinks}` 
+          : ``
+        }
+      `;
+
+      if (error.selector) {
+        listItem.querySelector(`#highlight-btn-${index}`).addEventListener('click', () => {
+          highlightElement(error.selector);
+        });
+
+        listItem.querySelector(`#inspect-btn-${index}`).addEventListener('click', () => {
+          highlightElementInDevTools(error.selector);
+        });
+      }
+
+      errorsList.appendChild(listItem);
+    });
+  }
+
+  function highlightElement(selector) {
+    chrome.devtools.inspectedWindow.eval(`
+      (() => {
+        const element = document.querySelector('${selector}');
+        if (element) {
+          if (element.classList.contains('highlighted')) {
+            element.classList.remove('highlighted');
+            element.style.outline = '';
+          } else {
+            element.classList.add('highlighted');
+            element.style.outline = '3px solid red';
+          }
+        }
+      })();
+    `);
+  }
+
+  function highlightElementInDevTools(selector) {
+    chrome.devtools.inspectedWindow.eval(`
+      (() => {
+        const element = document.querySelector('${selector}');
+        if (element) {
+          inspect(element);
+        }
+      })();
+    `);
+  }
+
+  async function runAudit(auditFuncs) {
+    const auditResults = [];
+
+    try {
+      for (const auditFunc of auditFuncs) {
+        await auditFunc(auditResults)
+      }
+
+      console.log("errors:", auditResults);
+      displayAuditResults(auditResults);
+    } catch (err) {
+      console.error("Error during audit:", err);
+    }
+  }
+});
