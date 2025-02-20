@@ -124,16 +124,18 @@ document.addEventListener("DOMContentLoaded", () => {
     "colour": 0
   };
 
-  runAuditBtn.addEventListener("click", () => {
-    runAudit(auditFuncsArray).then(() => {
+  runAuditBtn.addEventListener("click", async () => {
+    await runAudit(auditFuncsArray);
+
+    if (auditResults.length === 0) {
       emptyErrorMessage("No errors found.");
-    });
+    }
 
     errorsCountTotal.style.display = "unset";
-    errorsCountTotal.firstElementChild.textContent = `${auditFuncsArray.length}`;
-    errorsCountTotal.lastElementChild.textContent = `${auditFuncsArray.length === 1 ? "error" : "errors"}`;
+    errorsCountTotal.firstElementChild.textContent = `${auditResults.length}`;
+    errorsCountTotal.lastElementChild.textContent = `${auditResults.length === 1 ? "error" : "errors"}`;
 
-    console.log(auditFuncsArray.length);
+    console.log(auditResults.length);
 
     auditFuncsArray.forEach(error => {
       if (error.type in errorsCountIndividualType) {
@@ -142,6 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     console.log(errorsCountIndividualType);
+    console.log(auditResults.length);
   });
 
   function toggleStylesheets(disable) {
