@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const elements = document.querySelectorAll(`.${type}`);
         elements.forEach(element => {
           element.firstElementChild.textContent = errorsCountIndividualType[type];
-          element.lastElementChild.textContent = `${errorsCountIndividualType[type] === 1 ? "error" : "errors"}`;
+          element.lastElementChild.textContent = `${type} ${errorsCountIndividualType[type] === 1 ? "error" : "errors"}`;
         });
       }
     }
