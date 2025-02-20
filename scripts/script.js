@@ -135,16 +135,14 @@ document.addEventListener("DOMContentLoaded", () => {
     errorsCountTotal.firstElementChild.textContent = `${auditResults.length}`;
     errorsCountTotal.lastElementChild.textContent = `${auditResults.length === 1 ? "error" : "errors"}`;
 
-    console.log(auditResults.length);
 
-    auditFuncsArray.forEach(error => {
+    auditResults.forEach(error => {
       if (error.type in errorsCountIndividualType) {
         errorsCountIndividualType[error.type]++;
       }
     });
 
     console.log(errorsCountIndividualType);
-    console.log(auditResults.length);
   });
 
   function toggleStylesheets(disable) {
