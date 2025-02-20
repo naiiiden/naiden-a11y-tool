@@ -145,7 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (errorsCountIndividualType.hasOwnProperty(type)) {
         const elements = document.querySelectorAll(`.${type}`);
         elements.forEach(element => {
-          element.textContent = errorsCountIndividualType[type];
+          element.firstElementChild.textContent = errorsCountIndividualType[type];
+          element.lastElementChild.textContent = `${errorsCountIndividualType[type] === 1 ? "error" : "errors"}`;
         });
       }
     }
