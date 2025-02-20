@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
   const selectAllBtn = document.querySelector("input[type='button'][id='select-all']");
   const runAuditBtn = document.querySelector("#run-audit-btn");
+  const errorsCountTotal = document.querySelector("#errors-count-total");
   const auditFuncsArray = [];
 
   auditCheckboxes.forEach(checkbox => {
@@ -114,8 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
       emptyErrorMessage("No errors found.");
     });
 
-    document.querySelector("#errors-count-total").style.display = "unset";
-    document.querySelector("#errors-count-total").firstElementChild.textContent = `${auditFuncsArray.length}`;
+    errorsCountTotal.style.display = "unset";
+    errorsCountTotal.firstElementChild.textContent = `${auditFuncsArray.length}`;
+    errorsCountTotal.lastElementChild.textContent = `${auditFuncsArray.length === 1 ? "error" : "errors"}`;
   });
 });
 
