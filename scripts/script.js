@@ -137,16 +137,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     auditResults.forEach(error => {
       if (error.type in errorsCountIndividualType) {
-        errorsCountIndividualType[error.type]++;
+        errorsCountIndividualType[error.type].count++;
       }
     });
+
+    console.log(errorsCountIndividualType);
 
     for (const type in errorsCountIndividualType) {
       if (errorsCountIndividualType.hasOwnProperty(type)) {
         const elements = document.querySelectorAll(`.${type}`);
         elements.forEach(element => {
-          element.firstElementChild.textContent = errorsCountIndividualType[type];
-          element.lastElementChild.textContent = `${type} ${errorsCountIndividualType[type] === 1 ? "error" : "errors"}`;
+          element.firstElementChild.textContent = errorsCountIndividualType[type][count];
+          element.lastElementChild.textContent = `${type.name} ${errorsCountIndividualType[type][count] === 1 ? "error" : "errors"}`;
         });
       }
     }
