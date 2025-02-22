@@ -123,16 +123,16 @@ document.addEventListener("DOMContentLoaded", () => {
     errorsCountTotal.lastElementChild.textContent = `${auditResults.length === 1 ? "error" : "errors"}`;
 
     const errorsCountIndividualType = {
-      "root-and-metadata": 0,
-      "image": 0,
-      "empty": 0,
-      "form": 0,
-      "embedded": 0,
-      "semantic": 0,
-      "aria": 0,
-      "css": 0,
-      "deprecated": 0,
-      "colour": 0
+      "root-and-metadata": { name: "root and metadata", count: 0 },
+      "image": { name: "image", count: 0 },
+      "empty": { name: "empty", count: 0 },
+      "form": { name: "form", count: 0 },
+      "embedded": { name: "embedded", count: 0 },
+      "semantic": { name: "semantic", count: 0 },
+      "aria": { name: "aria", count: 0 },
+      "css": { name: "css", count: 0 },
+      "deprecated": { name: "deprecated", count: 0 },
+      "colour": { name: "colour", count: 0 }
     };
 
     auditResults.forEach(error => {
