@@ -144,11 +144,13 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(errorsCountIndividualType);
 
     for (const type in errorsCountIndividualType) {
+      console.log("type", type);
+      console.log("errorscountindividualtype", errorsCountIndividualType);
       if (errorsCountIndividualType.hasOwnProperty(type)) {
         const elements = document.querySelectorAll(`.${type}`);
         elements.forEach(element => {
-          element.firstElementChild.textContent = errorsCountIndividualType[type][count];
-          element.lastElementChild.textContent = `${type.name} ${errorsCountIndividualType[type][count] === 1 ? "error" : "errors"}`;
+          element.firstElementChild.textContent = errorsCountIndividualType[type].count;
+          element.lastElementChild.textContent = `${errorsCountIndividualType[type].name} ${errorsCountIndividualType[type].count === 1 ? "error" : "errors"}`;
         });
       }
     }
