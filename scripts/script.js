@@ -179,16 +179,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const rootElement = doc.body.firstElementChild;
     if (!rootElement) return html;
-
+            
     const openingTag = rootElement.outerHTML.match(/^<[^>]+>/)?.[0] || "";
     const closingTag = rootElement.outerHTML.match(/<\/[^>]+>$/)?.[0] || "";
-
-    const childElements = Array.from(rootElement.children);
-
-    if (childElements.length > 3) {
+    
+    let totalChildren = 0;
+    
+    const stack = Array.from(rootElement.children);
+    
+    while (stack.length > 0) {
+      const element = stack.pop();
+      totalChildren++;
+      
+      stack.push(...Array.from(element.children));
+      
+      if (totalChildren > 3) {
         return `${openingTag}${closingTag}`;
+      }
     }
-
+    
     return `${openingTag}${rootElement.innerHTML}${closingTag}`;
   }
 
