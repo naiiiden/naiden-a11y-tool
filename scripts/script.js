@@ -141,11 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    console.log(errorsCountIndividualType);
-
     for (const type in errorsCountIndividualType) {
-      console.log("type", type);
-      console.log("errorscountindividualtype", errorsCountIndividualType);
       if (errorsCountIndividualType.hasOwnProperty(type)) {
         const elements = document.querySelectorAll(`.${type}`);
         elements.forEach(element => {
