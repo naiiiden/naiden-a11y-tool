@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       stack.push(...Array.from(element.children));
       
-      if (totalChildren > 3) {
+      if (totalChildren > 10) {
         return `${openingTag}${closingTag}`;
       }
     }
