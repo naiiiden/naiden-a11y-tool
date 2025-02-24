@@ -12,6 +12,7 @@ import { colourAudit } from "./audits/colour-audit/colour-audit.js";
 
 import { escapeHtml } from "./utils/escape-html.js";
 import { highlightElement } from "./utils/highlight-element.js";
+import { highlightElementInDevTools } from "./utils/highlight-element-in-dev-tools.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   function emptyErrorMessage(text) {
@@ -262,17 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       errorsList.appendChild(listItem);
     });
-  }
-
-  function highlightElementInDevTools(selector) {
-    chrome.devtools.inspectedWindow.eval(`
-      (() => {
-        const element = document.querySelector('${selector}');
-        if (element) {
-          inspect(element);
-        }
-      })();
-    `);
   }
 
   async function runAudit(auditFuncs) {
