@@ -12,9 +12,6 @@ import { deprecatedElementsAudit } from "./audits/deprecated-elements-audit/depr
 import { colourAudit } from "./audits/colour-audit/colour-audit.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const errorsIndicator = document.getElementById("errors-indicator");
-  const errorsList = document.getElementById('errors-list');
-  
   function emptyErrorMessage(text) {
     if (errorsList.innerHTML === "") {
       errorsIndicator.innerHTML = text;
@@ -47,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const selectAllBtn = document.querySelector("input[type='button'][id='select-all']");
   const runAuditBtn = document.querySelector("#run-audit-btn");
   const errorsCountTotal = document.querySelector("#errors-count-total");
+  const errorsIndicator = document.getElementById("errors-indicator");
+  const errorsList = document.getElementById('errors-list');
   const auditFuncsArray = [];
   let auditResults = [];
 
