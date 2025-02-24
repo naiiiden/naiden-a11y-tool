@@ -11,17 +11,17 @@ import { cssAudit } from "./audits/css-audit/css-audit.js";
 import { deprecatedElementsAudit } from "./audits/deprecated-elements-audit/deprecated-elements-audit.js";
 import { colourAudit } from "./audits/colour-audit/colour-audit.js";
 
-const errorsIndicator = document.getElementById("errors-indicator");
-const errorsList = document.getElementById('errors-list');
-
-function emptyErrorMessage(text) {
-  if (errorsList.innerHTML === "") {
-    errorsIndicator.innerHTML = text;
-    return;
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
+  const errorsIndicator = document.getElementById("errors-indicator");
+  const errorsList = document.getElementById('errors-list');
+  
+  function emptyErrorMessage(text) {
+    if (errorsList.innerHTML === "") {
+      errorsIndicator.innerHTML = text;
+      return;
+    }
+  }
+
   document.getElementById('toggle-stylesheets').addEventListener('change', () => {
     const disable = document.getElementById('toggle-stylesheets').checked;
     chrome.devtools.inspectedWindow.eval(
