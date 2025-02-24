@@ -6,10 +6,12 @@ import { imagesAudit } from "./audits/images-audit/images-audit.js";
 import { interactiveElementsAudit } from "./audits/interactive-elements-audit/interactive-elements-audit.js";
 import { semanticAudit } from "./audits/semantic-audit/semantic-audit.js";
 import { ariaAudit } from "./audits/aria-audit/aria-audit.js";
-import { escapeHtml } from "./utils/escape-html.js";
 import { cssAudit } from "./audits/css-audit/css-audit.js";
 import { deprecatedElementsAudit } from "./audits/deprecated-elements-audit/deprecated-elements-audit.js";
 import { colourAudit } from "./audits/colour-audit/colour-audit.js";
+
+import { escapeHtml } from "./utils/escape-html.js";
+import { highlightElement } from "./utils/highlight-element.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   function emptyErrorMessage(text) {
@@ -260,23 +262,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       errorsList.appendChild(listItem);
     });
-  }
-
-  function highlightElement(selector) {
-    chrome.devtools.inspectedWindow.eval(`
-      (() => {
-        const element = document.querySelector('${selector}');
-        if (element) {
-          if (element.classList.contains('highlighted')) {
-            element.classList.remove('highlighted');
-            element.style.outline = '';
-          } else {
-            element.classList.add('highlighted');
-            element.style.outline = '3px solid red';
-          }
-        }
-      })();
-    `);
   }
 
   function highlightElementInDevTools(selector) {
