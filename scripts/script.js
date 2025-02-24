@@ -13,6 +13,7 @@ import { colourAudit } from "./audits/colour-audit/colour-audit.js";
 import { escapeHtml } from "./utils/escape-html.js";
 import { highlightElement } from "./utils/highlight-element.js";
 import { highlightElementInDevTools } from "./utils/highlight-element-in-dev-tools.js";
+import { toggleStylesheets } from "./utils/toggle-stylesheets.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   function emptyErrorMessage(text) {
@@ -153,27 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-
-  function toggleStylesheets(disable) {
-    const stylesheets = document.styleSheets;
-    for (let i = 0; i < stylesheets.length; i++) {
-      stylesheets[i].disabled = disable;
-    }
-
-    document.querySelectorAll('*').forEach((element) => {
-      if (disable) {
-        if (element.hasAttribute('style')) {
-          element.setAttribute('disabled-style', element.getAttribute('style'));
-          element.removeAttribute('style');
-        }
-      } else {
-        if (element.hasAttribute('disabled-style')) {
-          element.setAttribute('style', element.getAttribute('disabled-style'));
-          element.removeAttribute('disabled-style');
-        }
-      }
-    });
-  }
 
   function truncateIfTooManyChildren(html) {
     const parser = new DOMParser();
