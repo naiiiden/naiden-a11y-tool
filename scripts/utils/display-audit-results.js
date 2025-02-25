@@ -1,3 +1,11 @@
+import { escapeHtml } from "./escape-html.js";
+import { highlightElement } from "./highlight-element.js";
+import { highlightElementInDevTools } from "./highlight-element-in-dev-tools.js";
+import { truncateIfTooManyChildren } from "./truncate-if-too-many-children.js";
+
+const errorsIndicator = document.getElementById("errors-indicator");
+const errorsList = document.getElementById('errors-list');
+
 export function displayAuditResults(auditResults) {
     errorsList.innerHTML = '';
     errorsIndicator.innerHTML = "";

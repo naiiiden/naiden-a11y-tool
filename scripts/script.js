@@ -10,11 +10,7 @@ import { cssAudit } from "./audits/css-audit/css-audit.js";
 import { deprecatedElementsAudit } from "./audits/deprecated-elements-audit/deprecated-elements-audit.js";
 import { colourAudit } from "./audits/colour-audit/colour-audit.js";
 
-import { escapeHtml } from "./utils/escape-html.js";
-import { highlightElement } from "./utils/highlight-element.js";
-import { highlightElementInDevTools } from "./utils/highlight-element-in-dev-tools.js";
 import { toggleStylesheets } from "./utils/toggle-stylesheets.js";
-import { truncateIfTooManyChildren } from "./utils/truncate-if-too-many-children.js";
 import { displayAuditResults } from "./utils/display-audit-results.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -50,8 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const selectAllBtn = document.querySelector("input[type='button'][id='select-all']");
   const runAuditBtn = document.querySelector("#run-audit-btn");
   const errorsCountTotal = document.querySelector("#errors-count-total");
-  const errorsIndicator = document.getElementById("errors-indicator");
-  const errorsList = document.getElementById('errors-list');
+  
   const auditFuncsArray = [];
   let auditResults = [];
 
