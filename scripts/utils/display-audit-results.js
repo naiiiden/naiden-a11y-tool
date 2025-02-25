@@ -6,6 +6,13 @@ import { truncateIfTooManyChildren } from "./truncate-if-too-many-children.js";
 const errorsIndicator = document.getElementById("errors-indicator");
 const errorsList = document.getElementById('errors-list');
 
+export function emptyErrorMessage(text) {
+    if (errorsList.innerHTML === "") {
+      errorsIndicator.innerHTML = text;
+      return;
+    }
+}
+
 export function displayAuditResults(auditResults) {
     errorsList.innerHTML = '';
     errorsIndicator.innerHTML = "";

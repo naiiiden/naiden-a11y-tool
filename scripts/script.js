@@ -11,16 +11,9 @@ import { deprecatedElementsAudit } from "./audits/deprecated-elements-audit/depr
 import { colourAudit } from "./audits/colour-audit/colour-audit.js";
 
 import { toggleStylesheets } from "./utils/toggle-stylesheets.js";
-import { displayAuditResults } from "./utils/display-audit-results.js";
+import { displayAuditResults, emptyErrorMessage } from "./utils/display-audit-results.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  function emptyErrorMessage(text) {
-    if (errorsList.innerHTML === "") {
-      errorsIndicator.innerHTML = text;
-      return;
-    }
-  }
-
   document.getElementById('toggle-stylesheets').addEventListener('change', () => {
     const disable = document.getElementById('toggle-stylesheets').checked;
     chrome.devtools.inspectedWindow.eval(
