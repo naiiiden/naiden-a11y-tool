@@ -6,10 +6,15 @@ import { imagesAudit } from "./audits/images-audit/images-audit.js";
 import { interactiveElementsAudit } from "./audits/interactive-elements-audit/interactive-elements-audit.js";
 import { semanticAudit } from "./audits/semantic-audit/semantic-audit.js";
 import { ariaAudit } from "./audits/aria-audit/aria-audit.js";
-import { escapeHtml } from "./utils/escape-html.js";
 import { cssAudit } from "./audits/css-audit/css-audit.js";
 import { deprecatedElementsAudit } from "./audits/deprecated-elements-audit/deprecated-elements-audit.js";
 import { colourAudit } from "./audits/colour-audit/colour-audit.js";
+
+import { escapeHtml } from "./utils/escape-html.js";
+import { highlightElement } from "./utils/highlight-element.js";
+import { highlightElementInDevTools } from "./utils/highlight-element-in-dev-tools.js";
+import { toggleStylesheets } from "./utils/toggle-stylesheets.js";
+import { truncateIfTooManyChildren } from "./utils/truncate-if-too-many-children.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   function emptyErrorMessage(text) {
@@ -151,55 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  function toggleStylesheets(disable) {
-    const stylesheets = document.styleSheets;
-    for (let i = 0; i < stylesheets.length; i++) {
-      stylesheets[i].disabled = disable;
-    }
-
-    document.querySelectorAll('*').forEach((element) => {
-      if (disable) {
-        if (element.hasAttribute('style')) {
-          element.setAttribute('disabled-style', element.getAttribute('style'));
-          element.removeAttribute('style');
-        }
-      } else {
-        if (element.hasAttribute('disabled-style')) {
-          element.setAttribute('style', element.getAttribute('disabled-style'));
-          element.removeAttribute('disabled-style');
-        }
-      }
-    });
-  }
-
-  function truncateIfTooManyChildren(html) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-
-    const rootElement = doc.body.firstElementChild;
-    if (!rootElement) return html;
-            
-    const openingTag = rootElement.outerHTML.match(/^<[^>]+>/)?.[0] || "";
-    const closingTag = rootElement.outerHTML.match(/<\/[^>]+>$/)?.[0] || "";
-    
-    let totalChildren = 0;
-    
-    const stack = Array.from(rootElement.children);
-    
-    while (stack.length > 0) {
-      const element = stack.pop();
-      totalChildren++;
-      
-      stack.push(...Array.from(element.children));
-      
-      if (totalChildren > 10) {
-        return `${openingTag}${closingTag}`;
-      }
-    }
-    
-    return `${openingTag}${rootElement.innerHTML}${closingTag}`;
-  }
-
   function displayAuditResults(auditResults) {
     errorsList.innerHTML = '';
     errorsIndicator.innerHTML = "";
@@ -260,34 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       errorsList.appendChild(listItem);
     });
-  }
-
-  function highlightElement(selector) {
-    chrome.devtools.inspectedWindow.eval(`
-      (() => {
-        const element = document.querySelector('${selector}');
-        if (element) {
-          if (element.classList.contains('highlighted')) {
-            element.classList.remove('highlighted');
-            element.style.outline = '';
-          } else {
-            element.classList.add('highlighted');
-            element.style.outline = '3px solid red';
-          }
-        }
-      })();
-    `);
-  }
-
-  function highlightElementInDevTools(selector) {
-    chrome.devtools.inspectedWindow.eval(`
-      (() => {
-        const element = document.querySelector('${selector}');
-        if (element) {
-          inspect(element);
-        }
-      })();
-    `);
   }
 
   async function runAudit(auditFuncs) {
