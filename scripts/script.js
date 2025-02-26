@@ -6,14 +6,19 @@ import { imagesAudit } from "./audits/images-audit/images-audit.js";
 import { interactiveElementsAudit } from "./audits/interactive-elements-audit/interactive-elements-audit.js";
 import { semanticAudit } from "./audits/semantic-audit/semantic-audit.js";
 import { ariaAudit } from "./audits/aria-audit/aria-audit.js";
+import { escapeHtml } from "./utils/escape-html.js";
 import { cssAudit } from "./audits/css-audit/css-audit.js";
 import { deprecatedElementsAudit } from "./audits/deprecated-elements-audit/deprecated-elements-audit.js";
 import { colourAudit } from "./audits/colour-audit/colour-audit.js";
 
-import { toggleStylesheets } from "./utils/toggle-stylesheets.js";
-import { displayAuditResults, emptyErrorMessage } from "./utils/display-audit-results.js";
-
 document.addEventListener("DOMContentLoaded", () => {
+  function emptyErrorMessage(text) {
+    if (errorsList.innerHTML === "") {
+      errorsIndicator.innerHTML = text;
+      return;
+    }
+  }
+
   document.getElementById('toggle-stylesheets').addEventListener('change', () => {
     const disable = document.getElementById('toggle-stylesheets').checked;
     chrome.devtools.inspectedWindow.eval(
@@ -39,7 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const selectAllBtn = document.querySelector("input[type='button'][id='select-all']");
   const runAuditBtn = document.querySelector("#run-audit-btn");
   const errorsCountTotal = document.querySelector("#errors-count-total");
-  
+  const errorsIndicator = document.getElementById("errors-indicator");
+  const errorsList = document.getElementById('errors-list');
   const auditFuncsArray = [];
   let auditResults = [];
 
@@ -144,6 +150,145 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+
+  function toggleStylesheets(disable) {
+    const stylesheets = document.styleSheets;
+    for (let i = 0; i < stylesheets.length; i++) {
+      stylesheets[i].disabled = disable;
+    }
+
+    document.querySelectorAll('*').forEach((element) => {
+      if (disable) {
+        if (element.hasAttribute('style')) {
+          element.setAttribute('disabled-style', element.getAttribute('style'));
+          element.removeAttribute('style');
+        }
+      } else {
+        if (element.hasAttribute('disabled-style')) {
+          element.setAttribute('style', element.getAttribute('disabled-style'));
+          element.removeAttribute('disabled-style');
+        }
+      }
+    });
+  }
+
+  function truncateIfTooManyChildren(html) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    const rootElement = doc.body.firstElementChild;
+    if (!rootElement) return html;
+            
+    const openingTag = rootElement.outerHTML.match(/^<[^>]+>/)?.[0] || "";
+    const closingTag = rootElement.outerHTML.match(/<\/[^>]+>$/)?.[0] || "";
+    
+    let totalChildren = 0;
+    
+    const stack = Array.from(rootElement.children);
+    
+    while (stack.length > 0) {
+      const element = stack.pop();
+      totalChildren++;
+      
+      stack.push(...Array.from(element.children));
+      
+      if (totalChildren > 10) {
+        return `${openingTag}${closingTag}`;
+      }
+    }
+    
+    return `${openingTag}${rootElement.innerHTML}${closingTag}`;
+  }
+
+  function displayAuditResults(auditResults) {
+    errorsList.innerHTML = '';
+    errorsIndicator.innerHTML = "";
+
+    auditResults.forEach((error, index) => {
+      const listItem = document.createElement('li');
+
+      let wcagLinks = '';
+      if (error.wcagLinks) {
+        for (const wcagLink of error.wcagLinks) {
+          wcagLinks += `
+            <li>
+              <a href="${wcagLink.url}" target="_blank">
+                ${wcagLink.name} <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
+              </a>
+            </li>
+          `;
+        }
+      }
+
+      listItem.innerHTML = `
+        <p><strong>${escapeHtml(error.name)}</strong></p>
+        <p>${escapeHtml(error.description)}</p>
+        ${error.selector ? `<p>Location: ${error.selector}</p>` : ``}
+        ${
+          error.selector 
+            ? `<button id="highlight-btn-${index}">
+                Highlight
+                <img src="assets/highlight.svg" alt=""/>
+              </button>` 
+            : ``
+        }
+        ${
+          error.selector
+            ? `<button id="inspect-btn-${index}">
+                Inspect
+                <img src="assets/highlight.svg" alt=""/>
+              </button>` 
+            : ``
+        }
+        ${error.element ? `<pre><code>${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>` : ``}
+        <p>How to fix: ${error.fix}</p>
+        ${wcagLinks 
+          ? `${wcagLinks}` 
+          : ``
+        }
+      `;
+
+      if (error.selector) {
+        listItem.querySelector(`#highlight-btn-${index}`).addEventListener('click', () => {
+          highlightElement(error.selector);
+        });
+
+        listItem.querySelector(`#inspect-btn-${index}`).addEventListener('click', () => {
+          highlightElementInDevTools(error.selector);
+        });
+      }
+
+      errorsList.appendChild(listItem);
+    });
+  }
+
+  function highlightElement(selector) {
+    chrome.devtools.inspectedWindow.eval(`
+      (() => {
+        const element = document.querySelector('${selector}');
+        if (element) {
+          if (element.classList.contains('highlighted')) {
+            element.classList.remove('highlighted');
+            element.style.outline = '';
+          } else {
+            element.classList.add('highlighted');
+            element.style.outline = '3px solid red';
+          }
+        }
+      })();
+    `);
+  }
+
+  function highlightElementInDevTools(selector) {
+    chrome.devtools.inspectedWindow.eval(`
+      (() => {
+        const element = document.querySelector('${selector}');
+        if (element) {
+          inspect(element);
+        }
+      })();
+    `);
+  }
 
   async function runAudit(auditFuncs) {
     auditResults = [];
