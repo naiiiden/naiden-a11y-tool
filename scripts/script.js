@@ -9,19 +9,11 @@ import { ariaAudit } from "./audits/aria-audit/aria-audit.js";
 import { cssAudit } from "./audits/css-audit/css-audit.js";
 import { deprecatedElementsAudit } from "./audits/deprecated-elements-audit/deprecated-elements-audit.js";
 import { colourAudit } from "./audits/colour-audit/colour-audit.js";
-
-import { toggleStylesheets } from "./utils/toggle-stylesheets.js";
 import { updateErrorsCount } from "./ui/update-errors-count.js";
 import { displayAuditResults, emptyErrorMessage } from "./ui/display-audit-results.js";
+import { uiControls } from "./ui/controls.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById('toggle-stylesheets').addEventListener('change', () => {
-    const disable = document.getElementById('toggle-stylesheets').checked;
-    chrome.devtools.inspectedWindow.eval(
-      `(${toggleStylesheets.toString()})(${disable});`
-    );
-  });
-
   const auditFuncsMap = {
     "root-and-metadata": rootAndMetadataAudit,
     "image": imagesAudit,
@@ -127,4 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error during audit:", err);
     }
   }
+
+  uiControls(auditFuncsMap, runAudit);
 });
