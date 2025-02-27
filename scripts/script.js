@@ -15,6 +15,7 @@ import { highlightElement } from "./utils/highlight-element.js";
 import { highlightElementInDevTools } from "./utils/highlight-element-in-dev-tools.js";
 import { toggleStylesheets } from "./utils/toggle-stylesheets.js";
 import { truncateIfTooManyChildren } from "./utils/truncate-if-too-many-children.js";
+import { errorsCount } from "./ui/errors-count.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   function emptyErrorMessage(text) {
@@ -48,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
   const selectAllBtn = document.querySelector("input[type='button'][id='select-all']");
   const runAuditBtn = document.querySelector("#run-audit-btn");
-  const errorsCountTotal = document.querySelector("#errors-count-total");
   const errorsIndicator = document.getElementById("errors-indicator");
   const errorsList = document.getElementById('errors-list');
   const auditFuncsArray = [];
@@ -122,38 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
       emptyErrorMessage("No errors found.");
     }
 
-    errorsCountTotal.style.display = "unset";
-    errorsCountTotal.firstElementChild.textContent = `${auditResults.length}`;
-    errorsCountTotal.lastElementChild.textContent = `${auditResults.length === 1 ? "error" : "errors"}`;
-
-    const errorsCountIndividualType = {
-      "root-and-metadata": { name: "root and metadata", count: 0 },
-      "image": { name: "image", count: 0 },
-      "empty": { name: "empty element", count: 0 },
-      "form": { name: "form", count: 0 },
-      "embedded": { name: "embedded element", count: 0 },
-      "semantic": { name: "semantic", count: 0 },
-      "aria": { name: "aria", count: 0 },
-      "css": { name: "css", count: 0 },
-      "deprecated": { name: "deprecated element", count: 0 },
-      "colour": { name: "colour", count: 0 }
-    };
-
-    auditResults.forEach(error => {
-      if (error.type in errorsCountIndividualType) {
-        errorsCountIndividualType[error.type].count++;
-      }
-    });
-
-    for (const type in errorsCountIndividualType) {
-      if (errorsCountIndividualType.hasOwnProperty(type)) {
-        const elements = document.querySelectorAll(`.${type}`);
-        elements.forEach(element => {
-          element.firstElementChild.textContent = errorsCountIndividualType[type].count;
-          element.lastElementChild.textContent = `${errorsCountIndividualType[type].name} ${errorsCountIndividualType[type].count === 1 ? "error" : "errors"}`;
-        });
-      }
-    }
+    errorsCount(auditResults);
   });
 
   function displayAuditResults(auditResults) {
