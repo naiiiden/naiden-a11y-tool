@@ -1,7 +1,7 @@
-import { escapeHtml } from "./escape-html.js";
-import { highlightElement } from "./highlight-element.js";
-import { highlightElementInDevTools } from "./highlight-element-in-dev-tools.js";
-import { truncateIfTooManyChildren } from "./truncate-if-too-many-children.js";
+import { escapeHtml } from "../utils/escape-html.js";
+import { highlightElement } from "../utils/highlight-element.js";
+import { highlightElementInDevTools } from "../utils/highlight-element-in-dev-tools.js";
+import { truncateIfTooManyChildren } from "../utils/truncate-if-too-many-children.js";
 
 const errorsIndicator = document.getElementById("errors-indicator");
 const errorsList = document.getElementById('errors-list');
