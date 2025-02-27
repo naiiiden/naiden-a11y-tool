@@ -15,7 +15,7 @@ import { highlightElement } from "./utils/highlight-element.js";
 import { highlightElementInDevTools } from "./utils/highlight-element-in-dev-tools.js";
 import { toggleStylesheets } from "./utils/toggle-stylesheets.js";
 import { truncateIfTooManyChildren } from "./utils/truncate-if-too-many-children.js";
-import { errorsCount } from "./ui/errors-count.js";
+import { updateErrorsCount } from "./ui/update-errors-count.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   function emptyErrorMessage(text) {
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
       emptyErrorMessage("No errors found.");
     }
 
-    errorsCount(auditResults);
+    updateErrorsCount(auditResults);
   });
 
   function displayAuditResults(auditResults) {

@@ -1,4 +1,4 @@
-export function errorsCount(auditResults) {
+export function updateErrorsCount(auditResults) {
     const errorsCountTotal = document.querySelector("#errors-count-total");
 
     errorsCountTotal.style.display = "unset";
