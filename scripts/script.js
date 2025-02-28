@@ -40,6 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       console.log("errors:", auditResults);
       displayAuditResults(auditResults);
+      
+      if (auditResults.length === 0) {
+        emptyErrorMessage("No errors found.");
+      }
+      
+      updateErrorsCount(auditResults);
+      
     } catch (err) {
       console.error("Error during audit:", err);
     }
