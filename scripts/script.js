@@ -28,18 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "colour": colourAudit
   };
   
-  const runAuditBtn = document.querySelector("#run-audit-btn");
   let auditResults = [];
-
-  runAuditBtn.addEventListener("click", async () => {
-    await runAudit(auditFuncsArray);
-
-    if (auditResults.length === 0) {
-      emptyErrorMessage("No errors found.");
-    }
-
-    updateErrorsCount(auditResults);
-  });
 
   async function runAudit(auditFuncs) {
     auditResults = [];

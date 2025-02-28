@@ -1,6 +1,6 @@
 import { toggleStylesheets } from "../utils/toggle-stylesheets.js";
 
-export function uiControls(auditFuncsMap) {
+export function uiControls(auditFuncsMap, runAudit) {
     const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
     const selectAllBtn = document.querySelector("input[type='button'][id='select-all']");
     const runAuditBtn = document.querySelector("#run-audit-btn");
@@ -56,9 +56,9 @@ export function uiControls(auditFuncsMap) {
                 const selectedAudit = auditFuncsMap[input.value];
     
                 if (!auditFuncsArray.includes(selectedAudit)) {
-                auditFuncsArray.push(selectedAudit);
+                    auditFuncsArray.push(selectedAudit);
                 }
-          });
+            });
         } else if (allCheckboxesChecked) {
             auditCheckboxes.forEach(input => {
                 input.checked = false;
@@ -67,10 +67,16 @@ export function uiControls(auditFuncsMap) {
                 if (auditFuncsArray.includes(selectedAudit)) {
                     auditFuncsArray.splice(auditFuncsArray.indexOf(selectedAudit), 1);
                 }
-          })
+            });
         }
     
         updateSelectAllButton();
         updateRunButton();
     });
+
+    runAuditBtn.addEventListener("click", async () => {
+        await runAudit(auditFuncsArray);
+    });
+    
+    return auditFuncsArray;
 }
