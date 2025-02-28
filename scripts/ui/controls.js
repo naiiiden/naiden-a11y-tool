@@ -1,10 +1,34 @@
 import { toggleStylesheets } from "../utils/toggle-stylesheets.js";
+import { emptyAudit } from "../audits/empty-elements-audit/empty-audit.js";
+import { formAudit } from "../audits/form-audit/form-audit.js";
+import { embeddedElementsAudit } from "../audits/embedded-elements-audit/embedded-elements-audit.js";
+import { rootAndMetadataAudit } from "../audits/root-and-metadata-audit/root-and-metadata-audit.js";
+import { imagesAudit } from "../audits/images-audit/images-audit.js";
+import { interactiveElementsAudit } from "../audits/interactive-elements-audit/interactive-elements-audit.js";
+import { semanticAudit } from "../audits/semantic-audit/semantic-audit.js";
+import { ariaAudit } from "../audits/aria-audit/aria-audit.js";
+import { cssAudit } from "../audits/css-audit/css-audit.js";
+import { deprecatedElementsAudit } from "../audits/deprecated-elements-audit/deprecated-elements-audit.js";
+import { colourAudit } from "../audits/colour-audit/colour-audit.js";
 
-export function uiControls(auditFuncsMap, runAudit) {
+export function uiControls(runAudit) {
     const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
     const selectAllBtn = document.querySelector("input[type='button'][id='select-all']");
     const runAuditBtn = document.querySelector("#run-audit-btn");
     const auditFuncsArray = [];
+    const auditFuncsMap = {
+        "root-and-metadata": rootAndMetadataAudit,
+        "image": imagesAudit,
+        "interactive-elements": interactiveElementsAudit,
+        "empty-elements": emptyAudit,
+        "form": formAudit,
+        "embedded-elements": embeddedElementsAudit,
+        "semantic": semanticAudit,
+        "aria": ariaAudit,
+        "css": cssAudit,
+        "deprecated-elements": deprecatedElementsAudit,
+        "colour": colourAudit
+    };
 
     document.getElementById('toggle-stylesheets').addEventListener('change', () => {
         const disable = document.getElementById('toggle-stylesheets').checked;
