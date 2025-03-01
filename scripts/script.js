@@ -1,4 +1,4 @@
-import { updateErrorsCount } from "./ui/update-errors-count.js";
+import { displayErrorsCount } from "./ui/display-errors-count.js";
 import { displayAuditResults, emptyErrorMessage } from "./ui/display-audit-results.js";
 import { uiControls } from "./ui/controls.js";
 
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         emptyErrorMessage("No errors found.");
       }
       
-      updateErrorsCount(auditResults);
+      displayErrorsCount(auditResults);
       
     } catch (err) {
       console.error("Error during audit:", err);
