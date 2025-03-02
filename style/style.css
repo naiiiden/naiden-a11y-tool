@@ -26,13 +26,12 @@ ul {
   order: -1;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container {
-  opacity: 0;
   border: 1px solid red;
   max-width: 10rem;
-  display: grid;
+  display: none;
   position: absolute;
   transform: translateX(100%);
 }
-.run-button-audit-checkboxes-container:hover .audit-checkboxes-container {
-  opacity: 1;
+.run-button-audit-checkboxes-container .audit-checkboxes-container.open {
+  display: grid;
 }/*# sourceMappingURL=style.css.map */

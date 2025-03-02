@@ -37,6 +37,10 @@ export function uiControls(runAudit) {
         );
     });
 
+    document.querySelector("#open-audit-checkboxes-dropdown-button").addEventListener("click", () => {
+        document.querySelector(".audit-checkboxes-container").classList.toggle("open");
+    });
+
     auditCheckboxes.forEach(checkbox => {
         checkbox.checked = true;
         const selectedAudit = auditFuncsMap[checkbox.value];

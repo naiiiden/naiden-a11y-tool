@@ -8,17 +8,14 @@
     }
     
     .audit-checkboxes-container {
-        opacity: 0;
         border: 1px solid red;
         max-width: 10rem;
-        display: grid;
+        display: none;
         position: absolute;
         transform: translateX(100%);
-    }
 
-    &:hover {
-        .audit-checkboxes-container {
-            opacity: 1;
+        &.open {
+            display: grid;
         }
     }
 }
