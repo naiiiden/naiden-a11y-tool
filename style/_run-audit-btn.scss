@@ -9,13 +9,21 @@
     
     .audit-checkboxes-container {
         border: 1px solid red;
-        min-width: 10rem;
+        min-width: 12rem;
         display: none;
         position: absolute;
         left: 100%;
 
+        label {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: .25rem;
+        }
+
         &.open {
             display: grid;
+            gap: .125rem;
         }
     }
 }
