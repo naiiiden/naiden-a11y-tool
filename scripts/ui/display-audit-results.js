@@ -56,7 +56,7 @@ export function displayAuditResults(auditResults) {
         ${error.element ? `<pre><code>${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>` : ``}
         <p>How to fix: ${error.fix}</p>
         ${wcagLinks 
-          ? `${wcagLinks}` 
+          ? `<ul>${wcagLinks}</ul>` 
           : ``
         }
       `;
