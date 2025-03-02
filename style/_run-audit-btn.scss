@@ -1,0 +1,16 @@
+.run-button-audit-checkboxes-container {
+    position: relative;
+    
+    .audit-checkboxes-container {
+        opacity: 0;
+        border: 1px solid red;
+        max-width: 10rem;
+        display: grid;
+    }
+
+    &:hover {
+        .audit-checkboxes-container {
+            opacity: 1;
+        }
+    }
+}

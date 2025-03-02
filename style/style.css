@@ -14,4 +14,17 @@ ul {
 
 #errors-count-total {
   display: none;
+}
+
+.run-button-audit-checkboxes-container {
+  position: relative;
+}
+.run-button-audit-checkboxes-container .audit-checkboxes-container {
+  opacity: 0;
+  border: 1px solid red;
+  max-width: 10rem;
+  display: grid;
+}
+.run-button-audit-checkboxes-container:hover .audit-checkboxes-container {
+  opacity: 1;
 }/*# sourceMappingURL=style.css.map */

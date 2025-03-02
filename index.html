@@ -12,28 +12,32 @@
         </header>
         <label for="toggle-stylesheets">Disable Stylesheets</label>
         <input type="checkbox" id="toggle-stylesheets">
-        <label for="root-and-metadata-audit-checkbox">root and metadata audit</label>
-        <input type="checkbox" id="root-and-metadata-audit-checkbox" value="root-and-metadata">
-        <label for="image-audit-checkbox">image audit</label>
-        <input type="checkbox" id="image-audit-checkbox" value="image">
-        <label for="empty-elements-audit-checkbox">empty elements audit</label>
-        <input type="checkbox" id="empty-elements-audit-checkbox" value="empty-elements">
-        <label for="form-audit-checkbox">form audit</label>
-        <input type="checkbox" id="form-audit-checkbox" value="form">
-        <label for="embedded-elements-audit-checkbox">embedded elements audit</label>
-        <input type="checkbox" id="embedded-elements-audit-checkbox" value="embedded-elements">
-        <label for="semantic-audit-checkbox">semantic audit</label>
-        <input type="checkbox" id="semantic-audit-checkbox" value="semantic">
-        <label for="aria-audit-checkbox">aria audit</label>
-        <input type="checkbox" id="aria-audit-checkbox" value="aria">
-        <label for="css-audit-checkbox">css audit</label>
-        <input type="checkbox" id="css-audit-checkbox" value="css">
-        <label for="deprecated-elements-audit-checkbox">deprecated elements audit</label>
-        <input type="checkbox" id="deprecated-elements-audit-checkbox" value="deprecated-elements">
-        <label for="colour-audit-checkbox">colour audit</label>
-        <input type="checkbox" id="colour-audit-checkbox" value="colour">
-        <input type="button" id="select-all" value="select all">
-        <button id="run-audit-btn">run audit</button>
+        <div class="run-button-audit-checkboxes-container">
+            <div class="audit-checkboxes-container">
+                <label for="root-and-metadata-audit-checkbox">root and metadata audit</label>
+                <input type="checkbox" id="root-and-metadata-audit-checkbox" value="root-and-metadata">
+                <label for="image-audit-checkbox">image audit</label>
+                <input type="checkbox" id="image-audit-checkbox" value="image">
+                <label for="empty-elements-audit-checkbox">empty elements audit</label>
+                <input type="checkbox" id="empty-elements-audit-checkbox" value="empty-elements">
+                <label for="form-audit-checkbox">form audit</label>
+                <input type="checkbox" id="form-audit-checkbox" value="form">
+                <label for="embedded-elements-audit-checkbox">embedded elements audit</label>
+                <input type="checkbox" id="embedded-elements-audit-checkbox" value="embedded-elements">
+                <label for="semantic-audit-checkbox">semantic audit</label>
+                <input type="checkbox" id="semantic-audit-checkbox" value="semantic">
+                <label for="aria-audit-checkbox">aria audit</label>
+                <input type="checkbox" id="aria-audit-checkbox" value="aria">
+                <label for="css-audit-checkbox">css audit</label>
+                <input type="checkbox" id="css-audit-checkbox" value="css">
+                <label for="deprecated-elements-audit-checkbox">deprecated elements audit</label>
+                <input type="checkbox" id="deprecated-elements-audit-checkbox" value="deprecated-elements">
+                <label for="colour-audit-checkbox">colour audit</label>
+                <input type="checkbox" id="colour-audit-checkbox" value="colour">
+                <input type="button" id="select-all" value="select all">
+            </div>
+            <button id="run-audit-btn">run audit</button>
+        </div>
         <p id="errors-count-total">
             <span class="count"></span> 
             <span class=""></span>
