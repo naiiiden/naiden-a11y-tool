@@ -18,22 +18,21 @@ ul {
 
 .run-button-audit-checkboxes-container {
   position: relative;
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.run-button-audit-checkboxes-container #run-audit-btn {
+  order: -1;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container {
   opacity: 0;
   border: 1px solid red;
   max-width: 10rem;
   display: grid;
+  position: absolute;
+  transform: translateX(100%);
 }
 .run-button-audit-checkboxes-container:hover .audit-checkboxes-container {
   opacity: 1;
-}
-.run-button-audit-checkboxes-container .button-container {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-}
-.run-button-audit-checkboxes-container .button-container button {
-  display: flex;
-  align-items: center;
 }/*# sourceMappingURL=style.css.map */

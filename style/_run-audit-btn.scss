@@ -1,27 +1,24 @@
 .run-button-audit-checkboxes-container {
     position: relative;
+    display: flex;
+    width: fit-content;
+
+    #run-audit-btn {
+        order: -1;
+    }
     
     .audit-checkboxes-container {
         opacity: 0;
         border: 1px solid red;
         max-width: 10rem;
         display: grid;
+        position: absolute;
+        transform: translateX(100%);
     }
 
     &:hover {
         .audit-checkboxes-container {
             opacity: 1;
-        }
-    }
-
-    .button-container {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-
-        button {
-            display: flex;
-            align-items: center;
         }
     }
 }
