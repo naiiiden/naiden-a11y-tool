@@ -27,10 +27,10 @@ ul {
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container {
   border: 1px solid red;
-  max-width: 10rem;
+  min-width: 10rem;
   display: none;
   position: absolute;
-  transform: translateX(100%);
+  left: 100%;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container.open {
   display: grid;

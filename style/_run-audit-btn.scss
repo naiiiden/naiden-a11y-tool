@@ -9,10 +9,10 @@
     
     .audit-checkboxes-container {
         border: 1px solid red;
-        max-width: 10rem;
+        min-width: 10rem;
         display: none;
         position: absolute;
-        transform: translateX(100%);
+        left: 100%;
 
         &.open {
             display: grid;
