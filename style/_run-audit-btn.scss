@@ -13,4 +13,16 @@
             opacity: 1;
         }
     }
+
+    .button-container {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+
+        button {
+            display: flex;
+            align-items: center;
+            height: 2rem;
+        }
+    }
 }

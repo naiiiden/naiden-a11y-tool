@@ -27,4 +27,14 @@ ul {
 }
 .run-button-audit-checkboxes-container:hover .audit-checkboxes-container {
   opacity: 1;
+}
+.run-button-audit-checkboxes-container .button-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.run-button-audit-checkboxes-container .button-container button {
+  display: flex;
+  align-items: center;
+  height: 2rem;
 }/*# sourceMappingURL=style.css.map */
