@@ -15,6 +15,7 @@ export function uiControls(runAudit) {
     const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
     const selectAllBtn = document.querySelector("input[type='button'][id='select-all']");
     const runAuditBtn = document.querySelector("#run-audit-btn");
+    const openAuditCheckboxesDropdownBtn = document.querySelector("#open-audit-checkboxes-dropdown-button");
     const auditFuncsArray = [];
     const auditFuncsMap = {
         "root-and-metadata": rootAndMetadataAudit,
@@ -37,7 +38,7 @@ export function uiControls(runAudit) {
         );
     });
 
-    document.querySelector("#open-audit-checkboxes-dropdown-button").addEventListener("click", () => {
+    openAuditCheckboxesDropdownBtn.addEventListener("click", () => {
         document.querySelector(".audit-checkboxes-container").classList.toggle("open");
     });
 
