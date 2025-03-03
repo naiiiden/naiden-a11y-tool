@@ -25,6 +25,10 @@ ul {
 .run-button-audit-checkboxes-container #run-audit-btn {
   order: -1;
 }
+.run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button.open {
+  display: block;
+  transform: rotate(180deg);
+}
 .run-button-audit-checkboxes-container .audit-checkboxes-container {
   border: 1px solid red;
   min-width: 12rem;

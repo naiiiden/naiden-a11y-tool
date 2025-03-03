@@ -6,6 +6,11 @@
     #run-audit-btn {
         order: -1;
     }
+
+    #open-audit-checkboxes-dropdown-button.open {
+        display: block;
+        transform: rotate(180deg);
+    }
     
     .audit-checkboxes-container {
         border: 1px solid red;
