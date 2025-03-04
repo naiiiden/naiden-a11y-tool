@@ -16,6 +16,10 @@ ul {
   display: none;
 }
 
+#loading-indicator {
+  display: none;
+}
+
 .run-button-audit-checkboxes-container {
   position: relative;
   display: flex;

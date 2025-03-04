@@ -1,5 +1,6 @@
 import { displayErrorsCount } from "./ui/display-errors-count.js";
 import { displayAuditResults, emptyErrorMessage } from "./ui/display-audit-results.js";
+import { showLoading, hideLoading } from "./ui/display-loading-indicator.js";
 import { uiControls } from "./ui/controls.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     auditResults = [];
     
     try {
+      showLoading();
+
       for (const auditFunc of auditFuncs) {
         await auditFunc(auditResults)
       }
@@ -24,6 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
       
     } catch (err) {
       console.error("Error during audit:", err);
+    } finally {
+      hideLoading();
     }
   }
 
