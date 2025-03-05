@@ -68,7 +68,7 @@ export function uiControls(runAudit) {
 
             if (!auditFuncsArray.includes(selectedAudit)) {
                 auditFuncsArray.push(selectedAudit);
-            } else if (auditFuncsArray.includes(e.target.value)) {
+            } else if (auditFuncsArray.includes(selectedAudit)) {
                 auditFuncsArray.splice(auditFuncsArray.indexOf(selectedAudit), 1);
             }
 
