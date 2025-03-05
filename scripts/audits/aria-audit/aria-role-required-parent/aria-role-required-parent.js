@@ -4,19 +4,19 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function ariaRoleRequiredParent(auditResults) {
     const ariaRoleRequiredParentList = {
-        caption: { requiredParent: ["figure", "grid", "table", "treegrid"] },
-        cell: { requiredParent: ["row"] },
-        columnheader: { requiredParent: ["row"] },
-        gridcell: { requiredParent: ["row"] },
-        listitem: { requiredParent: ["list", "directory"] },
-        menuitem: { requiredParent: ["group", "menu", "menubar"] },
-        menuitemcheckbox: { requiredParent: ["group", "menu", "menubar"] },
-        menuitemradio: { requiredParent: ["group", "menu", "menubar"] },
-        option: { requiredParent: ["group", "listbox"] },
-        row: { requiredParent: ["grid", "rowgroup", "table", "treegrid"] },
-        rowgroup: { requiredParent: ["grid", "table", "treegrid"] },
-        tab: { requiredParent: ["tablist"] },
-        treeitem: { requiredParent: ["group", "tree"] }
+        caption: { requiredParent: ["figure", "grid", "table", "treegrid"], nativeHTMLEquivalent: [] },
+        cell: { requiredParent: ["row"], nativeHTMLEquivalent: ["td"] },
+        columnheader: { requiredParent: ["row"], nativeHTMLEquivalent: ["th"] },
+        gridcell: { requiredParent: ["row"], nativeHTMLEquivalent: ["td"] },
+        listitem: { requiredParent: ["list", "directory"], nativeHTMLEquivalent: ["li"] },
+        menuitem: { requiredParent: ["group", "menu", "menubar"], nativeHTMLEquivalent: [] },
+        menuitemcheckbox: { requiredParent: ["group", "menu", "menubar"], nativeHTMLEquivalent: [] },
+        menuitemradio: { requiredParent: ["group", "menu", "menubar"], nativeHTMLEquivalent: [] },
+        option: { requiredParent: ["group", "listbox"], nativeHTMLEquivalent: ["option"] },
+        row: { requiredParent: ["grid", "rowgroup", "table", "treegrid"], nativeHTMLEquivalent: ["tr"] },
+        rowgroup: { requiredParent: ["grid", "table", "treegrid"], nativeHTMLEquivalent: ["tbody", "tfoot", "thead"] },
+        tab: { requiredParent: ["tablist"], nativeHTMLEquivalent: [] },
+        treeitem: { requiredParent: ["group", "tree"], nativeHTMLEquivalent: [] }
     };
 
     const ariaRoleRequiredParent = await inspectedWindowEval(`
