@@ -30,6 +30,7 @@ export async function hasUnadjustableTextProperties(auditResults) {
         }
 
         return Array.from(document.querySelectorAll('*'))
+            .filter(element => element.textContent.trim().length > 0)
             .filter(element => {
                 const style = element.getAttribute('style');
                 return propertiesToCheck.some(property => 
