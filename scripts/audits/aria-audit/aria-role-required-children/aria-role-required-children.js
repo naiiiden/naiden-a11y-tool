@@ -4,19 +4,19 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function ariaRoleRequiredChildren(auditResults) {
     const ariaRoleRequiredChildrenList = {
-        feed: ['article'], 
-        grid: ['row', 'rowgroup'], 
-        list: ['listitem'], 
-        listbox: ['group', 'option'], 
-        menu: ['group', 'menuitem', 'menuitemcheckbox', 'menuitemradio'], 
-        menubar: ['group', 'menuitem', 'menuitemcheckbox', 'menuitemradio'], 
-        radiogroup: ['radio'], 
-        row: ['cell', 'columnheader', 'gridcell', 'rowheader'], 
-        rowgroup: ['row'], 
-        table: ['row', 'rowgroup'], 
-        tablist: ['tab'], 
-        tree: ['group', 'treeitem'], 
-        treegrid: ['row', 'rowgroup']
+        feed: { requiredChildrenWithRole: ['article'] }, 
+        grid: { requiredChildrenWithRole: ['row', 'rowgroup'] }, 
+        list: { requiredChildrenWithRole: ['listitem'] }, 
+        listbox: { requiredChildrenWithRole: ['group', 'option'] }, 
+        menu: { requiredChildrenWithRole: ['group', 'menuitem', 'menuitemcheckbox', 'menuitemradio'] }, 
+        menubar: { requiredChildrenWithRole: ['group', 'menuitem', 'menuitemcheckbox', 'menuitemradio'] }, 
+        radiogroup: { requiredChildrenWithRole: ['radio'] }, 
+        row: { requiredChildrenWithRole: ['cell', 'columnheader', 'gridcell', 'rowheader'] }, 
+        rowgroup: { requiredChildrenWithRole: ['row'] }, 
+        table: { requiredChildrenWithRole: ['row', 'rowgroup'] }, 
+        tablist: { requiredChildrenWithRole: ['tab'] }, 
+        tree: { requiredChildrenWithRole: ['group', 'treeitem'] }, 
+        treegrid: { requiredChildrenWithRole: ['row', 'rowgroup'] }
     };
 
     const ariaRoleRequiredChildren = await inspectedWindowEval(`
@@ -29,7 +29,7 @@ export async function ariaRoleRequiredChildren(auditResults) {
                 const requiredChildren = ariaRoleRequiredChildrenList[role];
                 if (!requiredChildren) return null;
 
-                const hasRequiredChildren = requiredChildren.some(childRole =>
+                const hasRequiredChildren = requiredChildren.requiredChildrenWithRole.some(childRole =>
                     element.querySelector(\`[role='\${childRole}']\`)
                 );
 
@@ -51,7 +51,7 @@ export async function ariaRoleRequiredChildren(auditResults) {
             ...ariaErrors[18],
             element: element.outerHTML,
             selector: element.selector,
-            helperText: `The element with role is missing required children with the following roles: ${element.missingChildren.join(", ")}.`,
+            helperText: `The element with role is missing required children with the following roles: ${element.missingChildren.requiredChildrenWithRole.join(", ")}.`,
         });
     });
 }
