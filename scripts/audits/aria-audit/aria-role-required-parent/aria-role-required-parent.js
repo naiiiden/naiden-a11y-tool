@@ -29,6 +29,10 @@ export async function ariaRoleRequiredParent(auditResults) {
                 const requiredParents = ariaRoleRequiredParentList[role];
                 if (!requiredParents) return null;
 
+                if (Array.isArray(requiredParents.nativeHTMLEquivalent) && requiredParents.nativeHTMLEquivalent.includes(element.tagName.toLowerCase())) {
+                    return null;
+                }
+
                 const hasRequiredParent = requiredParents.requiredParent.some(parentRole =>
                     element.closest(\`[role='\${parentRole}']\`)
                 );
