@@ -4,19 +4,19 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function ariaRoleRequiredParent(auditResults) {
     const ariaRoleRequiredParentList = {
-        caption: { requiredParent: ["figure", "grid", "table", "treegrid"], nativeHTMLEquivalent: [] },
-        cell: { requiredParent: ["row"], nativeHTMLEquivalent: ["td"] },
-        columnheader: { requiredParent: ["row"], nativeHTMLEquivalent: ["th"] },
-        gridcell: { requiredParent: ["row"], nativeHTMLEquivalent: ["td"] },
-        listitem: { requiredParent: ["list", "directory"], nativeHTMLEquivalent: ["li"] },
-        menuitem: { requiredParent: ["group", "menu", "menubar"], nativeHTMLEquivalent: [] },
-        menuitemcheckbox: { requiredParent: ["group", "menu", "menubar"], nativeHTMLEquivalent: [] },
-        menuitemradio: { requiredParent: ["group", "menu", "menubar"], nativeHTMLEquivalent: [] },
-        option: { requiredParent: ["group", "listbox"], nativeHTMLEquivalent: ["option"] },
-        row: { requiredParent: ["grid", "rowgroup", "table", "treegrid"], nativeHTMLEquivalent: ["tr"] },
-        rowgroup: { requiredParent: ["grid", "table", "treegrid"], nativeHTMLEquivalent: ["tbody", "tfoot", "thead"] },
-        tab: { requiredParent: ["tablist"], nativeHTMLEquivalent: [] },
-        treeitem: { requiredParent: ["group", "tree"], nativeHTMLEquivalent: [] }
+        caption: { requiredParent: ["figure", "grid", "table", "treegrid"], nativeHtmlEquivalent: [] },
+        cell: { requiredParent: ["row"], nativeHtmlEquivalent: ["td"] },
+        columnheader: { requiredParent: ["row"], nativeHtmlEquivalent: ["th"] },
+        gridcell: { requiredParent: ["row"], nativeHtmlEquivalent: ["td"] },
+        listitem: { requiredParent: ["list", "directory"], nativeHtmlEquivalent: ["li"] },
+        menuitem: { requiredParent: ["group", "menu", "menubar"], nativeHtmlEquivalent: [] },
+        menuitemcheckbox: { requiredParent: ["group", "menu", "menubar"], nativeHtmlEquivalent: [] },
+        menuitemradio: { requiredParent: ["group", "menu", "menubar"], nativeHtmlEquivalent: [] },
+        option: { requiredParent: ["group", "listbox"], nativeHtmlEquivalent: ["option"] },
+        row: { requiredParent: ["grid", "rowgroup", "table", "treegrid"], nativeHtmlEquivalent: ["tr"] },
+        rowgroup: { requiredParent: ["grid", "table", "treegrid"], nativeHtmlEquivalent: ["tbody", "tfoot", "thead"] },
+        tab: { requiredParent: ["tablist"], nativeHtmlEquivalent: [] },
+        treeitem: { requiredParent: ["group", "tree"], nativeHtmlEquivalent: [] }
     };
 
     const ariaRoleRequiredParent = await inspectedWindowEval(`
@@ -29,7 +29,7 @@ export async function ariaRoleRequiredParent(auditResults) {
                 const requiredParents = ariaRoleRequiredParentList[role];
                 if (!requiredParents) return null;
 
-                if (Array.isArray(requiredParents.nativeHTMLEquivalent) && requiredParents.nativeHTMLEquivalent.includes(element.tagName.toLowerCase())) {
+                if (Array.isArray(requiredParents.nativeHtmlEquivalent) && requiredParents.nativeHtmlEquivalent.includes(element.tagName.toLowerCase())) {
                     return null;
                 }
 
