@@ -28,14 +28,14 @@ export async function ariaRoleRequiredParent(auditResults) {
                 const role = element.getAttribute("role");
                 const requiredParents = ariaRoleRequiredParentList[role];
                 if (!requiredParents) return null;
+                
+                const hasRequiredParent = requiredParents.requiredParent.some(parentRole =>
+                    element.closest(\`[role='\${parentRole}']\`)
+                );
 
                 if (Array.isArray(requiredParents.nativeHtmlEquivalent) && requiredParents.nativeHtmlEquivalent.includes(element.tagName.toLowerCase())) {
                     return null;
                 }
-
-                const hasRequiredParent = requiredParents.requiredParent.some(parentRole =>
-                    element.closest(\`[role='\${parentRole}']\`)
-                );
 
                 if (!hasRequiredParent) {
                     return {
