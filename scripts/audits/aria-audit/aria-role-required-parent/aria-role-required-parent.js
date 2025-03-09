@@ -52,14 +52,18 @@ export async function ariaRoleRequiredParent(auditResults) {
         return Array.from(document.querySelectorAll(Object.keys(ariaRoleRequiredParentList).map(role => \`[role='\${role}']\`).join(", ")))
             .map(element => {
                 const role = element.getAttribute("role");
-                const requiredParents = ariaRoleRequiredParentList[role];
-                if (!requiredParents) return null;
+                const roleData = ariaRoleRequiredParentList[role];
+                if (!roleData) return null;
+
+                console.log(1, role);
+                console.log(2, roleData);
+                console.log(3, element);
                 
-                const hasRequiredParent = requiredParents.requiredParent.some(parentRole =>
+                const hasRequiredParent = roleData.requiredParent.some(parentRole =>
                     element.closest(\`[role='\${parentRole}']\`)
                 );
 
-                if (Array.isArray(requiredParents.nativeHtmlEquivalent) && requiredParents.nativeHtmlEquivalent.includes(element.tagName.toLowerCase())) {
+                if (Array.isArray(roleData.nativeHtmlEquivalent) && roleData.nativeHtmlEquivalent.includes(element.tagName.toLowerCase())) {
                     return null;
                 }
 
@@ -67,7 +71,7 @@ export async function ariaRoleRequiredParent(auditResults) {
                     return {
                         outerHTML: element.cloneNode().outerHTML,
                         selector: getUniqueSelector(element),
-                        missingParents: requiredParents
+                        missingParents: roleData
                     };
                 }
 
