@@ -65,10 +65,10 @@ export async function ariaRoleRequiredChildren(auditResults) {
         return Array.from(document.querySelectorAll(Object.keys(ariaRoleRequiredChildrenList).map(role => \`[role='\${role}']\`).join(", ")))
             .map(element => {
                 const role = element.getAttribute("role");
-                const requiredChildren = ariaRoleRequiredChildrenList[role];
-                if (!requiredChildren) return null;
+                const roleData = ariaRoleRequiredChildrenList[role];
+                if (!roleData) return null;
 
-                const hasRequiredChildren = requiredChildren.requiredChildrenWithRole.some(childRole =>
+                const hasRequiredChildren = roleData.requiredChildrenWithRole.some(childRole =>
                     element.querySelector(\`[role='\${childRole}']\`)
                 );
 
@@ -76,7 +76,7 @@ export async function ariaRoleRequiredChildren(auditResults) {
                     return {
                         outerHTML: element.cloneNode().outerHTML,
                         selector: getUniqueSelector(element),
-                        missingChildren: requiredChildren
+                        missingChildren: roleData
                     };
                 }
 
