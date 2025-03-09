@@ -55,17 +55,9 @@ export async function ariaRoleRequiredParent(auditResults) {
                 const roleData = ariaRoleRequiredParentList[role];
                 if (!roleData) return null;
 
-                console.log(1, role);
-                console.log(2, roleData);
-                console.log(3, element);
-                
                 const hasRequiredParent = roleData.requiredParent.some(parentRole =>
                     element.closest(\`[role='\${parentRole}']\`)
                 );
-
-                if (Array.isArray(roleData.nativeHtmlEquivalent) && roleData.nativeHtmlEquivalent.includes(element.tagName.toLowerCase())) {
-                    return null;
-                }
 
                 if (!hasRequiredParent) {
                     return {
