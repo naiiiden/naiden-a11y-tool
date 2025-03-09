@@ -30,7 +30,7 @@ export async function ariaRoleRequiredChildren(auditResults) {
                 if (!requiredChildren) return null;
 
                 const hasRequiredChildren = requiredChildren.requiredChildrenWithRole.some(childRole =>
-                    element.querySelector(\`\${childRole}\`)
+                    element.querySelector(\`[role='\${childRole}']\`)
                 );
 
                 if (!hasRequiredChildren) {
