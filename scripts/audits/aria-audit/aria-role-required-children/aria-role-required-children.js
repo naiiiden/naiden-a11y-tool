@@ -4,19 +4,58 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function ariaRoleRequiredChildren(auditResults) {
     const ariaRoleRequiredChildrenList = {
-        feed: { requiredChildrenWithRole: ['article'], childrenWithRoleNativeHtmlEquivalent: ['article'] }, 
-        grid: { requiredChildrenWithRole: ['row', 'rowgroup'], childrenWithRoleNativeHtmlEquivalent: ['tr'] }, 
-        list: { requiredChildrenWithRole: ['listitem'], childrenWithRoleNativeHtmlEquivalent: ['li'] }, 
-        listbox: { requiredChildrenWithRole: ['group', 'option'], childrenWithRoleNativeHtmlEquivalent: ['fieldset', 'option'] }, 
-        menu: { requiredChildrenWithRole: ['group', 'menuitem', 'menuitemcheckbox', 'menuitemradio'], childrenWithRoleNativeHtmlEquivalent: ['fieldset'] }, 
-        menubar: { requiredChildrenWithRole: ['group', 'menuitem', 'menuitemcheckbox', 'menuitemradio'], childrenWithRoleNativeHtmlEquivalent: ['fieldset'] }, 
-        radiogroup: { requiredChildrenWithRole: ['radio'], childrenWithRoleNativeHtmlEquivalent: ['input[type="radio"]'] }, 
-        row: { requiredChildrenWithRole: ['cell', 'columnheader', 'gridcell', 'rowheader'], childrenWithRoleNativeHtmlEquivalent: ['td', 'th[scope="col"]', 'th[scole="row"]'] }, 
-        rowgroup: { requiredChildrenWithRole: ['row'], childrenWithRoleNativeHtmlEquivalent: ['tr'] }, 
-        table: { requiredChildrenWithRole: ['row', 'rowgroup'], childrenWithRoleNativeHtmlEquivalent: ['tr'] }, 
-        tablist: { requiredChildrenWithRole: ['tab'], childrenWithRoleNativeHtmlEquivalent: [] }, 
-        tree: { requiredChildrenWithRole: ['group', 'treeitem'], childrenWithRoleNativeHtmlEquivalent: ['fieldset'] }, 
-        treegrid: { requiredChildrenWithRole: ['row', 'rowgroup'], childrenWithRoleNativeHtmlEquivalent: ['tr'] }
+        feed: { 
+            requiredChildrenWithRole: ['article'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['article'] 
+        }, 
+        grid: { 
+            requiredChildrenWithRole: ['row', 'rowgroup'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['tr'] 
+        }, 
+        list: { 
+            requiredChildrenWithRole: ['listitem'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['li'] 
+        }, 
+        listbox: { 
+            requiredChildrenWithRole: ['group', 'option'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['fieldset', 'option'] 
+        }, 
+        menu: { 
+            requiredChildrenWithRole: ['group', 'menuitem', 'menuitemcheckbox', 'menuitemradio'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['fieldset'] 
+        }, 
+        menubar: { 
+            requiredChildrenWithRole: ['group', 'menuitem', 'menuitemcheckbox', 'menuitemradio'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['fieldset'] 
+        }, 
+        radiogroup: { 
+            requiredChildrenWithRole: ['radio'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['input[type="radio"]'] 
+        }, 
+        row: { 
+            requiredChildrenWithRole: ['cell', 'columnheader', 'gridcell', 'rowheader'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['td', 'th[scope="col"]', 'th[scole="row"]'] 
+        }, 
+        rowgroup: { 
+            requiredChildrenWithRole: ['row'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['tr'] 
+        }, 
+        table: { 
+            requiredChildrenWithRole: ['row', 'rowgroup'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['tr'] 
+        }, 
+        tablist: { 
+            requiredChildrenWithRole: ['tab'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: [] 
+        }, 
+        tree: { 
+            requiredChildrenWithRole: ['group', 'treeitem'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['fieldset'] 
+        }, 
+        treegrid: { 
+            requiredChildrenWithRole: ['row', 'rowgroup'], 
+            requiredChildrenWithRoleNativeHtmlEquivalent: ['tr'] 
+        }
     };
 
     const ariaRoleRequiredChildren = await inspectedWindowEval(`
