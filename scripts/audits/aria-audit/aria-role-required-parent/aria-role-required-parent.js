@@ -5,43 +5,43 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function ariaRoleRequiredParent(auditResults) {
     const ariaRoleRequiredParentList = {
         caption: { 
-            nativeHtmlEquivalent: [], requiredParent: ["figure", "grid", "table", "treegrid"], 
+            requiredParent: ["figure", "grid", "table", "treegrid"], 
         },
         cell: { 
-            nativeHtmlEquivalent: ["td"], requiredParent: ["row"], 
+            requiredParent: ["row"], 
         },
         columnheader: { 
-            nativeHtmlEquivalent: ["th"], requiredParent: ["row"], 
+            requiredParent: ["row"], 
         },
         gridcell: { 
-            nativeHtmlEquivalent: ["td"], requiredParent: ["row"], 
+            requiredParent: ["row"], 
         },
         listitem: { 
-            nativeHtmlEquivalent: ["li"], requiredParent: ["list", "directory"], 
+            requiredParent: ["list", "directory"], 
         },
         menuitem: { 
-            nativeHtmlEquivalent: [], requiredParent: ["group", "menu", "menubar"], 
+            requiredParent: ["group", "menu", "menubar"], 
         },
         menuitemcheckbox: { 
-            nativeHtmlEquivalent: [], requiredParent: ["group", "menu", "menubar"], 
+            requiredParent: ["group", "menu", "menubar"], 
         },
         menuitemradio: { 
-            nativeHtmlEquivalent: [], requiredParent: ["group", "menu", "menubar"], 
+            requiredParent: ["group", "menu", "menubar"], 
         },
         option: { 
-            nativeHtmlEquivalent: ["option"], requiredParent: ["group", "listbox"], 
+            requiredParent: ["group", "listbox"], 
         },
         row: { 
-            nativeHtmlEquivalent: ["tr"], requiredParent: ["grid", "rowgroup", "table", "treegrid"], 
+            requiredParent: ["grid", "rowgroup", "table", "treegrid"], 
         },
         rowgroup: { 
-            nativeHtmlEquivalent: ["tbody", "tfoot", "thead"], requiredParent: ["grid", "table", "treegrid"], 
+            requiredParent: ["grid", "table", "treegrid"], 
         },
         tab: { 
-            nativeHtmlEquivalent: [], requiredParent: ["tablist"], 
+            requiredParent: ["tablist"], 
         },
         treeitem: { 
-            nativeHtmlEquivalent: [], requiredParent: ["group", "tree"], 
+            requiredParent: ["group", "tree"], 
         }
     };
 
