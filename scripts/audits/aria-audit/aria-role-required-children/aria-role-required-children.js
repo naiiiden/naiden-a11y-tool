@@ -72,11 +72,15 @@ export async function ariaRoleRequiredChildren(auditResults) {
                 console.log(2, roleData);
                 console.log(3, element);
 
-                const hasRequiredChildrenWithRole = roleData.requiredChildrenWithRole.some(childRole =>
-                    element.querySelector(\`[role='\${childRole}']\`)
+                const hasRequiredChildrenWithRole = roleData.requiredChildrenWithRole.some(child =>
+                    element.querySelector(\`[role='\${child}']\`)
                 );
 
-                if (!hasRequiredChildrenWithRole) {
+                const hasRequiredChildrenWithRoleNativeHtmlEquivalent = roleData.requiredChildrenWithRoleNativeHtmlEquivalent.some(child =>
+                    element.querySelector(child)
+                );
+
+                if (!hasRequiredChildrenWithRole && !hasRequiredChildrenWithRoleNativeHtmlEquivalent) {
                     return {
                         outerHTML: element.cloneNode().outerHTML,
                         selector: getUniqueSelector(element),
