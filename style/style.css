@@ -32,11 +32,15 @@ ul {
   border: 1px solid rgb(204, 204, 204);
   border-radius: 0.5rem 0 0 0.5rem;
   padding: 0.25rem;
+  height: 1.75rem;
 }
 .run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button {
   background: rgba(204, 204, 204, 0.5);
   border: 1px solid rgb(204, 204, 204);
   border-radius: 0 0.5rem 0.5rem 0;
+  height: 1.75rem;
+  display: grid;
+  place-content: center;
 }
 .run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button img.open {
   display: block;
