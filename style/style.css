@@ -34,7 +34,11 @@ ul {
   transform: rotate(180deg);
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container {
-  border: 1px solid red;
+  background: rgba(204, 204, 204, 0.2);
+  border-radius: 0.5rem;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  padding: 0.5rem;
   min-width: 12rem;
   display: none;
   position: absolute;
