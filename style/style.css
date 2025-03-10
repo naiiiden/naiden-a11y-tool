@@ -58,6 +58,11 @@ ul {
   position: absolute;
   left: 100%;
 }
+.run-button-audit-checkboxes-container .audit-checkboxes-container p {
+  border-bottom: 1px solid rgba(204, 204, 204, 0.6);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 .run-button-audit-checkboxes-container .audit-checkboxes-container label {
   display: flex;
   flex-direction: row-reverse;
@@ -66,9 +71,9 @@ ul {
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container.open {
   display: grid;
-  gap: 0.125rem;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container input[type=button] {
+  margin-top: 0.5rem;
   background: rgba(204, 204, 204, 0.5);
   border: 1px solid rgba(204, 204, 204, 0.4);
   border-radius: 0.25rem;
