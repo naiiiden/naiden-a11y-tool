@@ -28,6 +28,15 @@ ul {
 }
 .run-button-audit-checkboxes-container #run-audit-btn {
   order: -1;
+  background: rgba(204, 204, 204, 0.5);
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 0.5rem 0 0 0.5rem;
+  padding: 0.25rem;
+}
+.run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button {
+  background: rgba(204, 204, 204, 0.5);
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 .run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button.open {
   display: block;
