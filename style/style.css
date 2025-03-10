@@ -54,4 +54,10 @@ ul {
 .run-button-audit-checkboxes-container .audit-checkboxes-container.open {
   display: grid;
   gap: 0.125rem;
+}
+.run-button-audit-checkboxes-container .audit-checkboxes-container input[type=button] {
+  background: rgba(204, 204, 204, 0.5);
+  border: 1px solid rgba(204, 204, 204, 0.4);
+  border-radius: 0.25rem;
+  padding: 0.25rem;
 }/*# sourceMappingURL=style.css.map */
