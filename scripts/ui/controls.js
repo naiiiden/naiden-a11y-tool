@@ -40,7 +40,7 @@ export function uiControls(runAudit) {
 
     openAuditCheckboxesDropdownBtn.addEventListener("click", () => {
         document.querySelector(".audit-checkboxes-container").classList.toggle("open");
-        openAuditCheckboxesDropdownBtn.classList.toggle("open");
+        openAuditCheckboxesDropdownBtn.querySelector("img").classList.toggle("open");
     });
 
     auditCheckboxes.forEach(checkbox => {

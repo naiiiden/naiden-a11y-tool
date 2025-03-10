@@ -38,7 +38,7 @@ ul {
   border: 1px solid rgb(204, 204, 204);
   border-radius: 0 0.5rem 0.5rem 0;
 }
-.run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button.open {
+.run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button img.open {
   display: block;
   transform: rotate(180deg);
 }
