@@ -5,7 +5,7 @@
 }
 
 body {
-  background: rgba(204, 204, 204, 0.2);
+  color: #363636;
 }
 
 pre {
@@ -32,15 +32,15 @@ ul {
 }
 .run-button-audit-checkboxes-container #run-audit-btn {
   order: -1;
-  background: rgba(204, 204, 204, 0.5);
-  border: 1px solid rgb(204, 204, 204);
+  background: rgba(223, 223, 223, 0.4);
+  border: 1px solid #adadad;
   border-radius: 0.5rem 0 0 0.5rem;
   padding: 0.25rem;
   height: 1.75rem;
 }
 .run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button {
-  background: rgba(204, 204, 204, 0.5);
-  border: 1px solid rgb(204, 204, 204);
+  background: rgba(223, 223, 223, 0.4);
+  border: 1px solid #adadad;
   border-radius: 0 0.5rem 0.5rem 0;
   height: 1.75rem;
   display: grid;
@@ -51,8 +51,8 @@ ul {
   transform: rotate(180deg);
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container {
-  background: rgba(204, 204, 204, 0.2);
-  border: 1px solid rgba(204, 204, 204, 0.4);
+  background: rgba(223, 223, 223, 0.4);
+  border: 1px solid #adadad;
   border-radius: 0.5rem;
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
@@ -63,7 +63,7 @@ ul {
   left: 100%;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container p {
-  border-bottom: 1px solid rgba(204, 204, 204, 0.6);
+  border-bottom: 1px solid #adadad;
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
 }
@@ -78,8 +78,8 @@ ul {
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container input[type=button] {
   margin-top: 0.5rem;
-  background: rgba(204, 204, 204, 0.5);
-  border: 1px solid rgba(204, 204, 204, 0.4);
+  background: rgb(223, 223, 223);
+  border: 1px solid #adadad;
   border-radius: 0.25rem;
   padding: 0.25rem;
 }/*# sourceMappingURL=style.css.map */
