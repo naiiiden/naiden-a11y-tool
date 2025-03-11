@@ -1,3 +1,5 @@
+@import "./variables";
+
 * {
     margin: 0;
     padding: 0;
@@ -6,6 +8,7 @@
 
 body {
     background: rgba(204, 204, 204, 0.2);
+    color: $gray-primary;
 }
 
 pre {
@@ -25,5 +28,4 @@ ul {
     display: none;
 }
 
-@import "./variables";
 @import "./run-audit-btn";
