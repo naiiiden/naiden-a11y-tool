@@ -27,8 +27,8 @@
     }
     
     .audit-checkboxes-container {
-        background: $gray-light;
-        border: 1px solid $gray-medium;
+        background: rgba(204, 204, 204, 0.2);
+        border: 1px solid rgba(204, 204, 204, .4);
         border-radius: .5rem;
         backdrop-filter: blur(2px);
         padding: .5rem;
@@ -56,8 +56,8 @@
 
         input[type="button"] {
             margin-top: .5rem;
-            background: $gray-medium2;
-            border: 1px solid $gray-medium;
+            background: rgba(204, 204, 204, 0.5);
+            border: 1px solid rgba(204, 204, 204, .4);
             border-radius: .25rem;
             padding: .25rem;
         }
