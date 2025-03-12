@@ -82,4 +82,13 @@ ul {
   border: 1px solid #adadad;
   border-radius: 0.25rem;
   padding: 0.25rem;
+}
+
+.errors-count-container {
+  background: rgba(223, 223, 223, 0.4);
+  border: 1px solid #adadad;
+  border-radius: 0.5rem;
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  padding: 0.5rem;
 }/*# sourceMappingURL=style.css.map */
