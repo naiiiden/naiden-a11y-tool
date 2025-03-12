@@ -1,3 +1,19 @@
 #loading-indicator {
     display: none;
+    width: 2rem;
+    height: 2rem;
+    border: .25rem solid #363636;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
