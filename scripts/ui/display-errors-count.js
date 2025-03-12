@@ -3,7 +3,6 @@ export function displayErrorsCount(auditResults) {
     const errorsCountTotal = document.querySelector("#errors-count-total");
 
     errorsCountContainer.style.display = "block";
-    errorsCountTotal.style.display = "unset";
     errorsCountTotal.firstElementChild.textContent = `${auditResults.length}`;
     errorsCountTotal.lastElementChild.textContent = `${auditResults.length === 1 ? "error" : "errors"}`;
 
