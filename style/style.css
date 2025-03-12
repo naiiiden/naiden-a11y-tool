@@ -6,6 +6,7 @@
 
 body {
   color: #363636;
+  padding: 0.5rem;
 }
 
 pre {
@@ -14,14 +15,6 @@ pre {
 
 ul {
   list-style-type: none;
-}
-
-#errors-count-container {
-  display: none;
-}
-
-#loading-indicator {
-  display: none;
 }
 
 .run-button-audit-checkboxes-container {
@@ -86,10 +79,15 @@ ul {
 }
 
 #errors-count-container {
+  display: none;
   background: rgba(223, 223, 223, 0.4);
   border: 1px solid #adadad;
   border-radius: 0.5rem;
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
   padding: 0.5rem;
+}
+
+#loading-indicator {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

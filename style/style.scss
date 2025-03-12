@@ -6,6 +6,7 @@
 
 body {
     color: #363636;
+    padding: .5rem;
 }
 
 pre {
@@ -16,14 +17,6 @@ ul {
     list-style-type: none;
 }
 
-// initially hidden eleements
-#errors-count-container {
-    display: none;
-}
-
-#loading-indicator {
-    display: none;
-}
-
 @import "./run-audit-btn";
 @import "./errors-count";
+@import "./loading-indicator";
