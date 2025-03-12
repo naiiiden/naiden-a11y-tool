@@ -16,7 +16,7 @@ ul {
   list-style-type: none;
 }
 
-#errors-count-total {
+#errors-count-container {
   display: none;
 }
 
@@ -85,7 +85,7 @@ ul {
   padding: 0.25rem;
 }
 
-.errors-count-container {
+#errors-count-container {
   background: rgba(223, 223, 223, 0.4);
   border: 1px solid #adadad;
   border-radius: 0.5rem;

@@ -1,6 +1,8 @@
 export function displayErrorsCount(auditResults) {
+    const errorsCountContainer = document.querySelector("#errors-count-container");
     const errorsCountTotal = document.querySelector("#errors-count-total");
 
+    errorsCountContainer.style.display = "unset";
     errorsCountTotal.style.display = "unset";
     errorsCountTotal.firstElementChild.textContent = `${auditResults.length}`;
     errorsCountTotal.lastElementChild.textContent = `${auditResults.length === 1 ? "error" : "errors"}`;
