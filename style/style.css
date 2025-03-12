@@ -61,6 +61,7 @@ ul {
   display: none;
   position: absolute;
   left: 100%;
+  z-index: 99;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container p {
   border-bottom: 1px solid #adadad;
