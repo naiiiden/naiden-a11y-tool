@@ -6,4 +6,5 @@
     border-radius: .5rem;
     backdrop-filter: blur(2px);
     padding: .5rem;
+    grid-template-columns: repeat(2, 1fr);
 }
