@@ -26,11 +26,17 @@ export function displayAuditResults(auditResults) {
       errorsByType[error.type].push(error);
     });
   
+    const errorsContainer = document.createElement('div');
+  
     for (const [type, errors] of Object.entries(errorsByType)) {
+      const typeSection = document.createElement('section');
+      
       const typeHeading = document.createElement('h2');
       const formattedType = type.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' Errors';
       typeHeading.textContent = formattedType;
-      errorsList.appendChild(typeHeading);
+      typeSection.appendChild(typeHeading);
+      
+      const typeErrorsList = document.createElement('ul');
       
       errors.forEach((error, index) => {
         const listItem = document.createElement('li');
@@ -86,7 +92,12 @@ export function displayAuditResults(auditResults) {
           });
         }
 
-        errorsList.appendChild(listItem);
+        typeErrorsList.appendChild(listItem);
       });
+      
+      typeSection.appendChild(typeErrorsList);
+      errorsContainer.appendChild(typeSection);
     }
+  
+    errorsList.appendChild(errorsContainer);
 }
