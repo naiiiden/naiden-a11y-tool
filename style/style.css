@@ -87,7 +87,12 @@ ul {
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
   padding: 0.5rem;
-  grid-template-columns: repeat(2, 1fr);
+  gap: 0.25rem;
+}
+@media screen and (min-width: 400px) {
+  #errors-count-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 #loading-indicator {
