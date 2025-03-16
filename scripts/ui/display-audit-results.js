@@ -30,7 +30,6 @@ export function displayAuditResults(auditResults) {
       const typeHeading = document.createElement('h2');
       const formattedType = type.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' Errors';
       typeHeading.textContent = formattedType;
-      typeHeading.className = 'error-type-heading';
       errorsList.appendChild(typeHeading);
       
       errors.forEach((error, index) => {
@@ -55,7 +54,7 @@ export function displayAuditResults(auditResults) {
           ${error.selector ? `<p>Location: ${error.selector}</p>` : ``}
           ${
             error.selector 
-              ? `<button id="highlight-btn-${error.type}-${index}">
+              ? `<button id="highlight-btn-${index}">
                   Highlight
                   <img src="assets/highlight.svg" alt=""/>
                 </button>` 
@@ -63,7 +62,7 @@ export function displayAuditResults(auditResults) {
           }
           ${
             error.selector
-              ? `<button id="inspect-btn-${error.type}-${index}">
+              ? `<button id="inspect-btn-${index}">
                   Inspect
                   <img src="assets/highlight.svg" alt=""/>
                 </button>` 
@@ -78,11 +77,11 @@ export function displayAuditResults(auditResults) {
         `;
 
         if (error.selector) {
-          listItem.querySelector(`#highlight-btn-${error.type}-${index}`).addEventListener('click', () => {
+          listItem.querySelector(`#highlight-btn-${index}`).addEventListener('click', () => {
             highlightElement(error.selector);
           });
 
-          listItem.querySelector(`#inspect-btn-${error.type}-${index}`).addEventListener('click', () => {
+          listItem.querySelector(`#inspect-btn-${index}`).addEventListener('click', () => {
             highlightElementInDevTools(error.selector);
           });
         }
