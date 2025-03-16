@@ -26,8 +26,6 @@ export function displayAuditResults(auditResults) {
       errorsByType[error.type].push(error);
     });
   
-    const errorsContainer = document.createElement('div');
-  
     for (const [type, errors] of Object.entries(errorsByType)) {
       const typeSection = document.createElement('section');
       
@@ -96,8 +94,6 @@ export function displayAuditResults(auditResults) {
       });
       
       typeSection.appendChild(typeErrorsList);
-      errorsContainer.appendChild(typeSection);
-    }
-  
-    errorsList.appendChild(errorsContainer);
+      errorsList.appendChild(typeSection);
+    }  
 }
