@@ -120,10 +120,13 @@ ul {
   0% {
     outline: 4px solid red;
   }
+  50% {
+    outline: 4px solid transparent;
+  }
   100% {
-    outline: 0px solid transparent;
+    outline: 4px solid red;
   }
 }
 .highlight {
-  outline: 4px solid red;
+  animation: highlight 1s linear;
 }/*# sourceMappingURL=style.css.map */
