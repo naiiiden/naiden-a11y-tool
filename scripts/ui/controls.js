@@ -107,6 +107,16 @@ export function uiControls(runAudit) {
     runAuditBtn.addEventListener("click", async () => {
         await runAudit(auditFuncsArray);
     });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", (e) => {
+            const target = document.querySelector(anchor.getAttribute("href"));
+            if (target) {
+                target.classList.add("highlight");
+                setTimeout(() => target.classList.remove("highlight"), 2000);
+            }
+        });
+    });    
     
     return auditFuncsArray;
 }

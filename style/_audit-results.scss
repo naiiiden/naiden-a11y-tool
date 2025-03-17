@@ -1,0 +1,16 @@
+// section:target {
+//     animation: highlight 2s ease-out;
+// }
+
+@keyframes highlight {
+    0% {
+        outline: 4px solid red;
+    }
+    100% {
+        outline: 0px solid transparent;
+    }
+}
+
+.highlight {
+    outline: 4px solid red;
+}

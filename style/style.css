@@ -115,4 +115,15 @@ ul {
   100% {
     transform: rotate(360deg);
   }
+}
+@keyframes highlight {
+  0% {
+    outline: 4px solid red;
+  }
+  100% {
+    outline: 0px solid transparent;
+  }
+}
+.highlight {
+  outline: 4px solid red;
 }/*# sourceMappingURL=style.css.map */
