@@ -27,10 +27,10 @@ export function displayAuditResults(auditResults) {
     });
   
     for (const [type, errors] of Object.entries(errorsByType)) {
-      const typeSection = document.createElement('section');
+      const typeSection = document.createElement('details');
       typeSection.id = `${type}`;
       
-      const typeHeading = document.createElement('h2');
+      const typeHeading = document.createElement('summary');
       const formattedType = type.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' Errors';
       typeHeading.textContent = formattedType;
       typeSection.appendChild(typeHeading);
