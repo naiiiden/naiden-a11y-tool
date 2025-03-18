@@ -57,24 +57,20 @@ export function displayAuditResults(auditResults) {
         listItem.innerHTML = `
           <p><strong>${escapeHtml(error.name)}</strong></p>
           <p>${escapeHtml(error.description)}</p>
-          ${error.selector ? `<p>Location: ${error.selector}</p>` : ``}
-          ${
-            error.selector 
-              ? `<button id="highlight-btn-${index}">
-                  Highlight
-                  <img src="assets/highlight.svg" alt=""/>
-                </button>` 
-              : ``
+          ${error.selector && `<p>Location: ${error.selector}</p>`}
+          ${error.selector &&
+            `<button id="highlight-btn-${index}">
+                Highlight
+                <img src="assets/highlight.svg" alt=""/>
+              </button>` 
           }
-          ${
-            error.selector
-              ? `<button id="inspect-btn-${index}">
-                  Inspect
-                  <img src="assets/highlight.svg" alt=""/>
-                </button>` 
-              : ``
+          ${error.selector && 
+            `<button id="inspect-btn-${index}">
+              Inspect
+              <img src="assets/highlight.svg" alt=""/>
+            </button>` 
           }
-          ${error.element ? `<pre><code>${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>` : ``}
+          ${error.element && `<pre><code>${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>`}
           <p>How to fix: ${error.fix}</p>
           ${wcagLinks && `<p>Learning resources:</p>`}
           ${wcagLinks && `<ul>${wcagLinks}</ul>`}
