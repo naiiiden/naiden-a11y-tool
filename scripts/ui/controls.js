@@ -113,6 +113,7 @@ export function uiControls(runAudit) {
             const target = document.querySelector(anchor.getAttribute("href"));
             if (target) {
                 target.classList.add("highlight");
+                target.open = true;
                 setTimeout(() => target.classList.remove("highlight"), 2000);
             }
         });
