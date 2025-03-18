@@ -111,10 +111,8 @@ ul {
   padding: 0.5rem;
   gap: 0.25rem;
 }
-@media screen and (min-width: 400px) {
-  #errors-count-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
+#errors-count-container a {
+  color: inherit;
 }
 
 @keyframes highlight {
