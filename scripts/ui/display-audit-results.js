@@ -34,6 +34,10 @@ export function displayAuditResults(auditResults) {
       const typeHeading = document.createElement('summary');
       const formattedType = type.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' Errors';
       typeHeading.textContent = formattedType;
+      const image = document.createElement('img');
+      image.src = "assets/arrow.svg";
+      image.alt = "";
+      typeHeading.appendChild(image);
       typeSection.appendChild(typeHeading);
       
       const typeErrorsList = document.createElement('ul');
