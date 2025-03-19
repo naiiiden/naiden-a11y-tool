@@ -29,19 +29,23 @@ ul {
 }
 .run-button-audit-checkboxes-container #run-audit-btn {
   order: -1;
-  background: rgba(223, 223, 223, 0.4);
-  border: 1px solid #adadad;
+  background: #2C333A;
+  border: 1px solid #161A1D;
   border-radius: 0.5rem 0 0 0.5rem;
   padding: 0.25rem;
   height: 1.75rem;
+  color: inherit;
 }
 .run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button {
-  background: rgba(223, 223, 223, 0.4);
-  border: 1px solid #adadad;
+  background: #2C333A;
+  border: 1px solid #161A1D;
   border-radius: 0 0.5rem 0.5rem 0;
   height: 1.75rem;
   display: grid;
   place-content: center;
+}
+.run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button img {
+  filter: invert(1);
 }
 .run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button img.open {
   display: block;
