@@ -131,4 +131,13 @@ ul {
 }
 .highlight {
   animation: highlight 1s linear;
+}
+
+#errors-list {
+  padding: 0.75rem;
+}
+#errors-list details {
+  background: #22272B;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
 }/*# sourceMappingURL=style.css.map */

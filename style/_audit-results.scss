@@ -15,3 +15,13 @@
 .highlight {
     animation: highlight 1s linear;
 }
+
+#errors-list {
+    padding: .75rem;
+
+    details {
+        background: #22272B;
+        padding: .75rem;
+        margin-bottom: .75rem;
+    }
+}
