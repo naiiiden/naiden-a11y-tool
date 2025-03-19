@@ -5,10 +5,9 @@
 }
 
 body {
-  color: #363636;
+  color: #fff;
   min-height: 100vh;
-  background: #d7d7d7;
-  background: radial-gradient(circle, #d7d7d7 0%, #eeeeee 100%);
+  background: #101214;
   padding: 0.5rem;
   font-size: 0.875rem;
 }
