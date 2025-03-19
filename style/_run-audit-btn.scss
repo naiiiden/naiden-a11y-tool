@@ -27,21 +27,16 @@
     }
     
     .audit-checkboxes-container {
-        background: rgba(223, 223, 223, 0.4);
-        border: 1px solid #adadad;
-        border-radius: .5rem;
-        backdrop-filter: blur(2px);
+        border: 1px solid #161A1D;
+        background: #22272B;
+        border-radius: .25rem;
+        backdrop-filter: blur(4px);
         padding: .5rem;
         min-width: 12rem;
         display: none;
         position: absolute;
         left: 100%;
         z-index: 99;
-        background: rgba( 255, 255, 255, 0.4 );
-        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-        backdrop-filter: blur( 10px );
-        -webkit-backdrop-filter: blur( 10px );
-        border-radius: 10px;
 
         p {
             border-bottom: 1px solid #adadad;
