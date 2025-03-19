@@ -112,11 +112,7 @@ ul {
 #errors-count-container {
   margin: 1rem 0;
   display: none;
-  background: rgba(223, 223, 223, 0.4);
-  border: 1px solid #adadad;
-  border-radius: 0.5rem;
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
+  background: #22272B;
   padding: 0.5rem;
   gap: 0.25rem;
 }
