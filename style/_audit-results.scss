@@ -23,5 +23,23 @@
         background: #22272B;
         padding: .75rem;
         margin-bottom: .75rem;
+
+        summary {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            img {
+                filter: invert(1);
+                transform: rotate(0deg);
+            }
+        }
+
+        &[open] {
+            summary img {
+                transform: rotate(180deg);
+            }
+        }
     }
 }
