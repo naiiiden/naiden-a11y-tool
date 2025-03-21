@@ -153,4 +153,7 @@ ul {
 }
 #errors-list details[open] summary img {
   transform: rotate(180deg);
+}
+#errors-list details > ul > li {
+  background: #2C333A;
 }/*# sourceMappingURL=style.css.map */
