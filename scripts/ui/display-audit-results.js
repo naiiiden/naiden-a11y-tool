@@ -59,7 +59,7 @@ export function displayAuditResults(auditResults) {
         }
 
         listItem.innerHTML = `
-          <p><strong>${escapeHtml(error.name)}</strong></p>
+          <h3>${escapeHtml(error.name)}</h3>
           <p>${escapeHtml(error.description)}</p>
           ${error.selector && `<p>Location: ${error.selector}</p>`}
           ${error.selector &&
