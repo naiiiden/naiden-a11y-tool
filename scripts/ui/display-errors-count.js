@@ -28,9 +28,16 @@ export function displayErrorsCount(auditResults) {
     for (const type in errorsCountIndividualType) {
       if (errorsCountIndividualType.hasOwnProperty(type)) {
         const elements = document.querySelectorAll(`.${type}`);
+
+        console.log(elements);
+
         elements.forEach(element => {
-          element.firstElementChild.textContent = errorsCountIndividualType[type].count;
-          element.lastElementChild.textContent = `${errorsCountIndividualType[type].name} ${errorsCountIndividualType[type].count === 1 ? "error" : "errors"}`;
+          if (errorsCountIndividualType[type].count === 0) {
+            element.style.display = "none";
+          } else {
+            element.firstElementChild.textContent = errorsCountIndividualType[type].count;
+            element.lastElementChild.textContent = `${errorsCountIndividualType[type].name} ${errorsCountIndividualType[type].count === 1 ? "error" : "errors"}`;
+          }
         });
       }
     }
