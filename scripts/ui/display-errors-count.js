@@ -33,7 +33,7 @@ export function displayErrorsCount(auditResults) {
 
         elements.forEach(element => {
           if (errorsCountIndividualType[type].count === 0) {
-            element.style.display = "none";
+            element.parentElement.style.display = "none";
           } else {
             element.firstElementChild.textContent = errorsCountIndividualType[type].count;
             element.lastElementChild.textContent = `${errorsCountIndividualType[type].name} ${errorsCountIndividualType[type].count === 1 ? "error" : "errors"}`;
