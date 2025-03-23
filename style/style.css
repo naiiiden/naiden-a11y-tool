@@ -179,6 +179,14 @@ ul {
   margin: 0 -0.75rem 0.75rem -0.75rem;
   padding: 0 0.75rem 0.75rem 0.75rem;
 }
+#errors-list details > ul > li button {
+  border: none;
+  color: inherit;
+  background: #454F59;
+}
+#errors-list details > ul > li button img {
+  filter: invert(1);
+}
 #errors-list details > ul > li pre {
   background: #454F59;
   margin: 0 -0.75rem;
