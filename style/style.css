@@ -183,4 +183,10 @@ ul {
   background: #454F59;
   margin: 0 -0.75rem;
   padding: 0 0.75rem;
+}
+#errors-list details > ul > li a {
+  color: inherit;
+}
+#errors-list details > ul > li a img {
+  filter: invert(1);
 }/*# sourceMappingURL=style.css.map */
