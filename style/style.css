@@ -166,4 +166,7 @@ ul {
 #errors-list details > ul > li {
   background: #2C333A;
   padding: 0.75rem;
+}
+#errors-list details pre {
+  background: #454F59;
 }/*# sourceMappingURL=style.css.map */
