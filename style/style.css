@@ -163,9 +163,16 @@ ul {
 #errors-list details[open] summary img {
   transform: rotate(180deg);
 }
+#errors-list details > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0 0.75rem 0.75rem 0.75rem;
+}
 #errors-list details > ul > li {
   background: #2C333A;
   padding: 0.75rem;
+  width: 100%;
 }
 #errors-list details > ul > li h3 {
   border-bottom: 2px solid #454F59;
