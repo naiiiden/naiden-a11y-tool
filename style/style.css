@@ -167,7 +167,12 @@ ul {
   background: #2C333A;
   padding: 0.75rem;
 }
-#errors-list details pre {
+#errors-list details > ul > li h3 {
+  border-bottom: 2px solid #454F59;
+  margin: 0 -0.75rem 0.75rem -0.75rem;
+  padding: 0 0.75rem 0.75rem 0.75rem;
+}
+#errors-list details > ul > li pre {
   background: #454F59;
   margin: 0 -0.75rem;
   padding: 0 0.75rem;
