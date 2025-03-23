@@ -71,7 +71,7 @@ export function displayAuditResults(auditResults) {
           ${error.selector && 
             `<button id="inspect-btn-${index}">
               Inspect
-              <img src="assets/highlight.svg" alt=""/>
+              <img src="assets/inspect.svg" alt=""/>
             </button>` 
           }
           ${error.element && `<pre><code>${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>`}
