@@ -69,6 +69,12 @@
                     border: none;
                     color: inherit;
                     background: #454F59;
+                    padding: .125rem .25rem;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: .375rem;
+                    font-family: inherit;
+                    font-weight: 500;
 
                     img {
                         filter: invert(1);
