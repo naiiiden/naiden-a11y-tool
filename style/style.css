@@ -211,6 +211,7 @@ body {
 }
 #errors-list details > ul > li pre {
   background: #454F59;
+  border-radius: 0;
   margin: 0.75rem -0.75rem;
   padding: 0.75rem;
   overflow-x: auto;
