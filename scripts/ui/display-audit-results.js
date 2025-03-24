@@ -74,7 +74,7 @@ export function displayAuditResults(auditResults) {
               <img src="assets/inspect.svg" alt=""/>
             </button>` 
           }
-          ${error.element && `<pre><code>${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>`}
+          ${error.element && `<pre><code class="language-html">${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>`}
           <p>How to fix: ${error.fix}</p>
           ${wcagLinks && `<p>Learning resources:</p>`}
           ${wcagLinks && `<ul>${wcagLinks}</ul>`}
