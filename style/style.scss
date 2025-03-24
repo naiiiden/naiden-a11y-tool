@@ -14,6 +14,18 @@ body {
     font-family: "Inter", sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #DEE4EA; 
+}
+   
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
 pre {
     overflow-x: auto;
 }
