@@ -95,5 +95,9 @@ export function displayAuditResults(auditResults) {
       
       typeSection.appendChild(typeErrorsList);
       errorsList.appendChild(typeSection);
-    }  
+    }
+
+    document.querySelectorAll('pre code').forEach((block) => {
+      Prism.highlightElement(block);
+    });
 }
