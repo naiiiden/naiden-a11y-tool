@@ -211,8 +211,8 @@ body {
 }
 #errors-list details > ul > li pre {
   background: #454F59;
-  margin: 0 -0.75rem;
-  padding: 0 0.75rem;
+  margin: 0.75rem -0.75rem;
+  padding: 0.75rem;
   overflow-x: auto;
 }
 #errors-list details > ul > li a {
