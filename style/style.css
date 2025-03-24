@@ -195,6 +195,11 @@ body {
   margin: 0 -0.75rem 0.75rem -0.75rem;
   padding: 0 0.75rem 0.625rem 0.75rem;
 }
+#errors-list details > ul > li div:has(button) {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
 #errors-list details > ul > li button {
   border: none;
   color: inherit;
@@ -212,7 +217,7 @@ body {
 #errors-list details > ul > li pre {
   background: #454F59;
   border-radius: 0;
-  margin: 0.75rem -0.75rem;
+  margin: 0.25rem -0.75rem;
   padding: 0.75rem;
   overflow-x: auto;
 }

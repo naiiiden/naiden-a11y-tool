@@ -61,9 +61,9 @@ export function displayAuditResults(auditResults) {
         listItem.innerHTML = `
           <h3>${escapeHtml(error.name)}</h3>
           <p>${escapeHtml(error.description)}</p>
+          ${error.selector && `<p>Location: ${error.selector}</p>`}
+          ${error.element && `<pre><code class="language-html">${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>`}
           <div>
-            ${error.selector && `<p>Location: ${error.selector}</p>`}
-            ${error.element && `<pre><code class="language-html">${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>`}
             ${error.selector &&
               `<button id="highlight-btn-${index}">
                   Highlight
