@@ -33,14 +33,6 @@ body {
   background: #38414A;
 }
 
-pre {
-  overflow-x: auto;
-}
-
-ul {
-  list-style-type: none;
-}
-
 .run-button-audit-checkboxes-container {
   position: relative;
   display: flex;
@@ -183,6 +175,9 @@ ul {
 #errors-list details[open] summary img {
   transform: rotate(180deg);
 }
+#errors-list details ul {
+  list-style-type: none;
+}
 #errors-list details > ul {
   display: flex;
   flex-direction: column;
@@ -211,6 +206,7 @@ ul {
   background: #454F59;
   margin: 0 -0.75rem;
   padding: 0 0.75rem;
+  overflow-x: auto;
 }
 #errors-list details > ul > li a {
   color: inherit;

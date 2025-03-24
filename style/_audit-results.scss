@@ -44,6 +44,10 @@
             }
         }
 
+        ul {
+            list-style-type: none;
+        }
+
         & > ul {
             display: flex;
             flex-direction: column;
@@ -75,6 +79,7 @@
                     background: #454F59;
                     margin: 0 -.75rem;
                     padding: 0 .75rem;
+                    overflow-x: auto;
                 }
 
                 a {

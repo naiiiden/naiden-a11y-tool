@@ -34,14 +34,6 @@ body {
     background: #38414A;
 }
 
-pre {
-    overflow-x: auto;
-}
-
-ul {
-    list-style-type: none;
-}
-
 @import "./run-audit-btn";
 @import "./loading-indicator";
 @import "./errors-count";
