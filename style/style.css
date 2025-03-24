@@ -22,7 +22,15 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #596773;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #454F59;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #38414A;
 }
 
 pre {
