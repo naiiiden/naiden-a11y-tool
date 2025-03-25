@@ -156,11 +156,11 @@ body {
 #errors-list {
   padding: 0.75rem;
 }
-#errors-list details {
+#errors-list details:not(details details) {
   background: #22272B;
   margin-bottom: 0.75rem;
 }
-#errors-list details summary {
+#errors-list details:not(details details) summary:not(details details summary) {
   padding: 0.75rem;
   list-style: none;
   display: flex;
@@ -169,44 +169,44 @@ body {
   font-weight: 700;
   font-size: 1.25rem;
 }
-#errors-list details summary img {
+#errors-list details:not(details details) summary:not(details details summary) img {
   filter: invert(1);
   transform: rotate(0deg);
 }
-#errors-list details[open] summary img {
+#errors-list details:not(details details)[open] summary img {
   transform: rotate(180deg);
 }
-#errors-list details ul {
+#errors-list details:not(details details) ul {
   list-style-type: none;
 }
-#errors-list details > ul {
+#errors-list details:not(details details) > ul {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   padding: 0 0.75rem 0.75rem 0.75rem;
 }
-#errors-list details > ul > li {
+#errors-list details:not(details details) > ul > li {
   background: #2C333A;
   padding: 0.625rem 0.75rem 0.75rem 0.75rem;
   width: 100%;
 }
-#errors-list details > ul > li h3 {
+#errors-list details:not(details details) > ul > li h3 {
   border-bottom: 2px solid #454F59;
   margin: 0 -0.75rem 0.75rem -0.75rem;
   padding: 0 0.75rem 0.625rem 0.75rem;
 }
-#errors-list details > ul > li div:has(pre) {
+#errors-list details:not(details details) > ul > li div:has(pre) {
   padding: 1.25rem 0;
 }
-#errors-list details > ul > li div:has(pre):not(:has(div)) {
+#errors-list details:not(details details) > ul > li div:has(pre):not(:has(div)) {
   padding: 0.75rem 0;
 }
-#errors-list details > ul > li div > div:has(button) {
+#errors-list details:not(details details) > ul > li div > div:has(button) {
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
 }
-#errors-list details > ul > li button {
+#errors-list details:not(details details) > ul > li button {
   border: none;
   color: inherit;
   background: #454F59;
@@ -217,19 +217,19 @@ body {
   font-family: inherit;
   font-weight: 500;
 }
-#errors-list details > ul > li button img {
+#errors-list details:not(details details) > ul > li button img {
   filter: invert(1);
 }
-#errors-list details > ul > li pre {
+#errors-list details:not(details details) > ul > li pre {
   background: #454F59;
   border-radius: 0;
   margin: 0.5rem -0.75rem;
   padding: 0.75rem;
   overflow-x: auto;
 }
-#errors-list details > ul > li a {
+#errors-list details:not(details details) > ul > li a {
   color: inherit;
 }
-#errors-list details > ul > li a img {
+#errors-list details:not(details details) > ul > li a img {
   filter: invert(1);
 }/*# sourceMappingURL=style.css.map */

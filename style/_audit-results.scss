@@ -19,11 +19,11 @@
 #errors-list {
     padding: .75rem;
 
-    details {
+    details:not(details details) {
         background: #22272B;
         margin-bottom: .75rem;
 
-        summary {
+        summary:not(details details summary) {
             padding: .75rem;
             list-style: none;
             display: flex;

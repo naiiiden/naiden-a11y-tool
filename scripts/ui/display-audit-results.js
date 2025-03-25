@@ -76,8 +76,12 @@ export function displayAuditResults(auditResults) {
             </div>`}
           </div>
           <p>How to fix: ${error.fix}</p>
-          ${wcagLinks && `<p>Learning resources:</p>`}
-          ${wcagLinks && `<ul>${wcagLinks}</ul>`}
+          ${wcagLinks && 
+            `<details>
+              <summary>Learning and helpful resources</summary>
+              <ul>${wcagLinks}</ul>
+            </details>`
+          }
         `;
 
         if (error.selector) {
