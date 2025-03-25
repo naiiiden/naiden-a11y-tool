@@ -160,24 +160,6 @@ body {
   background: #22272B;
   margin-bottom: 0.75rem;
 }
-#errors-list details:not(details details) summary {
-  padding: 0.75rem;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 700;
-  font-size: 1.25rem;
-}
-#errors-list details:not(details details) summary:is(details details summary) {
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding: 0;
-}
-#errors-list details:not(details details) summary img {
-  filter: invert(1);
-  transform: rotate(0deg);
-}
 #errors-list details:not(details details)[open] summary img {
   transform: rotate(180deg);
 }
@@ -237,4 +219,22 @@ body {
 }
 #errors-list details:not(details details) > ul > li a img {
   filter: invert(1);
+}
+#errors-list details > summary {
+  padding: 0.75rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+#errors-list details > summary:is(details details summary) {
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0;
+}
+#errors-list details > summary img {
+  filter: invert(1);
+  transform: rotate(0deg);
 }/*# sourceMappingURL=style.css.map */

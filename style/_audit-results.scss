@@ -23,27 +23,6 @@
         background: #22272B;
         margin-bottom: .75rem;
 
-        summary {
-            padding: .75rem;
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 1.25rem;
-
-            &:is(details details summary) {
-                font-size: .875rem;
-                font-weight: 500;
-                padding: 0;
-            }
-
-            img {
-                filter: invert(1);
-                transform: rotate(0deg);
-            }
-        }
-
         &[open] {
             summary img {
                 transform: rotate(180deg);
@@ -118,5 +97,26 @@
                 }
             }
         } 
+    }
+
+    details > summary {
+        padding: .75rem;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 700;
+        font-size: 1.25rem;
+
+        &:is(details details summary) {
+            font-size: .875rem;
+            font-weight: 500;
+            padding: 0;
+        }
+
+        img {
+            filter: invert(1);
+            transform: rotate(0deg);
+        }
     }
 }
