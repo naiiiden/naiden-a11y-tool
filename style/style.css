@@ -195,7 +195,7 @@ body {
   margin: 0 -0.75rem 0.75rem -0.75rem;
   padding: 0 0.75rem 0.625rem 0.75rem;
 }
-#errors-list details > ul > li div:has(div button) {
+#errors-list details > ul > li div:has(pre) {
   padding: 1.25rem 0;
 }
 #errors-list details > ul > li div > div:has(button) {
