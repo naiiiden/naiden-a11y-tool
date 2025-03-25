@@ -65,7 +65,11 @@
                     padding: 0 .75rem .625rem .75rem;
                 }
 
-                div:has(button) {
+                div:has(div button) {
+                    padding: 1.25rem 0;
+                }
+
+                div > div:has(button) {
                     display: flex;
                     justify-content: flex-end;
                     gap: .5rem;
@@ -90,7 +94,7 @@
                 pre {
                     background: #454F59;
                     border-radius: 0;
-                    margin: .25rem -.75rem;
+                    margin: .5rem -.75rem;
                     padding: .75rem;
                     overflow-x: auto;
                 }
