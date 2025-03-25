@@ -87,16 +87,27 @@
                     padding: .75rem;
                     overflow-x: auto;
                 }
-
-                a {
-                    color: inherit;
-
-                    img {
-                        filter: invert(1);
-                    }
-                }
             }
         } 
+    }
+
+    details:is(details details) {
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: .375rem;
+        }
+        
+        a {
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: .25rem;
+
+            img {
+                filter: invert(1);
+            }
+        }
     }
 
     details > summary {
