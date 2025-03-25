@@ -23,7 +23,7 @@
         background: #22272B;
         margin-bottom: .75rem;
 
-        summary:not(details details summary) {
+        summary {
             padding: .75rem;
             list-style: none;
             display: flex;
@@ -31,6 +31,12 @@
             justify-content: space-between;
             font-weight: 700;
             font-size: 1.25rem;
+
+            &:is(details details summary) {
+                font-size: .875rem;
+                font-weight: 500;
+                padding: 0;
+            }
 
             img {
                 filter: invert(1);

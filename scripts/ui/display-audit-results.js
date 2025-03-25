@@ -78,7 +78,10 @@ export function displayAuditResults(auditResults) {
           <p>How to fix: ${error.fix}</p>
           ${wcagLinks && 
             `<details>
-              <summary>Learning and helpful resources</summary>
+              <summary>
+                Learning and helpful resources
+                <img src="assets/arrow.svg" alt=""/>
+              </summary>
               <ul>${wcagLinks}</ul>
             </details>`
           }
