@@ -67,6 +67,10 @@
 
                 div:has(pre) {
                     padding: 1.25rem 0;
+
+                    &:not(:has(div)) {
+                        padding: .75rem 0;
+                    }
                 }
 
                 div > div:has(button) {
