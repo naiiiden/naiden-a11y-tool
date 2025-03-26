@@ -102,6 +102,8 @@
     }
 
     details:is(details details) {
+        padding-top: 1.25rem;
+
         ul {
             display: flex;
             flex-direction: column;
@@ -127,7 +129,7 @@
 
         &:is(details details summary) {
             font-size: .875rem;
-            font-weight: 500;
+            font-weight: 600;
             padding: 0;
         }
     }

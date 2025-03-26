@@ -217,6 +217,9 @@ body {
   padding: 0.75rem;
   overflow-x: auto;
 }
+#errors-list details:is(details details) {
+  padding-top: 1.25rem;
+}
 #errors-list details:is(details details) ul {
   display: flex;
   flex-direction: column;
@@ -239,6 +242,6 @@ body {
 }
 #errors-list details > summary:is(details details summary) {
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   padding: 0;
 }/*# sourceMappingURL=style.css.map */
