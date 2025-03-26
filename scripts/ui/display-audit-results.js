@@ -62,7 +62,12 @@ export function displayAuditResults(auditResults) {
           <h3>${escapeHtml(error.name)}</h3>
           <p>${escapeHtml(error.description)}</p>
           <div>
-            ${error.selector && `<p>Location: ${error.selector}</p>`}
+            ${error.selector && 
+              `<div>
+                <h4>Location:</h3>
+                <p>${error.selector}</p>
+              </div>`
+            }
             ${error.element && `<pre><code class="language-html">${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>`}
             ${error.selector && `<div>
               <button id="highlight-btn-${index}">
@@ -75,7 +80,10 @@ export function displayAuditResults(auditResults) {
               </button>
             </div>`}
           </div>
-          <p>How to fix: ${error.fix}</p>
+          <div>
+            <h4>How to fix:</h3>
+            <p>${error.fix}</p>
+          </div>
           ${wcagLinks && 
             `<details>
               <summary>
