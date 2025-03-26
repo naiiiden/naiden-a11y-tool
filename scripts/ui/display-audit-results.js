@@ -65,6 +65,7 @@ export function displayAuditResults(auditResults) {
             ${error.selector && 
               `<div>
                 <h4>Location:</h3>
+                <span>-</span>
                 <p>${error.selector}</p>
               </div>`
             }
@@ -81,7 +82,8 @@ export function displayAuditResults(auditResults) {
             </div>`}
           </div>
           <div>
-            <h4>How to fix:</h3>
+            <h4>How to fix</h3>
+            <span>-</span>
             <p>${error.fix}</p>
           </div>
           ${wcagLinks && 
