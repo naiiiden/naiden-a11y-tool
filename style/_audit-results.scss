@@ -74,10 +74,6 @@
                     gap: .375rem;
                     font-family: inherit;
                     font-weight: 500;
-
-                    img {
-                        filter: invert(1);
-                    }
                 }
                 
                 pre {
@@ -103,10 +99,6 @@
             display: flex;
             align-items: center;
             gap: .25rem;
-
-            img {
-                filter: invert(1);
-            }
         }
     }
 
@@ -126,7 +118,6 @@
         }
 
         img {
-            filter: invert(1);
             transform: rotate(0deg);
         }
     }

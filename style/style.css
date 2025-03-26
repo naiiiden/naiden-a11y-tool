@@ -57,9 +57,6 @@ body {
   display: grid;
   place-content: center;
 }
-.run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button img {
-  filter: invert(1);
-}
 .run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button img.open {
   display: block;
   transform: rotate(180deg);
@@ -204,9 +201,6 @@ body {
   font-family: inherit;
   font-weight: 500;
 }
-#errors-list details:not(details details) > ul > li button img {
-  filter: invert(1);
-}
 #errors-list details:not(details details) > ul > li pre {
   background: #454F59;
   border-radius: 0;
@@ -225,9 +219,6 @@ body {
   align-items: center;
   gap: 0.25rem;
 }
-#errors-list details:is(details details) a img {
-  filter: invert(1);
-}
 #errors-list details > summary {
   padding: 0.75rem;
   list-style: none;
@@ -243,6 +234,5 @@ body {
   padding: 0;
 }
 #errors-list details > summary img {
-  filter: invert(1);
   transform: rotate(0deg);
 }/*# sourceMappingURL=style.css.map */
