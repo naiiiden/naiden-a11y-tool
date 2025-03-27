@@ -215,12 +215,14 @@ body {
   border: none;
   color: inherit;
   background: #454F59;
-  padding: 0.125rem 0.25rem;
+  padding: 0.25rem 0.375rem;
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
   font-family: inherit;
   font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
 }
 #errors-list details:not(details details) > ul > li pre {
   background: #454F59;
@@ -253,6 +255,7 @@ body {
   justify-content: space-between;
   font-weight: 700;
   font-size: 1.25rem;
+  cursor: pointer;
 }
 #errors-list details > summary:is(details details summary) {
   font-size: 0.875rem;
