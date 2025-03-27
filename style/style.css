@@ -267,4 +267,14 @@ body {
 
 footer {
   margin-top: auto;
+  background: #22272B;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem;
+}
+footer p {
+  font-weight: 500;
+}
+footer a {
+  color: inherit;
 }/*# sourceMappingURL=style.css.map */
