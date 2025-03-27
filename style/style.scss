@@ -11,6 +11,8 @@ body {
     min-height: 100vh;
     background: #101214;
     font-size: .875rem;
+    display: flex;
+    flex-direction: column;
     font-family: "Inter", sans-serif;
 }
 
@@ -39,3 +41,4 @@ body {
 @import "./loading-indicator";
 @import "./errors-count";
 @import "./audit-results";
+@import "./footer";

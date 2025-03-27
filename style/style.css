@@ -10,6 +10,8 @@ body {
   min-height: 100vh;
   background: #101214;
   font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
   font-family: "Inter", sans-serif;
 }
 
@@ -261,4 +263,8 @@ body {
   font-size: 0.875rem;
   font-weight: 600;
   padding: 0;
+}
+
+footer {
+  margin-top: auto;
 }/*# sourceMappingURL=style.css.map */
