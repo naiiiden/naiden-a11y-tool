@@ -119,7 +119,10 @@
     }
 
     details:is(details details) {
-        padding-top: 1.25rem;
+        margin-top: 1.25rem;
+        padding: .75rem;
+        border-radius: 4px;
+        background: #454F59;
 
         ul {
             display: flex;
