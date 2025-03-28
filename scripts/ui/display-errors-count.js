@@ -29,8 +29,6 @@ export function displayErrorsCount(auditResults) {
       if (errorsCountIndividualType.hasOwnProperty(type)) {
         const elements = document.querySelectorAll(`.${type}`);
 
-        console.log(elements);
-
         elements.forEach(element => {
           if (errorsCountIndividualType[type].count === 0) {
             element.parentElement.style.display = "none";

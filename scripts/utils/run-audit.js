@@ -12,7 +12,6 @@ export async function runAudit(auditFuncs) {
         await auditFunc(auditResults)
       }
 
-      console.log("errors:", auditResults);
       displayAuditResults(auditResults);
     } catch (err) {
       console.error("Error during audit:", err);
