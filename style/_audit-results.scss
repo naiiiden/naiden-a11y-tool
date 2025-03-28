@@ -120,7 +120,6 @@
 
     details:is(details details) {
         margin-top: 1.25rem;
-        padding: .75rem;
         border-radius: 4px;
         background: #454F59;
 
@@ -128,7 +127,7 @@
             display: flex;
             flex-direction: column;
             gap: .375rem;
-            padding-top: .75rem;
+            padding: .75rem;
         }
         
         a {
@@ -155,7 +154,7 @@
         &:is(details details summary) {
             font-size: .875rem;
             font-weight: 600;
-            padding: 0;
+            padding: .3125rem .75rem;
         }
     }
 }

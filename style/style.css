@@ -235,7 +235,6 @@ body {
 }
 #errors-list details:is(details details) {
   margin-top: 1.25rem;
-  padding: 0.75rem;
   border-radius: 4px;
   background: #454F59;
 }
@@ -243,7 +242,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.375rem;
-  padding-top: 0.75rem;
+  padding: 0.75rem;
 }
 #errors-list details:is(details details) a {
   color: inherit;
@@ -266,7 +265,7 @@ body {
 #errors-list details > summary:is(details details summary) {
   font-size: 0.875rem;
   font-weight: 600;
-  padding: 0;
+  padding: 0.3125rem 0.75rem;
 }
 
 footer {
