@@ -18,12 +18,19 @@ export function displayAuditResults(auditResults) {
     errorsIndicator.innerHTML = "";
 
     const errorsByType = {};
+    const groupedErrors = {};
   
     auditResults.forEach(error => {
       if (!errorsByType[error.type]) {
         errorsByType[error.type] = [];
       }
       errorsByType[error.type].push(error);
+
+      if(!groupedErrors[error.name]) {
+        groupedErrors[error.name] = [];
+      }
+      groupedErrors[error.name].push(error);
+      console.log(groupedErrors);
     });
   
     for (const [type, errors] of Object.entries(errorsByType)) {
