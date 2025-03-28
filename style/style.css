@@ -203,7 +203,7 @@ body {
   display: inline;
 }
 #errors-list details:not(details details) > ul > li div:has(pre) {
-  padding: 1.25rem 0;
+  padding: 1.5rem 0;
 }
 #errors-list details:not(details details) > ul > li div:has(pre):not(:has(div)) {
   padding: 0.75rem 0;
