@@ -103,13 +103,13 @@ export function displayAuditResults(auditResults) {
               </details>`
             }
 
-            ${errorInstances.length > 1 && `
+            ${errorInstances.length > 1 ? `
               <div class="pagination-controls">
                 <button id="prev-btn-${sanitizedId}" ${currentIndex === 0 ? 'disabled' : ''}>&lt; Prev</button>
                 <span>Instance ${currentIndex + 1} of ${errorInstances.length}</span>
                 <button id="next-btn-${sanitizedId}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''}>Next &gt;</button>
               </div>
-            `}
+            ` : ``}
           `;
           
           if (error.selector) {
