@@ -51,6 +51,7 @@ export function displayAuditResults(auditResults) {
       
       errors.forEach((error, index) => {
         const listItem = document.createElement('li');
+        listItem.id = `${type}-error-${index}`;
 
         let wcagLinks = '';
         if (error.wcagLinks) {
