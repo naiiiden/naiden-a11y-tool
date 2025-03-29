@@ -19,3 +19,7 @@
         transform: rotate(360deg);
     }
 }
+
+#errors-indicator:empty {
+    display: none;
+}

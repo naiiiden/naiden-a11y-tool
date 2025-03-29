@@ -119,6 +119,10 @@ body {
     transform: rotate(360deg);
   }
 }
+#errors-indicator:empty {
+  display: none;
+}
+
 #errors-count-container {
   margin: 1rem 0;
   display: none;
