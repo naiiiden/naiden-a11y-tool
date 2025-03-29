@@ -54,18 +54,6 @@ export function displayAuditResults(auditResults) {
         
         function updateErrorDisplay() {
           const error = errorInstances[currentIndex];
-          let wcagLinks = '';
-          if (error.wcagLinks) {
-            for (const wcagLink of error.wcagLinks) {
-              wcagLinks += `
-                <li>
-                  <a href="${wcagLink.url}" target="_blank">
-                    ${wcagLink.name} <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
-                  </a>
-                </li>
-              `;
-            }
-          }
           
           listItem.innerHTML = `
             <h3>${escapeHtml(name)}</h3>
@@ -97,13 +85,21 @@ export function displayAuditResults(auditResults) {
               </h4>
               <p>${error.fix}</p>
             </div>
-            ${wcagLinks && 
+            ${error.wcagLinks && 
               `<details>
                 <summary>
                   Learning and helpful resources
                   <img src="assets/arrow.svg" alt=""/>
                 </summary>
-                <ul>${wcagLinks}</ul>
+                <ul>
+                  ${error.wcagLinks.map(link => `
+                    <li>
+                      <a href="${link.url}" target="_blank">
+                        ${link.name} <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
+                      </a>
+                    </li>
+                  `).join('')}
+                </ul>
               </details>`
             }
 
