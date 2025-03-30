@@ -105,11 +105,11 @@ export function displayAuditResults(auditResults) {
 
             ${errorInstances.length > 1 ? `
               <div class="pagination-controls">
-                <button id="first-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''}>&lt; First</button>
+                <button id="first-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''}><img src="assets/first.svg" alt=""/></button>
                 <button id="prev-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''}>&lt; Prev</button>
                 <span>${currentIndex + 1} of ${errorInstances.length}</span>
                 <button id="next-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''}>Next &gt;</button>
-                <button id="last-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''}>Last &gt;</button>
+                <button id="last-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''}><img src="assets/last.svg" alt=""/></button>
               </div>
             ` : ``}
           `;
