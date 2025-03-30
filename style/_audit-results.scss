@@ -114,6 +114,11 @@
                     padding: .75rem;
                     overflow-x: auto;
                 }
+
+                div:last-child {
+                    width: fit-content;
+                    margin: .75rem 0 0 auto;
+                }
             }
         } 
     }
