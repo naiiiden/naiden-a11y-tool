@@ -105,8 +105,8 @@ export function displayAuditResults(auditResults) {
 
             ${errorInstances.length > 1 ? `
               <div class="pagination-controls">
-                <button id="first-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''}><img src="assets/first.svg" alt=""/></button>
-                <button id="prev-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''}><img src="assets/back.svg" alt=""/></button>
+                <button id="first-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''} aria-label="First error"><img src="assets/first.svg" alt=""/></button>
+                <button id="prev-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''} aria-label="Previous error"><img src="assets/back.svg" alt=""/></button>
                 <span>
                   <span>
                     ${currentIndex + 1}
@@ -116,8 +116,8 @@ export function displayAuditResults(auditResults) {
                     ${errorInstances.length}
                   </span>
                 </span>
-                <button id="next-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''}><img src="assets/forward.svg" alt=""/></button>
-                <button id="last-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''}><img src="assets/last.svg" alt=""/></button>
+                <button id="next-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Next error"><img src="assets/forward.svg" alt=""/></button>
+                <button id="last-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
               </div>
             ` : ``}
           `;
