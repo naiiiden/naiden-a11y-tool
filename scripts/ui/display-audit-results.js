@@ -2,6 +2,7 @@ import { escapeHtml } from "../utils/escape-html.js";
 import { highlightElement } from "../utils/highlight-element.js";
 import { highlightElementInDevTools } from "../utils/highlight-element-in-dev-tools.js";
 import { truncateIfTooManyChildren } from "../utils/truncate-if-too-many-children.js";
+import { prismHighlightElement } from "../utils/prism-highlight.js";
 
 const errorsIndicator = document.getElementById("errors-indicator");
 const errorsList = document.getElementById('errors-list');
@@ -127,6 +128,7 @@ export function displayAuditResults(auditResults) {
               if (currentIndex > 0) {
                 currentIndex--;
                 updateErrorDisplay();
+                prismHighlightElement();
               }
             });
 
@@ -134,6 +136,7 @@ export function displayAuditResults(auditResults) {
               if (currentIndex < errorInstances.length - 1) {
                 currentIndex++;
                 updateErrorDisplay();
+                prismHighlightElement();
               }
             });
           }
@@ -147,7 +150,5 @@ export function displayAuditResults(auditResults) {
       errorsList.appendChild(typeSection);
     }
 
-    document.querySelectorAll('pre code').forEach((block) => {
-      Prism.highlightElement(block);
-    });
+    prismHighlightElement();
 }
