@@ -140,6 +140,22 @@ export function displayAuditResults(auditResults) {
                 prismHighlightElement();
               }
             });
+
+            listItem.querySelector(`#first-btn-${error.type}`).addEventListener("click", () => {
+              if (currentIndex > 0) {
+                currentIndex = 0;
+                updateErrorDisplay();
+                prismHighlightElement();
+              }
+            });
+
+            listItem.querySelector(`#last-btn-${error.type}`).addEventListener("click", () => {
+              if (currentIndex < errorInstances.length - 1) {
+                currentIndex = errorInstances.length - 1;
+                updateErrorDisplay();
+                prismHighlightElement();
+              }
+            });
           }
         }
 
