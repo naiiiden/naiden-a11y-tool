@@ -107,7 +107,7 @@ export function displayAuditResults(auditResults) {
               <div class="pagination-controls">
                 <button id="first-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''}>&lt; First</button>
                 <button id="prev-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''}>&lt; Prev</button>
-                <span>Instance ${currentIndex + 1} of ${errorInstances.length}</span>
+                <span>${currentIndex + 1} of ${errorInstances.length}</span>
                 <button id="next-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''}>Next &gt;</button>
                 <button id="last-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''}>Last &gt;</button>
               </div>
