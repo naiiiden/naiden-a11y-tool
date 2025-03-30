@@ -118,6 +118,10 @@
                 div:last-child {
                     width: fit-content;
                     margin: .75rem 0 0 auto;
+
+                    span span {
+                        font-weight: 600;
+                    }
                 }
             }
         } 

@@ -242,6 +242,9 @@ body {
   width: fit-content;
   margin: 0.75rem 0 0 auto;
 }
+#errors-list details:not(details details) > ul > li div:last-child span span {
+  font-weight: 600;
+}
 #errors-list details:is(details details) {
   margin-top: 1.25rem;
   border-radius: 4px;
