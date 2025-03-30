@@ -238,9 +238,13 @@ body {
   overflow-x: auto;
 }
 #errors-list details:not(details details) > ul > li div:last-child {
-  width: -moz-fit-content;
-  width: fit-content;
-  margin: 0.75rem 0 0 auto;
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}
+#errors-list details:not(details details) > ul > li div:last-child span {
+  align-self: center;
 }
 #errors-list details:not(details details) > ul > li div:last-child span span {
   font-weight: 600;
