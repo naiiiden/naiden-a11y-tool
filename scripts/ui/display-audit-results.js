@@ -49,7 +49,6 @@ export function displayAuditResults(auditResults) {
       const typeErrorsList = document.createElement('ul');
       
       Object.entries(errorsByName).forEach(([name, errorInstances]) => {
-        const sanitizedId = name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-_]/g, '');
         const listItem = document.createElement('li');
         let currentIndex = 0;
         
@@ -70,11 +69,11 @@ export function displayAuditResults(auditResults) {
               }
               ${error.element && `<pre><code class="language-html">${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>`}
               ${error.selector && `<div>
-                <button id="highlight-btn-${sanitizedId}">
+                <button id="highlight-btn-${error.type}">
                   Highlight
                   <img src="assets/highlight.svg" alt=""/>
                 </button> 
-                <button id="inspect-btn-${sanitizedId}">
+                <button id="inspect-btn-${error.type}">
                   Inspect
                   <img src="assets/inspect.svg" alt=""/>
                 </button>
@@ -106,25 +105,25 @@ export function displayAuditResults(auditResults) {
 
             ${errorInstances.length > 1 ? `
               <div class="pagination-controls">
-                <button id="prev-btn-${sanitizedId}" ${currentIndex === 0 ? 'disabled' : ''}>&lt; Prev</button>
+                <button id="prev-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''}>&lt; Prev</button>
                 <span>Instance ${currentIndex + 1} of ${errorInstances.length}</span>
-                <button id="next-btn-${sanitizedId}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''}>Next &gt;</button>
+                <button id="next-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''}>Next &gt;</button>
               </div>
             ` : ``}
           `;
           
           if (error.selector) {
-            listItem.querySelector(`#highlight-btn-${sanitizedId}`).addEventListener('click', () => {
+            listItem.querySelector(`#highlight-btn-${error.type}`).addEventListener('click', () => {
               highlightElement(error.selector);
             });
 
-            listItem.querySelector(`#inspect-btn-${sanitizedId}`).addEventListener('click', () => {
+            listItem.querySelector(`#inspect-btn-${error.type}`).addEventListener('click', () => {
               highlightElementInDevTools(error.selector);
             });
           }
 
           if (errorInstances.length > 1) {
-            listItem.querySelector(`#prev-btn-${sanitizedId}`).addEventListener('click', () => {
+            listItem.querySelector(`#prev-btn-${error.type}`).addEventListener('click', () => {
               if (currentIndex > 0) {
                 currentIndex--;
                 updateErrorDisplay();
@@ -132,7 +131,7 @@ export function displayAuditResults(auditResults) {
               }
             });
 
-            listItem.querySelector(`#next-btn-${sanitizedId}`).addEventListener('click', () => {
+            listItem.querySelector(`#next-btn-${error.type}`).addEventListener('click', () => {
               if (currentIndex < errorInstances.length - 1) {
                 currentIndex++;
                 updateErrorDisplay();
