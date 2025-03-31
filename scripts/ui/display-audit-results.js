@@ -56,52 +56,54 @@ export function displayAuditResults(auditResults) {
           const error = errorInstances[currentIndex];
           
           listItem.innerHTML = `
-            <h3>${escapeHtml(name)}</h3>
-            <p>${escapeHtml(error.description)}</p>
             <div>
-              ${error.selector && 
-                `<div>
-                  <h4>
-                    Location<span aria-hidden="true">:</span>
-                  </h4>
-                  <p>${error.selector}</p>
-                </div>`
+              <h3>${escapeHtml(name)}</h3>
+              <p>${escapeHtml(error.description)}</p>
+              <div>
+                ${error.selector && 
+                  `<div>
+                    <h4>
+                      Location<span aria-hidden="true">:</span>
+                    </h4>
+                    <p>${error.selector}</p>
+                  </div>`
+                }
+                ${error.element && `<pre><code class="language-html">${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>`}
+                ${error.selector && `<div>
+                  <button id="highlight-btn-${error.type}">
+                    Highlight
+                    <img src="assets/highlight.svg" alt=""/>
+                  </button> 
+                  <button id="inspect-btn-${error.type}">
+                    Inspect
+                    <img src="assets/inspect.svg" alt=""/>
+                  </button>
+                </div>`}
+              </div>
+              <div>
+                <h4>
+                  How to fix<span aria-hidden="true">:</span>
+                </h4>
+                <p>${error.fix}</p>
+              </div>
+              ${error.wcagLinks && 
+                `<details>
+                  <summary>
+                    Learning and helpful resources
+                    <img src="assets/arrow.svg" alt=""/>
+                  </summary>
+                  <ul>
+                    ${error.wcagLinks.map(link => `
+                      <li>
+                        <a href="${link.url}" target="_blank">
+                          ${link.name} <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
+                        </a>
+                      </li>
+                    `).join('')}
+                  </ul>
+                </details>`
               }
-              ${error.element && `<pre><code class="language-html">${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>`}
-              ${error.selector && `<div>
-                <button id="highlight-btn-${error.type}">
-                  Highlight
-                  <img src="assets/highlight.svg" alt=""/>
-                </button> 
-                <button id="inspect-btn-${error.type}">
-                  Inspect
-                  <img src="assets/inspect.svg" alt=""/>
-                </button>
-              </div>`}
             </div>
-            <div>
-              <h4>
-                How to fix<span aria-hidden="true">:</span>
-              </h4>
-              <p>${error.fix}</p>
-            </div>
-            ${error.wcagLinks && 
-              `<details>
-                <summary>
-                  Learning and helpful resources
-                  <img src="assets/arrow.svg" alt=""/>
-                </summary>
-                <ul>
-                  ${error.wcagLinks.map(link => `
-                    <li>
-                      <a href="${link.url}" target="_blank">
-                        ${link.name} <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
-                      </a>
-                    </li>
-                  `).join('')}
-                </ul>
-              </details>`
-            }
 
             ${errorInstances.length > 1 ? `
               <div class="pagination-controls">
