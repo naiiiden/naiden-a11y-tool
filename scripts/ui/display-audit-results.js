@@ -114,6 +114,11 @@ export function displayAuditResults(auditResults) {
               highlightElementInDevTools(error.selector);
             });
           };
+
+          const currentIndexSpan = paginationControls.querySelector('#current-index');
+          if (currentIndexSpan) {
+            currentIndexSpan.textContent = currentIndex + 1;
+          }
         }
 
         const paginationControls = document.createElement("div");
@@ -121,7 +126,7 @@ export function displayAuditResults(auditResults) {
             <button id="first-btn" ${currentIndex === 0 ? 'disabled' : ''} aria-label="First error"><img src="assets/first.svg" alt=""/></button>
             <button id="prev-btn" ${currentIndex === 0 ? 'disabled' : ''} aria-label="Previous error"><img src="assets/back.svg" alt=""/></button>
             <span>
-              <span>
+              <span id="current-index">
                 ${currentIndex + 1}
               </span>  
               of 
