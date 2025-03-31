@@ -104,24 +104,6 @@ export function displayAuditResults(auditResults) {
                 </details>`
               }
             </div>
-
-            ${errorInstances.length > 1 ? `
-              <div class="pagination-controls">
-                <button id="first-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''} aria-label="First error"><img src="assets/first.svg" alt=""/></button>
-                <button id="prev-btn-${error.type}" ${currentIndex === 0 ? 'disabled' : ''} aria-label="Previous error"><img src="assets/back.svg" alt=""/></button>
-                <span>
-                  <span>
-                    ${currentIndex + 1}
-                  </span>  
-                  of 
-                  <span>
-                    ${errorInstances.length}
-                  </span>
-                </span>
-                <button id="next-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Next error"><img src="assets/forward.svg" alt=""/></button>
-                <button id="last-btn-${error.type}" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
-              </div>
-            ` : ``}
           `;
           
           if (error.selector) {
@@ -132,44 +114,60 @@ export function displayAuditResults(auditResults) {
             listItem.querySelector(`#inspect-btn-${error.type}`).addEventListener('click', () => {
               highlightElementInDevTools(error.selector);
             });
-          }
-
-          if (errorInstances.length > 1) {
-            listItem.querySelector(`#prev-btn-${error.type}`).addEventListener('click', () => {
-              if (currentIndex > 0) {
-                currentIndex--;
-                updateErrorDisplay();
-                prismHighlightElement();
-              }
-            });
-
-            listItem.querySelector(`#next-btn-${error.type}`).addEventListener('click', () => {
-              if (currentIndex < errorInstances.length - 1) {
-                currentIndex++;
-                updateErrorDisplay();
-                prismHighlightElement();
-              }
-            });
-
-            listItem.querySelector(`#first-btn-${error.type}`).addEventListener("click", () => {
-              if (currentIndex > 0) {
-                currentIndex = 0;
-                updateErrorDisplay();
-                prismHighlightElement();
-              }
-            });
-
-            listItem.querySelector(`#last-btn-${error.type}`).addEventListener("click", () => {
-              if (currentIndex < errorInstances.length - 1) {
-                currentIndex = errorInstances.length - 1;
-                updateErrorDisplay();
-                prismHighlightElement();
-              }
-            });
-          }
+          };
         }
 
+        const paginationControls = document.createElement("div");
+        paginationControls.innerHTML = errorInstances.length > 1 ? `
+            <button id="first-btn" ${currentIndex === 0 ? 'disabled' : ''} aria-label="First error"><img src="assets/first.svg" alt=""/></button>
+            <button id="prev-btn" ${currentIndex === 0 ? 'disabled' : ''} aria-label="Previous error"><img src="assets/back.svg" alt=""/></button>
+            <span>
+              <span>
+                ${currentIndex + 1}
+              </span>  
+              of 
+              <span>
+                ${errorInstances.length}
+              </span>
+            </span>
+            <button id="next-btn" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Next error"><img src="assets/forward.svg" alt=""/></button>
+            <button id="last-btn" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
+        ` : ``;
+
+        paginationControls.querySelector("#prev-btn")?.addEventListener('click', () => {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateErrorDisplay();
+            prismHighlightElement();
+          }
+        });
+        
+        paginationControls.querySelector("#next-btn")?.addEventListener('click', () => {
+          if (currentIndex < errorInstances.length - 1) {
+            currentIndex++;
+            updateErrorDisplay();
+            prismHighlightElement();
+          }
+        });
+        
+        paginationControls.querySelector("#first-btn")?.addEventListener("click", () => {
+          if (currentIndex > 0) {
+            currentIndex = 0;
+            updateErrorDisplay();
+            prismHighlightElement();
+          }
+        });
+        
+        paginationControls.querySelector("#last-btn")?.addEventListener("click", () => {
+          if (currentIndex < errorInstances.length - 1) {
+            currentIndex = errorInstances.length - 1;
+            updateErrorDisplay();
+            prismHighlightElement();
+          }
+        });
+
         updateErrorDisplay();
+        listItem.appendChild(paginationControls);
         typeErrorsList.appendChild(listItem);
       })
       
