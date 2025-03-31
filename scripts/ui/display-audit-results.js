@@ -123,8 +123,8 @@ export function displayAuditResults(auditResults) {
 
         const paginationControls = document.createElement("div");
         paginationControls.innerHTML = errorInstances.length > 1 ? `
-            <button id="first-btn" ${currentIndex === 0 ? 'disabled' : ''} aria-label="First error"><img src="assets/first.svg" alt=""/></button>
-            <button id="prev-btn" ${currentIndex === 0 ? 'disabled' : ''} aria-label="Previous error"><img src="assets/back.svg" alt=""/></button>
+            <button class="first-btn" aria-label="First error"><img src="assets/first.svg" alt=""/></button>
+            <button class="prev-btn" aria-label="Previous error"><img src="assets/back.svg" alt=""/></button>
             <span>
               <span id="current-index">
                 ${currentIndex + 1}
@@ -134,11 +134,11 @@ export function displayAuditResults(auditResults) {
                 ${errorInstances.length}
               </span>
             </span>
-            <button id="next-btn" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Next error"><img src="assets/forward.svg" alt=""/></button>
-            <button id="last-btn" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
+            <button class="next-btn" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Next error"><img src="assets/forward.svg" alt=""/></button>
+            <button class="last-btn" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
         ` : ``;
 
-        paginationControls.querySelector("#prev-btn")?.addEventListener('click', () => {
+        paginationControls.querySelector(".prev-btn")?.addEventListener('click', () => {
           if (currentIndex > 0) {
             currentIndex--;
             updateErrorDisplay();
@@ -146,7 +146,7 @@ export function displayAuditResults(auditResults) {
           }
         });
         
-        paginationControls.querySelector("#next-btn")?.addEventListener('click', () => {
+        paginationControls.querySelector(".next-btn")?.addEventListener('click', () => {
           if (currentIndex < errorInstances.length - 1) {
             currentIndex++;
             updateErrorDisplay();
@@ -154,7 +154,7 @@ export function displayAuditResults(auditResults) {
           }
         });
         
-        paginationControls.querySelector("#first-btn")?.addEventListener("click", () => {
+        paginationControls.querySelector(".first-btn")?.addEventListener("click", () => {
           if (currentIndex > 0) {
             currentIndex = 0;
             updateErrorDisplay();
@@ -162,7 +162,7 @@ export function displayAuditResults(auditResults) {
           }
         });
         
-        paginationControls.querySelector("#last-btn")?.addEventListener("click", () => {
+        paginationControls.querySelector(".last-btn")?.addEventListener("click", () => {
           if (currentIndex < errorInstances.length - 1) {
             currentIndex = errorInstances.length - 1;
             updateErrorDisplay();
