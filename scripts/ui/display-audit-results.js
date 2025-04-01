@@ -51,6 +51,7 @@ export function displayAuditResults(auditResults) {
       Object.entries(errorsByName).forEach(([name, errorInstances]) => {
         const listItem = document.createElement('li');
         const errorContainer = document.createElement('div');
+        const paginationControls = document.createElement("div");
         let currentIndex = 0;
         
         function updateErrorDisplay() {
@@ -115,13 +116,31 @@ export function displayAuditResults(auditResults) {
             });
           };
 
+          if (errorInstances.length > 1) {
+            if (currentIndex === 0) {
+              paginationControls.querySelector('.first-btn').disabled = true;
+              paginationControls.querySelector('.prev-btn').disabled = true;
+              paginationControls.querySelector('.next-btn').disabled = false;
+              paginationControls.querySelector('.last-btn').disabled = false;
+            } else if (currentIndex === errorInstances.length - 1) {
+              paginationControls.querySelector('.first-btn').disabled = false;
+              paginationControls.querySelector('.prev-btn').disabled = false;
+              paginationControls.querySelector('.next-btn').disabled = true;
+              paginationControls.querySelector('.last-btn').disabled = true;
+            } else {
+              paginationControls.querySelector('.first-btn').disabled = false;
+              paginationControls.querySelector('.prev-btn').disabled = false;
+              paginationControls.querySelector('.next-btn').disabled = false;
+              paginationControls.querySelector('.last-btn').disabled = false;
+            }
+          }          
+
           const currentIndexSpan = paginationControls.querySelector('#current-index');
           if (currentIndexSpan) {
             currentIndexSpan.textContent = currentIndex + 1;
           }
         }
 
-        const paginationControls = document.createElement("div");
         paginationControls.innerHTML = errorInstances.length > 1 ? `
             <button class="first-btn" aria-label="First error"><img src="assets/first.svg" alt=""/></button>
             <button class="prev-btn" aria-label="Previous error"><img src="assets/back.svg" alt=""/></button>
