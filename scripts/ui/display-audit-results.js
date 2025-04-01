@@ -157,37 +157,39 @@ export function displayAuditResults(auditResults) {
             <button class="last-btn" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
         ` : ``;
 
-        paginationControls.querySelector(".prev-btn")?.addEventListener('click', () => {
-          if (currentIndex > 0) {
-            currentIndex--;
-            updateErrorDisplay();
-            prismHighlightElement();
-          }
-        });
-        
-        paginationControls.querySelector(".next-btn")?.addEventListener('click', () => {
-          if (currentIndex < errorInstances.length - 1) {
-            currentIndex++;
-            updateErrorDisplay();
-            prismHighlightElement();
-          }
-        });
-        
-        paginationControls.querySelector(".first-btn")?.addEventListener("click", () => {
-          if (currentIndex > 0) {
-            currentIndex = 0;
-            updateErrorDisplay();
-            prismHighlightElement();
-          }
-        });
-        
-        paginationControls.querySelector(".last-btn")?.addEventListener("click", () => {
-          if (currentIndex < errorInstances.length - 1) {
-            currentIndex = errorInstances.length - 1;
-            updateErrorDisplay();
-            prismHighlightElement();
-          }
-        });
+        if (errorInstances.length > 1) {
+          paginationControls.querySelector(".prev-btn").addEventListener('click', () => {
+            if (currentIndex > 0) {
+              currentIndex--;
+              updateErrorDisplay();
+              prismHighlightElement();
+            }
+          });
+          
+          paginationControls.querySelector(".next-btn").addEventListener('click', () => {
+            if (currentIndex < errorInstances.length - 1) {
+              currentIndex++;
+              updateErrorDisplay();
+              prismHighlightElement();
+            }
+          });
+          
+          paginationControls.querySelector(".first-btn").addEventListener("click", () => {
+            if (currentIndex > 0) {
+              currentIndex = 0;
+              updateErrorDisplay();
+              prismHighlightElement();
+            }
+          });
+          
+          paginationControls.querySelector(".last-btn").addEventListener("click", () => {
+            if (currentIndex < errorInstances.length - 1) {
+              currentIndex = errorInstances.length - 1;
+              updateErrorDisplay();
+              prismHighlightElement();
+            }
+          });
+        }
 
         updateErrorDisplay();
         listItem.appendChild(errorContainer);
