@@ -153,8 +153,8 @@ export function displayAuditResults(auditResults) {
                 ${errorInstances.length}
               </span>
             </span>
-            <button class="next-btn" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Next error"><img src="assets/forward.svg" alt=""/></button>
-            <button class="last-btn" ${currentIndex === errorInstances.length - 1 ? 'disabled' : ''} aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
+            <button class="next-btn" aria-label="Next error"><img src="assets/forward.svg" alt=""/></button>
+            <button class="last-btn" aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
         ` : ``;
 
         if (errorInstances.length > 1) {
