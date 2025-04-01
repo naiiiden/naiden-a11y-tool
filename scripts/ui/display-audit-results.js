@@ -75,6 +75,7 @@ export function displayAuditResults(auditResults) {
           prevBtn: paginationControls.querySelector('.prev-btn'),
           nextBtn: paginationControls.querySelector('.next-btn'),
           lastBtn: paginationControls.querySelector('.last-btn'),
+          currentIndexSpan: paginationControls.querySelector("#current-index")
         } : null;
         
         function updateErrorDisplay() {
@@ -156,12 +157,9 @@ export function displayAuditResults(auditResults) {
               paginationButtons.nextBtn.disabled = false;
               paginationButtons.lastBtn.disabled = false;
             }
-          }   
 
-          const currentIndexSpan = paginationControls.querySelector('#current-index');
-          if (currentIndexSpan) {
-            currentIndexSpan.textContent = currentIndex + 1;
-          }
+            paginationButtons.currentIndexSpan.textContent = currentIndex + 1;
+          }   
         }
 
         if (errorInstances.length > 1 && paginationButtons) {
