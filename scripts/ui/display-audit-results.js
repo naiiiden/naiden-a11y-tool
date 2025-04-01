@@ -53,6 +53,29 @@ export function displayAuditResults(auditResults) {
         const errorContainer = document.createElement('div');
         const paginationControls = document.createElement("div");
         let currentIndex = 0;
+
+        paginationControls.innerHTML = errorInstances.length > 1 ? `
+          <button class="first-btn" aria-label="First error"><img src="assets/first.svg" alt=""/></button>
+          <button class="prev-btn" aria-label="Previous error"><img src="assets/back.svg" alt=""/></button>
+          <span>
+            <span id="current-index">
+              ${currentIndex + 1}
+            </span>  
+            of 
+            <span>
+              ${errorInstances.length}
+            </span>
+          </span>
+          <button class="next-btn" aria-label="Next error"><img src="assets/forward.svg" alt=""/></button>
+          <button class="last-btn" aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
+        ` : ``;
+
+        const paginationButtons = errorInstances.length > 1 ? {
+          firstBtn: paginationControls.querySelector('.first-btn'),
+          prevBtn: paginationControls.querySelector('.prev-btn'),
+          nextBtn: paginationControls.querySelector('.next-btn'),
+          lastBtn: paginationControls.querySelector('.last-btn'),
+        } : null;
         
         function updateErrorDisplay() {
           const error = errorInstances[currentIndex];
@@ -116,24 +139,24 @@ export function displayAuditResults(auditResults) {
             });
           };
 
-          if (errorInstances.length > 1) {
+          if (errorInstances.length > 1 && paginationButtons) {
             if (currentIndex === 0) {
-              paginationControls.querySelector('.first-btn').disabled = true;
-              paginationControls.querySelector('.prev-btn').disabled = true;
-              paginationControls.querySelector('.next-btn').disabled = false;
-              paginationControls.querySelector('.last-btn').disabled = false;
+              paginationButtons.firstBtn.disabled = true;
+              paginationButtons.prevBtn.disabled = true;
+              paginationButtons.nextBtn.disabled = false;
+              paginationButtons.lastBtn.disabled = false;
             } else if (currentIndex === errorInstances.length - 1) {
-              paginationControls.querySelector('.first-btn').disabled = false;
-              paginationControls.querySelector('.prev-btn').disabled = false;
-              paginationControls.querySelector('.next-btn').disabled = true;
-              paginationControls.querySelector('.last-btn').disabled = true;
+              paginationButtons.firstBtn.disabled = false;
+              paginationButtons.prevBtn.disabled = false;
+              paginationButtons.nextBtn.disabled = true;
+              paginationButtons.lastBtn.disabled = true;
             } else {
-              paginationControls.querySelector('.first-btn').disabled = false;
-              paginationControls.querySelector('.prev-btn').disabled = false;
-              paginationControls.querySelector('.next-btn').disabled = false;
-              paginationControls.querySelector('.last-btn').disabled = false;
+              paginationButtons.firstBtn.disabled = false;
+              paginationButtons.prevBtn.disabled = false;
+              paginationButtons.nextBtn.disabled = false;
+              paginationButtons.lastBtn.disabled = false;
             }
-          }          
+          }   
 
           const currentIndexSpan = paginationControls.querySelector('#current-index');
           if (currentIndexSpan) {
@@ -141,24 +164,8 @@ export function displayAuditResults(auditResults) {
           }
         }
 
-        paginationControls.innerHTML = errorInstances.length > 1 ? `
-            <button class="first-btn" aria-label="First error"><img src="assets/first.svg" alt=""/></button>
-            <button class="prev-btn" aria-label="Previous error"><img src="assets/back.svg" alt=""/></button>
-            <span>
-              <span id="current-index">
-                ${currentIndex + 1}
-              </span>  
-              of 
-              <span>
-                ${errorInstances.length}
-              </span>
-            </span>
-            <button class="next-btn" aria-label="Next error"><img src="assets/forward.svg" alt=""/></button>
-            <button class="last-btn" aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
-        ` : ``;
-
-        if (errorInstances.length > 1) {
-          paginationControls.querySelector(".prev-btn").addEventListener('click', () => {
+        if (errorInstances.length > 1 && paginationButtons) {
+          paginationButtons.prevBtn.addEventListener('click', () => {
             if (currentIndex > 0) {
               currentIndex--;
               updateErrorDisplay();
@@ -166,7 +173,7 @@ export function displayAuditResults(auditResults) {
             }
           });
           
-          paginationControls.querySelector(".next-btn").addEventListener('click', () => {
+          paginationButtons.nextBtn.addEventListener('click', () => {
             if (currentIndex < errorInstances.length - 1) {
               currentIndex++;
               updateErrorDisplay();
@@ -174,7 +181,7 @@ export function displayAuditResults(auditResults) {
             }
           });
           
-          paginationControls.querySelector(".first-btn").addEventListener("click", () => {
+          paginationButtons.firstBtn.addEventListener("click", () => {
             if (currentIndex > 0) {
               currentIndex = 0;
               updateErrorDisplay();
@@ -182,7 +189,7 @@ export function displayAuditResults(auditResults) {
             }
           });
           
-          paginationControls.querySelector(".last-btn").addEventListener("click", () => {
+          paginationButtons.lastBtn.addEventListener("click", () => {
             if (currentIndex < errorInstances.length - 1) {
               currentIndex = errorInstances.length - 1;
               updateErrorDisplay();
