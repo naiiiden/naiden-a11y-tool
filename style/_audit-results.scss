@@ -75,11 +75,11 @@
                     padding: 0 .75rem .625rem .75rem;
                 }
 
-                div:has(> h4) * {
+                div > div:has(> h4) * {
                     display: inline;
                 }
 
-                div:has(pre) {
+                div > div:has(pre) {
                     padding: 1.5rem 0;
 
                     &:not(:has(div)) {
@@ -87,7 +87,7 @@
                     }
                 }
 
-                div > div:has(button) {
+                div > div > div:has(button) {
                     display: flex;
                     justify-content: flex-end;
                     gap: .5rem;

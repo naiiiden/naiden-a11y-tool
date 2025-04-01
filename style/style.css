@@ -203,16 +203,16 @@ body {
   margin: 0 -0.75rem 0.75rem -0.75rem;
   padding: 0 0.75rem 0.625rem 0.75rem;
 }
-#errors-list details:not(details details) > ul > li div:has(> h4) * {
+#errors-list details:not(details details) > ul > li div > div:has(> h4) * {
   display: inline;
 }
-#errors-list details:not(details details) > ul > li div:has(pre) {
+#errors-list details:not(details details) > ul > li div > div:has(pre) {
   padding: 1.5rem 0;
 }
-#errors-list details:not(details details) > ul > li div:has(pre):not(:has(div)) {
+#errors-list details:not(details details) > ul > li div > div:has(pre):not(:has(div)) {
   padding: 0.75rem 0;
 }
-#errors-list details:not(details details) > ul > li div > div:has(button) {
+#errors-list details:not(details details) > ul > li div > div > div:has(button) {
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
