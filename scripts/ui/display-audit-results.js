@@ -85,16 +85,16 @@ export function displayAuditResults(auditResults) {
             <h3>${escapeHtml(name)}</h3>
             <p>${escapeHtml(error.description)}</p>
             <div>
-              ${error.selector && 
+              ${error.selector ?
                 `<div>
                   <h4>
                     Location<span aria-hidden="true">:</span>
                   </h4>
                   <p>${error.selector}</p>
-                </div>`
+                </div>` : ``
               }
-              ${error.element && `<pre><code class="language-html">${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>`}
-              ${error.selector && `<div>
+              ${error.element ? `<pre><code class="language-html">${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>` : ``}
+              ${error.selector ? `<div>
                 <button id="highlight-btn-${error.type}">
                   Highlight
                   <img src="assets/highlight.svg" alt=""/>
@@ -103,7 +103,7 @@ export function displayAuditResults(auditResults) {
                   Inspect
                   <img src="assets/inspect.svg" alt=""/>
                 </button>
-              </div>`}
+              </div>` : ``}
             </div>
             <div>
               <h4>
