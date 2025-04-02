@@ -84,7 +84,7 @@ export function displayAuditResults(auditResults) {
           errorContainer.innerHTML = `
             <h3>${escapeHtml(name)}</h3>
             <p>${escapeHtml(error.description)}</p>
-            <div>
+            ${error.selector || error.element ? `<div>
               ${error.selector ?
                 `<div>
                   <h4>
@@ -110,7 +110,7 @@ export function displayAuditResults(auditResults) {
                 How to fix<span aria-hidden="true">:</span>
               </h4>
               <p>${error.fix}</p>
-            </div>
+            </div>` : ``}
             ${error.wcagLinks && 
               `<details>
                 <summary>
