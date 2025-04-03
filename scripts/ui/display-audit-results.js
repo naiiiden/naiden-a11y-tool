@@ -167,7 +167,7 @@ export function displayAuditResults(auditResults) {
             if (currentIndex > 0) {
               currentIndex--;
               updateErrorDisplay();
-              prismHighlightElement();
+              hljs.highlightAll();
             }
           });
           
@@ -175,7 +175,7 @@ export function displayAuditResults(auditResults) {
             if (currentIndex < errorInstances.length - 1) {
               currentIndex++;
               updateErrorDisplay();
-              prismHighlightElement();
+              hljs.highlightAll();
             }
           });
           
@@ -183,7 +183,7 @@ export function displayAuditResults(auditResults) {
             if (currentIndex > 0) {
               currentIndex = 0;
               updateErrorDisplay();
-              prismHighlightElement();
+              hljs.highlightAll();
             }
           });
           
@@ -191,7 +191,7 @@ export function displayAuditResults(auditResults) {
             if (currentIndex < errorInstances.length - 1) {
               currentIndex = errorInstances.length - 1;
               updateErrorDisplay();
-              prismHighlightElement();
+              hljs.highlightAll();
             }
           });
         }
