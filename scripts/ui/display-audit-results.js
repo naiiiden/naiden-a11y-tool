@@ -206,5 +206,5 @@ export function displayAuditResults(auditResults) {
       errorsList.appendChild(typeSection);
     }
 
-    prismHighlightElement();
+    hljs.highlightAll();
 }
