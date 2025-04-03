@@ -2,7 +2,6 @@ import { escapeHtml } from "../utils/escape-html.js";
 import { highlightElement } from "../utils/highlight-element.js";
 import { highlightElementInDevTools } from "../utils/highlight-element-in-dev-tools.js";
 import { truncateIfTooManyChildren } from "../utils/truncate-if-too-many-children.js";
-import { prismHighlightElement } from "../utils/prism-highlight.js";
 
 const errorsIndicator = document.getElementById("errors-indicator");
 const errorsList = document.getElementById('errors-list');
