@@ -234,7 +234,6 @@ body {
   background: #454F59;
   border-radius: 0;
   margin: 0.5rem -0.75rem;
-  padding: 0.75rem;
   overflow-x: auto;
 }
 #errors-list details:not(details details) > ul > li div:last-child {
