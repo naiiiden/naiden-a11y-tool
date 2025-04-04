@@ -18,11 +18,5 @@
       "resources": ["index.html", "scripts/script.js", "scripts/errors.js", "style/style.css"],
       "matches": ["<all_urls>"]
     }
-  ],
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "css": ["style/style.css"]
-    }
   ]
 }
