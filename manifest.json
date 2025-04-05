@@ -12,11 +12,5 @@
   "action": {
     "default_popup": "popup.html"
   },
-  "devtools_page": "index.html",
-  "web_accessible_resources": [
-    {
-      "resources": ["index.html", "scripts/script.js", "scripts/errors.js", "style/style.css"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  "devtools_page": "index.html"
 }
