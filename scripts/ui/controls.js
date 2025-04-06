@@ -105,6 +105,7 @@ export function uiControls(runAudit) {
     });
 
     runAuditBtn.addEventListener("click", async () => {
+        document.querySelector("body > main > p:nth-child(4)").style.display = "none";
         await runAudit(auditFuncsArray);
     });
 
