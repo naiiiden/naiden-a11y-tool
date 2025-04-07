@@ -254,10 +254,11 @@ header {
   cursor: pointer;
 }
 #errors-list details:not(details details) > ul > li pre {
-  background: #454F59;
-  border-radius: 0;
   margin: 0.5rem -0.75rem;
   overflow-x: auto;
+}
+#errors-list details:not(details details) > ul > li pre code {
+  padding: 0.75rem !important;
 }
 #errors-list details:not(details details) > ul > li div:last-child {
   margin-top: 0.75rem;

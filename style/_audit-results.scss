@@ -108,10 +108,12 @@
                 }
                 
                 pre {
-                    background: #454F59;
-                    border-radius: 0;
                     margin: .5rem -.75rem;
                     overflow-x: auto;
+
+                    code {
+                        padding: .75rem !important;
+                    }
                 }
 
                 div:last-child {
