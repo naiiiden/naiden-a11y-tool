@@ -8,9 +8,9 @@
 }
 
 body {
-    color: #DEE4EA;
+    color: var(--text-primary);
     min-height: 100vh;
-    background: #101214;
+    background: var(--background-primary);
     font-size: .875rem;
     display: flex;
     flex-direction: column;

@@ -1,5 +1,5 @@
 :root {
-    --text-primary: #121212;
+    --text-primary: #DEE4EA;
     --background-primary: #101214;
     --background-secondary: #22272B;
     --background-tertiary: #2C333A;
@@ -9,7 +9,7 @@
 
 @media (prefers-color-scheme: light) {
     :root {
-        --text-primary: #DEE4EA;
+        --text-primary: #121212;
         --background-primary: #F7F8F9;
         --background-secondary: #F1F2F4;
         --background-tertiary: #DCDFE4;
