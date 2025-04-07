@@ -17,6 +17,10 @@ body {
     font-family: "Inter", sans-serif;
 }
 
+svg {
+    fill: var(--text-primary);
+}
+
 ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
