@@ -54,8 +54,8 @@ export function displayAuditResults(auditResults) {
         let currentIndex = 0;
 
         paginationControls.innerHTML = errorInstances.length > 1 ? `
-          <button class="first-btn" aria-label="First error"><img src="assets/first.svg" alt=""/></button>
-          <button class="prev-btn" aria-label="Previous error"><img src="assets/back.svg" alt=""/></button>
+          <button class="first-btn" aria-label="First error"><img class="icon" src="assets/first.svg" alt=""/></button>
+          <button class="prev-btn" aria-label="Previous error"><img class="icon" src="assets/back.svg" alt=""/></button>
           <span>
             <span id="current-index">
               ${currentIndex + 1}
@@ -65,8 +65,8 @@ export function displayAuditResults(auditResults) {
               ${errorInstances.length}
             </span>
           </span>
-          <button class="next-btn" aria-label="Next error"><img src="assets/forward.svg" alt=""/></button>
-          <button class="last-btn" aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
+          <button class="next-btn" aria-label="Next error"><img class="icon" src="assets/forward.svg" alt=""/></button>
+          <button class="last-btn" aria-label="Last error"><img class="icon" src="assets/last.svg" alt=""/></button>
         ` : ``;
 
         const paginationButtons = errorInstances.length > 1 ? {
@@ -96,11 +96,11 @@ export function displayAuditResults(auditResults) {
               ${error.selector ? `<div>
                 <button id="highlight-btn-${error.type}">
                   Highlight
-                  <img src="assets/highlight.svg" alt=""/>
+                  <img class="icon" src="assets/highlight.svg" alt=""/>
                 </button> 
                 <button id="inspect-btn-${error.type}">
                   Inspect
-                  <img src="assets/inspect.svg" alt=""/>
+                  <img class="icon" src="assets/inspect.svg" alt=""/>
                 </button>
               </div>` : ``}
             </div>
@@ -114,13 +114,13 @@ export function displayAuditResults(auditResults) {
               `<details>
                 <summary>
                   Learning and helpful resources
-                  <img src="assets/arrow.svg" alt=""/>
+                  <img class="icon" src="assets/arrow.svg" alt=""/>
                 </summary>
                 <ul>
                   ${error.wcagLinks.map(link => `
                     <li>
                       <a href="${link.url}" target="_blank">
-                        ${link.name} <img src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
+                        ${link.name} <img sclass="icon" rc="assets/open-in-new.svg" alt="(opens in a new tab)"/>
                       </a>
                     </li>
                   `).join('')}
