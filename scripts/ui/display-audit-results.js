@@ -54,8 +54,12 @@ export function displayAuditResults(auditResults) {
         let currentIndex = 0;
 
         paginationControls.innerHTML = errorInstances.length > 1 ? `
-          <button class="first-btn" aria-label="First error"><img src="assets/first.svg" alt=""/></button>
-          <button class="prev-btn" aria-label="Previous error"><img src="assets/back.svg" alt=""/></button>
+          <button class="first-btn" aria-label="First error">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M240-240v-480h80v480h-80Zm440 0L440-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
+          </button>
+          <button class="prev-btn" aria-label="Previous error">
+            <svg xmlns="http://www.w3.org/2000/svg" height="14.125px" viewBox="0 -960 960 960" width="14.125px" stroke="#e3e3e3" stroke-width="20"><path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z"/></svg>
+          </button>
           <span>
             <span id="current-index">
               ${currentIndex + 1}
@@ -65,8 +69,12 @@ export function displayAuditResults(auditResults) {
               ${errorInstances.length}
             </span>
           </span>
-          <button class="next-btn" aria-label="Next error"><img src="assets/forward.svg" alt=""/></button>
-          <button class="last-btn" aria-label="Last error"><img src="assets/last.svg" alt=""/></button>
+          <button class="next-btn" aria-label="Next error">
+            <svg xmlns="http://www.w3.org/2000/svg" height="14.125px" viewBox="0 -960 960 960" width="14.125px" stroke="#e3e3e3" stroke-width="20"><path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z"/></svg>
+          </button>
+          <button class="last-btn" aria-label="Last error">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m280-240-56-56 184-184-184-184 56-56 240 240-240 240Zm360 0v-480h80v480h-80Z"/></svg>
+          </button>
         ` : ``;
 
         const paginationButtons = errorInstances.length > 1 ? {
@@ -96,11 +104,11 @@ export function displayAuditResults(auditResults) {
               ${error.selector ? `<div>
                 <button id="highlight-btn-${error.type}">
                   Highlight
-                  <img src="assets/highlight.svg" alt=""/>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px"><path d="M444-48v-98q-119-12-202.5-95.5T146-444H48v-72h98q12-119 95.5-203T444-814v-98h72v98q119 11 202.5 95T814-516h98v72h-98q-12 119-95.5 202.5T516-146v98h-72Zm36-168q110 0 187-77t77-187q0-110-77-187t-187-77q-110 0-187 77t-77 187q0 110 77 187t187 77Z"/></svg>
                 </button> 
                 <button id="inspect-btn-${error.type}">
                   Inspect
-                  <img src="assets/inspect.svg" alt=""/>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"><path d="M450-420q38 0 64-26t26-64q0-38-26-64t-64-26q-38 0-64 26t-26 64q0 38 26 64t64 26Zm193 160L538-365q-20 13-42.5 19t-45.5 6q-71 0-120.5-49.5T280-510q0-71 49.5-120.5T450-680q71 0 120.5 49.5T620-510q0 23-6.5 45.5T594-422l106 106-57 56ZM200-120q-33 0-56.5-23.5T120-200v-160h80v160h160v80H200Zm400 0v-80h160v-160h80v160q0 33-23.5 56.5T760-120H600ZM120-600v-160q0-33 23.5-56.5T200-840h160v80H200v160h-80Zm640 0v-160H600v-80h160q33 0 56.5 23.5T840-760v160h-80Z"/></svg>
                 </button>
               </div>` : ``}
             </div>
@@ -114,7 +122,7 @@ export function displayAuditResults(auditResults) {
               `<details>
                 <summary>
                   Learning and helpful resources
-                  <img src="assets/arrow.svg" alt=""/>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="m288-384 192-192 192 192H288Z"/></svg>
                 </summary>
                 <ul>
                   ${error.wcagLinks.map(link => `
