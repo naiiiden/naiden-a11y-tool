@@ -1,4 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+:root {
+  --background-primary: #101214;
+  --background-secondary: #22272B;
+  --background-tertiary: #2C333A;
+  --background-quaternary: #454F59;
+  --neutral500: #596773;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-primary: #F7F8F9;
+    --background-secondary: #F1F2F4;
+    --background-tertiary: #DCDFE4;
+    --background-quaternary: #B3B9C4;
+    --neutral500: #8590A2;
+  }
+}
 * {
   margin: 0;
   padding: 0;

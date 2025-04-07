@@ -1,17 +1,17 @@
 :root {
-    --neutral100: #101214;
-    --neutral200: #22272B;
-    --neutral300: #2C333A;
-    --neutral400: #454F59;
+    --background-primary: #101214;
+    --background-secondary: #22272B;
+    --background-tertiary: #2C333A;
+    --background-quaternary: #454F59;
     --neutral500: #596773;
 }
 
 @media (prefers-color-scheme: light) {
     :root {
-        --neutral100: #F7F8F9;
-        --neutral200: #F1F2F4;
-        --neutral300: #DCDFE4;
-        --neutral400: #B3B9C4;
+        --background-primary: #F7F8F9;
+        --background-secondary: #F1F2F4;
+        --background-tertiary: #DCDFE4;
+        --background-quaternary: #B3B9C4;
         --neutral500: #8590A2;
     }
 }
