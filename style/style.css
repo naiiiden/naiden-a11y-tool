@@ -17,6 +17,9 @@
     --background-quaternary: #B3B9C4;
     --neutral500: #8590A2;
   }
+  svg {
+    filter: invert(1);
+  }
 }
 * {
   margin: 0;
