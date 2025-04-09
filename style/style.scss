@@ -43,7 +43,7 @@ svg {
     background: #38414A;
 }
 
-@import "./stackoverflow-dark.css";
+@import "./stackoverflow-dark.css" screen and (prefers-color-scheme: light);
 
 @import "./header";
 @import "./run-audit-btn";
