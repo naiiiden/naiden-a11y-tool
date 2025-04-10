@@ -173,6 +173,10 @@ header {
   display: flex;
   justify-content: space-between;
 }
+#errors-count-container .count {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
 
 @keyframes highlight {
   0% {
