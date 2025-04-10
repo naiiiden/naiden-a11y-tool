@@ -44,8 +44,8 @@ svg {
 }
 
 // https://blog.jim-nielsen.com/2019/conditional-syntax-highlighting-in-dark-mode-with-css-imports/
-@import "./atelier-seaside.css";
-@import "./atelier-seaside-light.css" screen and (prefers-color-scheme: light);
+@import "./atelier-seaside.min.css";
+@import "./atelier-seaside-light.min.css" screen and (prefers-color-scheme: light);
 
 @import "./header";
 @import "./run-audit-btn";
