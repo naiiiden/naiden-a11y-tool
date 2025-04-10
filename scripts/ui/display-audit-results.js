@@ -41,6 +41,7 @@ export function displayAuditResults(auditResults) {
       typeHeading.textContent = formattedType;
       const image = document.createElement('img');
       image.src = "assets/arrow.svg";
+      image.classList.add("icon");
       image.alt = "";
       typeHeading.appendChild(image);
       typeSection.appendChild(typeHeading);
