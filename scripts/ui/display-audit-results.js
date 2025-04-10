@@ -103,13 +103,13 @@ export function displayAuditResults(auditResults) {
                   <img class="icon" src="assets/inspect.svg" alt=""/>
                 </button>
               </div>` : ``}
-            </div>
+            </div>` : ``}
             <div>
               <h4>
                 How to fix<span aria-hidden="true">:</span>
               </h4>
               <p>${error.fix}</p>
-            </div>` : ``}
+            </div>
             ${error.wcagLinks && 
               `<details>
                 <summary>
