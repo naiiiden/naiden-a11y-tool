@@ -40,24 +40,20 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #DEE4EA;
+  background: var(--background-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #596773;
+  background: var(--background-quaternary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #454F59;
-}
-
-::-webkit-scrollbar-thumb:active {
-  background: #38414A;
+  background: var(--neutral500);
 }
 
 header {

@@ -18,24 +18,20 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #DEE4EA; 
+    background: var(--background-secondary);
 }
-   
+  
 ::-webkit-scrollbar-thumb {
-    background: #596773; 
+    background: var(--background-quaternary);
 }
 
-::-webkit-scrollbar-thumb:hover{
-    background: #454F59; 
-}
-
-::-webkit-scrollbar-thumb:active {
-    background: #38414A;
+::-webkit-scrollbar-thumb:hover {
+    background: var(--neutral500);
 }
 
 // https://blog.jim-nielsen.com/2019/conditional-syntax-highlighting-in-dark-mode-with-css-imports/
