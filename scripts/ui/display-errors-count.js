@@ -4,7 +4,7 @@ export function displayErrorsCount(auditResults) {
 
     errorsCountContainer.style.display = "grid";
     errorsCountTotal.firstElementChild.textContent = `${auditResults.length}`;
-    errorsCountTotal.lastElementChild.textContent = `${auditResults.length === 1 ? "Error" : "Errors"}`;
+    errorsCountTotal.lastElementChild.textContent = " Errors";
 
     const errorsCountIndividualType = {
       "root-and-metadata": { name: "Root And Metadata", count: 0 },
@@ -35,7 +35,7 @@ export function displayErrorsCount(auditResults) {
             element.nextElementSibling.style.display = "none";
           } else {
             element.firstElementChild.textContent = errorsCountIndividualType[type].count;
-            element.lastElementChild.textContent += ` ${errorsCountIndividualType[type].count === 1 ? "Error" : "Errors"}`;
+            element.lastElementChild.textContent += " Errors";
           }
         });
       }
