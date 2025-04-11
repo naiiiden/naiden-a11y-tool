@@ -52,7 +52,7 @@ body {
   background: var(--background-quaternary);
 }
 
-::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover, ::-webkit-scrollbar-thumb:active {
   background: var(--neutral500);
 }
 
