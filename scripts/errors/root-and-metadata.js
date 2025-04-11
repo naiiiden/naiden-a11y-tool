@@ -96,7 +96,7 @@ export const rootAndMetadataErrors = [
       type: "root-and-metadata",
       id: 4,
       name: "Disabled text scaling and zooming",
-      description: "viewport meta disables text scaling and zooming.",
+      description: "Viewport meta disables text scaling and zooming.",
       wcagLinks: [
         {
           "name": "Reflow (Level AA)",

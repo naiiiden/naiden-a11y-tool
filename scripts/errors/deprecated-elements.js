@@ -2,7 +2,7 @@ export const deprecatedElementsErrors = [
     {
       type: "deprecated",
       id: 0,
-      name: "marquee elements are deprecated and must not be used",
+      name: "Marquee elements are deprecated and must not be used",
       description: "A marquee, which is deprecated and should not be used, element is present",
       wcagLinks: [
         {

@@ -148,16 +148,16 @@ export const imageErrors = [
     {
         type: "image",
         id: 6,
-        name: "server side img maps must not be used",
-        description: "server side img maps must not be used",
+        name: "Server side img maps must not be used",
+        description: "Server side img maps must not be used",
         wcagLinks: "",
-        fix: "ensure server side img maps are not used",
+        fix: "Ensure server side img maps are not used",
     },
     {
         type: "image",
         id: 7,
-        name: "svg elements with role='img' must have an alt text",
-        description: "svg elements with role='img' must have an alt text.",
+        name: "Svg elements with role='img' must have an alt text",
+        description: "Svg elements with role='img' must have an alt text.",
         wcagLinks: [
             {
                 "name": "Using aria-label to provide labels for objects",
@@ -181,14 +181,14 @@ export const imageErrors = [
     {
         type: "image",
         id: 8,
-        name: "alt text of button and link images should not be repeated as text",
-        description: "alt text of button or link images should not be repeated as text",
+        name: "Alt text of button and link images should not be repeated as text",
+        description: "Alt text of button or link images should not be repeated as text",
         wcagLinks: [
             {
                 "name": "Combining adjacent image and text links for the same resource",
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/html/H2.html"
             }
         ],
-        fix: "ensure button and link text is not repeated as img alt text",
+        fix: "Ensure button and link text is not repeated as img alt text",
     },
 ]

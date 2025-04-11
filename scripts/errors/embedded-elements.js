@@ -19,8 +19,8 @@ export const embeddedElementsErrors = [
     {
         type: "embedded",
         id: 1,
-        name: "object elements must have alt text",
-        description: "object elements must have alt text",
+        name: "Object elements must have alt text",
+        description: "Object elements must have alt text",
         wcagLinks: [
             {
                 "name": "Using the body of the object element",
@@ -36,8 +36,8 @@ export const embeddedElementsErrors = [
     {
         type: "embedded",
         id: 2,
-        name: "frames must have a unique title attribute",
-        description: "frames must have a unique title attribute",
+        name: "Frames must have a unique title attribute",
+        description: "Frames must have a unique title attribute",
         wcagLinks: [
             {
                 "name": "Name, Role, Value (Level A)",
@@ -53,8 +53,8 @@ export const embeddedElementsErrors = [
     {
         type: "embedded",
         id: 3,
-        name: "video or audio elements must not autoplay",
-        description: "video or audio elements must not autoplay",
+        name: "Video or audio elements must not autoplay",
+        description: "Video or audio elements must not autoplay",
         wcagLinks: [
             {
                 "name": "Audio Control (Level A)",
@@ -78,8 +78,8 @@ export const embeddedElementsErrors = [
     {
         type: "embedded",
         id: 4,
-        name: "video elements must have captions",
-        description: "video elements must have captions",
+        name: "Video elements must have captions",
+        description: "Video elements must have captions",
         wcagLinks: [
             {
                 "name": "Providing closed captions",
@@ -98,6 +98,6 @@ export const embeddedElementsErrors = [
                 "url": "https://www.w3.org/WAI/WCAG22/Understanding/captions-prerecorded.html"
             }
         ],
-        fix: "ensure video elements have captions",
+        fix: "Ensure video elements have captions",
     }
 ]

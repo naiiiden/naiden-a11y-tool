@@ -152,16 +152,16 @@ export const interactiveElementsErrors = [
     {
         type: "interactive",
         id: 6,
-        name: "accesskeys must be unique",
-        description: "accesskeys must be unique",
+        name: "Accesskeys must be unique",
+        description: "Accesskeys must be unique",
         wcagLinks: "",
-        fix: "ensure accesskeys are not duplicated",
+        fix: "Ensure accesskeys are not duplicated",
       },
       {
         type: "interactive",
         id: 7,
-        name: "all touch targets must be 24px large, or leave sufficient space",
-        description: "all touch targets must be 24px large, or leave sufficient space",
+        name: "All touch targets must be 24px large, or leave sufficient space",
+        description: "All touch targets must be 24px large, or leave sufficient space",
         wcagLinks: [
             {
                 "name": "Target Size (Minimum) (Level AA)",
@@ -172,6 +172,6 @@ export const interactiveElementsErrors = [
                 "url": "https://www.w3.org/WAI/WCAG22/Techniques/css/C42"
             }
         ],
-        fix: "touch targets must be at least 24 by 24 CSS pixels in size",
+        fix: "Touch targets must be at least 24 by 24 CSS pixels in size",
       },
 ]
