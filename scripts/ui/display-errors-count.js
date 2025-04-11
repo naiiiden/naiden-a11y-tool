@@ -34,7 +34,7 @@ export function displayErrorsCount(auditResults) {
             element.parentElement.style.display = "none";
           } else {
             element.firstElementChild.textContent = errorsCountIndividualType[type].count;
-            element.lastElementChild.textContent = `${errorsCountIndividualType[type].name} ${errorsCountIndividualType[type].count === 1 ? "Error" : "Errors"}`;
+            element.lastElementChild.textContent += ` ${errorsCountIndividualType[type].count === 1 ? "Error" : "Errors"}`;
           }
         });
       }
