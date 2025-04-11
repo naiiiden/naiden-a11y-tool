@@ -7,16 +7,16 @@ export function displayErrorsCount(auditResults) {
     errorsCountTotal.lastElementChild.textContent = `${auditResults.length === 1 ? "error" : "errors"}`;
 
     const errorsCountIndividualType = {
-      "root-and-metadata": { name: "root and metadata", count: 0 },
-      "image": { name: "image", count: 0 },
-      "empty": { name: "empty element", count: 0 },
-      "form": { name: "form", count: 0 },
-      "embedded": { name: "embedded element", count: 0 },
-      "semantic": { name: "semantic", count: 0 },
-      "aria": { name: "aria", count: 0 },
-      "css": { name: "css", count: 0 },
-      "deprecated": { name: "deprecated element", count: 0 },
-      "colour": { name: "colour", count: 0 }
+      "root-and-metadata": { name: "Root And Metadata", count: 0 },
+      "image": { name: "Image", count: 0 },
+      "empty": { name: "Empty Element", count: 0 },
+      "form": { name: "Form", count: 0 },
+      "embedded": { name: "Embedded Element", count: 0 },
+      "semantic": { name: "Semantic", count: 0 },
+      "aria": { name: "ARIA", count: 0 },
+      "css": { name: "CSS", count: 0 },
+      "deprecated": { name: "Deprecated Element", count: 0 },
+      "colour": { name: "Colour", count: 0 }
     };
 
     auditResults.forEach(error => {
@@ -34,7 +34,7 @@ export function displayErrorsCount(auditResults) {
             element.parentElement.style.display = "none";
           } else {
             element.firstElementChild.textContent = errorsCountIndividualType[type].count;
-            element.lastElementChild.textContent = `${errorsCountIndividualType[type].name} ${errorsCountIndividualType[type].count === 1 ? "error" : "errors"}`;
+            element.lastElementChild.textContent = `${errorsCountIndividualType[type].name} ${errorsCountIndividualType[type].count === 1 ? "Error" : "Errors"}`;
           }
         });
       }
