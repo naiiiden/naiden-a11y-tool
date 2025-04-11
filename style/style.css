@@ -170,8 +170,13 @@ header {
   font-size: 1.5rem;
 }
 #errors-count-container div {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+#errors-count-container div a {
+  width: -moz-fit-content;
+  width: fit-content;
+  justify-self: flex-end;
 }
 #errors-count-container .count {
   font-weight: 600;
