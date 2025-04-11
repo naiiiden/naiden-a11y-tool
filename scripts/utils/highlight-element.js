@@ -3,12 +3,13 @@ export function highlightElement(selector) {
       (() => {
         const element = document.querySelector('${selector}');
         if (element) {
-          if (element.classList.contains('highlighted')) {
-            element.classList.remove('highlighted');
-            element.style.outline = '';
+          if (element.classList.contains('error-element-highlighted')) {
+            element.classList.remove('error-element-highlighted');
+            element.style.outline = "none";
           } else {
-            element.classList.add('highlighted');
-            element.style.outline = '3px solid red';
+            element.classList.add('error-element-highlighted');
+            element.style.outline = '.25rem solid red';
+            element.style.outlineOffset = ".25rem";
           }
         }
       })();
