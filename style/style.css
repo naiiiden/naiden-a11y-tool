@@ -173,6 +173,11 @@ header {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+#errors-count-container div p {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
 #errors-count-container div a {
   width: -moz-fit-content;
   width: fit-content;

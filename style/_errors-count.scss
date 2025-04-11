@@ -17,6 +17,12 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
 
+        p {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+        }
+
         a {
             width: fit-content;
             justify-self: flex-end;
