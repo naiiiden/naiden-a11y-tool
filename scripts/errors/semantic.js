@@ -276,8 +276,8 @@ export const semanticErrors = [
     {
       type: "semantic",
       id: 14,
-      name: "ul and ol must only directly contain li, script or template elements",
-      description: "ul and ol must only directly contain li, script or template elements",
+      name: "Ul and ol must only directly contain li, script or template elements",
+      description: "Ul and ol must only directly contain li, script or template elements",
       wcagLinks: [
         {
           "name": "Using ol, ul and dl for lists or groups of links",
@@ -293,8 +293,8 @@ export const semanticErrors = [
     {
       type: "semantic",
       id: 15,
-      name: "li elements must be contained in an ul or ol",
-      description: "li elements must be contained in an ul or ol",
+      name: "Li elements must be contained in an ul or ol",
+      description: "Li elements must be contained in an ul or ol",
       wcagLinks: [
         {
           "name": "Using ol, ul and dl for lists or groups of links",
@@ -310,8 +310,8 @@ export const semanticErrors = [
     {
       type: "semantic",
       id: 16,
-      name: "dl elements must only directly contain properly-ordered dt and dd groups, script, template or div elements",
-      description: "dl elements must only directly contain properly-ordered dt and dd groups, script, template or div elements",
+      name: "Dl elements must only directly contain properly-ordered dt and dd groups, script, template or div elements",
+      description: "Dl elements must only directly contain properly-ordered dt and dd groups, script, template or div elements",
       wcagLinks: [
         {
           "name": "Using description lists",
@@ -331,8 +331,8 @@ export const semanticErrors = [
     {
       type: "semantic",
       id: 17,
-      name: "dt and dd elements must be contained by a dl element",
-      description: "dt and dd elements must be contained by a dl element",
+      name: "Dt and dd elements must be contained by a dl element",
+      description: "Dt and dd elements must be contained by a dl element",
       wcagLinks: [
         {
           "name": "Using description lists",
@@ -352,8 +352,8 @@ export const semanticErrors = [
     {
       type: "semantic",
       id: 18,
-      name: "page must have means to bypass repeated blocks",
-      description: "page must have means to bypass repeated blocks",
+      name: "Page must have means to bypass repeated blocks",
+      description: "Page must have means to bypass repeated blocks",
       wcagLinks: [
         {
           "name": "Bypass Blocks (Level A)",
@@ -380,21 +380,21 @@ export const semanticErrors = [
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA11"
         }
       ],
-      fix: "each page must have a main landmark to provide a mechanism to bypass repeated blocks of content or interface elements",
+      fix: "Each page must have a main landmark to provide a mechanism to bypass repeated blocks of content or interface elements",
     },
     {
       type: "semantic",
       id: 19,
-      name: "ids must be unique",
-      description: "ids must be unique",
+      name: "Ids must be unique",
+      description: "Ids must be unique",
       wcagLinks: "",
-      fix: "ensure ids are not duplicated",
+      fix: "Ensure ids are not duplicated",
     },
     {
       type: "semantic",
       id: 20,
-      name: "elements should not have tabindex greater than 0",
-      description: "elements should not have tabindex greater than 0",
+      name: "Elements should not have tabindex greater than 0",
+      description: "Elements should not have tabindex greater than 0",
       wcagLinks: [
         {
           "name": "Focus Order (Level A)",
@@ -405,19 +405,19 @@ export const semanticErrors = [
           "url": "https://www.w3.org/WAI/WCAG22/Techniques/failures/F44.html"
         }
       ],
-      fix: "ensure tabindex values greater than 0 are never used",
+      fix: "Ensure tabindex values greater than 0 are never used",
     },
     {
       type: "semantic",
       id: 21,
-      name: "landmarks should be unique",
-      description: "landmarks should be unique",
+      name: "Landmarks should be unique",
+      description: "Landmarks should be unique",
       wcagLinks: [
         {
           "name": "General Principles of Landmark Design",
           "url": "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/#generalprinciplesoflandmarkdesign"
         }
       ],
-      fix: "ensure landmarks have a unique label/title",
+      fix: "Ensure landmarks have a unique label/title",
     }
 ]
