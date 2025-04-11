@@ -4,7 +4,7 @@ export function displayErrorsCount(auditResults) {
 
     errorsCountContainer.style.display = "grid";
     errorsCountTotal.firstElementChild.textContent = `${auditResults.length}`;
-    errorsCountTotal.lastElementChild.textContent = `${auditResults.length === 1 ? "error" : "errors"}`;
+    errorsCountTotal.lastElementChild.textContent = `${auditResults.length === 1 ? "Error" : "Errors"}`;
 
     const errorsCountIndividualType = {
       "root-and-metadata": { name: "Root And Metadata", count: 0 },
