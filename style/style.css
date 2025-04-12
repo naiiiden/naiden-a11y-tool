@@ -259,6 +259,10 @@ header {
   border-radius: 4px;
   cursor: pointer;
 }
+#errors-list details:not(details details) > ul > li button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 #errors-list details:not(details details) > ul > li pre {
   margin: 0.5rem -0.75rem;
   overflow-x: auto;
