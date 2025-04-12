@@ -9,6 +9,7 @@
 
 html {
     scrollbar-color: var(--background-quaternary) var(--background-secondary);
+    scroll-behavior: smooth;
 }
 
 body {
@@ -19,6 +20,12 @@ body {
     display: flex;
     flex-direction: column;
     font-family: "Ubuntu", sans-serif;
+}
+
+@media (prefers-reduced-motion) {
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 // https://blog.jim-nielsen.com/2019/conditional-syntax-highlighting-in-dark-mode-with-css-imports/

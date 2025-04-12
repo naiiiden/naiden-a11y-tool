@@ -31,6 +31,7 @@
 
 html {
   scrollbar-color: var(--background-quaternary) var(--background-secondary);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -43,6 +44,11 @@ body {
   font-family: "Ubuntu", sans-serif;
 }
 
+@media (prefers-reduced-motion) {
+  html {
+    scroll-behavior: auto;
+  }
+}
 header {
   padding: 0.75rem;
 }
