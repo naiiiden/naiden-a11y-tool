@@ -17,27 +17,11 @@ body {
     font-family: "Inter", sans-serif;
 }
 
-::-webkit-scrollbar {
-    width: 9px;
-    height: 9px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--background-secondary);
-}
-  
-::-webkit-scrollbar-thumb {
-    background: var(--background-quaternary);
-}
-
-::-webkit-scrollbar-thumb:hover, ::-webkit-scrollbar-thumb:active {
-    background: var(--neutral500);
-}
-
 // https://blog.jim-nielsen.com/2019/conditional-syntax-highlighting-in-dark-mode-with-css-imports/
 @import "./atelier-seaside.min.css";
 @import "./atelier-seaside-light.min.css" screen and (prefers-color-scheme: light);
 
+@import "./scrollbar";
 @import "./header";
 @import "./run-audit-btn";
 @import "./indicators";
