@@ -80,6 +80,10 @@
                     display: inline;
                 }
 
+                p + div:not(:has(pre)) {
+                    padding-top: 1.25rem;
+                }
+
                 div > div:has(pre) {
                     padding: 1.5rem 0;
 

@@ -232,6 +232,9 @@ header {
 #errors-list details:not(details details) > ul > li div > div:has(> h4) * {
   display: inline;
 }
+#errors-list details:not(details details) > ul > li p + div:not(:has(pre)) {
+  padding-top: 1.25rem;
+}
 #errors-list details:not(details details) > ul > li div > div:has(pre) {
   padding: 1.5rem 0;
 }
