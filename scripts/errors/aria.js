@@ -1,6 +1,6 @@
 export const ariaErrors = [
     {
-        type: "aria",
+        type: "ARIA",
         id: 0,
         name: "aria-hidden='true' must not be present on document body",
         description: "Document is not accessible to assistive technologies when the body element has aria-hidden='true'",
@@ -17,7 +17,7 @@ export const ariaErrors = [
         fix: "Ensure the document body element doesn't have aria-hidden=true attribute",
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 1,
         name: "ARIA commands must have an accessible name",
         description: "ARIA commands must have an accessible name that describes the destination, purpose, function or action for screen readers",
@@ -34,7 +34,7 @@ export const ariaErrors = [
         fix: "Ensure elements with role=link, role=button or role=menuitem have an accessible name"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 2,
         name: "ARIA meter elements must have an accessible name",
         description: "ARIA meter elements must have an accessible name",
@@ -59,7 +59,7 @@ export const ariaErrors = [
         fix: "Ensure elements with role meter have accessible names"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 3,
         name: "ARIA progressbar elements must have an accessible name",
         description: "ARIA progressbar elements must have an accessible name",
@@ -84,7 +84,7 @@ export const ariaErrors = [
         fix: "Ensure elements with role progressbar have accessible names"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 4,
         name: "ARIA tooltip elements must have an accessible name",
         description: "ARIA tooltip elements must have an accessible name",
@@ -101,7 +101,7 @@ export const ariaErrors = [
         fix: "Ensure elements with role tooltip have accessible names"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 5,
         name: "Deprecated ARIA roles must not be used",
         description: "Deprecated ARIA roles must not be used",
@@ -118,7 +118,7 @@ export const ariaErrors = [
         fix: "Make sure all that all role attributes are not using deprecated values"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 6,
         name: "ARIA input fields must have an accessible names",
         description: "ARIA input fields must have an accessible names",
@@ -143,7 +143,7 @@ export const ariaErrors = [
         fix: "Ensure elements with role (combobox, listbox, searchbox, slider, spinbutton, textbox) have accessible names"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 7,
         name: "ARIA toggle field elements must have an accessible name",
         description: "ARIA toggle field elements must have an accessible name",
@@ -168,7 +168,7 @@ export const ariaErrors = [
         fix: "Ensure elements with role (checkbox, menu, menuitemcheckbox, menuitemradio, radio, radiogroup, switch) have accessible names"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 8,
         name: "ARIA hidden elements must not be focusable or contain focusable children",
         description: "ARIA hidden elements must not be focusable or contain focusable children",
@@ -197,7 +197,7 @@ export const ariaErrors = [
         fix: "Ensure ARIA hidden elements are not focusable and don't contain focusable children"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 9,
         name: "ARIA roles must conform to valid values",
         description: "ARIA roles must conform to valid values",
@@ -218,7 +218,7 @@ export const ariaErrors = [
         fix: "Ensure all ARIA role elements have a valid value"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 10,
         name: "ARIA dialog and alertdialog elements must have an accessible name",
         description: "ARIA dialog and alertdialog elements must have an accessible name",
@@ -235,7 +235,7 @@ export const ariaErrors = [
         fix: "Ensure elements with role dialog and alertdialog have accessible names"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 11,
         name: "ARIA role text elements should not have focusable descendants",
         description: "ARIA role text elements should not have focusable descendants",
@@ -243,7 +243,7 @@ export const ariaErrors = [
         fix: "Ensure elements with role text don't have focusable descendants"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 12,
         name: "ARIA role should be appropriate for the element",
         description: "ARIA role should be appropriate for the element",
@@ -268,7 +268,7 @@ export const ariaErrors = [
         fix: "Ensure elements with role attribute have appropriate value for the element"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 13,
         name: "ARIA treeitem elements must have an accessible name",
         description: "ARIA treeitem elements must have an accessible name",
@@ -293,7 +293,7 @@ export const ariaErrors = [
         fix: "Ensure ARIA treeitem elements have accessible names"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 14,
         name: "ARIA attributes must conform to valid values",
         description: "ARIA attributes must conform to valid values",
@@ -310,7 +310,7 @@ export const ariaErrors = [
         fix: "Ensure all ARIA attributes have valid values"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 15,
         name: "ARIA attributes must conform to valid names",
         description: "ARIA attributes must conform to valid names",
@@ -327,7 +327,7 @@ export const ariaErrors = [
         fix: "Ensure all ARIA attributes have valid names"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 16,
         name: "Elements with ARIA roles must only use supported ARIA attributes",
         description: "Elements with ARIA roles must only use supported ARIA attributes",
@@ -348,7 +348,7 @@ export const ariaErrors = [
         fix: "Ensure element with ARIA roles use ARIA attributes allowed for their role"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 17,
         name: "Required ARIA attributes must be provided for elements with ARIA role",
         description: "required ARIA attributes must be provided for elements with ARIA role",
@@ -365,7 +365,7 @@ export const ariaErrors = [
         fix: "Ensure all elements with ARIA role have required attributes defined"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 18,
         name: "Certain ARIA roles must contain particular children",
         description: "Certain ARIA roles must contain particular children",
@@ -382,7 +382,7 @@ export const ariaErrors = [
         fix: "Ensure ARIA role elements have required children role"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 19,
         name: "Certain ARIA roles must be contained by particular parents",
         description: "Certain ARIA roles must be contained by particular parents",
@@ -399,7 +399,7 @@ export const ariaErrors = [
         fix: "Ensure ARIA role elements are contained by parent role"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 20,
         name: "ARIA role elements must use permitted ARIA attributes",
         description: "ARIA role elements must use permitted ARIA attributes",
@@ -420,7 +420,7 @@ export const ariaErrors = [
         fix: "Ensure ARIA attributes are not prohibited for the element's role"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 21,
         name: "ARIA attributes must be used as specified for the element's role",
         description: "ARIA attributes must be used as specified for the element's role",
@@ -441,7 +441,7 @@ export const ariaErrors = [
         fix: "Ensure ARIA attributes are not used in a way their role describes authors should not or must not do"
     },
     {
-        type: "aria",
+        type: "ARIA",
         id: 22,
         name: "Elements marked as presentational or none should be consistently ignored",
         description: "Elements marked as presentational or none should be consistently ignored",
@@ -449,7 +449,7 @@ export const ariaErrors = [
         fix: "Check all elements with role=none or role=presentation to ensure they do not have a global ARIA attribute and are not focusable"
     }, 
     {
-        type: "aria",
+        type: "ARIA",
         id: 23,
         name: "Elements must have their visible text as part of their accessible name",
         description: "Elements must have their visible text as part of their accessible name",
