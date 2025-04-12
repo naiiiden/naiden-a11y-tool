@@ -13,7 +13,7 @@ export function displayErrorsCount(auditResults) {
       "embedded": { name: "Embedded Element", count: 0 },
       "semantic": { name: "Semantic", count: 0 },
       "aria": { name: "ARIA", count: 0 },
-      "css": { name: "CSS", count: 0 },
+      "CSS": { name: "CSS", count: 0 },
       "deprecated": { name: "Deprecated Element", count: 0 },
       "colour": { name: "Colour", count: 0 }
     };
