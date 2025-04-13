@@ -276,16 +276,16 @@ header {
 #errors-list details:not(details details) > ul > li pre code {
   padding: 0.75rem !important;
 }
-#errors-list details:not(details details) > ul > li div:last-child {
+#errors-list details:not(details details) > ul > li div:last-child:has(button) {
   margin-top: 0.75rem;
   display: flex;
   justify-content: flex-end;
   gap: 0.25rem;
 }
-#errors-list details:not(details details) > ul > li div:last-child span {
+#errors-list details:not(details details) > ul > li div:last-child:has(button) span {
   align-self: center;
 }
-#errors-list details:not(details details) > ul > li div:last-child span span {
+#errors-list details:not(details details) > ul > li div:last-child:has(button) span span {
   font-weight: 600;
 }
 #errors-list details:is(details details) {
