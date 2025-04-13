@@ -76,26 +76,26 @@
                     padding: 0 .75rem .625rem .75rem;
                 }
 
-                div > div:has(> h4) * {
+                .element-location *, .element-fix * {
                     display: inline;
                 }
 
-                p + div:not(:has(pre)) {
-                    padding-top: 1.25rem;
-                }
-
-                div > div:has(pre) {
+                .element-information {
                     padding: 1.5rem 0;
+
+                    &:not(:has(pre)) {
+                        padding-top: 1.25rem;
+                    }
 
                     &:not(:has(div)) {
                         padding: .75rem 0;
                     }
-                }
-
-                div > div > div:has(button) {
-                    display: flex;
-                    justify-content: flex-end;
-                    gap: .5rem;
+                    
+                    .element-buttons {
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: .5rem;
+                    }
                 }
 
                 button {
@@ -126,7 +126,7 @@
                     }
                 }
 
-                div:last-child:has(button) {
+                .error-pagination-controls {
                     display: flex;
                     justify-content: flex-end;
                     gap: .25rem;
