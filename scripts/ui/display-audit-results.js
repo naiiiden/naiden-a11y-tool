@@ -198,7 +198,9 @@ export function displayAuditResults(auditResults) {
 
         updateErrorDisplay();
         listItem.appendChild(errorContainer);
-        listItem.appendChild(paginationControls);
+        if (errorInstances.length > 1) {
+          listItem.appendChild(paginationControls);
+        }
         typeErrorsList.appendChild(listItem);
       })
       
