@@ -52,6 +52,7 @@ export function displayAuditResults(auditResults) {
         const listItem = document.createElement('li');
         const errorContainer = document.createElement('div');
         const paginationControls = document.createElement("div");
+        paginationControls.classList.add("error-pagination-controls")
         let currentIndex = 0;
 
         paginationControls.innerHTML = errorInstances.length > 1 ? `
@@ -84,9 +85,9 @@ export function displayAuditResults(auditResults) {
           errorContainer.innerHTML = `
             <h3>${escapeHtml(name)}</h3>
             <p>${escapeHtml(error.description)}</p>
-            ${error.selector || error.element ? `<div>
+            ${error.selector || error.element ? `<div class="element-information">
               ${error.selector ?
-                `<div>
+                `<div class="element-location">
                   <h4>
                     Location<span aria-hidden="true">:</span>
                   </h4>
@@ -94,7 +95,7 @@ export function displayAuditResults(auditResults) {
                 </div>` : ``
               }
               ${error.element ? `<pre><code class="language-html">${escapeHtml(truncateIfTooManyChildren(error.element))}</code></pre>` : ``}
-              ${error.selector ? `<div>
+              ${error.selector ? `<div class="element-buttons">
                 <button id="highlight-btn-${error.type}">
                   Highlight
                   <img class="icon" src="assets/highlight.svg" alt=""/>
@@ -105,7 +106,7 @@ export function displayAuditResults(auditResults) {
                 </button>
               </div>` : ``}
             </div>` : ``}
-            <div>
+            <div class="element-fix">
               <h4>
                 How to fix<span aria-hidden="true">:</span>
               </h4>
