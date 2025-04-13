@@ -277,7 +277,6 @@ header {
   padding: 0.75rem !important;
 }
 #errors-list details:not(details details) > ul > li div:last-child:has(button) {
-  margin-top: 0.75rem;
   display: flex;
   justify-content: flex-end;
   gap: 0.25rem;
@@ -287,6 +286,9 @@ header {
 }
 #errors-list details:not(details details) > ul > li div:last-child:has(button) span span {
   font-weight: 600;
+}
+#errors-list details:not(details details) > ul > li > div:last-child {
+  margin-top: 0.75rem;
 }
 #errors-list details:is(details details) {
   margin-top: 1.25rem;

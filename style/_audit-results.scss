@@ -127,7 +127,6 @@
                 }
 
                 div:last-child:has(button) {
-                    margin-top: .75rem;
                     display: flex;
                     justify-content: flex-end;
                     gap: .25rem;
@@ -139,6 +138,10 @@
                             font-weight: 600;
                         }
                     } 
+                }
+
+                & > div:last-child {
+                    margin-top: .75rem;
                 }
             }
         } 
