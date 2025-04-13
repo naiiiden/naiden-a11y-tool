@@ -90,6 +90,14 @@
                     &:not(:has(div)) {
                         padding: .75rem 0;
                     }
+
+                    pre {
+                        margin: .5rem -.75rem;
+    
+                        code {
+                            padding: .75rem !important;
+                        }
+                    }
                     
                     .element-buttons {
                         display: flex;
@@ -116,20 +124,12 @@
                         cursor: not-allowed;
                     }
                 }
-                
-                pre {
-                    margin: .5rem -.75rem;
-                    overflow-x: auto;
-
-                    code {
-                        padding: .75rem !important;
-                    }
-                }
 
                 .error-pagination-controls {
                     display: flex;
                     justify-content: flex-end;
                     gap: .25rem;
+                    margin-top: .75rem;
 
                     span {
                         align-self: center;
@@ -138,10 +138,6 @@
                             font-weight: 600;
                         }
                     } 
-                }
-
-                & > div:last-child {
-                    margin-top: .75rem;
                 }
             }
         } 
