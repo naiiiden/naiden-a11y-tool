@@ -340,4 +340,11 @@ footer p {
 }
 footer a {
   color: inherit;
+}
+
+.external-link {
+  color: inherit;
+}
+.external-link img {
+  transform: translate(2px, 3px);
 }/*# sourceMappingURL=style.css.map */
