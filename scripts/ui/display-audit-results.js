@@ -163,12 +163,19 @@ export function displayAuditResults(auditResults) {
           }   
         }
 
+        function rehighlightCode() {
+          const codeBlock = errorContainer.querySelector("pre code");
+          if (codeBlock) {
+            hljs.highlightElement(codeBlock);
+          } 
+        }
+
         if (errorInstances.length > 1 && paginationButtons) {
           paginationButtons.prevBtn.addEventListener('click', () => {
             if (currentIndex > 0) {
               currentIndex--;
               updateErrorDisplay();
-              hljs.highlightAll();
+              rehighlightCode();
             }
           });
           
@@ -176,7 +183,7 @@ export function displayAuditResults(auditResults) {
             if (currentIndex < errorInstances.length - 1) {
               currentIndex++;
               updateErrorDisplay();
-              hljs.highlightAll();
+              rehighlightCode();
             }
           });
           
@@ -184,7 +191,7 @@ export function displayAuditResults(auditResults) {
             if (currentIndex > 0) {
               currentIndex = 0;
               updateErrorDisplay();
-              hljs.highlightAll();
+              rehighlightCode();
             }
           });
           
@@ -192,7 +199,7 @@ export function displayAuditResults(auditResults) {
             if (currentIndex < errorInstances.length - 1) {
               currentIndex = errorInstances.length - 1;
               updateErrorDisplay();
-              hljs.highlightAll();
+              rehighlightCode();
             }
           });
         }
