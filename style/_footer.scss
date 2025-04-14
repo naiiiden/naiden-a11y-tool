@@ -3,13 +3,10 @@ footer {
     background: var(--background-secondary);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: .75rem;
 
     p {
         font-weight: 500;
-    }
-
-    a {
-        color: inherit;
     }
 }
