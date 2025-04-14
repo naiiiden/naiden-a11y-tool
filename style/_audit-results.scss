@@ -23,20 +23,20 @@
 
     details {
         summary img {
-            transform: rotate(180deg);
+            transform: rotate(0deg);
         }
 
         &[open] {
             summary img {
-                transform: rotate(0deg);
-            }
-
-            details summary img {
                 transform: rotate(180deg);
             }
 
-            details[open] summary img {
+            details summary img {
                 transform: rotate(0deg);
+            }
+
+            details[open] summary img {
+                transform: rotate(180deg);
             }
         }
     }

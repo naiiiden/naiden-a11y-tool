@@ -193,16 +193,16 @@ header {
   padding: 0.75rem;
 }
 #errors-list details summary img {
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 #errors-list details[open] summary img {
-  transform: rotate(0deg);
-}
-#errors-list details[open] details summary img {
   transform: rotate(180deg);
 }
-#errors-list details[open] details[open] summary img {
+#errors-list details[open] details summary img {
   transform: rotate(0deg);
+}
+#errors-list details[open] details[open] summary img {
+  transform: rotate(180deg);
 }
 #errors-list details:not(details details) {
   background: var(--background-secondary);
