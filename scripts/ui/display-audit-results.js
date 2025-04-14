@@ -48,7 +48,7 @@ export function displayAuditResults(auditResults) {
       
       const typeErrorsList = document.createElement('ul');
       
-      Object.entries(errorsByName).forEach(([name, errorInstances]) => {
+      Object.entries(errorsByName).forEach(([name, errorInstances], errorIndex) => {
         const listItem = document.createElement('li');
         const errorContainer = document.createElement('div');
         const paginationControls = document.createElement("div");
@@ -83,7 +83,7 @@ export function displayAuditResults(auditResults) {
           const error = errorInstances[currentIndex];
           
           errorContainer.innerHTML = `
-            <h3>${escapeHtml(name)}</h3>
+            <h3>${errorIndex + 1}.${currentIndex + 1}. ${escapeHtml(name)}</h3>
             <p>${escapeHtml(error.description)}</p>
             ${error.selector || error.element ? `<div class="element-information">
               ${error.selector ?
