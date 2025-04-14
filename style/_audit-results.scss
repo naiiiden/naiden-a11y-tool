@@ -13,7 +13,9 @@
 }
 
 .highlight {
-    animation: highlight 1s linear;
+    animation: highlight 2s linear;
+    outline-offset: .25rem;
+    scroll-margin-top: 1rem;
 }
 
 #errors-list {
