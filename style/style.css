@@ -259,7 +259,7 @@ header {
   gap: 0.5rem;
 }
 #errors-list details:not(details details) > ul > li:not(:has(.element-location)) .element-fix {
-  padding-top: 1.5rem;
+  padding-top: 1.25rem;
 }
 #errors-list details:not(details details) > ul > li button {
   border: none;
