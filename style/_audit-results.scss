@@ -106,6 +106,10 @@
                     }
                 }
 
+                &:not(:has(.element-location)) .element-fix {
+                    padding-top: 1.5rem;
+                }
+
                 button {
                     border: none;
                     color: inherit;

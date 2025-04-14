@@ -258,6 +258,9 @@ header {
   justify-content: flex-end;
   gap: 0.5rem;
 }
+#errors-list details:not(details details) > ul > li:not(:has(.element-location)) .element-fix {
+  padding-top: 1.5rem;
+}
 #errors-list details:not(details details) > ul > li button {
   border: none;
   color: inherit;
