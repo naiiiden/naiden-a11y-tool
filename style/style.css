@@ -258,7 +258,7 @@ header {
   justify-content: flex-end;
   gap: 0.5rem;
 }
-#errors-list details:not(details details) > ul > li:not(:has(.element-location)) .element-fix {
+#errors-list details:not(details details) > ul > li:not(:has(.element-information)) .element-fix {
   padding-top: 1.25rem;
 }
 #errors-list details:not(details details) > ul > li button {
