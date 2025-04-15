@@ -39,7 +39,7 @@ html {
 body {
   color: var(--text-primary);
   min-height: 100vh;
-  background: var(--background-primary);
+  background: var(--background-secondary);
   font-size: 0.875rem;
   display: flex;
   flex-direction: column;
@@ -48,6 +48,7 @@ body {
 
 main {
   flex-grow: 1;
+  background: var(--background-primary);
   border-top: 1px solid var(--background-quaternary);
   border-bottom: 1px solid var(--background-quaternary);
 }
