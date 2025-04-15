@@ -8,6 +8,7 @@
   --background-tertiary: #2C333A;
   --background-quaternary: #454F59;
   --neutral500: #596773;
+  --button-state-effect: #596773;
 }
 
 @media (prefers-color-scheme: light) {
@@ -18,6 +19,7 @@
     --background-tertiary: #DCDFE4;
     --background-quaternary: #B3B9C4;
     --neutral500: #8590A2;
+    --button-state-effect: #DCDFE4;
   }
   .icon {
     filter: invert(1);
@@ -281,7 +283,7 @@ header {
   cursor: not-allowed;
 }
 #errors-list details:not(details details) > ul > li button:not(:disabled):hover, #errors-list details:not(details details) > ul > li button:not(:disabled):active, #errors-list details:not(details details) > ul > li button:not(:disabled):focus-visible {
-  background: var(--neutral500);
+  background: var(--button-state-effect);
   outline: 2px solid var(--text-primary);
   outline-offset: 1px;
 }

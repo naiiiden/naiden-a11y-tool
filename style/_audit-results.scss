@@ -131,7 +131,7 @@
                     }
 
                     &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus-visible {
-                        background: var(--neutral500);
+                        background: var(--button-state-effect);
                         outline: 2px solid var(--text-primary);
                         outline-offset: 1px;
                     }
