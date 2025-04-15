@@ -2,7 +2,11 @@ export function displayErrorsCount(auditResults) {
     const errorsCountContainer = document.querySelector("#errors-count-container");
     const errorsCountTotal = document.querySelector("#errors-count-total");
 
-    errorsCountContainer.style.display = "grid";
+    if (auditResults.length === 0) {
+      errorsCountContainer.style.display = "none";
+    } else {
+      errorsCountContainer.style.display = "grid";
+    }
     errorsCountTotal.firstElementChild.textContent = `${auditResults.length}`;
 
     const errorsCountIndividualType = {
