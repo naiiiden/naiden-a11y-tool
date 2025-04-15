@@ -271,6 +271,7 @@ header {
   border: none;
   color: inherit;
   background: var(--background-quaternary);
+  border: 1px solid var(--neutral500);
   padding: 0.25rem 0.375rem;
   display: inline-flex;
   align-items: center;
