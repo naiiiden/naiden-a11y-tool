@@ -298,6 +298,7 @@ header {
   font-weight: 500;
   border-radius: 3px;
   cursor: pointer;
+  transition: 0.3s;
 }
 #errors-list details:not(details details) > ul > li button:disabled {
   opacity: 0.5;
@@ -307,6 +308,7 @@ header {
   background: var(--button-state-effect);
   outline: 2px solid var(--text-primary);
   outline-offset: 1px;
+  transition: 0.3s, outline 0s, outline-offset 0s;
 }
 #errors-list details:not(details details) > ul > li .error-pagination-controls {
   display: flex;

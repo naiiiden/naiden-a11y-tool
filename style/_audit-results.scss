@@ -133,6 +133,7 @@
                     font-weight: 500;
                     border-radius: 3px;
                     cursor: pointer;
+                    transition: .3s;
 
                     &:disabled {
                         opacity: .5;
@@ -143,6 +144,7 @@
                         background: var(--button-state-effect);
                         outline: 2px solid var(--text-primary);
                         outline-offset: 1px;
+                        transition: .3s, outline 0s, outline-offset 0s;
                     }
                 }
 
