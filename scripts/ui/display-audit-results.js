@@ -108,14 +108,14 @@ export function displayAuditResults(auditResults) {
             </div>` : ``}
             <div class="element-fix">
               <h4>
-                How to fix<span aria-hidden="true">:</span>
+                How to Fix<span aria-hidden="true">:</span>
               </h4>
               <p>${error.fix}</p>
             </div>
             ${error.wcagLinks && 
               `<details>
                 <summary>
-                  Learning and helpful resources
+                  Learning and Helpful Resources
                   <img class="icon" src="assets/arrow.svg" alt=""/>
                 </summary>
                 <ul>
