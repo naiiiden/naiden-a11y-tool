@@ -280,6 +280,11 @@ header {
   opacity: 0.5;
   cursor: not-allowed;
 }
+#errors-list details:not(details details) > ul > li button:not(:disabled):hover, #errors-list details:not(details details) > ul > li button:not(:disabled):active, #errors-list details:not(details details) > ul > li button:not(:disabled):focus-visible {
+  background: var(--neutral500);
+  outline: 2px solid var(--text-primary);
+  outline-offset: 1px;
+}
 #errors-list details:not(details details) > ul > li .error-pagination-controls {
   display: flex;
   justify-content: flex-end;

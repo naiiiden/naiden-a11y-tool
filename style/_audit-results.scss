@@ -129,6 +129,12 @@
                         opacity: .5;
                         cursor: not-allowed;
                     }
+
+                    &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus-visible {
+                        background: var(--neutral500);
+                        outline: 2px solid var(--text-primary);
+                        outline-offset: 1px;
+                    }
                 }
 
                 .error-pagination-controls {
