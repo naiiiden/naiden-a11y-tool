@@ -22,7 +22,10 @@ body {
     font-family: "Ubuntu", sans-serif;
     
     .scrollbar-border-right {
+        border-top: 1px solid var(--background-quaternary);
         border-right: 1px solid var(--background-quaternary);
+        border-bottom: 1px solid var(--background-quaternary);
+        border-radius: 0 4px 4px 0;
     }
 }
 
