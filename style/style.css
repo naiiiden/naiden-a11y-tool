@@ -51,7 +51,11 @@ body .scrollbar-border-right {
 
 @media (prefers-reduced-motion) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: auto !important;
+  }
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
   }
 }
 header {
