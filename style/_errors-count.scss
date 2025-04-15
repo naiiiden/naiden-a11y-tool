@@ -1,7 +1,10 @@
 #errors-count-container {
-    margin: 1rem 0;
+    margin: .75rem;
     display: none;
     background: var(--background-secondary);
+    border-radius: 4px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border: 1px solid var(--background-quaternary);
     padding: .75rem;
     gap: .25rem;
 
