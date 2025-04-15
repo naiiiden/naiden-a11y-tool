@@ -20,6 +20,10 @@ body {
     display: flex;
     flex-direction: column;
     font-family: "Ubuntu", sans-serif;
+    
+    .scrollbar-border-right {
+        border-right: 1px solid var(--background-quaternary);
+    }
 }
 
 @media (prefers-reduced-motion) {
