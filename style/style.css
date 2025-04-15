@@ -204,15 +204,19 @@ header {
 }
 #errors-list details summary img {
   transform: rotate(0deg);
+  transition: transform 0.3s;
 }
 #errors-list details[open] summary img {
   transform: rotate(180deg);
+  transition: transform 0.3s;
 }
 #errors-list details[open] details summary img {
   transform: rotate(0deg);
+  transition: transform 0.3s;
 }
 #errors-list details[open] details[open] summary img {
   transform: rotate(180deg);
+  transition: transform 0.3s;
 }
 #errors-list details:not(details details) {
   background: var(--background-secondary);
