@@ -96,6 +96,8 @@
                     }
 
                     pre {
+                        border-top: 1px solid var(--background-quaternary);
+                        border-bottom: 1px solid var(--background-quaternary);
                         margin: .5rem -.75rem;
     
                         code {
