@@ -2,7 +2,7 @@
     display: none;
     width: 2rem;
     height: 2rem;
-    border: .25rem solid #363636;
+    border: .25rem solid var(--text-primary);
     border-bottom-color: transparent;
     border-radius: 50%;
     animation: rotation 1s linear infinite;
