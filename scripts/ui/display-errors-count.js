@@ -37,6 +37,7 @@ export function displayErrorsCount(auditResults) {
     const viewLink = document.createElement("a");
     viewLink.href = `#${type}`;
     viewLink.textContent = "View";
+    viewLink.ariaLabel = `View ${formatLabel(type)} errors`;
 
     p.appendChild(countSpan);
     p.appendChild(labelSpan);
