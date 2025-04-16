@@ -20,7 +20,7 @@ export function displayErrorsCount(auditResults) {
 
   const formatLabel = (type) =>
     // root-and-metadata > Root And Metadata
-    type.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase()) + " Errors";
+    type.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
 
   for (const [type, count] of Object.entries(errorsCountByType)) {
     const p = document.createElement("p");
@@ -32,12 +32,12 @@ export function displayErrorsCount(auditResults) {
     countSpan.textContent = count;
 
     const labelSpan = document.createElement("span");
-    labelSpan.textContent = formatLabel(type);
+    labelSpan.textContent = `${formatLabel(type)} Errors`;
 
     const viewLink = document.createElement("a");
     viewLink.href = `#${type}`;
     viewLink.textContent = "View";
-    viewLink.ariaLabel = `View ${formatLabel(type)} errors`;
+    viewLink.ariaLabel = `View ${formatLabel(type)} Errors`;
 
     p.appendChild(countSpan);
     p.appendChild(labelSpan);
