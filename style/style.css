@@ -374,5 +374,5 @@ footer p {
   color: inherit;
 }
 .external-link img {
-  transform: translate(2px, 4px);
+  vertical-align: middle;
 }/*# sourceMappingURL=style.css.map */
