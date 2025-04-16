@@ -1,7 +1,7 @@
 import { displayErrorsCount } from "./ui/display-errors-count.js";
 import { displayAuditResults, emptyErrorMessage } from "./ui/display-audit-results.js";
 import { showLoading, hideLoading } from "./ui/display-loading-indicator.js";
-import { uiControls } from "./ui/controls.js";
+import { attachErrorSectionAnchorHighlights, uiControls } from "./ui/controls.js";
 import { checkOverflow } from "./ui/main-has-overflow.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       
       displayErrorsCount(auditResults);
+      attachErrorSectionAnchorHighlights();
       
     } catch (err) {
       console.error("Error during audit:", err);

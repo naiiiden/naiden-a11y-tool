@@ -107,8 +107,12 @@ export function uiControls(runAudit) {
     runAuditBtn.addEventListener("click", async () => {
         document.querySelector("body > main > p:nth-child(4)").style.display = "none";
         await runAudit(auditFuncsArray);
-    });
+    });    
+    
+    return auditFuncsArray;
+}
 
+export function attachErrorSectionAnchorHighlights() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", (e) => {
             const target = document.querySelector(anchor.getAttribute("href"));
@@ -118,7 +122,5 @@ export function uiControls(runAudit) {
                 setTimeout(() => target.classList.remove("highlight"), 2000);
             }
         });
-    });    
-    
-    return auditFuncsArray;
+    });
 }
