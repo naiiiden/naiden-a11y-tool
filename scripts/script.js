@@ -11,13 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
     auditResults = [];
     
     try {
-      const errorsList = document.getElementById("errors-list");
-      const errorsCountContainer = document.getElementById("errors-count-container");
-      const errorsIndicator = document.getElementById("errors-indicator");
+      // const errorsList = document.getElementById("errors-list");
+      // const errorsCountContainer = document.getElementById("errors-count-container");
+      // const errorsIndicator = document.getElementById("errors-indicator");
 
-      if (errorsList) errorsList.textContent = "";
-      if (errorsCountContainer) errorsCountContainer.textContent = "";
-      if (errorsIndicator) errorsIndicator.textContent = "";
+      // if (errorsList) errorsList.textContent = "";
+      // if (errorsCountContainer) errorsCountContainer.textContent = "";
+      // if (errorsIndicator) errorsIndicator.textContent = "";
 
       showLoading();
 
