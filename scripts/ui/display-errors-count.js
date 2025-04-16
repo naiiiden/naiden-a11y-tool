@@ -5,12 +5,7 @@ export function displayErrorsCount(auditResults) {
   // Reset container
   errorsCountContainer.innerHTML = "";
 
-  if (auditResults.length === 0) {
-    errorsCountContainer.style.display = "none";
-    return;
-  } else {
-    errorsCountContainer.style.display = "block";
-  }
+  errorsCountContainer.style.display = "grid";
 
   // Create and append heading
   const heading = document.createElement("h2");
