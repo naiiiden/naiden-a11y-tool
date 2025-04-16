@@ -1,21 +1,15 @@
 export function displayErrorsCount(auditResults) {
   const errorsCountContainer = document.querySelector("#errors-count-container");
-  if (!errorsCountContainer) return;
 
-  // Reset container
   errorsCountContainer.innerHTML = "";
-
   errorsCountContainer.style.display = "grid";
 
-  // Create and append heading
   const heading = document.createElement("h2");
   heading.textContent = "Found Errors";
   errorsCountContainer.appendChild(heading);
 
-  // Create inner wrapper
   const innerDiv = document.createElement("div");
 
-  // Count errors by type
   const errorsCountByType = {};
   let totalCount = 0;
 
@@ -24,11 +18,10 @@ export function displayErrorsCount(auditResults) {
     totalCount++;
   });
 
-  // Helper to format type to readable label
   const formatLabel = (type) =>
+    // root-and-metadata > Root And Metadata
     type.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase()) + " Errors";
 
-  // Render each error type with its count and link
   for (const [type, count] of Object.entries(errorsCountByType)) {
     const p = document.createElement("p");
     p.id = `errors-count-${type}`;
@@ -51,7 +44,6 @@ export function displayErrorsCount(auditResults) {
     innerDiv.appendChild(viewLink);
   }
 
-  // Add total count at the end
   const totalP = document.createElement("p");
   totalP.id = "errors-count-total";
 
@@ -65,7 +57,5 @@ export function displayErrorsCount(auditResults) {
   totalP.appendChild(totalCountSpan);
   totalP.appendChild(totalLabelSpan);
   innerDiv.appendChild(totalP);
-
-  // Append the wrapper to container
   errorsCountContainer.appendChild(innerDiv);
 }
