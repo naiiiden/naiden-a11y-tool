@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         errorsList.textContent = "";
       }
       if (errorsCountContainer) {
-        errorsCountContainer.textContent = "";
+        errorsCountContainer.style.display = "none";
       }
       if (errorsIndicator) {
         errorsIndicator.textContent = "";
