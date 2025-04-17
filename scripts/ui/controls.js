@@ -19,15 +19,15 @@ export function uiControls(runAudit) {
     const auditFuncsArray = [];
     const auditFuncsMap = {
         "root-and-metadata": rootAndMetadataAudit,
-        "image": imagesAudit,
-        "interactive-elements": interactiveElementsAudit,
-        "empty-elements": emptyAudit,
-        "form": formAudit,
-        "embedded-elements": embeddedElementsAudit,
         "semantic": semanticAudit,
         "aria": ariaAudit,
-        "css": cssAudit,
+        "form": formAudit,
+        "interactive-elements": interactiveElementsAudit,
+        "embedded-elements": embeddedElementsAudit,
         "deprecated-elements": deprecatedElementsAudit,
+        "empty-elements": emptyAudit,
+        "image": imagesAudit,
+        "css": cssAudit,
         "colour": colourAudit
     };
 
