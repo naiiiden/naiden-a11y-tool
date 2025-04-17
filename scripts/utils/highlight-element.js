@@ -26,6 +26,7 @@ export function highlightElement(selector) {
         overlay.style.outline = '.25rem solid red';
         overlay.style.borderRadius = window.getComputedStyle(element).borderRadius;
         overlay.style.zIndex = '999999';
+        overlay.style.pointerEvents = 'none';
         overlay.style.boxSizing = 'border-box';
         overlay.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
         overlay.style.transition = 'opacity 0.2s ease';
