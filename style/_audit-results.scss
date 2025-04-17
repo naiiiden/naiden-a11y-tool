@@ -22,6 +22,19 @@
     padding: .75rem;
 
     details {
+        @supports (transition-behavior: allow-discrete) {
+            &::details-content {
+                block-size: 0;
+                transition: block-size .3s, content-visibility .3s;
+                transition-behavior: allow-discrete;
+                overflow: hidden;
+            }
+    
+            &:open::details-content {
+                block-size: auto;
+            }
+        }
+
         summary img {
             transform: rotate(0deg);
             transition: transform .3s;
