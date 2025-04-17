@@ -1,6 +1,6 @@
 export const embeddedElementsErrors = [
     {
-        type: "embedded",
+        type: "embedded-elements",
         id: 0,
         name: "Empty or missing iframe title",
         description: "Some iframes have an empty or missing title.",
@@ -17,7 +17,7 @@ export const embeddedElementsErrors = [
         fix: "Add text to the empty iframe.",
     },
     {
-        type: "embedded",
+        type: "embedded-elements",
         id: 1,
         name: "Object elements must have alt text",
         description: "Object elements must have alt text",
@@ -34,7 +34,7 @@ export const embeddedElementsErrors = [
         fix: "Ensures every object element has alt text",
     },
     {
-        type: "embedded",
+        type: "embedded-elements",
         id: 2,
         name: "Frames must have a unique title attribute",
         description: "Frames must have a unique title attribute",
@@ -51,7 +51,7 @@ export const embeddedElementsErrors = [
         fix: "Ensure all iframe/frame elements contain a unique title attribute",
     },
     {
-        type: "embedded",
+        type: "embedded-elements",
         id: 3,
         name: "Video or audio elements must not autoplay",
         description: "Video or audio elements must not autoplay",
@@ -76,7 +76,7 @@ export const embeddedElementsErrors = [
         fix: "Ensure all video or audio elements do not autoplay",
     },
     {
-        type: "embedded",
+        type: "embedded-elements",
         id: 4,
         name: "Video elements must have captions",
         description: "Video elements must have captions",

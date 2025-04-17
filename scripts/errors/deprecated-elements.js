@@ -1,6 +1,6 @@
 export const deprecatedElementsErrors = [
     {
-      type: "deprecated",
+      type: "deprecated-elements",
       id: 0,
       name: "Marquee elements are deprecated and must not be used",
       description: "A marquee, which is deprecated and should not be used, element is present",

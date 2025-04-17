@@ -1,6 +1,6 @@
 export const interactiveElementsErrors = [
     {
-        type: "interactive",
+        type: "interactive-elements",
         id: 0,
         name: "Empty link",
         description: "Some links don't have text.",
@@ -37,7 +37,7 @@ export const interactiveElementsErrors = [
         fix: "Add descriptive alt text to all button images.",
     },
     {
-        type: "interactive",
+        type: "interactive-elements",
         id: 1,
         name: "Empty button",
         description: "Some button don't have text.",
@@ -62,7 +62,7 @@ export const interactiveElementsErrors = [
         fix: "Add descriptive text to all buttons.",
     },
     {
-        type: "interactive",
+        type: "interactive-elements",
         id: 2,
         name: "Broken skip link",
         description: "Skip link's target doesn't exist or it's not accessible by keyboard",
@@ -79,7 +79,7 @@ export const interactiveElementsErrors = [
         fix: "Skip link's target should match the id or name value of landmark element"
     },
     {
-        type: "interactive",
+        type: "interactive-elements",
         id: 3,
         name: "Interactive control element has focusable children",
         description: "Interactive control element has focusable children",
@@ -92,7 +92,7 @@ export const interactiveElementsErrors = [
         fix: "Control must not have focusable children"
     },
     {
-        type: "interactive",
+        type: "interactive-elements",
         id: 4,
         name: "Broken same-page link",
         description: "Link to another location within the page is present but doesn't have a corresponding target",
@@ -125,7 +125,7 @@ export const interactiveElementsErrors = [
         fix: "Ensure the target for the link exists or remove the link"
     },
     {
-        type: "interactive",
+        type: "interactive-elements",
         id: 5,
         name: "Scrollable region must have keyboard access",
         description: "Scrollable region must have keyboard access",
@@ -150,7 +150,7 @@ export const interactiveElementsErrors = [
         fix: "Ensure that scrollable region has keyboard access"
     },
     {
-        type: "interactive",
+        type: "interactive-elements",
         id: 6,
         name: "Accesskeys must be unique",
         description: "Accesskeys must be unique",
@@ -158,7 +158,7 @@ export const interactiveElementsErrors = [
         fix: "Ensure accesskeys are not duplicated",
       },
       {
-        type: "interactive",
+        type: "interactive-elements",
         id: 7,
         name: "All touch targets must be 24px large, or leave sufficient space",
         description: "All touch targets must be 24px large, or leave sufficient space",
