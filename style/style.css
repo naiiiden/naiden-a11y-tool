@@ -25,6 +25,11 @@
     filter: invert(1);
   }
 }
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -212,6 +217,19 @@ header {
 
 #errors-list {
   padding: 0.75rem;
+  display: grid;
+  gap: 0.75rem;
+}
+@supports (transition-behavior: allow-discrete) {
+  #errors-list details::details-content {
+    block-size: 0;
+    transition: block-size 0.3s, content-visibility 0.3s;
+    transition-behavior: allow-discrete;
+    overflow: hidden;
+  }
+  #errors-list details:open::details-content {
+    block-size: auto;
+  }
 }
 #errors-list details summary img {
   transform: rotate(0deg);
@@ -231,7 +249,6 @@ header {
 }
 #errors-list details:not(details details) {
   background: var(--background-secondary);
-  margin-bottom: 0.75rem;
   border-radius: 4px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   border: 1px solid var(--background-quaternary);
