@@ -20,8 +20,6 @@
 
 #errors-list {
     padding: .75rem;
-    display: grid;
-    gap: .75rem;
 
     details {
         @supports (transition-behavior: allow-discrete) {

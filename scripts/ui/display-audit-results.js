@@ -32,19 +32,28 @@ export function displayAuditResults(auditResults) {
     });
   
     for (const [type, errorsByName] of Object.entries(errorsByType)) {
-      const typeSection = document.createElement('details');
+      const typeSection = document.createElement('div');
       typeSection.id = `${type}`;
       typeSection.open = true;
       
-      const typeHeading = document.createElement('summary');
+      const summary = document.createElement("summary");
+      summary.classList.add("custom-summary");
+      summary.setAttribute("role", "button");
+      summary.setAttribute("tabindex", "0");
+      summary.setAttribute("aria-expanded", "false");
       const formattedType = type.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' Errors';
-      typeHeading.textContent = formattedType;
+      summary.textContent = formattedType;
       const image = document.createElement('img');
       image.src = "assets/arrow.svg";
       image.classList.add("icon");
       image.alt = "";
-      typeHeading.appendChild(image);
-      typeSection.appendChild(typeHeading);
+      summary.appendChild(image);
+
+      const content = document.createElement("div");
+      content.classList.add("custom-content");
+      content.style.maxHeight = "0";
+      content.style.overflow = "hidden";
+      content.style.transition = "max-height 0.4s ease";
       
       const typeErrorsList = document.createElement('ul');
       
@@ -212,9 +221,29 @@ export function displayAuditResults(auditResults) {
         typeErrorsList.appendChild(listItem);
       })
       
-      typeSection.appendChild(typeErrorsList);
+      content.appendChild(typeErrorsList);
+      typeSection.appendChild(summary);
+      typeSection.appendChild(content);
       errorsList.appendChild(typeSection);
     }
 
     hljs.highlightAll();
+
+    document.querySelectorAll(".custom-summary").forEach((summary) => {
+      const container = summary.parentElement;
+      const content = container.querySelector(".custom-content");
+  
+      summary.addEventListener("click", () => {
+        const isOpen = container.classList.toggle("open");
+        summary.setAttribute("aria-expanded", isOpen);
+        content.style.maxHeight = isOpen ? content.scrollHeight + "px" : "0";
+      });
+  
+      summary.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          summary.click();
+        }
+      });
+    });
 }
