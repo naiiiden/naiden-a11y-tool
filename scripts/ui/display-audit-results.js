@@ -34,13 +34,13 @@ export function displayAuditResults(auditResults) {
     for (const [type, errorsByName] of Object.entries(errorsByType)) {
       const typeSection = document.createElement('div');
       typeSection.id = `${type}`;
-      typeSection.open = true;
-      
+      typeSection.classList.add("open");
+
       const summary = document.createElement("summary");
       summary.classList.add("custom-summary");
       summary.setAttribute("role", "button");
       summary.setAttribute("tabindex", "0");
-      summary.setAttribute("aria-expanded", "false");
+      summary.setAttribute("aria-expanded", "true");
       const formattedType = type.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' Errors';
       summary.textContent = formattedType;
       const image = document.createElement('img');
@@ -51,7 +51,6 @@ export function displayAuditResults(auditResults) {
 
       const content = document.createElement("div");
       content.classList.add("custom-content");
-      content.style.maxHeight = "0";
       content.style.overflow = "hidden";
       content.style.transition = "max-height 0.4s ease";
       
@@ -224,6 +223,7 @@ export function displayAuditResults(auditResults) {
       content.appendChild(typeErrorsList);
       typeSection.appendChild(summary);
       typeSection.appendChild(content);
+      content.style.maxHeight = content.scrollHeight + "px";
       errorsList.appendChild(typeSection);
     }
 
@@ -233,6 +233,10 @@ export function displayAuditResults(auditResults) {
       const container = summary.parentElement;
       const content = container.querySelector(".custom-content");
   
+      summary.setAttribute("aria-expanded", "true");
+      container.classList.add("open");
+      content.style.maxHeight = content.scrollHeight + "px";
+
       summary.addEventListener("click", () => {
         const isOpen = container.classList.toggle("open");
         summary.setAttribute("aria-expanded", isOpen);
