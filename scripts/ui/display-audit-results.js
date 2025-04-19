@@ -34,7 +34,7 @@ export function displayAuditResults(auditResults) {
     for (const [type, errorsByName] of Object.entries(errorsByType)) {
       const typeSection = document.createElement('div');
       typeSection.id = `${type}`;
-      typeSection.classList.add("open");
+      typeSection.classList.add("open", "custom-details");
 
       const summary = document.createElement("summary");
       summary.classList.add("custom-summary");
@@ -53,7 +53,7 @@ export function displayAuditResults(auditResults) {
       content.classList.add("custom-content");
       content.style.overflow = "hidden";
       content.style.transition = "max-height 0.4s ease";
-      
+
       const typeErrorsList = document.createElement('ul');
       
       Object.entries(errorsByName).forEach(([name, errorInstances], errorIndex) => {
