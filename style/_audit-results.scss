@@ -21,14 +21,41 @@
 #errors-list {
     padding: .75rem;
 
-    details summary img {
-        transform: rotate(0deg);
-        transition: transform .3s;
-    }
+    details {
+        @supports (transition-behavior: allow-discrete) {
+            &::details-content {
+                block-size: 0;
+                transition: block-size .3s, content-visibility .3s;
+                transition-behavior: allow-discrete;
+                overflow: hidden;
+            }
+    
+            &:open::details-content {
+                block-size: auto;
+            }
+        }
 
-    details[open] summary img {
-        transform: rotate(180deg);
-        transition: transform .3s;
+        summary img {
+            transform: rotate(0deg);
+            transition: transform .3s;
+        }
+
+        &[open] {
+            summary img {
+                transform: rotate(180deg);
+                transition: transform .3s;
+            }
+
+            details summary img {
+                transform: rotate(0deg);
+                transition: transform .3s;
+            }
+
+            details[open] summary img {
+                transform: rotate(180deg);
+                transition: transform .3s;
+            }
+        }
     }
 
     .custom-summary {

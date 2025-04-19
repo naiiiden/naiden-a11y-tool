@@ -2,11 +2,11 @@
 @import "./colors";
 
 // for native details
-// @supports (interpolate-size: allow-keywords) {
-//     :root {
-//         interpolate-size: allow-keywords;
-//     }
-// }
+@supports (interpolate-size: allow-keywords) {
+    :root {
+        interpolate-size: allow-keywords;
+    }
+}
 
 * {
     margin: 0;
