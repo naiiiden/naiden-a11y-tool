@@ -245,69 +245,77 @@ header {
   transform: rotate(180deg);
   transition: transform 0.3s;
 }
-#errors-list details:not(details details) {
+#errors-list .custom-summary {
+  padding: 0.75rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+#errors-list .custom-details {
   background: var(--background-secondary);
   border-radius: 4px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   border: 1px solid var(--background-quaternary);
 }
-#errors-list details:not(details details) ul {
+#errors-list .custom-details ul {
   list-style-type: none;
-}
-#errors-list details:not(details details) > ul {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   padding: 0 0.75rem 0.75rem 0.75rem;
 }
-#errors-list details:not(details details) > ul > li {
+#errors-list .custom-details ul > li {
   background: var(--background-tertiary);
   padding: 0.625rem 0.75rem 0.75rem 0.75rem;
   width: 100%;
   border: 1px solid var(--background-quaternary);
 }
-#errors-list details:not(details details) > ul > li:first-child {
+#errors-list .custom-details ul > li:first-child {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
-#errors-list details:not(details details) > ul > li:last-child {
+#errors-list .custom-details ul > li:last-child {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-#errors-list details:not(details details) > ul > li h3 {
+#errors-list .custom-details ul > li h3 {
   border-bottom: 2px solid var(--background-quaternary);
   margin: 0 -0.75rem 0.75rem -0.75rem;
   padding: 0 0.75rem 0.625rem 0.75rem;
 }
-#errors-list details:not(details details) > ul > li .element-location *, #errors-list details:not(details details) > ul > li .element-fix * {
+#errors-list .custom-details ul > li .element-location *, #errors-list .custom-details ul > li .element-fix * {
   display: inline;
 }
-#errors-list details:not(details details) > ul > li .element-information {
+#errors-list .custom-details ul > li .element-information {
   padding: 1.5rem 0;
 }
-#errors-list details:not(details details) > ul > li .element-information:not(:has(pre)) {
+#errors-list .custom-details ul > li .element-information:not(:has(pre)) {
   padding-top: 1.25rem;
 }
-#errors-list details:not(details details) > ul > li .element-information:not(:has(div)) {
+#errors-list .custom-details ul > li .element-information:not(:has(div)) {
   padding: 0.75rem 0;
 }
-#errors-list details:not(details details) > ul > li .element-information pre {
+#errors-list .custom-details ul > li .element-information pre {
   border-top: 1px solid var(--background-quaternary);
   border-bottom: 1px solid var(--background-quaternary);
   margin: 0.5rem -0.75rem;
 }
-#errors-list details:not(details details) > ul > li .element-information pre code {
+#errors-list .custom-details ul > li .element-information pre code {
   padding: 0.75rem !important;
 }
-#errors-list details:not(details details) > ul > li .element-information .element-buttons {
+#errors-list .custom-details ul > li .element-information .element-buttons {
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
 }
-#errors-list details:not(details details) > ul > li:not(:has(.element-information)) .element-fix {
+#errors-list .custom-details ul > li:not(:has(.element-information)) .element-fix {
   padding-top: 1.25rem;
 }
-#errors-list details:not(details details) > ul > li button {
+#errors-list .custom-details ul > li button {
   border: none;
   color: inherit;
   background: var(--background-quaternary);
@@ -322,55 +330,40 @@ header {
   cursor: pointer;
   transition: 0.3s;
 }
-#errors-list details:not(details details) > ul > li button:disabled {
+#errors-list .custom-details ul > li button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-#errors-list details:not(details details) > ul > li button:not(:disabled):hover, #errors-list details:not(details details) > ul > li button:not(:disabled):active, #errors-list details:not(details details) > ul > li button:not(:disabled):focus-visible {
+#errors-list .custom-details ul > li button:not(:disabled):hover, #errors-list .custom-details ul > li button:not(:disabled):active, #errors-list .custom-details ul > li button:not(:disabled):focus-visible {
   background: var(--button-state-effect);
   outline: 2px solid var(--text-primary);
   outline-offset: 1px;
   transition: 0.3s, outline 0s, outline-offset 0s;
 }
-#errors-list details:not(details details) > ul > li .error-pagination-controls {
+#errors-list .custom-details ul > li .error-pagination-controls {
   display: flex;
   justify-content: flex-end;
   gap: 0.25rem;
   margin-top: 0.75rem;
 }
-#errors-list details:not(details details) > ul > li .error-pagination-controls span {
+#errors-list .custom-details ul > li .error-pagination-controls span {
   align-self: center;
 }
-#errors-list details:not(details details) > ul > li .error-pagination-controls span span {
+#errors-list .custom-details ul > li .error-pagination-controls span span {
   font-weight: 600;
 }
-#errors-list details:is(details details) {
+#errors-list .custom-details details {
   margin-top: 1.25rem;
   border-radius: 3px;
   background: var(--background-quaternary);
   border: 1px solid var(--neutral500);
 }
-#errors-list details:is(details details) ul {
+#errors-list .custom-details details ul {
   display: flex;
   flex-direction: column;
   gap: 0.375rem;
   padding: 0.75rem;
   border-top: 2px solid var(--neutral500);
-}
-#errors-list details > summary {
-  padding: 0.75rem;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 700;
-  font-size: 1.25rem;
-  cursor: pointer;
-}
-#errors-list details > summary:is(details details summary) {
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 0.3125rem 0.75rem;
 }
 
 footer {
