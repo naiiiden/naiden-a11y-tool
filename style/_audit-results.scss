@@ -45,16 +45,6 @@
                 transform: rotate(180deg);
                 transition: transform .3s;
             }
-
-            details summary img {
-                transform: rotate(0deg);
-                transition: transform .3s;
-            }
-
-            details[open] summary img {
-                transform: rotate(180deg);
-                transition: transform .3s;
-            }
         }
     }
 

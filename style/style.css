@@ -237,14 +237,6 @@ header {
   transform: rotate(180deg);
   transition: transform 0.3s;
 }
-#errors-list details[open] details summary img {
-  transform: rotate(0deg);
-  transition: transform 0.3s;
-}
-#errors-list details[open] details[open] summary img {
-  transform: rotate(180deg);
-  transition: transform 0.3s;
-}
 #errors-list .custom-summary {
   padding: 0.75rem;
   list-style: none;
