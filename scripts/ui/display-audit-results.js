@@ -50,7 +50,7 @@ export function displayAuditResults(auditResults) {
       const content = document.createElement("div");
       content.classList.add("custom-content");
       content.style.overflow = "hidden";
-      content.style.transition = "max-height 0.4s ease";
+      content.style.transition = "max-height 0.3s";
 
       const typeErrorsList = document.createElement('ul');
       
