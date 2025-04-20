@@ -40,12 +40,7 @@ export function displayAuditResults(auditResults) {
       summary.classList.add("custom-summary");
       summary.setAttribute("aria-expanded", "true");
       const formattedType = type.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' Errors';
-      summary.textContent = formattedType;
-      const image = document.createElement('img');
-      image.src = "assets/arrow.svg";
-      image.classList.add("icon");
-      image.alt = "";
-      summary.appendChild(image);
+      summary.innerHTML = `${formattedType} <img class="icon" src="assets/arrow.svg" alt=""/>`;
 
       const content = document.createElement("div");
       content.classList.add("custom-content");
