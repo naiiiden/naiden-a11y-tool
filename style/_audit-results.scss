@@ -20,6 +20,9 @@
 
 #errors-list {
     padding: .75rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
 
     .custom-details {
         .custom-summary img:not(details summary img) {
