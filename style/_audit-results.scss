@@ -28,10 +28,13 @@
         font-size: 1.25rem;
         cursor: pointer;
         width: 100%;
-        color: var(--text-primary);
-        background: var(--background-secondary);
-        border: none;
-        font-family: inherit;
+        
+        &:is(button) {
+            color: var(--text-primary);
+            background: var(--background-secondary);
+            border: none;
+            font-family: inherit;
+        }
     }
 
     .custom-details {

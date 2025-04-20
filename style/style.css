@@ -222,6 +222,8 @@ header {
   font-size: 1.25rem;
   cursor: pointer;
   width: 100%;
+}
+#errors-list .custom-summary:is(button), #errors-list .custom-details details summary:is(button) {
   color: var(--text-primary);
   background: var(--background-secondary);
   border: none;
