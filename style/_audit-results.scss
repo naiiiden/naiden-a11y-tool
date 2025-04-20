@@ -48,6 +48,20 @@
         }
     }
 
+    .custom-details {
+        .custom-summary img {
+           transform: rotate(0deg);
+           transition: transform .3s;
+        }
+
+       &.open {
+           .custom-summary img {
+               transform: rotate(180deg);
+               transition: transform .3s;
+           }
+       }
+    }
+
     .custom-summary {
         padding: .75rem;
         list-style: none;
