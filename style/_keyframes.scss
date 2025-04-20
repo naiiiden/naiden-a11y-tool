@@ -1,0 +1,19 @@
+@keyframes highlight {
+    0% {
+        outline: 4px solid red;
+    }
+
+    50% {
+        outline: 4px solid transparent;
+    }
+
+    100% {
+        outline: 4px solid red;
+    }
+}
+
+.highlight {
+    animation: highlight 2s linear;
+    outline-offset: .25rem;
+    scroll-margin-top: 1rem;
+}
