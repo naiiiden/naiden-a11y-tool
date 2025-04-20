@@ -204,15 +204,13 @@ header {
   flex-direction: column;
   gap: 0.75rem;
 }
-#errors-list .custom-details .custom-summary img:not(details summary img), #errors-list .custom-details details summary img:not(details summary img) {
-  transform: rotate(0deg);
-  transition: transform 0.3s;
+#errors-list .custom-details {
+  background: var(--background-secondary);
+  border-radius: 4px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  border: 1px solid var(--background-quaternary);
 }
-#errors-list .custom-details.open .custom-summary img:not(details summary img), #errors-list .custom-details.open details summary img:not(details summary img) {
-  transform: rotate(180deg);
-  transition: transform 0.3s;
-}
-#errors-list .custom-summary, #errors-list .custom-details details summary {
+#errors-list .custom-details .custom-summary, #errors-list .custom-details details summary {
   padding: 0.75rem;
   list-style: none;
   display: flex;
@@ -223,17 +221,23 @@ header {
   cursor: pointer;
   width: 100%;
 }
-#errors-list .custom-summary:is(button), #errors-list .custom-details details summary:is(button) {
+#errors-list .custom-details .custom-summary:is(button), #errors-list .custom-details details summary:is(button) {
   color: var(--text-primary);
   background: var(--background-secondary);
   border: none;
   font-family: inherit;
 }
-#errors-list .custom-details {
-  background: var(--background-secondary);
-  border-radius: 4px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  border: 1px solid var(--background-quaternary);
+#errors-list .custom-details .custom-summary img:not(details summary img), #errors-list .custom-details details summary img:not(details summary img) {
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+#errors-list .custom-details.open .custom-summary img:not(details summary img), #errors-list .custom-details.open details summary img:not(details summary img) {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
+#errors-list .custom-details .custom-content {
+  overflow: hidden;
+  transition: max-height 0.3s;
 }
 #errors-list .custom-details ul {
   list-style-type: none;
