@@ -236,11 +236,13 @@ export function displayAuditResults(auditResults) {
       summary.setAttribute("aria-expanded", "true");
       container.classList.add("open");
       content.style.maxHeight = 'fit-content';
+      content.inert = false;
 
       summary.addEventListener("click", () => {
         const isOpen = container.classList.toggle("open");
         summary.setAttribute("aria-expanded", isOpen);
         content.style.maxHeight = isOpen ? `fit-content` : "0";
+        content.inert = isOpen ? false : true;
       });
   
       summary.addEventListener("keydown", (e) => {
