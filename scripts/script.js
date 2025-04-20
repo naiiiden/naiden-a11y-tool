@@ -15,8 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const errorsCountContainer = document.getElementById("errors-count-container");
       const errorsIndicator = document.getElementById("errors-indicator");
 
-      console.log(2, auditResults);
-
       if (errorsList) {
         errorsList.textContent = "";
       }
@@ -47,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error during audit:", err);
     } finally {
       hideLoading();
-      checkOverflow(document.documentElement);
+      checkOverflow();
     }
   }
 

@@ -12,4 +12,3 @@ export function checkOverflow() {
     }
     return hasOverflow;
 }
-
