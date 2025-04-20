@@ -17,6 +17,34 @@ export function displayAuditResults(auditResults) {
     errorsList.innerHTML = '';
     errorsIndicator.innerHTML = "";
 
+    const globalToggleButton = document.createElement("button");
+    globalToggleButton.id = "toggle-all";
+    globalToggleButton.className = "toggle-all-button";
+    globalToggleButton.textContent = "Collapse All";
+    errorsList.appendChild(globalToggleButton);
+
+    let allExpanded = true;
+
+    globalToggleButton.addEventListener("click", () => {
+      document.querySelectorAll(".custom-summary").forEach((summary) => {
+        const container = summary.parentElement;
+        const content = container.querySelector(".custom-content");
+
+        if (allExpanded) {
+          container.classList.remove("open");
+          summary.setAttribute("aria-expanded", "false");
+          content.style.maxHeight = "0";
+        } else {
+          container.classList.add("open");
+          summary.setAttribute("aria-expanded", "true");
+          content.style.maxHeight = `fit-content`;
+        }
+      });
+
+      allExpanded = !allExpanded;
+      globalToggleButton.textContent = allExpanded ? "Collapse All" : "Expand All";
+    });
+
     const errorsByType = {};
   
     auditResults.forEach(error => {
@@ -214,7 +242,6 @@ export function displayAuditResults(auditResults) {
       content.appendChild(typeErrorsList);
       typeSection.appendChild(summary);
       typeSection.appendChild(content);
-      content.style.maxHeight = content.scrollHeight + "px";
       errorsList.appendChild(typeSection);
     }
 
