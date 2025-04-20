@@ -249,54 +249,54 @@ header {
   gap: 0.75rem;
   padding: 0 0.75rem 0.75rem 0.75rem;
 }
-#errors-list .custom-details ul > li {
+#errors-list .custom-details ul > li:not(details li) {
   background: var(--background-tertiary);
   padding: 0.625rem 0.75rem 0.75rem 0.75rem;
   width: 100%;
   border: 1px solid var(--background-quaternary);
 }
-#errors-list .custom-details ul > li:first-child {
+#errors-list .custom-details ul > li:not(details li):first-child {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
-#errors-list .custom-details ul > li:last-child {
+#errors-list .custom-details ul > li:not(details li):last-child {
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
 }
-#errors-list .custom-details ul > li h3 {
+#errors-list .custom-details ul > li:not(details li) h3 {
   border-bottom: 2px solid var(--background-quaternary);
   margin: 0 -0.75rem 0.75rem -0.75rem;
   padding: 0 0.75rem 0.625rem 0.75rem;
 }
-#errors-list .custom-details ul > li .element-location *, #errors-list .custom-details ul > li .element-fix * {
+#errors-list .custom-details ul > li:not(details li) .element-location *, #errors-list .custom-details ul > li:not(details li) .element-fix * {
   display: inline;
 }
-#errors-list .custom-details ul > li .element-information {
+#errors-list .custom-details ul > li:not(details li) .element-information {
   padding: 1.5rem 0;
 }
-#errors-list .custom-details ul > li .element-information:not(:has(pre)) {
+#errors-list .custom-details ul > li:not(details li) .element-information:not(:has(pre)) {
   padding-top: 1.25rem;
 }
-#errors-list .custom-details ul > li .element-information:not(:has(div)) {
+#errors-list .custom-details ul > li:not(details li) .element-information:not(:has(div)) {
   padding: 0.75rem 0;
 }
-#errors-list .custom-details ul > li .element-information pre {
+#errors-list .custom-details ul > li:not(details li) .element-information pre {
   border-top: 1px solid var(--background-quaternary);
   border-bottom: 1px solid var(--background-quaternary);
   margin: 0.5rem -0.75rem;
 }
-#errors-list .custom-details ul > li .element-information pre code {
+#errors-list .custom-details ul > li:not(details li) .element-information pre code {
   padding: 0.75rem !important;
 }
-#errors-list .custom-details ul > li .element-information .element-buttons {
+#errors-list .custom-details ul > li:not(details li) .element-information .element-buttons {
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
 }
-#errors-list .custom-details ul > li:not(:has(.element-information)) .element-fix {
+#errors-list .custom-details ul > li:not(details li):not(:has(.element-information)) .element-fix {
   padding-top: 1.25rem;
 }
-#errors-list .custom-details ul > li button {
+#errors-list .custom-details ul > li:not(details li) button {
   border: none;
   color: inherit;
   background: var(--background-quaternary);
@@ -311,26 +311,26 @@ header {
   cursor: pointer;
   transition: 0.3s;
 }
-#errors-list .custom-details ul > li button:disabled {
+#errors-list .custom-details ul > li:not(details li) button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-#errors-list .custom-details ul > li button:not(:disabled):hover, #errors-list .custom-details ul > li button:not(:disabled):active, #errors-list .custom-details ul > li button:not(:disabled):focus-visible {
+#errors-list .custom-details ul > li:not(details li) button:not(:disabled):hover, #errors-list .custom-details ul > li:not(details li) button:not(:disabled):active, #errors-list .custom-details ul > li:not(details li) button:not(:disabled):focus-visible {
   background: var(--button-state-effect);
   outline: 2px solid var(--text-primary);
   outline-offset: 1px;
   transition: 0.3s, outline 0s, outline-offset 0s;
 }
-#errors-list .custom-details ul > li .error-pagination-controls {
+#errors-list .custom-details ul > li:not(details li) .error-pagination-controls {
   display: flex;
   justify-content: flex-end;
   gap: 0.25rem;
   margin-top: 0.75rem;
 }
-#errors-list .custom-details ul > li .error-pagination-controls span {
+#errors-list .custom-details ul > li:not(details li) .error-pagination-controls span {
   align-self: center;
 }
-#errors-list .custom-details ul > li .error-pagination-controls span span {
+#errors-list .custom-details ul > li:not(details li) .error-pagination-controls span span {
   font-weight: 600;
 }
 #errors-list .custom-details details {
