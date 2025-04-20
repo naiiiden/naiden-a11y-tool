@@ -36,10 +36,8 @@ export function displayAuditResults(auditResults) {
       typeSection.id = `${type}`;
       typeSection.classList.add("open", "custom-details");
 
-      const summary = document.createElement("summary");
+      const summary = document.createElement("button");
       summary.classList.add("custom-summary");
-      summary.setAttribute("role", "button");
-      summary.setAttribute("tabindex", "0");
       summary.setAttribute("aria-expanded", "true");
       const formattedType = type.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) + ' Errors';
       summary.textContent = formattedType;
