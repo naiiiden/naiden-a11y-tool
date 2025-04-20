@@ -21,33 +21,6 @@
 #errors-list {
     padding: .75rem;
 
-    details {
-        @supports (transition-behavior: allow-discrete) {
-            &::details-content {
-                block-size: 0;
-                transition: block-size .3s, content-visibility .3s;
-                transition-behavior: allow-discrete;
-                overflow: hidden;
-            }
-    
-            &:open::details-content {
-                block-size: auto;
-            }
-        }
-
-        summary img {
-            transform: rotate(0deg);
-            transition: transform .3s;
-        }
-
-        &[open] {
-            summary img {
-                transform: rotate(180deg);
-                transition: transform .3s;
-            }
-        }
-    }
-
     .custom-details {
         .custom-summary img {
            transform: rotate(0deg);
@@ -195,6 +168,38 @@
         border-radius: 3px;
         background: var(--background-quaternary);
         border: 1px solid var(--neutral500);
+
+        @supports (transition-behavior: allow-discrete) {
+            &::details-content {
+                block-size: 0;
+                transition: block-size .3s, content-visibility .3s;
+                transition-behavior: allow-discrete;
+                overflow: hidden;
+            }
+    
+            &:open::details-content {
+                block-size: auto;
+            }
+        }
+
+        summary {
+            @extend .custom-summary;
+            font-size: .875rem;
+            font-weight: 600;
+            padding: .3125rem .75rem;
+        }
+
+        summary img {
+            transform: rotate(0deg);
+            transition: transform .3s;
+        }
+
+        &[open] {
+            summary img {
+                transform: rotate(180deg);
+                transition: transform .3s;
+            }
+        }
 
         ul {
             display: flex;

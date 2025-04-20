@@ -218,34 +218,15 @@ header {
 #errors-list {
   padding: 0.75rem;
 }
-@supports (transition-behavior: allow-discrete) {
-  #errors-list details::details-content {
-    block-size: 0;
-    transition: block-size 0.3s, content-visibility 0.3s;
-    transition-behavior: allow-discrete;
-    overflow: hidden;
-  }
-  #errors-list details:open::details-content {
-    block-size: auto;
-  }
-}
-#errors-list details summary img {
+#errors-list .custom-details .custom-summary img, #errors-list .custom-details details summary img {
   transform: rotate(0deg);
   transition: transform 0.3s;
 }
-#errors-list details[open] summary img {
+#errors-list .custom-details.open .custom-summary img, #errors-list .custom-details.open details summary img {
   transform: rotate(180deg);
   transition: transform 0.3s;
 }
-#errors-list .custom-details .custom-summary img {
-  transform: rotate(0deg);
-  transition: transform 0.3s;
-}
-#errors-list .custom-details.open .custom-summary img {
-  transform: rotate(180deg);
-  transition: transform 0.3s;
-}
-#errors-list .custom-summary {
+#errors-list .custom-summary, #errors-list .custom-details details summary {
   padding: 0.75rem;
   list-style: none;
   display: flex;
@@ -357,6 +338,30 @@ header {
   border-radius: 3px;
   background: var(--background-quaternary);
   border: 1px solid var(--neutral500);
+}
+@supports (transition-behavior: allow-discrete) {
+  #errors-list .custom-details details::details-content {
+    block-size: 0;
+    transition: block-size 0.3s, content-visibility 0.3s;
+    transition-behavior: allow-discrete;
+    overflow: hidden;
+  }
+  #errors-list .custom-details details:open::details-content {
+    block-size: auto;
+  }
+}
+#errors-list .custom-details details summary {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.3125rem 0.75rem;
+}
+#errors-list .custom-details details summary img {
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+#errors-list .custom-details details[open] summary img {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
 }
 #errors-list .custom-details details ul {
   display: flex;
