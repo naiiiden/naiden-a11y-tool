@@ -22,13 +22,13 @@
     padding: .75rem;
 
     .custom-details {
-        .custom-summary img {
+        .custom-summary img:not(details summary img) {
            transform: rotate(0deg);
            transition: transform .3s;
         }
 
        &.open {
-           .custom-summary img {
+           .custom-summary img:not(details summary img) {
                transform: rotate(180deg);
                transition: transform .3s;
            }
