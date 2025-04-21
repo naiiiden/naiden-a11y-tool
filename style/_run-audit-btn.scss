@@ -5,16 +5,18 @@
 
     #run-audit-btn {
         order: -1;
-        background: var(--background-tertiary);
-        border: 1px solid #161A1D;
+        background: var(--background-quaternary);
+        border: 1px solid var(--background-primary);
         border-radius: .5rem 0 0 .5rem;
         padding: .25rem;
         height: 1.75rem;
-        color: inherit;
+        color: var(--text-primary);
+        font-family: inherit;
+        font-weight: 500;
     }
 
     #open-audit-checkboxes-dropdown-button {
-        background: var(--background-tertiary);
+        background: var(--background-quaternary);
         border: 1px solid #161A1D;
         border-radius: 0 .5rem .5rem 0;
         height: 1.75rem;
@@ -29,7 +31,7 @@
     
     .audit-checkboxes-container {
         border: 1px solid #161A1D;
-        background: var(--background-tertiary);
+        background: var(--background-quaternary);
         border-radius: .25rem;
         backdrop-filter: blur(4px);
         padding: .5rem;
