@@ -2,7 +2,7 @@
 @import "./colors";
 @import "./utilities";
 
-.naiden-a11y-tool-popup {
+body {
     min-width: 300px;
     min-height: 300px;
     display: grid;
@@ -13,5 +13,9 @@
     color: var(--text-primary);
     background: var(--background-secondary);
     font-family: "Ubuntu", sans-serif;
-    font-size: ".875rem";
+    font-size: .875rem;
+
+    h1 {
+        margin: 0;
+    }
 }
