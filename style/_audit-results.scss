@@ -7,7 +7,7 @@
     button {
         border: none;
         color: inherit;
-        background: var(--background-quaternary);
+        background: var(--background-secondary);
         border: 1px solid var(--neutral500);
         padding: .25rem .375rem;
         display: inline-flex;
@@ -164,7 +164,7 @@
         details {
             margin-top: 1.25rem;
             border-radius: 3px;
-            background: var(--background-quaternary);
+            background: var(--background-secondary);
             border: 1px solid var(--neutral500);
     
             @supports (transition-behavior: allow-discrete) {
