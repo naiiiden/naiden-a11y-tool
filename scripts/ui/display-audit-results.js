@@ -266,6 +266,23 @@ export function displayAuditResults(auditResults) {
         summary.setAttribute("aria-expanded", isOpen);
         content.style.maxHeight = isOpen ? `fit-content` : "0";
         content.inert = isOpen ? false : true;
+
+        const customDetails = document.querySelectorAll(".custom-details");
+        const allAreOpen = Array.from(customDetails).every(detail =>
+          detail.classList.contains("open")
+        );
+        const allAreClosed = Array.from(customDetails).every(detail =>
+          !detail.classList.contains("open")
+        );
+
+        if (allAreOpen) {
+          globalToggleButton.textContent = "Collapse All";
+          allExpanded = true;
+        } else if (allAreClosed) {
+          globalToggleButton.textContent = "Expand All";
+          allExpanded = false;
+        }   
+
         requestAnimationFrame(() => {
           setTimeout(() => (
             checkOverflow()
