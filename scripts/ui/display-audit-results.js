@@ -261,12 +261,5 @@ export function displayAuditResults(auditResults) {
         content.style.maxHeight = isOpen ? `fit-content` : "0";
         content.inert = isOpen ? false : true;
       });
-  
-      summary.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          summary.click();
-        }
-      });
     });
 }
