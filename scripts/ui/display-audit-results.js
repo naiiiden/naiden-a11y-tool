@@ -266,7 +266,7 @@ export function displayAuditResults(auditResults) {
         content.inert = isOpen ? false : true;
         setTimeout(() => (
           checkOverflow()
-        ), 300);
+        ), 200);
       });
     });
 }
