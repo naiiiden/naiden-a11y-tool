@@ -117,7 +117,8 @@ export function attachErrorSectionAnchorHighlights() {
         anchor.addEventListener("click", (e) => {
             const target = document.querySelector(anchor.getAttribute("href"));
             if (target) {
-                target.classList.add("highlight");
+                target.classList.add("highlight", "open");
+                target.children[1].style.maxHeight = "fit-content";
                 target.open = true;
                 setTimeout(() => target.classList.remove("highlight"), 2000);
             }
