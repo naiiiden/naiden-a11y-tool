@@ -2,6 +2,7 @@ import { escapeHtml } from "../utils/escape-html.js";
 import { highlightElement } from "../utils/highlight-element.js";
 import { highlightElementInDevTools } from "../utils/highlight-element-in-dev-tools.js";
 import { truncateIfTooManyChildren } from "../utils/truncate-if-too-many-children.js";
+import { checkOverflow } from "./main-has-overflow.js";
 
 const errorsIndicator = document.getElementById("errors-indicator");
 const errorsList = document.getElementById('errors-list');
@@ -42,6 +43,9 @@ export function displayAuditResults(auditResults) {
 
       allExpanded = !allExpanded;
       globalToggleButton.textContent = allExpanded ? "Collapse All" : "Expand All";
+      setTimeout(() => (
+        checkOverflow()
+      ), 300);
     });
 
     const errorsByType = {};
@@ -260,6 +264,9 @@ export function displayAuditResults(auditResults) {
         summary.setAttribute("aria-expanded", isOpen);
         content.style.maxHeight = isOpen ? `fit-content` : "0";
         content.inert = isOpen ? false : true;
+        setTimeout(() => (
+          checkOverflow()
+        ), 300);
       });
     });
 }
