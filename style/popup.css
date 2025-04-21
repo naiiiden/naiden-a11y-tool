@@ -1,3 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+:root {
+  --text-primary: #DEE4EA;
+  --background-primary: #101214;
+  --background-secondary: #22272B;
+  --background-tertiary: #2C333A;
+  --background-quaternary: #454F59;
+  --neutral500: #596773;
+  --button-state-effect: #596773;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text-primary: #121212;
+    --background-primary: #F7F8F9;
+    --background-secondary: #F1F2F4;
+    --background-tertiary: #DCDFE4;
+    --background-quaternary: #B3B9C4;
+    --neutral500: #8590A2;
+    --button-state-effect: #DCDFE4;
+  }
+  .icon {
+    filter: invert(1);
+  }
+}
+.external-link {
+  color: inherit;
+}
+.external-link img {
+  vertical-align: middle;
+}
+
 .naiden-a11y-tool-popup {
   min-width: 300px;
   min-height: 300px;
@@ -5,4 +37,8 @@
   place-content: center;
   padding: 0.5rem;
   text-align: center;
+  color: var(--text-primary);
+  background: var(--background-secondary);
+  font-family: "Ubuntu", sans-serif;
+  font-size: ".875rem";
 }/*# sourceMappingURL=popup.css.map */
