@@ -76,6 +76,15 @@ header {
   background: var(--background-secondary);
 }
 
+.controls-container {
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
 .run-button-audit-checkboxes-container {
   position: relative;
   display: flex;
