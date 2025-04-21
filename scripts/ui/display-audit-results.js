@@ -18,8 +18,7 @@ export function displayAuditResults(auditResults) {
     errorsIndicator.innerHTML = "";
 
     const globalToggleButton = document.createElement("button");
-    globalToggleButton.id = "toggle-all";
-    globalToggleButton.className = "toggle-all-button";
+    globalToggleButton.className = "toggle-all-btn";
     globalToggleButton.textContent = "Collapse All";
     errorsList.appendChild(globalToggleButton);
 

@@ -199,10 +199,40 @@ header {
 }
 
 #errors-list {
-  padding: 0.75rem;
+  padding: 0 0.75rem 0.75rem 0.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+}
+#errors-list button {
+  border: none;
+  color: inherit;
+  background: var(--background-quaternary);
+  border: 1px solid var(--neutral500);
+  padding: 0.25rem 0.375rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#errors-list button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+#errors-list button:not(:disabled, .custom-summary):hover, #errors-list button:not(:disabled, .custom-summary):active, #errors-list button:not(:disabled, .custom-summary):focus-visible {
+  background: var(--button-state-effect);
+  outline: 2px solid var(--text-primary);
+  outline-offset: 1px;
+  transition: 0.3s, outline 0s, outline-offset 0s;
+}
+#errors-list button.toggle-all-btn {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-left: auto;
 }
 #errors-list .custom-details {
   background: var(--background-secondary);
@@ -292,31 +322,6 @@ header {
 }
 #errors-list .custom-details ul > li:not(details li):not(:has(.element-information)) .element-fix {
   padding-top: 1.25rem;
-}
-#errors-list .custom-details ul > li:not(details li) button {
-  border: none;
-  color: inherit;
-  background: var(--background-quaternary);
-  border: 1px solid var(--neutral500);
-  padding: 0.25rem 0.375rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-family: inherit;
-  font-weight: 500;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-#errors-list .custom-details ul > li:not(details li) button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-#errors-list .custom-details ul > li:not(details li) button:not(:disabled):hover, #errors-list .custom-details ul > li:not(details li) button:not(:disabled):active, #errors-list .custom-details ul > li:not(details li) button:not(:disabled):focus-visible {
-  background: var(--button-state-effect);
-  outline: 2px solid var(--text-primary);
-  outline-offset: 1px;
-  transition: 0.3s, outline 0s, outline-offset 0s;
 }
 #errors-list .custom-details ul > li:not(details li) .error-pagination-controls {
   display: flex;
