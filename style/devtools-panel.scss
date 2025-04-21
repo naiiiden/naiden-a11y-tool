@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
-@import "./colors";
+@import "./abstracts/colors";
 
 @supports (interpolate-size: allow-keywords) {
     :root {
@@ -52,14 +52,14 @@ main {
 }
 
 // https://blog.jim-nielsen.com/2019/conditional-syntax-highlighting-in-dark-mode-with-css-imports/
-@import "./atelier-seaside.min.css";
-@import "./atelier-seaside-light.min.css" screen and (prefers-color-scheme: light);
+@import "./highlightjs-themes/atelier-seaside.min.css";
+@import "./highlightjs-themes/atelier-seaside-light.min.css" screen and (prefers-color-scheme: light);
 
-@import "./header";
-@import "./controls";
-@import "./indicators";
-@import "./errors-count";
-@import "./audit-results";
-@import "./footer";
-@import "./utilities";
-@import "./keyframes";
+@import "./layout/header";
+@import "./components/controls";
+@import "./components/indicators";
+@import "./layout/errors-count";
+@import "./layout/audit-results";
+@import "./layout/footer";
+@import "./abstracts/utilities";
+@import "./abstracts/keyframes";
