@@ -43,9 +43,11 @@ export function displayAuditResults(auditResults) {
 
       allExpanded = !allExpanded;
       globalToggleButton.textContent = allExpanded ? "Collapse All" : "Expand All";
-      setTimeout(() => (
-        checkOverflow()
-      ), 300);
+      requestAnimationFrame(() => {
+        setTimeout(() => (
+          checkOverflow()
+        ), 300);
+      });
     });
 
     const errorsByType = {};
@@ -264,9 +266,11 @@ export function displayAuditResults(auditResults) {
         summary.setAttribute("aria-expanded", isOpen);
         content.style.maxHeight = isOpen ? `fit-content` : "0";
         content.inert = isOpen ? false : true;
-        setTimeout(() => (
-          checkOverflow()
-        ), 200);
+        requestAnimationFrame(() => {
+          setTimeout(() => (
+            checkOverflow()
+          ), 300);
+        });
       });
     });
 }
