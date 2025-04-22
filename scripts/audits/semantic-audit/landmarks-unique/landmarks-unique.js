@@ -20,7 +20,7 @@ export async function hasUniqueLandmarks(auditResults) {
                     || element.getAttribute("title") 
                     || null;
 
-                const key = role|name || '';
+                const key = role + '|' + name;
 
                 if (seenLandmarks.has(key)) {
                     return true;
