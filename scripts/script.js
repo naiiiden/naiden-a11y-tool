@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       showLoading();
+      checkOverflow();
 
       for (const auditFunc of auditFuncs) {
         await auditFunc(auditResults)
