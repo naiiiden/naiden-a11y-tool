@@ -156,6 +156,10 @@ header {
   padding: 0.25rem;
 }
 
+#errors-indicator {
+  margin: auto;
+}
+
 #loading-indicator {
   display: none;
   width: 2rem;
