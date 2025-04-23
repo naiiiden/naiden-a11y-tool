@@ -33,6 +33,8 @@ main {
     background: var(--background-primary);
     border-top: 1px solid var(--background-quaternary);
     border-bottom: 1px solid var(--background-quaternary);
+    display: flex;
+    flex-direction: column;
 
     &.scrollbar-border-right {
         box-shadow: inset -1px 0 0 0 var(--background-quaternary);
