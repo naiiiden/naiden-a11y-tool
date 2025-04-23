@@ -2,7 +2,11 @@ export function displayErrorsCount(auditResults) {
   const errorsCountContainer = document.querySelector("#errors-count-container");
 
   errorsCountContainer.innerHTML = "";
-  errorsCountContainer.style.display = "grid";
+  if (auditResults.length === 0) {
+    errorsCountContainer.style.display = "none";
+  } else {
+    errorsCountContainer.style.display = "grid";
+  }
 
   const heading = document.createElement("h2");
   heading.textContent = "Found Errors";
