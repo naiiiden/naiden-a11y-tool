@@ -105,9 +105,13 @@ header {
   display: grid;
   place-content: center;
 }
+.run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button img {
+  transition: 0.3s;
+}
 .run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button img.open {
   display: block;
   transform: rotate(180deg);
+  transition: 0.3s;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container {
   border: 1px solid var(--neutral500);
