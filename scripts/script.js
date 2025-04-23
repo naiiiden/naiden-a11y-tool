@@ -1,8 +1,9 @@
 import { displayErrorsCount } from "./ui/display-errors-count.js";
-import { displayAuditResults, emptyErrorMessage } from "./ui/display-audit-results.js";
+import { displayAuditResults } from "./ui/display-audit-results.js";
 import { showLoading, hideLoading } from "./ui/display-loading-indicator.js";
 import { attachErrorSectionAnchorHighlights, uiControls } from "./ui/controls.js";
 import { checkOverflow } from "./ui/main-has-overflow.js";
+import { statusMessage } from "./ui/status-message.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   let auditResults = [];
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       displayAuditResults(auditResults);
       
       if (auditResults.length === 0) {
-        emptyErrorMessage("No errors found.");
+        statusMessage("No errors found.");
       }
       
       displayErrorsCount(auditResults);
