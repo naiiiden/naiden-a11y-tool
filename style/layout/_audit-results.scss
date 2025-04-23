@@ -4,37 +4,9 @@
     flex-direction: column;
     gap: .75rem;
 
-    button {
-        border: none;
-        color: inherit;
-        background: var(--background-secondary);
-        border: 1px solid var(--neutral500);
-        padding: .25rem .375rem;
-        display: inline-flex;
-        align-items: center;
-        gap: .375rem;
-        font-family: inherit;
-        font-weight: 500;
-        border-radius: 3px;
-        cursor: pointer;
-        transition: .3s;
-
-        &:disabled {
-            opacity: .5;
-            cursor: not-allowed;
-        }
-
-        &:not(:disabled, .custom-summary):hover, &:not(:disabled, .custom-summary):active, &:not(:disabled, .custom-summary):focus-visible {
-            background: var(--button-state-effect);
-            outline: 2px solid var(--text-primary);
-            outline-offset: 1px;
-            transition: .3s, outline 0s, outline-offset 0s;
-        }
-
-        &.toggle-all-btn {
-            width: fit-content;
-            margin-left: auto;
-        }
+    .toggle-all-btn {
+        width: fit-content;
+        margin-left: auto;
     }
 
     .custom-details {
@@ -59,6 +31,16 @@
                 background: var(--background-secondary);
                 border: none;
                 font-family: inherit;
+            }
+
+            &:hover, &:active {
+                outline: none;
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--text-primary);
+                outline-offset: 1px;
+                transition: .3s, outline 0s, outline-offset 0s;        
             }
         }
 
