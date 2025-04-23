@@ -8,6 +8,8 @@ import { statusMessage } from "./ui/status-message.js";
 document.addEventListener("DOMContentLoaded", () => {
   let auditResults = [];
 
+  statusMessage("Found errors will appear here.");
+
   async function runAudit(auditFuncs) {
     auditResults = [];
     
