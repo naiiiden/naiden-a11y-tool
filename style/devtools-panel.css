@@ -159,6 +159,9 @@ header {
 #errors-indicator {
   margin: auto;
 }
+#errors-indicator:empty {
+  display: none;
+}
 
 #loading-indicator {
   display: none;
@@ -181,10 +184,6 @@ header {
     transform: rotate(360deg);
   }
 }
-#errors-indicator:empty {
-  display: none;
-}
-
 #errors-count-container {
   margin: 0.75rem;
   display: none;

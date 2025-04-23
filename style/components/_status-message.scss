@@ -1,3 +1,7 @@
 #errors-indicator {
     margin: auto;
+
+    &:empty {
+        display: none;
+    }
 }
