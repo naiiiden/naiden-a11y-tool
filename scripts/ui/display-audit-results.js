@@ -26,10 +26,12 @@ export function displayAuditResults(auditResults) {
   
           if (allExpanded) {
             container.classList.remove("open");
+            content.inert = true;
             summary.setAttribute("aria-expanded", "false");
             content.style.maxHeight = "0";
           } else {
             container.classList.add("open");
+            content.inert = false;
             summary.setAttribute("aria-expanded", "true");
             content.style.maxHeight = `fit-content`;
           }
