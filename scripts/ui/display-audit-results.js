@@ -18,37 +18,39 @@ export function displayAuditResults(auditResults) {
     errorsList.innerHTML = '';
     errorsIndicator.innerHTML = "";
 
-    const globalToggleButton = document.createElement("button");
-    globalToggleButton.className = "toggle-all-btn";
-    globalToggleButton.textContent = "Collapse All";
-    errorsList.appendChild(globalToggleButton);
-
-    let allExpanded = true;
-
-    globalToggleButton.addEventListener("click", () => {
-      document.querySelectorAll(".custom-summary").forEach((summary) => {
-        const container = summary.parentElement;
-        const content = container.querySelector(".custom-content");
-
-        if (allExpanded) {
-          container.classList.remove("open");
-          summary.setAttribute("aria-expanded", "false");
-          content.style.maxHeight = "0";
-        } else {
-          container.classList.add("open");
-          summary.setAttribute("aria-expanded", "true");
-          content.style.maxHeight = `fit-content`;
-        }
+    if (auditResults.length > 0) {
+      const globalToggleButton = document.createElement("button");
+      globalToggleButton.className = "toggle-all-btn";
+      globalToggleButton.textContent = "Collapse All";
+      errorsList.appendChild(globalToggleButton);
+  
+      let allExpanded = true;
+  
+      globalToggleButton.addEventListener("click", () => {
+        document.querySelectorAll(".custom-summary").forEach((summary) => {
+          const container = summary.parentElement;
+          const content = container.querySelector(".custom-content");
+  
+          if (allExpanded) {
+            container.classList.remove("open");
+            summary.setAttribute("aria-expanded", "false");
+            content.style.maxHeight = "0";
+          } else {
+            container.classList.add("open");
+            summary.setAttribute("aria-expanded", "true");
+            content.style.maxHeight = `fit-content`;
+          }
+        });
+  
+        allExpanded = !allExpanded;
+        globalToggleButton.textContent = allExpanded ? "Collapse All" : "Expand All";
+        requestAnimationFrame(() => {
+          setTimeout(() => (
+            checkOverflow()
+          ), 300);
+        });
       });
-
-      allExpanded = !allExpanded;
-      globalToggleButton.textContent = allExpanded ? "Collapse All" : "Expand All";
-      requestAnimationFrame(() => {
-        setTimeout(() => (
-          checkOverflow()
-        ), 300);
-      });
-    });
+    }
 
     const errorsByType = {};
   
