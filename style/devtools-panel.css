@@ -223,7 +223,7 @@ button:not(:disabled):hover, button:not(:disabled):active, button:not(:disabled)
   color: inherit;
 }
 #errors-count-container h2 {
-  font-size: 1.5rem;
+  font-size: 1.375rem;
 }
 #errors-count-container div {
   display: grid;
