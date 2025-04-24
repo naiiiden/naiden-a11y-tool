@@ -1,4 +1,8 @@
 header {
     padding: .75rem;
     background: var(--background-secondary);
+
+    h1 {
+        display: flex;
+    }
 }
