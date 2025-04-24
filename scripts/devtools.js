@@ -1,5 +1,5 @@
 chrome.devtools.panels.create(
-  "Accessipal",
+  "naiden's a11y audit tool",
   "icon.png",
   "devtools.html",
 );

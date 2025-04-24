@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Accessipal",
-  "description": "Accessipal - web accessibility audit tool",
+  "name": "Naiden's a11y audit tool",
+  "description": "Naiden's a11y audit tool",
   "version": "1.1",
   "permissions": [
     "scripting"
