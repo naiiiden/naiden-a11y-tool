@@ -13,7 +13,7 @@ export async function hasEmptyHeadings(auditResults) {
                     : null;
                 const title = heading.hasAttribute('title') ? heading.getAttribute('title').trim() : null;
                 
-                return heading.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+                return heading.textContent.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
             })
             .map(heading => ({
                 outerHTML: heading.outerHTML,
