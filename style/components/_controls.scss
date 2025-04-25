@@ -66,12 +66,12 @@
             display: grid;
         }
 
-        input[type="button"] {
+        button {
             margin-top: .5rem;
-            background: rgba(223, 223, 223, 1);
-            border: 1px solid #adadad;
             border-radius: .25rem;
             padding: .25rem;
+            display: flex;
+            justify-content: center;
         }
     }
 }

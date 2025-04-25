@@ -149,12 +149,12 @@ header h1 {
 .run-button-audit-checkboxes-container .audit-checkboxes-container.open {
   display: grid;
 }
-.run-button-audit-checkboxes-container .audit-checkboxes-container input[type=button] {
+.run-button-audit-checkboxes-container .audit-checkboxes-container button {
   margin-top: 0.5rem;
-  background: rgb(223, 223, 223);
-  border: 1px solid #adadad;
   border-radius: 0.25rem;
   padding: 0.25rem;
+  display: flex;
+  justify-content: center;
 }
 
 #errors-indicator {
