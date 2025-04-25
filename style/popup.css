@@ -7,6 +7,7 @@
   --background-quaternary: #454F59;
   --neutral500: #596773;
   --button-state-effect: #596773;
+  --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -18,6 +19,7 @@
     --background-quaternary: #B3B9C4;
     --neutral500: #8590A2;
     --button-state-effect: #DCDFE4;
+    --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   }
   .icon {
     filter: invert(1);
