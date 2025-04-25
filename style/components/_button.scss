@@ -3,6 +3,7 @@ button {
     color: inherit;
     background: var(--background-secondary);
     border: 1px solid var(--neutral500);
+    box-shadow: var(--box-shadow);
     padding: .25rem .375rem;
     display: inline-flex;
     align-items: center;

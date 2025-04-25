@@ -25,6 +25,7 @@
             font-size: 1.25rem;
             cursor: pointer;
             width: 100%;
+            box-shadow: none;
             
             &:is(button) {
                 color: var(--text-primary);
@@ -148,6 +149,7 @@
             border-radius: 3px;
             background: var(--background-secondary);
             border: 1px solid var(--neutral500);
+            box-shadow: var(--box-shadow);
     
             @supports (transition-behavior: allow-discrete) {
                 &::details-content {
