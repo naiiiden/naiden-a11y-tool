@@ -50,15 +50,14 @@
         z-index: 99;
 
         p {
-            border-bottom: 1px solid #adadad;
+            border-bottom: 1px solid var(--neutral500);
             padding-bottom: .5rem;
             margin-bottom: .5rem;
         }
 
         label {
             display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-end;
+            justify-content: space-between;
             gap: .25rem;
         }
 

@@ -136,14 +136,13 @@ header h1 {
   z-index: 99;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container p {
-  border-bottom: 1px solid #adadad;
+  border-bottom: 1px solid var(--neutral500);
   padding-bottom: 0.5rem;
   margin-bottom: 0.5rem;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container label {
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 0.25rem;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container.open {
