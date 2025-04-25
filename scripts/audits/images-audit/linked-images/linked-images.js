@@ -7,7 +7,7 @@ export async function hasLinkedImages(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll('a img'))
             .map((img) => {
-                const parentText = img.closest('a').innerText.trim();
+                const parentText = img.closest('a').textContent.trim();
                 return { 
                     alt: img.getAttribute('alt'), 
                     hasText: parentText.length > 0, 

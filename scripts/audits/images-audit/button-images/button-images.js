@@ -7,7 +7,7 @@ export async function hasButtonImages(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll('button img'))
             .map((img) => {
-                const parentText = img.closest('button').innerText.trim();
+                const parentText = img.closest('button').textContent.trim();
                 return { 
                     alt: img.getAttribute('alt'), 
                     hasText: parentText.length > 0,
