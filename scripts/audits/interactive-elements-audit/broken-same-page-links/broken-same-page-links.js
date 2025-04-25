@@ -7,7 +7,7 @@ export async function hasBrokenSamePageLinks(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll('a[href^="#"]'))
             .filter(link => {
-                const linkText = link.innerText.toLowerCase();
+                const linkText = link.textContent.toLowerCase();
                 return !(linkText.includes('jump') || linkText.includes('skip'));
             })
             .map(link => {

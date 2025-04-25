@@ -15,7 +15,7 @@ export async function hasEmptyButtons(auditResults) {
                 const tabIndex = button.hasAttribute('tabindex') ? button.getAttribute('tabindex').trim() === "-1" : null;
                 const rolePresentationOrNone = button.hasAttribute('role') ? (button.getAttribute('role').trim() === 'presentation' || button.getAttribute('role').trim() === 'none') : null;
 
-                return (button.innerText.trim() === "" || tabIndex || rolePresentationOrNone) && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+                return (button.textContent.trim() === "" || tabIndex || rolePresentationOrNone) && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
             })
             .map(button => ({
                 outerHTML: button.outerHTML,

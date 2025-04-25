@@ -13,7 +13,7 @@ export async function hasEmptyLinks(auditResults) {
                 : null;
                 const title = link.hasAttribute('title') ? link.getAttribute('title').trim() : null;
         
-                return link.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+                return link.textContent.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
             })
             .map(link => ({
                 outerHTML: link.outerHTML,

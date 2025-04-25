@@ -6,7 +6,7 @@ export async function hasBrokenSkipLinks(auditResults) {
     const brokenSkipLinks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll('a[href^="#"]')).map(link => {
-            const linkText = link.innerText.toLowerCase();
+            const linkText = link.textContent.toLowerCase();
             const targetId = link.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
             const isHidden = window.getComputedStyle(link).display === "none" || window.getComputedStyle(link).visibility === "hidden";
