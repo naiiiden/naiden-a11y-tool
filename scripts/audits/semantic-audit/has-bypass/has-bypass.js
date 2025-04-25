@@ -7,7 +7,7 @@ export async function hasBypass(auditResults) {
     const getUniqueSelector = ${getUniqueSelector.toString()};
     const skipLinks = Array.from(document.querySelectorAll('a[href^="#"]'))
       .filter(link => {
-        const linkText = link.innerText.toLowerCase();
+        const linkText = link.textContent.toLowerCase();
         return linkText.includes('skip') || linkText.includes('jump');
       })
       .map(link => ({

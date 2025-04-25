@@ -6,7 +6,7 @@ export async function hasPossibleHeadings(auditResults) {
     const possibleHeadings = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll('p'))
-            .filter(p => p.innerText.trim().length < 50)
+            .filter(p => p.textContent.trim().length < 50)
                 .filter(p => {
                     const style = window.getComputedStyle(p);
                     const fontSize = parseFloat(style.fontSize);

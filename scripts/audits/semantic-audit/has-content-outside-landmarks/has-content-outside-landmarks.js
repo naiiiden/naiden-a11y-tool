@@ -8,7 +8,7 @@ export async function hasContentOutsideLandmarks(auditResults) {
         return Array.from(document.querySelectorAll('body > *:not(:is(header, nav, main, footer, section, aside, form, [role="banner"], [role="navigation"], [role="main"], [role="contentinfo"], [role="complementary"], [role="search"], :is([role="region"], [role="form"]):is([aria-labelledby]:not([aria-labelledby=""]), [aria-label]:not([aria-label=""]), [title]:not([title=""])), style, script))'))
             .filter(el => {
                 if (el.matches('a[href^="#"]')) {
-                    const text = el.innerText.toLowerCase();
+                    const text = el.textContent.toLowerCase();
                     return !(text.includes('skip') || text.includes('jump'));
                 }
                 return true;
