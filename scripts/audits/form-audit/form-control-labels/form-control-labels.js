@@ -9,7 +9,7 @@ export async function hasFormControlLabels(auditResults) {
             .filter(element => {
                 const labelCount = document.querySelectorAll('label[for="' + element.id + '"]').length;
                 const wrappingLabel = element.closest('label');
-                const hasWrappingLabelWithText = wrappingLabel && wrappingLabel.innerText.trim().length > 0;
+                const hasWrappingLabelWithText = wrappingLabel && wrappingLabel.textContent.trim().length > 0;
                 const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = element.hasAttribute('aria-labelledby') 
                     ? document.getElementById(element.getAttribute('aria-labelledby')) 

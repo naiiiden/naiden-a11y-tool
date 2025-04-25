@@ -7,7 +7,7 @@ export async function hasEmptyLabels(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("label"))
             .filter(label => {
-                return label.innerText.trim() === "";
+                return label.textContent.trim() === "";
             })
             .map(label => ({ 
                 outerHTML: label.outerHTML, 
