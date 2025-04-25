@@ -16,7 +16,7 @@ export async function hasEmptyOrMissingSummaries(auditResults) {
                         : null;
                     const title = summary.hasAttribute('title') ? summary.getAttribute('title').trim() : null;
             
-                    return summary.innerText.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+                    return summary.textContent.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
                 }
         
                 return !summary;

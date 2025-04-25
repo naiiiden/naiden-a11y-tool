@@ -7,7 +7,7 @@ export async function hasEmptyTableHeadings(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll("th, [role='rowheader'], [role='columnheader']"))
             .filter(tableHeading => {
-                return tableHeading.innerText.trim() === "";
+                return tableHeading.textContent.trim() === "";
             })
             .map(tableHeading => ({
                 outerHTML: tableHeading.outerHTML,

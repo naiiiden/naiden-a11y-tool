@@ -7,7 +7,7 @@ export async function hasEmptyHeadingsWithImages(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         return Array.from(document.querySelectorAll(':is(h1, h2, h3, h4, h5, h6):has(img)'))
             .map(heading => {
-                const textContent = heading.innerText.trim();
+                const textContent = heading.textContent.trim();
                 const img = heading.querySelector('img');
                 const imgAlt = img ? img.getAttribute('alt') : null;
                 return {
