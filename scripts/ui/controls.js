@@ -13,7 +13,7 @@ import { colourAudit } from "../audits/colour-audit/colour-audit.js";
 
 export function uiControls(runAudit) {
     const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
-    const selectAllBtn = document.querySelector("input[type='button'][id='select-all']");
+    const selectAllBtn = document.querySelector("button[type='submit'][id='select-all']");
     const runAuditBtn = document.querySelector("#run-audit-btn");
     const openAuditCheckboxesDropdownBtn = document.querySelector("#open-audit-checkboxes-dropdown-button");
     const auditFuncsArray = [];
@@ -51,7 +51,7 @@ export function uiControls(runAudit) {
     
     function updateSelectAllButton() {
         const allCheckboxesChecked = Array.from(auditCheckboxes).every(checkbox => checkbox.checked);
-        selectAllBtn.value = allCheckboxesChecked ? "deselect all" : "select all";  
+        selectAllBtn.textContent = allCheckboxesChecked ? "Deselect All" : "Select All";  
     }
     
     function updateRunButton() {
