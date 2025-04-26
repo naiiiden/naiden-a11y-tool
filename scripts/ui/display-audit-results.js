@@ -264,6 +264,12 @@ export function displayAuditResults(auditResults) {
         content.style.maxHeight = isOpen ? `fit-content` : "0";
         content.inert = isOpen ? false : true;
 
+        requestAnimationFrame(() => {
+          setTimeout(() => (
+            checkOverflow()
+          ), 300);
+        });
+
         const customDetails = document.querySelectorAll(".custom-details");
         const allAreOpen = Array.from(customDetails).every(detail =>
           detail.classList.contains("open")
@@ -279,12 +285,6 @@ export function displayAuditResults(auditResults) {
           globalToggleButton.textContent = "Expand All";
           allExpanded = false;
         }   
-
-        requestAnimationFrame(() => {
-          setTimeout(() => (
-            checkOverflow()
-          ), 300);
-        });
       });
     });
 }
