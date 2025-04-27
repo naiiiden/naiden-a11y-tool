@@ -5,7 +5,7 @@ import { hasFormControlLabels } from "./form-control-labels/form-control-labels.
 import { hasVisibleFormControlLabels } from "./form-control-visible-labels/form-control-visible-labels.js";
 import { hasAutocompleteValidValues } from "./has-autocomplete-valid-values/has-autocomplete-valid-values.js";
 import { hasImageInputs } from "./image-inputs/image-inputs.js";
-import { relatedFormControlsMissingFieldset } from "./radios-checkboxes-without-fieldset/radios-checkboxes-without-fieldset.js";
+import { relatedFormControlsMissingFieldset } from "./related-form-controls-without-fieldset/related-form-controls-without-fieldset.js.js";
 
 export async function formAudit(auditResults) {
     await hasEmptyLabels(auditResults);
