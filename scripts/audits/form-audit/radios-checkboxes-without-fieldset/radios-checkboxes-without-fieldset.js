@@ -2,8 +2,8 @@ import { formErrors } from "../../../errors/forms.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
-export async function hasRadiosAndCheckboxesWithoutFieldset(auditResults) {
-    const radiosAndCheckboxesWithoutFieldset = await inspectedWindowEval(`
+export async function relatedFormControlsMissingFieldset(auditResults) {
+    const relatedFormControlsMissingFieldset = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const elements = Array.from(document.querySelectorAll('input[type="radio"]:not(fieldset input), input[type="checkbox"]:not(fieldset input)'));
         const groupedByName = elements.reduce((groups, input) => {
@@ -21,7 +21,7 @@ export async function hasRadiosAndCheckboxesWithoutFieldset(auditResults) {
             })));
     `)
     
-    radiosAndCheckboxesWithoutFieldset.forEach((group) => {
+    relatedFormControlsMissingFieldset.forEach((group) => {
         group.forEach(input => {
             auditResults.push({
                 ...formErrors[4],

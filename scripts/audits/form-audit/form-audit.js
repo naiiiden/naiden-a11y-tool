@@ -5,13 +5,13 @@ import { hasFormControlLabels } from "./form-control-labels/form-control-labels.
 import { hasVisibleFormControlLabels } from "./form-control-visible-labels/form-control-visible-labels.js";
 import { hasAutocompleteValidValues } from "./has-autocomplete-valid-values/has-autocomplete-valid-values.js";
 import { hasImageInputs } from "./image-inputs/image-inputs.js";
-import { hasRadiosAndCheckboxesWithoutFieldset } from "./radios-checkboxes-without-fieldset/radios-checkboxes-without-fieldset.js";
+import { relatedFormControlsMissingFieldset } from "./radios-checkboxes-without-fieldset/radios-checkboxes-without-fieldset.js";
 
 export async function formAudit(auditResults) {
     await hasEmptyLabels(auditResults);
     await hasFormControlLabels(auditResults);
     await hasFieldsetsMissingLegend(auditResults);
-    await hasRadiosAndCheckboxesWithoutFieldset(auditResults);
+    await relatedFormControlsMissingFieldset(auditResults);
     await hasEmptySubmitButonOrResetInputValues(auditResults);    
     await hasImageInputs(auditResults);
     await hasVisibleFormControlLabels(auditResults);
