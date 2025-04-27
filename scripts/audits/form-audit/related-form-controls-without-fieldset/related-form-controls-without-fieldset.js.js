@@ -5,7 +5,7 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 export async function relatedFormControlsMissingFieldset(auditResults) {
     const relatedFormControlsMissingFieldset = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        const elements = Array.from(document.querySelectorAll('input[type="radio"]:not(fieldset input), input[type="checkbox"]:not(fieldset input)'));
+        const elements = Array.from(document.querySelectorAll('input[type="radio"]:not(fieldset input, [name=""], :not([name])), input[type="checkbox"]:not(fieldset input, [name=""], :not([name]))'));
         const groupedByName = elements.reduce((groups, input) => {
             if (!groups[input.name]) 
                 groups[input.name] = [];
