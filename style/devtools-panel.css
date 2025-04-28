@@ -95,8 +95,20 @@ header h1 {
   gap: 0.5rem;
 }
 
-input[type=checkbox] {
+label:has(input[type=checkbox]) {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+label:has(input[type=checkbox]) input[type=checkbox] {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 3px;
   accent-color: var(--text-primary);
+}
+label:has(input[type=checkbox]) input[type=checkbox]:not(:disabled):hover, label:has(input[type=checkbox]) input[type=checkbox]:not(:disabled):active, label:has(input[type=checkbox]) input[type=checkbox]:not(:disabled):focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 1px;
 }
 
 .run-button-audit-checkboxes-container {
@@ -146,9 +158,10 @@ input[type=checkbox] {
   margin-bottom: 0.5rem;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container label {
-  display: flex;
   justify-content: space-between;
-  gap: 0.25rem;
+}
+.run-button-audit-checkboxes-container .audit-checkboxes-container label + label {
+  margin-top: 0.25rem;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container.open {
   display: grid;

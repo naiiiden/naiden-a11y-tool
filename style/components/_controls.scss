@@ -7,8 +7,22 @@
     gap: .5rem;
 }
 
-input[type="checkbox"] {
-    accent-color: var(--text-primary);
+label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+
+    input[type="checkbox"] {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 3px;
+        accent-color: var(--text-primary);
+
+        &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus-visible {
+            outline: 2px solid var(--text-primary);
+            outline-offset: 1px;
+        }
+    }
 }
 
 .run-button-audit-checkboxes-container {
@@ -61,9 +75,11 @@ input[type="checkbox"] {
         }
 
         label {
-            display: flex;
             justify-content: space-between;
-            gap: .25rem;
+
+            & + label {
+                margin-top: .25rem;
+            }
         }
 
         &.open {
