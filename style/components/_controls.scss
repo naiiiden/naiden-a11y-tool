@@ -9,8 +9,9 @@
 
 .run-button-audit-checkboxes-container {
     position: relative;
-    display: flex;
-    width: fit-content;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    min-width: 11.5rem;
 
     #run-audit-btn {
         order: -1;
@@ -44,10 +45,10 @@
         border-radius: .25rem;
         backdrop-filter: blur(4px);
         padding: .5rem;
-        min-width: 12rem;
+        min-width: 11.5rem;
         display: none;
         position: absolute;
-        left: 100%;
+        inset: 100% 0% auto 0%;
         z-index: 99;
         transform: scaleY(0);
         transform-origin: top center;
