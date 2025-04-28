@@ -211,6 +211,7 @@ button {
   gap: 0.375rem;
   font-family: inherit;
   font-weight: 500;
+  font-size: inherit;
   border-radius: 3px;
   cursor: pointer;
   transition: 0.3s;
