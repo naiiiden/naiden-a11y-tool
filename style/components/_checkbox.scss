@@ -9,10 +9,14 @@ label:has(input[type="checkbox"]) {
         appearance: none;
         border: 1px solid var(--text-primary);
         border-radius: 3px;
+        background: none;
+        background-image: none;
+        transition: outline 0s, background .1s, background-image .1s;
 
         &:checked {
             background: var(--text-primary);
             background-image: var(--checkmark);
+            transition: outline 0s, background .1s, background-image .1s;
         }
 
         &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus-visible {
