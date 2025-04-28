@@ -107,6 +107,7 @@ export function uiControls(runAudit) {
 
     runAuditBtn.addEventListener("click", async () => {
         await runAudit(auditFuncsArray);
+        runAuditBtn.textContent = "Rerun Audit";
     });    
     
     return auditFuncsArray;
