@@ -221,8 +221,8 @@ label:has(input[type=checkbox]) {
   gap: 0.25rem;
 }
 label:has(input[type=checkbox]) input[type=checkbox] {
-  width: 1rem;
-  height: 1rem;
+  width: 0.875rem;
+  height: 0.875rem;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
