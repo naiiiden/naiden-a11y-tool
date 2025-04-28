@@ -7,6 +7,7 @@
     --neutral500: #596773;
     --button-state-effect: #596773;
     --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    --checkmark: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="%23121212" viewBox="0 0 24 24"%3E%3Cpath d="M20.285 2.285l-11.653 11.652-4.285-4.285-2.147 2.146 6.432 6.432 13.8-13.8z"/%3E%3C/svg%3E');
 }
 
 @media (prefers-color-scheme: light) {
@@ -19,6 +20,7 @@
         --neutral500: #8590A2;
         --button-state-effect: #DCDFE4;
         --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        --checkmark: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="%23DEE4EA" viewBox="0 0 24 24"%3E%3Cpath d="M20.285 2.285l-11.653 11.652-4.285-4.285-2.147 2.146 6.432 6.432 13.8-13.8z"/%3E%3C/svg%3E');
     }
 
     .icon {

@@ -6,7 +6,14 @@ label:has(input[type="checkbox"]) {
     input[type="checkbox"] {
         width: 1rem;
         height: 1rem;
-        accent-color: var(--text-primary);
+        appearance: none;
+        border: 1px solid var(--text-primary);
+        border-radius: 3px;
+
+        &:checked {
+            background: var(--text-primary);
+            background-image: var(--checkmark);
+        }
 
         &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus-visible {
             outline: 2px solid var(--text-primary);
