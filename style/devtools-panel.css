@@ -128,7 +128,8 @@ header h1 {
   border: 1px solid var(--neutral500);
   background: var(--background-secondary);
   box-shadow: var(--box-shadow);
-  border-radius: 0.25rem;
+  border-radius: 0 0 3px 3px;
+  border-top: none;
   -webkit-backdrop-filter: blur(4px);
           backdrop-filter: blur(4px);
   padding: 0.5rem;

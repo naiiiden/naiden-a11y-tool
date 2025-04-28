@@ -42,7 +42,8 @@
         border: 1px solid var(--neutral500);
         background: var(--background-secondary);
         box-shadow: var(--box-shadow);
-        border-radius: .25rem;
+        border-radius: 0 0 3px 3px;
+        border-top: none;
         backdrop-filter: blur(4px);
         padding: .5rem;
         min-width: 11.5rem;
