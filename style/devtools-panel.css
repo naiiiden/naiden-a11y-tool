@@ -230,12 +230,12 @@ label:has(input[type=checkbox]) input[type=checkbox] {
   border-radius: 3px;
   background: none;
   background-image: none;
-  transition: outline 0s, background 0.1s, background-image 0.1s;
+  transition: outline 0s, background 0.0625s, background-image 0.0625s;
 }
 label:has(input[type=checkbox]) input[type=checkbox]:checked {
   background: var(--text-primary);
   background-image: var(--checkmark);
-  transition: outline 0s, background 0.1s, background-image 0.1s;
+  transition: outline 0s, background 0.0625s, background-image 0.0625s;
 }
 label:has(input[type=checkbox]) input[type=checkbox]:not(:disabled):hover, label:has(input[type=checkbox]) input[type=checkbox]:not(:disabled):active, label:has(input[type=checkbox]) input[type=checkbox]:not(:disabled):focus-visible {
   outline: 2px solid var(--text-primary);
