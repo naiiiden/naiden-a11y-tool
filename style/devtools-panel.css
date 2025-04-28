@@ -137,6 +137,9 @@ header h1 {
   position: absolute;
   left: 100%;
   z-index: 99;
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 0.3s, display 0.3s allow-discrete;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container p {
   border-bottom: 1px solid var(--neutral500);
@@ -150,12 +153,19 @@ header h1 {
   margin-top: 0.25rem;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container.open {
-  display: grid;
+  display: block;
+  transform: scaleY(1);
+}
+@starting-style {
+  .run-button-audit-checkboxes-container .audit-checkboxes-container.open {
+    transform: scaleY(0);
+  }
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container button {
   margin-top: 0.5rem;
   border-radius: 0.25rem;
   padding: 0.25rem;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
