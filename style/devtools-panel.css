@@ -110,8 +110,6 @@ header h1 {
 .run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button {
   border-radius: 0 3px 3px 0;
   border-left: 0px;
-  display: grid;
-  place-content: center;
 }
 .run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button img {
   transition: 0.3s;
@@ -132,7 +130,6 @@ header h1 {
   display: none;
   position: absolute;
   inset: 100% 0% auto 0%;
-  z-index: 99;
   transform: scaleY(0);
   transform-origin: top center;
   transition: transform 0.3s, display 0.3s allow-discrete;
@@ -151,7 +148,7 @@ header h1 {
   }
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container button {
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   display: flex;
   justify-content: center;
 }
