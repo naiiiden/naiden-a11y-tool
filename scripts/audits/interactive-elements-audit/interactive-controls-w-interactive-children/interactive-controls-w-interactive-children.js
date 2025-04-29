@@ -25,13 +25,7 @@ export async function hasInteractiveControlsWithInteractiveControlsAsChildren(au
                                                                                                                 area[href]:is(map[name]:not([name='']) area
                                                                                                             )):not([tabindex='-1'])
                                                                                                         )\`))
-            .filter(element => {
-                if (!isElementVisible(element)) {
-                    return false;
-                } else {
-                    return element; 
-                }
-            })
+            .filter(element => isElementVisible(element))
             .map(element => {
                 return {
                     outerHTML: element.outerHTML,
