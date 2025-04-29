@@ -1,10 +1,13 @@
 import { cssErrors } from "../../../errors/css.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasUnadjustableTextProperties(auditResults) {
     const hasUnadjustableTextProperties = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+        
         const propertiesToCheck = ['line-height', 'letter-spacing', 'word-spacing', 'font-size'];
         const importantRegex = (property) => new RegExp(\`\\\\b\${property}\\\\s*:\\\\s*[^;]+!important\`, 'i');
 
@@ -30,6 +33,7 @@ export async function hasUnadjustableTextProperties(auditResults) {
         }
 
         return Array.from(document.querySelectorAll('*'))
+            .filter(link => isElementVisible(link))
             .filter(element => element.textContent.trim().length > 0)
             .filter(element => {
                 const style = element.getAttribute('style');
