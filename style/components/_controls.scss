@@ -55,12 +55,6 @@
         transform-origin: top center;
         transition: transform .3s, display .3s allow-discrete;
 
-        p {
-            border-bottom: 1px solid var(--neutral500);
-            padding-bottom: .5rem;
-            margin-bottom: .5rem;
-        }
-
         label {
             justify-content: space-between;
 
