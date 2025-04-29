@@ -1,13 +1,19 @@
 import { cssErrors } from "../../../errors/css.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasVerySmallText(auditResults) {
     const hasVerySmallText = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
 
         return Array.from(document.querySelectorAll('*'))
             .filter(element => {
+                if (!isElementVisible(element)) {
+                    return false;
+                }
+
                 const computedStyle = window.getComputedStyle(element);
                 const fontSize = parseFloat(computedStyle.fontSize);
                 return fontSize > 0 && fontSize <= 10 && element.textContent.trim().length > 0;
