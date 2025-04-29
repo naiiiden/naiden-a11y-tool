@@ -13,7 +13,7 @@ import { colourAudit } from "../audits/colour-audit/colour-audit.js";
 import { inspectedWindowEval } from "../utils/inspected-window-eval.js";
 
 export function uiControls(runAudit) {
-    const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox'");
+    const auditCheckboxes = document.querySelectorAll("input[type='checkbox'][id$='checkbox']");
     const selectAllBtn = document.querySelector("button[type='submit'][id='select-all']");
     const runAuditBtn = document.querySelector("#run-audit-btn");
     const openAuditCheckboxesDropdownBtn = document.querySelector("#open-audit-checkboxes-dropdown-button");
