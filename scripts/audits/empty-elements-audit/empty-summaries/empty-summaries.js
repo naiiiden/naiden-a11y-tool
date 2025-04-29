@@ -1,12 +1,18 @@
 import { emptyElementsErrors } from "../../../errors/empty-elements.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasEmptyOrMissingSummaries(auditResults) {
     const emptyOrMissingSummaries = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+
         return Array.from(document.querySelectorAll("details"))
             .filter(details => {
+                if (!isElementVisible(details)) {
+                    return false;
+                }
                 const summary = details.querySelector("summary");
         
                 if (summary) {
