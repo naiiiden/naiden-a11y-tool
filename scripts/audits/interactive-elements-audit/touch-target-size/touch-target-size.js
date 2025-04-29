@@ -1,17 +1,19 @@
 import { interactiveElementsErrors } from "../../../errors/interactive-elements.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function touchTargetSize(auditResults) {
     const touchTargetSize = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
         const MIN_TOUCH_SIZE = 24;
         
         const targets = Array.from(document.querySelectorAll(\`
             a[href],  
             :is([role="button"], [role="link"], [role="checkbox"], [role="radio"], [role="tab"], [role="menuitem"])[tabindex]:not([tabindex^='-'], [tabindex='']), 
             :is(input:not([type='hidden']), textarea, select, button):not(:disabled)
-        \`));
+        \`)).filter(el => isElementVisible(el));
         
         const results = [];
         
