@@ -106,13 +106,10 @@ header h1 {
 .run-button-audit-checkboxes-container #run-audit-btn {
   order: -1;
   border-radius: 3px 0 0 3px;
-  height: 1.75rem;
 }
 .run-button-audit-checkboxes-container #open-audit-checkboxes-dropdown-button {
   border-radius: 0 3px 3px 0;
   border-left: 0px;
-  height: 1.75rem;
-  padding: 0;
   display: grid;
   place-content: center;
 }
@@ -130,8 +127,6 @@ header h1 {
   box-shadow: var(--box-shadow);
   border-radius: 0 0 3px 3px;
   border-top: none;
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
   padding: 0.5rem;
   min-width: 11.5rem;
   display: none;
@@ -145,11 +140,9 @@ header h1 {
 .run-button-audit-checkboxes-container .audit-checkboxes-container label {
   justify-content: space-between;
 }
-.run-button-audit-checkboxes-container .audit-checkboxes-container label + label {
-  margin-top: 0.25rem;
-}
 .run-button-audit-checkboxes-container .audit-checkboxes-container.open {
-  display: block;
+  display: grid;
+  gap: 0.25rem;
   transform: scaleY(1);
 }
 @starting-style {
@@ -159,9 +152,6 @@ header h1 {
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container button {
   margin-top: 0.5rem;
-  border-radius: 0.25rem;
-  padding: 0.25rem;
-  width: 100%;
   display: flex;
   justify-content: center;
 }

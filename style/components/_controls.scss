@@ -16,14 +16,11 @@
     #run-audit-btn {
         order: -1;
         border-radius: 3px 0 0 3px;
-        height: 1.75rem;
     }
 
     #open-audit-checkboxes-dropdown-button {
         border-radius: 0 3px 3px 0;
         border-left: 0px;
-        height: 1.75rem;
-        padding: 0;
         display: grid;
         place-content: center;
 
@@ -44,7 +41,6 @@
         box-shadow: var(--box-shadow);
         border-radius: 0 0 3px 3px;
         border-top: none;
-        backdrop-filter: blur(4px);
         padding: .5rem;
         min-width: 11.5rem;
         display: none;
@@ -57,14 +53,11 @@
 
         label {
             justify-content: space-between;
-
-            & + label {
-                margin-top: .25rem;
-            }
         }
 
         &.open {
-            display: block;
+            display: grid;
+            gap: .25rem;
             transform: scaleY(1);
 
             @starting-style {
@@ -76,9 +69,6 @@
 
         button {
             margin-top: .5rem;
-            border-radius: .25rem;
-            padding: .25rem;
-            width: 100%;
             display: flex;
             justify-content: center;
         }
