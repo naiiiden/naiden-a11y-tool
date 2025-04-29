@@ -1,10 +1,13 @@
 import { interactiveElementsErrors } from "../../../errors/interactive-elements.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasInteractiveControlsWithInteractiveControlsAsChildren(auditResults) {
     const interactiveControlsWithInteractiveControlsAsChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+        
         return Array.from(document.querySelectorAll(\`:is(button:not(:disabled), 
                                                          a[href], 
                                                          :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
@@ -22,6 +25,13 @@ export async function hasInteractiveControlsWithInteractiveControlsAsChildren(au
                                                                                                                 area[href]:is(map[name]:not([name='']) area
                                                                                                             )):not([tabindex='-1'])
                                                                                                         )\`))
+            .filter(element => {
+                if (!isElementVisible(element)) {
+                    return false;
+                } else {
+                    return element; 
+                }
+            })
             .map(element => {
                 return {
                     outerHTML: element.outerHTML,
