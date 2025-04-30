@@ -1,6 +1,7 @@
 import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function ariaValidAttributes(auditResults) {
     const ariaValidAttributesArray = [
@@ -17,7 +18,10 @@ export async function ariaValidAttributes(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr
     const ariaValidAttributes = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+
         return Array.from(document.querySelectorAll('*'))
+            .filter(element => isElementVisible(element))
             .map(element => {
                 const invalidAttributes = Array.from(element.attributes)
                     .filter(attr => attr.name.startsWith('aria') && !${JSON.stringify(ariaValidAttributesArray)}.includes(attr.name))
