@@ -1,10 +1,13 @@
 import { semanticErrors } from "../../../errors/semantic.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasContentinfoInOtherLandmarks(auditResults) {
     const contentinfoInOtherLandmarks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+
         return Array.from(document.querySelectorAll(\`
             :is(header, nav, main, section, form, aside, footer, [role="banner"], [role="navigation"], [role="main"], 
                     :is([role="region"], [role="form"]):is(
@@ -13,6 +16,7 @@ export async function hasContentinfoInOtherLandmarks(auditResults) {
                     [role="complementary"], [role="contentinfo"], [role="search"])
             :is(footer:not([role]):not(:is(article, aside, main, nav, section) footer:not([role])), [role="contentinfo"])
         \`))
+        .filter(footer => isElementVisible(footer))
         .map(footer => ({
             outerHTML: footer.outerHTML,
             selector: getUniqueSelector(footer)
