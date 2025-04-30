@@ -1,12 +1,19 @@
 import { imageErrors } from "../../../errors/images.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasMissingAltImages(auditResults) {
     const missingAltImages = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+
         return Array.from(document.querySelectorAll('img:not(a img):not(button img)'))
             .filter(img => {
+                if (!isElementVisible(img)) {
+                    return false;
+                }
+
                 const alt = img.getAttribute('alt');
                 const ariaLabel = img.hasAttribute('aria-label') ? img.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = img.hasAttribute('aria-labelledby') 
