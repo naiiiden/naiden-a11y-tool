@@ -16,11 +16,11 @@
     #run-audit-btn {
         order: -1;
         border-radius: 3px 0 0 3px;
+        border-right: 0px;
     }
 
     #open-audit-checkboxes-dropdown-button {
         border-radius: 0 3px 3px 0;
-        border-left: 0px;
 
         img {
             transition: .3s;
