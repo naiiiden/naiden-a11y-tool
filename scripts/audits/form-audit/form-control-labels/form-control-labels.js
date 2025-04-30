@@ -1,12 +1,19 @@
 import { formErrors } from "../../../errors/forms.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasFormControlLabels(auditResults) {
     const formControlLabels = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+        
         return Array.from(document.querySelectorAll('input, select, textarea, input[id]:not(:is([type="submit"], [type="button"], [type="reset"], [type="hidden"])), select[id], textarea[id]'))
             .filter(element => {
+                if (!isElementVisible(element)) {
+                    return false;
+                }
+
                 const labelCount = document.querySelectorAll('label[for="' + element.id + '"]').length;
                 const wrappingLabel = element.closest('label');
                 const hasWrappingLabelWithText = wrappingLabel && wrappingLabel.textContent.trim().length > 0;
