@@ -1,12 +1,19 @@
 import { semanticErrors } from "../../../errors/semantic.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasBypass(auditResults) {
   const hasBypass = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+
     const skipLinks = Array.from(document.querySelectorAll('a[href^="#"]'))
       .filter(link => {
+        if (!isElementVisible(link)) {
+          return false;
+        }
+
         const linkText = link.textContent.toLowerCase();
         return linkText.includes('skip') || linkText.includes('jump');
       })
