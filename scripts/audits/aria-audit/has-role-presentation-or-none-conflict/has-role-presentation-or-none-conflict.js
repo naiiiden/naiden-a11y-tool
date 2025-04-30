@@ -1,10 +1,13 @@
 import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasRolePresentationOrNoneConflict(auditResults) {
     const hasRolePresentationOrNoneConflict = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+        
         return Array.from(document.querySelectorAll(\`
             :is([role='none'], [role='presentation']):is([tabindex]:not([tabindex^='-'], [tabindex='']), 
                                                          [aria-atomic]:not([aria-atomic='']),
@@ -29,6 +32,7 @@ export async function hasRolePresentationOrNoneConflict(auditResults) {
                                                          [aria-relevant]:not([aria-relevant='']),
                                                          [aria-roledescription]:not([aria-roledescription='']))
         \`))
+            .filter(element => isElementVisible(element))
             .map(element => ({
                 outerHTML: element.outerHTML,
                 selector: getUniqueSelector(element)
