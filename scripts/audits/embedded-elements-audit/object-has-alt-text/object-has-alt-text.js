@@ -1,12 +1,19 @@
 import { embeddedElementsErrors } from "../../../errors/embedded-elements.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function objectHasAltText(auditResults) {
     const objectHasAltText = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+        
         return Array.from(document.querySelectorAll("object"))
             .filter(element => {
+                if (!isElementVisible(element)) {
+                    return false;
+                }
+
                 const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = element.hasAttribute('aria-labelledby') 
                     ? document.getElementById(element.getAttribute('aria-labelledby')) 
