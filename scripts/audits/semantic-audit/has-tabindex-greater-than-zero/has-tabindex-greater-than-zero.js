@@ -1,12 +1,19 @@
 import { semanticErrors } from "../../../errors/semantic.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasTabindexGreaterThanZero(auditResults) {
     const hasTabindexGreaterThanZero = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+
         return Array.from(document.querySelectorAll("[tabindex]:not([tabindex='0'], [tabindex^='-'])"))
             .filter(element => {
+                if (!isElementVisible(element)) {
+                    return false;
+                }
+
                 const tabindexValue = element.getAttribute("tabindex").trim();
 
                 if (!/^\\d+(\\s.*)?$/.test(tabindexValue)) {
