@@ -1,6 +1,7 @@
 import { formErrors } from "../../../errors/forms.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasAutocompleteValidValues(auditResults) {
     const validAutocompleteValues = [
@@ -19,7 +20,10 @@ export async function hasAutocompleteValidValues(auditResults) {
     const hasAutocompleteValidValues = await inspectedWindowEval(`
         const validAutocompleteValues = new Set(${JSON.stringify(validAutocompleteValues)});
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+
         return Array.from(document.querySelectorAll("[autocomplete]"))
+            .filter(element => isElementVisible(element))
             .filter(element => !validAutocompleteValues.has(element.getAttribute("autocomplete").trim()))
             .map(element => ({
                 outerHTML: element.cloneNode().outerHTML,
