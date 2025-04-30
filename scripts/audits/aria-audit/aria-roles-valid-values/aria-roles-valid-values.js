@@ -1,6 +1,7 @@
 import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function ariaRoleValidValues(auditResults) {
     const validAriaRoles = [
@@ -19,7 +20,10 @@ export async function ariaRoleValidValues(auditResults) {
     const ariaRoleValidValues = await inspectedWindowEval(`
         const validAriaRoles = new Set(${JSON.stringify(validAriaRoles)});
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+
         return Array.from(document.querySelectorAll("[role]"))
+            .filter(element => isElementVisible(element))
             .filter(element => !validAriaRoles.has(element.getAttribute("role").trim()))
             .map(element => ({
                 outerHTML: element.cloneNode().outerHTML,
