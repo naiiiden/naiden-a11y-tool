@@ -1,13 +1,20 @@
 import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function ariaMeterNames(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-meter-name
     const ariaMeterNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+
         return Array.from(document.querySelectorAll("[role='meter']"))
             .filter(element => {
+                if (!isElementVisible(element)) {
+                    return false;
+                }
+
                 const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
                 const ariaLabelledby = element.hasAttribute('aria-labelledby') 
                     ? document.getElementById(element.getAttribute('aria-labelledby')) 
