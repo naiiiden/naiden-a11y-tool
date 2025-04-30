@@ -1,11 +1,16 @@
 import { semanticErrors } from "../../../errors/semantic.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasHeadingLevels(auditResults) {
     const headingLevels = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, [role="heading"]')).map(heading => {
+        const isElementVisible = ${isElementVisible.toString()};
+
+        return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, [role="heading"]'))
+        .filter(heading => isElementVisible(heading))
+        .map(heading => {
             let level;
         
             if (heading.hasAttribute('role') && heading.getAttribute('role') === 'heading') {
