@@ -45,8 +45,9 @@
         position: absolute;
         inset: 100% 0% auto 0%;
         transform: scaleY(0);
+        opacity: 0;
         transform-origin: top center;
-        transition: transform .3s, display .3s allow-discrete;
+        transition: opacity .2s, transform .2s, display .2s allow-discrete;
 
         label {
             justify-content: space-between;
@@ -56,6 +57,7 @@
             display: grid;
             gap: .25rem;
             transform: scaleY(1);
+            opacity: 1;
 
             @starting-style {
                 & {

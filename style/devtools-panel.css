@@ -131,8 +131,9 @@ header h1 {
   position: absolute;
   inset: 100% 0% auto 0%;
   transform: scaleY(0);
+  opacity: 0;
   transform-origin: top center;
-  transition: transform 0.3s, display 0.3s allow-discrete;
+  transition: opacity 0.2s, transform 0.2s, display 0.2s allow-discrete;
 }
 .run-button-audit-checkboxes-container .audit-checkboxes-container label {
   justify-content: space-between;
@@ -141,6 +142,7 @@ header h1 {
   display: grid;
   gap: 0.25rem;
   transform: scaleY(1);
+  opacity: 1;
 }
 @starting-style {
   .run-button-audit-checkboxes-container .audit-checkboxes-container.open {
