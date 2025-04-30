@@ -1,6 +1,7 @@
 import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function ariaRoleProhibitedAttributes(auditResults) {
     const ariaRoleProhibitedAttributesList = {
@@ -20,10 +21,15 @@ export async function ariaRoleProhibitedAttributes(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr
     const ariaRoleProhibitedAttributes = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
         const ariaRoleProhibitedAttributesList = ${JSON.stringify(ariaRoleProhibitedAttributesList)};
 
         return Array.from(document.querySelectorAll(Object.keys(ariaRoleProhibitedAttributesList).map(role => \`[role='\${role}']\`).join(", ")))
             .filter(element => {
+                if (!isElementVisible(element)) {
+                    return false;
+                }
+
                 const role = element.getAttribute("role");
                 const prohibitedAttributes = ariaRoleProhibitedAttributesList[role];
                 return prohibitedAttributes.some(attr => element.hasAttribute(attr));
