@@ -1,12 +1,19 @@
 import { formErrors } from "../../../errors/forms.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasEmptySubmitButonOrResetInputValues(auditResults) {
     const emptySubmitButtonOrResetInputValues = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+        
         return Array.from(document.querySelectorAll('input[type="button"], input[type="submit"], input[type="reset"]'))
             .filter(input => {
+                if (!isElementVisible(input)) {
+                    return false;
+                }
+
                 const inputType = input.getAttribute('type');
                 const value = input.getAttribute('value');
                 const ariaLabel = input.hasAttribute('aria-label') ? input.getAttribute('aria-label').trim() : null;
