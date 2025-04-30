@@ -1,6 +1,7 @@
 import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function ariaRoleRequiredParent(auditResults) {
     const ariaRoleRequiredParentList = {
@@ -47,9 +48,11 @@ export async function ariaRoleRequiredParent(auditResults) {
 
     const ariaRoleRequiredParent = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
         const ariaRoleRequiredParentList = ${JSON.stringify(ariaRoleRequiredParentList)};
 
         return Array.from(document.querySelectorAll(Object.keys(ariaRoleRequiredParentList).map(role => \`[role='\${role}']\`).join(", ")))
+            .filter(element => isElementVisible(element))
             .map(element => {
                 const role = element.getAttribute("role");
                 const roleData = ariaRoleRequiredParentList[role];
