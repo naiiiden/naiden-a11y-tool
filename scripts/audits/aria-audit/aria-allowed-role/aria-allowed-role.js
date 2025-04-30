@@ -1,11 +1,14 @@
 import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function ariaAllowedRole(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role
     const ariaAllowedRole = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+
         return Array.from(document.querySelectorAll(\`
             a[href][role]:not([role=''], [role='button'], [role='checkbox'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='switch'], [role='tab'], [role='treeitem'], [role='link']), 
             a:not([href])[role]:is([role='generic']), 
@@ -124,6 +127,7 @@ export async function ariaAllowedRole(auditResults) {
             video[role]:not([role=''], [role='application']), 
             wbr[role]:not([role=''], [role='none'], [role='presentation'])
         \`))
+            .filter(element => isElementVisible(element))
             .map(element => ({
                 outerHTML: element.cloneNode().outerHTML,
                 selector: getUniqueSelector(element),
