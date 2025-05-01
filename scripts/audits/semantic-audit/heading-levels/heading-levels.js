@@ -34,22 +34,26 @@ export async function hasHeadingLevels(auditResults) {
     `);
       
     if (headingLevels.length > 0) {
-        let previousLevel = 1;
-      
-        for (const heading of headingLevels) {
-            const currentLevel = heading.level;
-      
-            if (currentLevel > previousLevel + 1) {
+        if (headingLevels[0].level !== 1) {
+            auditResults.push({
+                ...semanticErrors[1],
+                element: headingLevels[0].outerHTML,
+                selector: headingLevels[0].selector
+            });
+            return;
+        }
+
+        for (let i = 1; i < headingLevels.length; i++) {
+            const prev = headingLevels[i - 1].level;
+            const current = headingLevels[i].level;
+
+            if (current > prev + 1) {
                 auditResults.push({
                     ...semanticErrors[1],
-                    element: heading.outerHTML,
-                    selector: heading.selector
+                    element: headingLevels[i].outerHTML,
+                    selector: headingLevels[i].selector
                 });
                 break;
-            }
-        
-            if (currentLevel > previousLevel) {
-                previousLevel = currentLevel;
             }
         }
     }
