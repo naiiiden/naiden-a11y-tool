@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
     } catch (err) {
       console.error("Error during audit:", err);
+      statusMessage("Error during audit.");
     } finally {
       hideLoading();
       checkOverflow();
