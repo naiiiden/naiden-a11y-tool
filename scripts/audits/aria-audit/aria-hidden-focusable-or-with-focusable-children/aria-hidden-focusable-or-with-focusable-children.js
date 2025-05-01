@@ -1,46 +1,60 @@
 import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
-    // https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus
-    const ariaHiddenWithFocusableChildren = await inspectedWindowEval(`
+    const ariaHiddenResults = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
+
         const focusableElementSelector = \`
-                                          :is(
-                                            :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
-                                            a[href], 
-                                            :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
-                                            [tabindex]:not([tabindex^='-'], [tabindex='']), 
-                                            [contenteditable]:not([contenteditable='false']), 
-                                            summary:not([tabindex^="-"], [tabindex='']), 
-                                            :is(audio, video)[controls],
-                                            embed,
-                                            area[href]:is(map[name]:not([name='']) area)
-                                          ):not([tabindex='-1'])
-                                        \`;
+            :is(
+                :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+                a[href], 
+                :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
+                [tabindex]:not([tabindex^='-'], [tabindex='']), 
+                [contenteditable]:not([contenteditable='false']), 
+                summary:not([tabindex^="-"], [tabindex='']), 
+                :is(audio, video)[controls],
+                embed,
+                area[href]:is(map[name]:not([name='']) area)
+            ):not([tabindex='-1'])
+        \`;
 
-        return Array.from(document.querySelectorAll("[aria-hidden='true']:not([tabindex='-1'])"))
-            .filter(element => {
-                return Array.from(element.querySelectorAll(focusableElementSelector))
-                    .some(child => window.getComputedStyle(child).display !== 'none');
-            })
-            .map(element => {
-                const focusableChildren = Array.from(element.querySelectorAll(focusableElementSelector))
-                    .filter(child => window.getComputedStyle(child).display !== 'none');
+        const elements = Array.from(document.querySelectorAll("[aria-hidden='true']:not([tabindex='-1'])"));
 
-                return {
+        const withFocusableChildren = [];
+        const focusableHidden = [];
+
+        elements.forEach(element => {
+            const visibleFocusableChildren = Array.from(element.querySelectorAll(focusableElementSelector))
+                .filter(child => isElementVisible(child));
+
+            if (visibleFocusableChildren.length > 0) {
+                withFocusableChildren.push({
                     outerHTML: element.outerHTML,
                     selector: getUniqueSelector(element),
-                    focusableChildren: focusableChildren.map(child => ({
+                    focusableChildren: visibleFocusableChildren.map(child => ({
                         outerHTML: child.outerHTML,
                         selector: getUniqueSelector(child)
                     }))
-                };
-            });
+                });
+                return;
+            }
+
+            if (isElementVisible(element) && element.matches(focusableElementSelector)) {
+                focusableHidden.push({
+                    outerHTML: element.outerHTML,
+                    selector: getUniqueSelector(element)
+                });
+            }
+        });
+
+        return { withFocusableChildren, focusableHidden };
     `);
 
-    ariaHiddenWithFocusableChildren.forEach(element => {
+    ariaHiddenResults.withFocusableChildren.forEach(element => {
         auditResults.push({
             ...ariaErrors[8],
             element: element.outerHTML,
@@ -52,38 +66,11 @@ export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
         });
     });
 
-    const ariaHiddenFocusable = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        return Array.from(document.querySelectorAll(\`
-            :is(
-                :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
-                a[href], 
-                :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
-                [tabindex]:not([tabindex^='-'], [tabindex='']), 
-                [contenteditable]:not([contenteditable='false']), 
-                summary:not([tabindex^="-"], [tabindex='']), 
-                :is(audio, video)[controls],
-                embed,
-                area[href]:is(map[name]:not([name='']) area)
-            )[aria-hidden='true']:not([tabindex='-1']):not(:has(
-                :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
-                a[href], 
-                :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
-                [tabindex]:not([tabindex^='-'], [tabindex='']), 
-                [contenteditable]:not([contenteditable='false']), 
-                summary:not([tabindex^="-"], [tabindex='']), 
-                :is(audio, video)[controls],
-                embed,
-                area[href]:is(map[name]:not([name='']) area)
-            ))
-        \`))
-            .map(element => ({
-                outerHTML: element.outerHTML,
-                selector: getUniqueSelector(element)
-            }))
-    `)
-
-    ariaHiddenFocusable.forEach(element => {
-        auditResults.push({ ...ariaErrors[8], element: element.outerHTML, selector: element.selector });
+    ariaHiddenResults.focusableHidden.forEach(element => {
+        auditResults.push({
+            ...ariaErrors[8],
+            element: element.outerHTML,
+            selector: element.selector,
+        });
     });
 }
