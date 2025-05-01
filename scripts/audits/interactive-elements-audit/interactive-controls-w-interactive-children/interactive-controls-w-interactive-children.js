@@ -8,30 +8,43 @@ export async function hasInteractiveControlsWithInteractiveControlsAsChildren(au
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
         
-        return Array.from(document.querySelectorAll(\`:is(button:not(:disabled), 
-                                                         a[href], 
-                                                         :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
-                                                         [contenteditable]:not([contenteditable='false']), 
-                                                         [tabindex]:not([tabindex^="-"], [tabindex=''])):has(
-                                                                                                            :is(
-                                                                                                                a[href], 
-                                                                                                                :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
-                                                                                                                [contenteditable]:not([contenteditable='false']), 
-                                                                                                                [tabindex]:not([tabindex^="-"], [tabindex='']), 
-                                                                                                                :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
-                                                                                                                summary:not([tabindex^="-"], [tabindex='']), 
-                                                                                                                :is(audio, video)[controls],
-                                                                                                                embed,
-                                                                                                                area[href]:is(map[name]:not([name='']) area
-                                                                                                            )):not([tabindex='-1'])
-                                                                                                        )\`))
-            .filter(element => isElementVisible(element))
-            .map(element => {
+        const parents = \`
+            button:not(:disabled), 
+            a[href], 
+            :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+            [contenteditable]:not([contenteditable='false']), 
+            [tabindex]:not([tabindex^="-"], [tabindex=''])
+        \`;
+
+        const children = \`
+            :is(
+                a[href], 
+                :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+                [contenteditable]:not([contenteditable='false']), 
+                [tabindex]:not([tabindex^="-"], [tabindex='']), 
+                :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
+                summary:not([tabindex^="-"], [tabindex='']), 
+                :is(audio, video)[controls],
+                embed,
+                area[href]:is(map[name]:not([name='']) area
+            )):not([tabindex='-1'])
+        \`;
+
+        return Array.from(document.querySelectorAll(parents))
+            .filter(parent => {
+                if (!isElementVisible(parent)) {
+                    return false;
+                }
+
+                return Array.from(parent.querySelectorAll(children))
+                    .some(child => isElementVisible(child));
+            })
+            .map(parent => {
                 return {
-                    outerHTML: element.outerHTML,
-                    selector: getUniqueSelector(element)
-                };
-            });
+                    outerHTML: parent.outerHTML,
+                    selector: getUniqueSelector(parent)
+                }    
+            })
     `) 
       
     interactiveControlsWithInteractiveControlsAsChildren.forEach((element) => {
