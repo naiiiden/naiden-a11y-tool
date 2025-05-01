@@ -9,19 +9,19 @@ export async function hasFrameUniqueTitles(auditResults) {
         const isElementVisible = ${isElementVisible.toString()};
 
         const titleMap = new Map();
-        return Array.from(document.querySelectorAll('iframe, frame'))
-            .filter(frame => isElementVisible(frame))
-            .map(frame => {
-                const title = frame.hasAttribute('title') ? frame.getAttribute('title').trim() : null;
+        return Array.from(document.querySelectorAll('iframe'))
+            .filter(iframe => isElementVisible(iframe))
+            .map(iframe => {
+                const title = iframe.hasAttribute('title') ? iframe.getAttribute('title').trim() : null;
 
                 if (!title) return null;
 
-                const selector = getUniqueSelector(frame);
+                const selector = getUniqueSelector(iframe);
 
                 if (titleMap.has(title)) {
                     titleMap.get(title).push(selector);
                     return {
-                        element: frame.outerHTML,
+                        element: iframe.outerHTML,
                         selector,
                     };
                 }
