@@ -1,6 +1,7 @@
 import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function ariaRoleRequiredChildren(auditResults) {
     const ariaRoleRequiredChildrenList = {
@@ -60,20 +61,24 @@ export async function ariaRoleRequiredChildren(auditResults) {
 
     const ariaRoleRequiredChildren = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
         const ariaRoleRequiredChildrenList = ${JSON.stringify(ariaRoleRequiredChildrenList)};
 
         return Array.from(document.querySelectorAll(Object.keys(ariaRoleRequiredChildrenList).map(role => \`[role='\${role}']\`).join(", ")))
+            .filter(element => isElementVisible(element))
             .map(element => {
                 const role = element.getAttribute("role");
                 const roleData = ariaRoleRequiredChildrenList[role];
                 if (!roleData) return null;
 
-                const hasRequiredChildrenWithRole = roleData.requiredChildrenWithRole.some(child =>
-                    element.querySelector(\`[role='\${child}']\`)
+                const hasRequiredChildrenWithRole = roleData.requiredChildrenWithRole.some(childRole =>
+                    Array.from(element.querySelectorAll(\`[role='\${childRole}']\`))
+                        .some(child => isElementVisible(child))
                 );
 
-                const hasRequiredChildrenWithRoleNativeHtmlEquivalent = roleData.requiredChildrenWithRoleNativeHtmlEquivalent.some(child =>
-                    element.querySelector(child)
+                const hasRequiredChildrenWithRoleNativeHtmlEquivalent = roleData.requiredChildrenWithRoleNativeHtmlEquivalent.some(selector =>
+                    Array.from(element.querySelectorAll(selector))
+                        .some(child => isElementVisible(child))
                 );
 
                 if (!hasRequiredChildrenWithRole && !hasRequiredChildrenWithRoleNativeHtmlEquivalent) {
