@@ -8,7 +8,7 @@ export async function hasVisibleFormControlLabels(auditResults) {
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
         
-        return Array.from(document.querySelectorAll(':is(input, select, textarea, input[id]:not(:is([type="submit"], [type="button"], [type="reset"], [type="hidden"])), select[id], textarea[id])[title]:not([title=""])'))
+        return Array.from(document.querySelectorAll(':is(input, select, textarea, input[id]:not(:is([type="submit"], [type="button"], [type="reset"], [type="hidden"])), select[id], textarea[id]):is([title]:not([title=""]), [aria-describedby]:not([aria-describedby=""]))'))
             .filter(element => {
                 if (!isElementVisible(element)) {
                     return false;
