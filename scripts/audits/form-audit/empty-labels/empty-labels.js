@@ -14,7 +14,13 @@ export async function hasEmptyLabels(auditResults) {
                     return false;
                 }
 
-                return label.textContent.trim() === "";
+                const ariaLabel = label.hasAttribute('aria-label') ? label.getAttribute('aria-label').trim() : null;
+                const ariaLabelledby = label.hasAttribute('aria-labelledby') 
+                ? document.getElementById(label.getAttribute('aria-labelledby')) 
+                : null;
+                const title = label.hasAttribute('title') ? label.getAttribute('title').trim() : null;
+
+                return label.textContent.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
             })
             .map(label => ({ 
                 outerHTML: label.outerHTML, 
