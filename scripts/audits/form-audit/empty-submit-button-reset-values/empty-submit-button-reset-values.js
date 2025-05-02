@@ -23,9 +23,9 @@ export async function hasEmptySubmitButonOrResetInputValues(auditResults) {
                 const title = input.hasAttribute('title') ? input.getAttribute('title').trim() : null;
                 
                 if (inputType === 'submit' || inputType === 'reset') {
-                    return !value && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+                    return value === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
                 }
-            
+                
                 return (!value || value === "") && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
             })
             .map(input => ({
