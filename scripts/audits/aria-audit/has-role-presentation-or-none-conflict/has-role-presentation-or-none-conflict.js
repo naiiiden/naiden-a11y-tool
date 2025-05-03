@@ -30,7 +30,18 @@ export async function hasRolePresentationOrNoneConflict(auditResults) {
                                                          [aria-live]:not([aria-live='']),
                                                          [aria-owns]:not([aria-owns='']),
                                                          [aria-relevant]:not([aria-relevant='']),
-                                                         [aria-roledescription]:not([aria-roledescription='']))
+                                                         [aria-roledescription]:not([aria-roledescription=''])),
+            :is(
+                a[href], 
+                :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+                [contenteditable]:not([contenteditable='false']), 
+                [tabindex]:not([tabindex^="-"], [tabindex='']), 
+                :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
+                summary:not([tabindex^="-"], [tabindex='']), 
+                :is(audio, video)[controls],
+                embed,
+                area[href]:is(map[name]:not([name='']) area
+            )):not([tabindex='-1']):is([role='none'], [role='presentation'])
         \`))
             .filter(element => isElementVisible(element))
             .map(element => ({
