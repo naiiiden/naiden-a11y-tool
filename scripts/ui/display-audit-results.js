@@ -11,13 +11,15 @@ export function displayAuditResults(auditResults) {
     errorsList.innerHTML = '';
     errorsIndicator.innerHTML = "";
 
+    let globalToggleButton;
+    let allExpanded = true;
+
     if (auditResults.length > 0) {
-      const globalToggleButton = document.createElement("button");
+      globalToggleButton = document.createElement("button");
       globalToggleButton.className = "toggle-all-btn";
       globalToggleButton.textContent = "Collapse All";
       errorsList.appendChild(globalToggleButton);
   
-      let allExpanded = true;
   
       globalToggleButton.addEventListener("click", () => {
         document.querySelectorAll(".custom-summary").forEach((summary) => {
