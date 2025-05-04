@@ -51,6 +51,18 @@ export function uiControls(runAudit) {
             openAuditCheckboxesDropdownBtn.querySelector("img").classList.remove("open");
         }
     });
+
+    auditCheckboxesDropdown.addEventListener("keydown", (event) => {
+        if (event.key === "Tab") {
+            setTimeout(() => {
+                if (!auditCheckboxesDropdown.contains(document.activeElement) && 
+                    !openAuditCheckboxesDropdownBtn.contains(document.activeElement)) {
+                    auditCheckboxesDropdown.classList.remove("open");
+                    openAuditCheckboxesDropdownBtn.querySelector("img").classList.remove("open");
+                }
+            }, 0);
+        }
+    });
     
     auditCheckboxes.forEach(checkbox => {
         checkbox.checked = true;
