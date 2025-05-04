@@ -52,18 +52,16 @@ export function uiControls(runAudit) {
         }
     });
 
-    auditCheckboxesDropdown.addEventListener("keydown", (event) => {
-        if (event.key === "Tab") {
-            setTimeout(() => {
-                if (!auditCheckboxesDropdown.contains(document.activeElement) && 
-                    !openAuditCheckboxesDropdownBtn.contains(document.activeElement)) {
-                    auditCheckboxesDropdown.classList.remove("open");
-                    openAuditCheckboxesDropdownBtn.querySelector("img").classList.remove("open");
-                }
-            }, 0);
+    document.addEventListener("focusin", (event) => {
+        if (auditCheckboxesDropdown.classList.contains("open") && 
+            !auditCheckboxesDropdown.contains(event.target) && 
+            !openAuditCheckboxesDropdownBtn.contains(event.target)) {
+            
+            auditCheckboxesDropdown.classList.remove("open");
+            openAuditCheckboxesDropdownBtn.querySelector("img").classList.remove("open");
         }
     });
-    
+
     auditCheckboxes.forEach(checkbox => {
         checkbox.checked = true;
         const selectedAudit = auditFuncsMap[checkbox.value];
