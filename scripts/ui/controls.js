@@ -17,6 +17,7 @@ export function uiControls(runAudit) {
     const selectAllBtn = document.querySelector("button[type='submit'][id='select-all']");
     const runAuditBtn = document.querySelector("#run-audit-btn");
     const openAuditCheckboxesDropdownBtn = document.querySelector("#open-audit-checkboxes-dropdown-button");
+    const auditCheckboxesDropdown = document.querySelector(".audit-checkboxes-container");
     const auditFuncsArray = [];
     const auditFuncsMap = {
         "root-and-metadata": rootAndMetadataAudit,
@@ -43,6 +44,14 @@ export function uiControls(runAudit) {
         document.querySelector(".audit-checkboxes-container").classList.toggle("open");
         openAuditCheckboxesDropdownBtn.querySelector("img").classList.toggle("open");
     });
+
+    document.addEventListener("click", (event) => {
+    
+        if (!auditCheckboxesDropdown.contains(event.target) && !openAuditCheckboxesDropdownBtn.contains(event.target)) {
+            auditCheckboxesDropdown.classList.remove("open");
+            openAuditCheckboxesDropdownBtn.querySelector("img").classList.remove("open");
+        }
+    });    
 
     auditCheckboxes.forEach(checkbox => {
         checkbox.checked = true;
