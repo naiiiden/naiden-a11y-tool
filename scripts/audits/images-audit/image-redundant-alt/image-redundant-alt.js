@@ -17,7 +17,9 @@ export async function hasRedundantImgAlt(auditResults) {
                 const imgParentText = element.parentElement.textContent.trim().toLowerCase();
                 const imgAlt = element.hasAttribute('alt') ? element.getAttribute('alt').trim().toLowerCase() : null;
 
-                return imgParentText === imgAlt;
+                if (imgParentText !== "" && imgAlt !== "") {
+                    return imgParentText === imgAlt;
+                }
             })
             .map(element => ({
                 outerHTML: element.outerHTML,
