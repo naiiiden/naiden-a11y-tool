@@ -46,12 +46,24 @@ export function uiControls(runAudit) {
     });
 
     document.addEventListener("click", (event) => {
-    
         if (!auditCheckboxesDropdown.contains(event.target) && !openAuditCheckboxesDropdownBtn.contains(event.target)) {
             auditCheckboxesDropdown.classList.remove("open");
             openAuditCheckboxesDropdownBtn.querySelector("img").classList.remove("open");
         }
-    });    
+    });
+    
+    auditCheckboxesDropdown.addEventListener("focusout", () => {
+        setTimeout(() => {
+            const active = document.activeElement;
+            if (
+                !auditCheckboxesDropdown.contains(active) &&
+                !openAuditCheckboxesDropdownBtn.contains(active)
+            ) {
+                auditCheckboxesDropdown.classList.remove("open");
+                openAuditCheckboxesDropdownBtn.querySelector("img").classList.remove("open");
+            }
+        }, 0);
+    });
 
     auditCheckboxes.forEach(checkbox => {
         checkbox.checked = true;
