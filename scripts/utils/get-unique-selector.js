@@ -8,7 +8,7 @@ export function getUniqueSelector(element) {
       break;
     }
 
-    if (element.id) {
+    if (element.id && document.querySelectorAll(`#${CSS.escape(element.id)}`).length === 1) {
       parts.unshift(`#${CSS.escape(element.id)}`);
       break;
     }
