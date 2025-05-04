@@ -52,19 +52,6 @@ export function uiControls(runAudit) {
         }
     });
     
-    auditCheckboxesDropdown.addEventListener("focusout", () => {
-        setTimeout(() => {
-            const active = document.activeElement;
-            if (
-                !auditCheckboxesDropdown.contains(active) &&
-                !openAuditCheckboxesDropdownBtn.contains(active)
-            ) {
-                auditCheckboxesDropdown.classList.remove("open");
-                openAuditCheckboxesDropdownBtn.querySelector("img").classList.remove("open");
-            }
-        }, 0);
-    });
-
     auditCheckboxes.forEach(checkbox => {
         checkbox.checked = true;
         const selectedAudit = auditFuncsMap[checkbox.value];
