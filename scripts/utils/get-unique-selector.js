@@ -5,6 +5,7 @@ export function getUniqueSelector(element) {
 
   while (element && element.nodeType === Node.ELEMENT_NODE) {
     if (element.tagName.toLowerCase() === 'body') {
+      parts.unshift('body');
       break;
     }
 
