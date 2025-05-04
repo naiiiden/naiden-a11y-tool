@@ -8,28 +8,40 @@ export function getUniqueSelector(element) {
       break;
     }
 
-    if (element.id && document.querySelectorAll(`#${CSS.escape(element.id)}`).length === 1) {
-      parts.unshift(`#${CSS.escape(element.id)}`);
-      break;
-    }
-
     const tag = element.tagName.toLowerCase();
     const parent = element.parentElement;
 
     let selector = tag;
 
-    if (element.classList.length > 0 && parent) {
-      const classList = Array.from(element.classList);
-      for (const cls of classList) {
-        const sameTagSiblings = parent.querySelectorAll(`${tag}.${CSS.escape(cls)}`);
-        if (sameTagSiblings.length === 1) {
-          selector = `${tag}.${CSS.escape(cls)}`;
-          break;
+    if (element.id) {
+      const id = CSS.escape(element.id);
+      const idSelector = `${tag}#${id}`;
+      const allMatches = document.querySelectorAll(`#${id}`);
+      if (allMatches.length === 1) {
+        parts.unshift(`#${id}`);
+        break;
+      } else {
+        selector = idSelector;
+      }
+    }
+
+    if (!selector || selector === tag) {
+      if (element.classList.length > 0 && parent) {
+        const classList = Array.from(element.classList);
+        for (const cls of classList) {
+          const classSelector = `${tag}.${CSS.escape(cls)}`;
+          const sameTagSiblings = parent.querySelectorAll(classSelector);
+          if (sameTagSiblings.length === 1) {
+            selector = classSelector;
+            break;
+          } else {
+            selector = classSelector;
+          }
         }
       }
     }
 
-    if (parent && selector === tag) {
+    if (parent) {
       const siblings = Array.from(parent.children).filter(el => el.tagName === element.tagName);
       if (siblings.length > 1) {
         const index = siblings.indexOf(element) + 1;
