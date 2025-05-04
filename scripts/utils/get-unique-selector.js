@@ -4,32 +4,42 @@ export function getUniqueSelector(element) {
   const parts = [];
 
   while (element && element.nodeType === Node.ELEMENT_NODE) {
-    const tag = element.tagName.toLowerCase();
+    if (element.tagName.toLowerCase() === 'body') {
+      parts.unshift('body');
+      break;
+    }
 
     if (element.id) {
       parts.unshift(`#${CSS.escape(element.id)}`);
       break;
     }
 
-    const className = (element.className && typeof element.className === 'string')
-      ? element.className.trim().split(/\s+/)[0]
-      : null;
+    const tag = element.tagName.toLowerCase();
+    const parent = element.parentElement;
 
     let selector = tag;
-    if (className) {
-      selector += `.${CSS.escape(className)}`;
+
+    if (element.classList.length > 0 && parent) {
+      const classList = Array.from(element.classList);
+      for (const cls of classList) {
+        const sameTagSiblings = parent.querySelectorAll(`${tag}.${CSS.escape(cls)}`);
+        if (sameTagSiblings.length === 1) {
+          selector = `${tag}.${CSS.escape(cls)}`;
+          break;
+        }
+      }
     }
 
-    if (element.parentNode) {
-      const siblings = Array.from(element.parentNode.children).filter(el => el.tagName === element.tagName);
-      if (siblings.length > 1 && !className) {
-        const index = Array.from(element.parentNode.children).indexOf(element) + 1;
-        selector += `:nth-child(${index})`;
+    if (parent && selector === tag) {
+      const siblings = Array.from(parent.children).filter(el => el.tagName === element.tagName);
+      if (siblings.length > 1) {
+        const index = siblings.indexOf(element) + 1;
+        selector += `:nth-of-type(${index})`;
       }
     }
 
     parts.unshift(selector);
-    element = element.parentElement;
+    element = parent;
   }
 
   return parts.join(' > ');
