@@ -1,39 +1,50 @@
-import { describe, it, expect } from 'vitest';
-import { JSDOM } from 'jsdom';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { hasHtmlLangAttr } from './has-html-lang-attr.js';
 
-function hasMissingHtmlLang(document) {
-  const html = document.documentElement;
-  const lang = html.getAttribute('lang');
-  if (!lang) {
-    return {
-      outerHTML: html.outerHTML,
+// Mock chrome.devtools.inspectedWindow.eval
+global.chrome = {
+  devtools: {
+    inspectedWindow: {
+      eval: vi.fn()
+    }
+  }
+};
+
+beforeEach(() => {
+  chrome.devtools.inspectedWindow.eval.mockReset();
+});
+
+describe('hasHtmlLangAttr audit', () => {
+  it('pushes an error if <html> has no lang attribute', async () => {
+    const mockEvalResult = {
+      hasLangAttr: null,
+      outerHTML: '<html></html>',
       selector: 'html',
     };
-  }
-  return null;
-}
 
-describe('hasMissingHtmlLang', () => {
-  it('detects missing lang attribute', () => {
-    const dom = new JSDOM(`
-        <html>
-            <head></head>
-            <body></body>
-        </html>
-    `);
-    const result = hasMissingHtmlLang(dom.window.document);
-    expect(result).not.toBeNull();
-    expect(result.selector).toBe('html');
+    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
+      callback(mockEvalResult);
+    });
+
+    const results = [];
+    await hasHtmlLangAttr(results);
+    expect(results.length).toBe(1);
+    expect(results[0].selector).toBe('html');
   });
 
-  it('does not report error when lang is present', () => {
-    const dom = new JSDOM(`
-        <html lang="en">
-            <head></head>
-            <body></body>
-        </html>
-    `);
-    const result = hasMissingHtmlLang(dom.window.document);
-    expect(result).toBeNull();
+  it('does not push an error if <html> has lang attribute', async () => {
+    const mockEvalResult = {
+      hasLangAttr: 'en',
+      outerHTML: '<html lang="en"></html>',
+      selector: 'html',
+    };
+
+    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
+      callback(mockEvalResult);
+    });
+
+    const results = [];
+    await hasHtmlLangAttr(results);
+    expect(results.length).toBe(0);
   });
 });
