@@ -1,14 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { hasHtmlLangAttr } from './has-html-lang-attr.js';
-
-// Mock chrome.devtools.inspectedWindow.eval
-global.chrome = {
-  devtools: {
-    inspectedWindow: {
-      eval: vi.fn()
-    }
-  }
-};
 
 beforeEach(() => {
   chrome.devtools.inspectedWindow.eval.mockReset();
