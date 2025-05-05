@@ -19,7 +19,6 @@ describe('hasHtmlLangAttr audit', () => {
     const mockEvalResult = {
       hasLangAttr: null,
       outerHTML: '<html></html>',
-      selector: 'html',
     };
 
     chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
@@ -29,14 +28,12 @@ describe('hasHtmlLangAttr audit', () => {
     const results = [];
     await hasHtmlLangAttr(results);
     expect(results.length).toBe(1);
-    expect(results[0].selector).toBe('html');
   });
 
   it('does not push an error if <html> has lang attribute', async () => {
     const mockEvalResult = {
       hasLangAttr: 'en',
       outerHTML: '<html lang="en"></html>',
-      selector: 'html',
     };
 
     chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
