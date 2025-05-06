@@ -2,17 +2,23 @@ import { rootAndMetadataErrors } from "../../../errors/root-and-metadata.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
-export async function hasMetaRefresh(auditResults) {
+export function hasMetaRefresh() {
+    const metaRefresh = document.querySelector('meta[http-equiv="refresh"]');
+    const hasContentAttr = metaRefresh.getAttribute('content');
+
+    return {
+        hasContentAttr,
+        outerHTML: metaRefresh.outerHTML,
+        selector: getUniqueSelector(metaRefresh)
+    }
+}
+
+export async function hasMetaRefreshEval(auditResults) {
     const metaRefresh = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        const metaRefresh = document.querySelector('meta[http-equiv="refresh"]');
-        const hasContentAttr = metaRefresh.getAttribute('content');
+        const hasMetaRefresh = ${hasMetaRefresh.toString()};
 
-        return {
-            hasContentAttr,
-            outerHTML: metaRefresh.outerHTML,
-            selector: getUniqueSelector(metaRefresh)
-        }
+        return hasMetaRefresh();
     `)
 
     if (metaRefresh && metaRefresh.hasContentAttr && metaRefresh.hasContentAttr.value !== "") {
