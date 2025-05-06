@@ -4,7 +4,7 @@ import { hasPageTitle } from './has-page-title.js';
 
 
 describe('hasPageTitle audit', () => {
-  it('pushes an error if the document doesn\'t have a <title>', async () => {
+  it('pushes an error if the document doesn\'t have a <title>', () => {
     setupDOM(`
       <html>
         <head></head>
@@ -16,7 +16,7 @@ describe('hasPageTitle audit', () => {
     expect(results).toBe(undefined);
   });
 
-  it('pushes an error if document has a <title> but it\'s empty', async () => {
+  it('pushes an error if document has a <title> but it\'s empty', () => {
     setupDOM(`
       <html>
         <head>
@@ -29,4 +29,18 @@ describe('hasPageTitle audit', () => {
     const results = hasPageTitle();
     expect(results.documentTitle).toBe("");
   });
+
+  it('doesn\'t push an error if document has a non-empty <title>', () => {
+    setupDOM(`
+      <html>
+        <head>
+          <title>hasPageTitle</title>
+        </head>
+        <body></body>
+      </html>      
+    `)
+
+    const results = hasPageTitle();
+    expect(results.documentTitle).not.toBe("")
+  })
 });
