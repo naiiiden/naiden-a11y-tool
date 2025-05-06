@@ -46,7 +46,6 @@ describe('hasMetaViewportUserScalableNoOrZero audit', () => {
     `);
 
     const results = hasMetaViewportUserScalableNoOrZero();
-    console.log(results);
     expect(results.hasContentAttr).not.toContain('user-scalable');
   });
 });
