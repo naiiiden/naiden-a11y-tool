@@ -5,7 +5,7 @@ beforeEach(() => {
   chrome.devtools.inspectedWindow.eval.mockReset();
 });
 
-describe('hasHtmlLangAttr audit', () => {
+describe('hasMetaRefresh audit', () => {
   it('pushes an error if the document has <meta http-equiv="refresh"> tag', async () => {
     const mockEvalResult = {
       hasContentAttr: true,
