@@ -2,17 +2,23 @@ import { rootAndMetadataErrors } from "../../../errors/root-and-metadata.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
-export async function hasMetaViewportMaximumScale(auditResults) {
+export function hasMetaViewportMaximumScale() {
+    const metaViewport = document.querySelector('meta[name="viewport"]');
+    const hasContentAttr = metaViewport.getAttribute('content');
+
+    return {
+        hasContentAttr,
+        outerHTML: metaViewport.outerHTML,
+        selector: getUniqueSelector(metaViewport)
+    };
+}
+
+export async function hasMetaViewportMaximumScaleEval(auditResults) {
     const metaViewport = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        const metaViewport = document.querySelector('meta[name="viewport"]');
-        const hasContentAttr = metaViewport.getAttribute('content');
+        const hasMetaViewportMaximumScale = ${hasMetaViewportMaximumScale.toString()};
 
-        return {
-            hasContentAttr,
-            outerHTML: metaViewport.outerHTML,
-            selector: getUniqueSelector(metaViewport)
-        };
+        return hasMetaViewportMaximumScale();
     `);
 
     if (metaViewport && metaViewport.hasContentAttr) {
