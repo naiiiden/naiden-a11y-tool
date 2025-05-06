@@ -141,7 +141,7 @@ export function displayAuditResults(auditResults) {
               <h4>
                 How to Fix<span aria-hidden="true">:</span>
               </h4>
-              <p>${error.fix}</p>
+              <p>${escapeHtml(error.fix)}</p>
             </div>
             ${error.wcagLinks && 
               `<details>
