@@ -3,10 +3,12 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
-export function findBrokenSamePageLinks(document, getUniqueSelector, isElementVisible) {
+export function hasBrokenSamePageLinks(document, getUniqueSelector, isElementVisible) {
     return Array.from(document.querySelectorAll('a[href^="#"]'))
         .filter(link => {
-            if (!isElementVisible(link)) return false;
+            if (!isElementVisible(link)) {
+                return false 
+            };
 
             const linkText = link.textContent.toLowerCase();
             return !(linkText.includes('jump') || linkText.includes('skip'));
@@ -24,13 +26,13 @@ export function findBrokenSamePageLinks(document, getUniqueSelector, isElementVi
 }
 
 
-export async function hasBrokenSamePageLinks(auditResults) {
+export async function hasBrokenSamePageLinksEval(auditResults) {
     const brokenSamePageLinks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
-        const findBrokenSamePageLinks = ${findBrokenSamePageLinks.toString()};
+        const hasBrokenSamePageLinks = ${hasBrokenSamePageLinks.toString()};
 
-        return findBrokenSamePageLinks(document, getUniqueSelector, isElementVisible);
+        return hasBrokenSamePageLinks(document, getUniqueSelector, isElementVisible);
     `);
 
     brokenSamePageLinks

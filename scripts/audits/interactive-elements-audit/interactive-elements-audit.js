@@ -1,4 +1,4 @@
-import { hasBrokenSamePageLinks } from "./broken-same-page-links/broken-same-page-links.js";
+import { hasBrokenSamePageLinksEval } from "./broken-same-page-links/broken-same-page-links.js";
 import { hasBrokenSkipLinks } from "./broken-skip-links/broken-skip-links.js";
 import { hasEmptyButtons } from "./empty-buttons/empty-buttons.js";
 import { hasEmptyLinks } from "./empty-links/empty-links.js";
@@ -12,7 +12,7 @@ export async function interactiveElementsAudit(auditResults) {
     await hasEmptyButtons(auditResults);
     await hasBrokenSkipLinks(auditResults);
     await hasInteractiveControlsWithInteractiveControlsAsChildren(auditResults);
-    await hasBrokenSamePageLinks(auditResults);
+    await hasBrokenSamePageLinksEval(auditResults);
     await hasDuplicateAccesskeys(auditResults);
     await touchTargetSize(auditResults);
     await scrollableRegionKeyboardAccess(auditResults);
