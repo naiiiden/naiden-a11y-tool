@@ -1,38 +1,35 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
+import { setupDOM } from '../../../utils/setup-dom.js';
 import { hasHtmlLangAttr } from './has-html-lang-attr.js';
 
-beforeEach(() => {
-  chrome.devtools.inspectedWindow.eval.mockReset();
-});
-
 describe('hasHtmlLangAttr audit', () => {
-  it('pushes an error if <html> has no lang attribute', async () => {
-    const mockEvalResult = {
-      hasLangAttr: null,
-      outerHTML: '<html></html>',
-    };
+  it('pushes an error if <html> has no lang attribute', () => {
+    setupDOM(`
+      <html>
+        <head>
+          <title>hasHtmlLangAttr</title>
+        </head>
+        <body>
+        </body>
+      </html>  
+    `)
 
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasHtmlLangAttr(results);
-    expect(results.length).toBe(1);
+    const results = hasHtmlLangAttr();
+    expect(results.hasLangAttr).toBe(null);
   });
 
-  it('does not push an error if <html> has lang attribute', async () => {
-    const mockEvalResult = {
-      hasLangAttr: 'en',
-      outerHTML: '<html lang="en"></html>',
-    };
+  it('does not push an error if <html> has lang attribute', () => {
+    setupDOM(`
+      <html lang="en">
+        <head>
+          <title>hasHtmlLangAttr</title>
+        </head>
+        <body>
+        </body>
+      </html>  
+    `)
 
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasHtmlLangAttr(results);
-    expect(results.length).toBe(0);
+    const results = hasHtmlLangAttr();
+    expect(results.hasLangAttr).not.toBe(null || "");
   });
 });
