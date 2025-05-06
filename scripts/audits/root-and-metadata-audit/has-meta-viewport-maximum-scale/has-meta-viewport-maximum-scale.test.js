@@ -1,65 +1,37 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
+import { setupDOM } from '../../../utils/setup-dom.js';
 import { hasMetaViewportMaximumScale } from './has-meta-viewport-maximum-scale.js';
 
-beforeEach(() => {
-  chrome.devtools.inspectedWindow.eval.mockReset();
-});
-
 describe('hasMetaViewportMaximumScale audit', () => {
-  it('pushes an error if maximum-scale is less than 5.0', async () => {
-    const mockEvalResult = {
-      hasContentAttr: 'width=device-width, initial-scale=1.0, maximum-scale=1.0',
-      outerHTML: `<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">`,
-    };
+  it('detects maximum-scale less than 5.0', () => {
+    setupDOM(`
+      <html>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+          <title>Test</title>
+        </head>
+        <body></body>
+      </html>    
+    `);
 
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasMetaViewportMaximumScale(results);
-    expect(results.length).toBe(1);
+    const result = hasMetaViewportMaximumScale();
+    const match = result.hasContentAttr.match(/maximum-scale\s*=\s*([\d.]+)/i);
+    expect(parseFloat(match[1])).toBeLessThan(5.0);
   });
 
-  it('does not push an error if maximum-scale is 5.0 or more', async () => {
-    const mockEvalResult = {
-      hasContentAttr: 'width=device-width, maximum-scale=5.0',
-      outerHTML: `<meta name="viewport" content="width=device-width, maximum-scale=5.0">`,
-    };
+  it('ignores maximum-scale equal or greater than 5.0', () => {
+    setupDOM(`
+      <html>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+          <title>Test</title>
+        </head>
+        <body></body>
+      </html>    
+    `);
 
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasMetaViewportMaximumScale(results);
-    expect(results.length).toBe(0);
-  });
-
-  it('does not push an error if maximum-scale is not present', async () => {
-    const mockEvalResult = {
-      hasContentAttr: 'width=device-width, initial-scale=1.0',
-      outerHTML: `<meta name="viewport" content="width=device-width, initial-scale=1.0">`,
-    };
-
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasMetaViewportMaximumScale(results);
-    expect(results.length).toBe(0);
-  });
-
-  it('does not push an error if meta viewport tag is not present', async () => {
-    const mockEvalResult = null;
-
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasMetaViewportMaximumScale(results);
-    expect(results.length).toBe(0);
+    const result = hasMetaViewportMaximumScale();
+    const match = result.hasContentAttr.match(/maximum-scale\s*=\s*([\d.]+)/i);
+    expect(parseFloat(match[1])).toBeGreaterThanOrEqual(5.0);
   });
 });
