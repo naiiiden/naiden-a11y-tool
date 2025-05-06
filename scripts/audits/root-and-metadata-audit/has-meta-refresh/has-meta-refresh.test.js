@@ -1,38 +1,36 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
+import { setupDOM } from '../../../utils/setup-dom.js';
 import { hasMetaRefresh } from './has-meta-refresh.js';
 
-beforeEach(() => {
-  chrome.devtools.inspectedWindow.eval.mockReset();
-});
-
 describe('hasMetaRefresh audit', () => {
-  it('pushes an error if the document has <meta http-equiv="refresh"> tag', async () => {
-    const mockEvalResult = {
-      hasContentAttr: true,
-      outerHTML: `<meta http-equiv="refresh" content="3;url=https://www.mozilla.org"/>`,
-    };
+  it('pushes an error if the document has <meta http-equiv="refresh"> tag', () => {
+    setupDOM(`
+      <html>
+        <head>
+          <meta http-equiv="refresh" content="3"/>
+          <title>hasMetaRefresh</title>
+        </head>
+        <body>
+        </body>
+      </html>    
+    `)
 
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasMetaRefresh(results);
-    expect(results.length).toBe(1);
+    const results = hasMetaRefresh();
+    expect(results.hasContentAttr).toBe("3");
   });
 
-  it('does not push an error if document doesn\'t have <meta http-equiv="refresh"> tag', async () => {
-    const mockEvalResult = {
-      hasContentAttr: null,
-      outerHTML: '<html lang="en"></html>',
-    };
+  it('does not push an error if document doesn\'t have <meta http-equiv="refresh"> tag', () => {
+    setupDOM(`
+      <html>
+        <head>
+          <title>hasMetaRefresh</title>
+        </head>
+        <body>
+        </body>
+      </html>    
+    `)
 
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasMetaRefresh(results);
-    expect(results.length).toBe(0);
+    const results = hasMetaRefresh();
+    expect(results).toBe(undefined);
   });
 });

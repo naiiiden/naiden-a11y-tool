@@ -4,6 +4,9 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export function hasMetaRefresh() {
     const metaRefresh = document.querySelector('meta[http-equiv="refresh"]');
+    if (!metaRefresh) {
+        return;
+    }
     const hasContentAttr = metaRefresh.getAttribute('content');
 
     return {
