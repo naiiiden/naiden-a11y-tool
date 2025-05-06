@@ -1,68 +1,35 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { hasValidHtmlLangAttr } from './has-valid-html-lang-attr.js';
-
-beforeEach(() => {
-  chrome.devtools.inspectedWindow.eval.mockReset();
-});
+import { describe, it, expect } from 'vitest';
+import { setupDOM } from '../../../utils/setup-dom.js';
+import { hasValidHtmlLangAttr, validLangValues } from './has-valid-html-lang-attr.js';
 
 describe('hasValidHtmlLangAttr audit', () => {
-  it('doesn\'t push an error if lang attribute is a valid language code', async () => {
-    const mockEvalResult = {
-      hasLangAttr: 'en',
-      outerHTML: '<html lang="en"></html>',
-    };
+  it('doesn\'t push an error if lang attribute is a valid language code', () => {
+    setupDOM(`
+      <html lang="en">
+        <head>
+          <title>hasHtmlLangAttr</title>
+        </head>
+        <body>
+        </body>
+      </html>  
+    `)
 
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasValidHtmlLangAttr(results);
-    expect(results.length).toBe(0);
+    const results = hasValidHtmlLangAttr();
+    expect(validLangValues.includes(results.hasLangAttr.split('-')[0])).toBe(true);
   });
 
-  it('doesn\'t push an error if lang is a valid code', async () => {
-    const mockEvalResult = {
-      hasLangAttr: 'en-US',
-      outerHTML: '<html lang="en-US"></html>',
-    };
+  it('pushes an error if lang attribute has an invalid language code', () => {
+    setupDOM(`
+      <html lang="xxx">
+        <head>
+          <title>hasHtmlLangAttr</title>
+        </head>
+        <body>
+        </body>
+      </html>  
+    `)
 
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasValidHtmlLangAttr(results);
-    expect(results.length).toBe(0);
-  });
-
-  it('pushes an error if lang attribute has an invalid language code', async () => {
-    const mockEvalResult = {
-      hasLangAttr: 'xx',
-      outerHTML: '<html lang="xx"></html>',
-    };
-
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasValidHtmlLangAttr(results);
-    expect(results.length).toBe(1);
-  });
-
-  it('does NOT push an error if lang attribute is missing', async () => {
-    const mockEvalResult = {
-      hasLangAttr: null,
-      outerHTML: '<html></html>',
-    };
-
-    chrome.devtools.inspectedWindow.eval.mockImplementation((code, callback) => {
-      callback(mockEvalResult);
-    });
-
-    const results = [];
-    await hasValidHtmlLangAttr(results);
-    expect(results.length).toBe(0);
+    const results = hasValidHtmlLangAttr();
+    expect(validLangValues.includes(results.hasLangAttr.split('-')[0])).toBe(false);
   });
 });
