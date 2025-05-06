@@ -14,7 +14,7 @@ describe('findBrokenSamePageLinks', () => {
       </html>
     `);
 
-    const results = hasBrokenSamePageLinks(dom.window.document, () => '', () => true);
+    const results = hasBrokenSamePageLinks(dom.window.document);
     expect(results).toHaveLength(2);
     expect(results[0].targetExists).toBe(false);
   });
@@ -29,7 +29,7 @@ describe('findBrokenSamePageLinks', () => {
       </html>
     `);
 
-    const results = hasBrokenSamePageLinks(dom.window.document, () => '', () => true);
+    const results = hasBrokenSamePageLinks(dom.window.document);
     expect(results).toHaveLength(0);
   });
 
@@ -37,12 +37,13 @@ describe('findBrokenSamePageLinks', () => {
     const dom = new JSDOM(`
       <html>
         <body>
-          <a href="#nonexistent">Visible link</a>
+          <a href="#nonexistent" style="display: none">Visible link</a>
         </body>
       </html>
     `);
 
-    const results = hasBrokenSamePageLinks(dom.window.document, () => '', () => false);
+    const results = hasBrokenSamePageLinks(dom.window.document);
+    console.log(results);
     expect(results).toHaveLength(0);
   });
 });

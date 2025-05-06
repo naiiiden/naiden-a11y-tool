@@ -3,7 +3,7 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
-export function hasBrokenSamePageLinks(document, getUniqueSelector, isElementVisible) {
+export function hasBrokenSamePageLinks(document) {
     return Array.from(document.querySelectorAll('a[href^="#"]'))
         .filter(link => {
             if (!isElementVisible(link)) {
@@ -32,7 +32,7 @@ export async function hasBrokenSamePageLinksEval(auditResults) {
         const isElementVisible = ${isElementVisible.toString()};
         const hasBrokenSamePageLinks = ${hasBrokenSamePageLinks.toString()};
 
-        return hasBrokenSamePageLinks(document, getUniqueSelector, isElementVisible);
+        return hasBrokenSamePageLinks(document);
     `);
 
     brokenSamePageLinks
