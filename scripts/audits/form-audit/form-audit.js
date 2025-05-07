@@ -4,7 +4,7 @@ import { hasFieldsetsMissingLegendEval } from "./fieldsets-missing-legend/fields
 import { hasFormControlLabelsEval } from "./form-control-labels/form-control-labels.js";
 import { hasVisibleFormControlLabelsEval } from "./form-control-visible-labels/form-control-visible-labels.js";
 import { hasAutocompleteValidValuesEval } from "./has-autocomplete-valid-values/has-autocomplete-valid-values.js";
-import { hasImageInputs } from "./image-inputs/image-inputs.js";
+import { hasImageInputsEval } from "./image-inputs/image-inputs.js";
 import { relatedFormControlsMissingFieldset } from "./related-form-controls-without-fieldset/related-form-controls-without-fieldset.js.js";
 
 export async function formAudit(auditResults) {
@@ -13,7 +13,7 @@ export async function formAudit(auditResults) {
     await hasFieldsetsMissingLegendEval(auditResults);
     await relatedFormControlsMissingFieldset(auditResults);
     await hasEmptySubmitButonOrResetInputValuesEval(auditResults);    
-    await hasImageInputs(auditResults);
+    await hasImageInputsEval(auditResults);
     await hasVisibleFormControlLabelsEval(auditResults);
     await hasAutocompleteValidValuesEval(auditResults);
 }
