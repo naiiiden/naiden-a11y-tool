@@ -1,4 +1,4 @@
-import { hasButtonImages } from "./button-images/button-images.js";
+import { hasButtonImagesEval } from "./button-images/button-images.js";
 import { hasImageMaps } from "./image-maps/image-maps.js";
 import { hasRedundantImgAlt } from "./image-redundant-alt/image-redundant-alt.js";
 import { hasLinkedImages } from "./linked-images/linked-images.js";
@@ -10,7 +10,7 @@ import { hasSvgRoleImgMissingAlt } from "./svg-role-img-missing-alt/svg-role-img
 export async function imagesAudit(auditResults) {
     await hasMissingAltImages(auditResults);
     await hasLinkedImages(auditResults);
-    await hasButtonImages(auditResults);
+    await hasButtonImagesEval(auditResults);
     await hasImageMaps(auditResults);
     await hasRoleImg(auditResults);
     await hasServerSideImgMaps(auditResults);
