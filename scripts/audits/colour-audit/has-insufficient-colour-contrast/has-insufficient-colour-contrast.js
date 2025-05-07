@@ -1,10 +1,12 @@
 import { colourErrors } from "../../../errors/colour.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function hasInsufficientColourContrast(auditResults) {
     const hasInsufficientColourContrast = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
+        const isElementVisible = ${isElementVisible.toString()};
 
         function getRGB(color) {
             if (color.startsWith('rgb')) {
@@ -43,14 +45,6 @@ export async function hasInsufficientColourContrast(auditResults) {
             const fontSizePt = fontSize / 1.333;
             
             return fontSizePt >= 18 || (fontSizePt >= 14 && fontWeight >= 700);
-        }
-
-        function isVisible(element) {
-            const style = window.getComputedStyle(element);
-            return style.display !== 'none' && 
-                   style.visibility !== 'hidden' && 
-                   style.opacity !== '0' &&
-                   element.offsetHeight > 0;
         }
 
         function isTransparent(color) {
@@ -94,7 +88,7 @@ export async function hasInsufficientColourContrast(auditResults) {
             const hasText = element.textContent.trim().length > 0;
             const hasDirectText = Array.from(element.childNodes)
                 .some(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim().length > 0);
-            return hasText && hasDirectText && isVisible(element);
+            return hasText && hasDirectText && isElementVisible(element);
         });
 
         return textElements.map(element => {
@@ -125,6 +119,8 @@ export async function hasInsufficientColourContrast(auditResults) {
             };
         }).filter(item => item.hasInsufficientContrast);
     `);
+
+    console.log(hasInsufficientColourContrast);
 
     hasInsufficientColourContrast.forEach(element => {
         auditResults.push({
