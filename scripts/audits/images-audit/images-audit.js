@@ -4,7 +4,7 @@ import { hasRedundantImgAltEval } from "./image-redundant-alt/image-redundant-al
 import { hasLinkedImagesEval } from "./linked-images/linked-images.js";
 import { hasMissingAltImagesEval } from "./missing-alt-images/missing-alt-images.js";
 import { hasRoleImgEval } from "./role-img/role-img.js";
-import { hasServerSideImgMaps } from "./server-side-img-maps/server-side-img-maps.js";
+import { hasServerSideImgMapsEval } from "./server-side-img-maps/server-side-img-maps.js";
 import { hasSvgRoleImgMissingAlt } from "./svg-role-img-missing-alt/svg-role-img-missing-alt.js";
 
 export async function imagesAudit(auditResults) {
@@ -13,7 +13,7 @@ export async function imagesAudit(auditResults) {
     await hasButtonImagesEval(auditResults);
     await hasImageMapsEval(auditResults);
     await hasRoleImgEval(auditResults);
-    await hasServerSideImgMaps(auditResults);
+    await hasServerSideImgMapsEval(auditResults);
     await hasSvgRoleImgMissingAlt(auditResults);
     await hasRedundantImgAltEval(auditResults);
 }
