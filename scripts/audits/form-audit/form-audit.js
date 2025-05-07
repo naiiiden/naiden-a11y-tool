@@ -3,7 +3,7 @@ import { hasEmptySubmitButonOrResetInputValuesEval } from "./empty-submit-button
 import { hasFieldsetsMissingLegendEval } from "./fieldsets-missing-legend/fieldsets-missing-legend.js";
 import { hasFormControlLabelsEval } from "./form-control-labels/form-control-labels.js";
 import { hasVisibleFormControlLabelsEval } from "./form-control-visible-labels/form-control-visible-labels.js";
-import { hasAutocompleteValidValues } from "./has-autocomplete-valid-values/has-autocomplete-valid-values.js";
+import { hasAutocompleteValidValuesEval } from "./has-autocomplete-valid-values/has-autocomplete-valid-values.js";
 import { hasImageInputs } from "./image-inputs/image-inputs.js";
 import { relatedFormControlsMissingFieldset } from "./related-form-controls-without-fieldset/related-form-controls-without-fieldset.js.js";
 
@@ -15,5 +15,5 @@ export async function formAudit(auditResults) {
     await hasEmptySubmitButonOrResetInputValuesEval(auditResults);    
     await hasImageInputs(auditResults);
     await hasVisibleFormControlLabelsEval(auditResults);
-    await hasAutocompleteValidValues(auditResults);
+    await hasAutocompleteValidValuesEval(auditResults);
 }
