@@ -5,7 +5,7 @@ import { hasEmptyLinksEval } from "./empty-links/empty-links.js";
 import { hasDuplicateAccesskeysEval } from "./has-duplicate-accesskey/has-duplicate-accesskey.js";
 import { hasInteractiveControlsWithInteractiveControlsAsChildrenEval } from "./interactive-controls-w-interactive-children/interactive-controls-w-interactive-children.js";
 import { scrollableRegionKeyboardAccess } from "./scrollable-region-keyboard-access/scrollable-region-keyboard-access.js";
-import { touchTargetSize } from "./touch-target-size/touch-target-size.js";
+import { touchTargetSizeEval } from "./touch-target-size/touch-target-size.js";
 
 export async function interactiveElementsAudit(auditResults) {
     await hasEmptyLinksEval(auditResults);
@@ -14,6 +14,6 @@ export async function interactiveElementsAudit(auditResults) {
     await hasInteractiveControlsWithInteractiveControlsAsChildrenEval(auditResults);
     await hasBrokenSamePageLinksEval(auditResults);
     await hasDuplicateAccesskeysEval(auditResults);
-    await touchTargetSize(auditResults);
+    await touchTargetSizeEval(auditResults);
     await scrollableRegionKeyboardAccess(auditResults);
 }
