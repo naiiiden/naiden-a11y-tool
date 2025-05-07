@@ -1,5 +1,5 @@
-import { hasMarquee } from "./has-marquee/has-marquee.js";
+import { hasMarqueeEval } from "./has-marquee/has-marquee.js";
 
 export async function deprecatedElementsAudit(auditResults) {
-    await hasMarquee(auditResults);
+    await hasMarqueeEval(auditResults);
 }
