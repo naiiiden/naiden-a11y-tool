@@ -3,29 +3,34 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
-export async function hasRoleImg(auditResults) {
+export function hasRoleImg() {
+    return Array.from(document.querySelectorAll('[role="img"]:not(svg[role="img"])'))
+        .filter(img => {
+            if (!isElementVisible(img)) {
+                return false;
+            }
+    
+            const ariaLabel = img.hasAttribute('aria-label') ? img.getAttribute('aria-label').trim() : null;
+            const ariaLabelledby = img.hasAttribute('aria-labelledby') 
+                ? document.getElementById(img.getAttribute('aria-labelledby')) 
+                : null;
+            const title = img.hasAttribute('title') ? img.getAttribute('title').trim() : null;
+    
+            return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+        })
+        .map(img => ({
+            outerHTML: img.outerHTML,
+            selector: getUniqueSelector(img)
+        }));
+}
+
+export async function hasRoleImgEval(auditResults) {
     const roleImg = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
-        
-        return Array.from(document.querySelectorAll('[role="img"]:not(svg[role="img"])'))
-            .filter(img => {
-                if (!isElementVisible(img)) {
-                    return false;
-                }
+        const hasRoleImg = ${hasRoleImg.toString()};
 
-                const ariaLabel = img.hasAttribute('aria-label') ? img.getAttribute('aria-label').trim() : null;
-                const ariaLabelledby = img.hasAttribute('aria-labelledby') 
-                    ? document.getElementById(img.getAttribute('aria-labelledby')) 
-                    : null;
-                const title = img.hasAttribute('title') ? img.getAttribute('title').trim() : null;
-
-                return !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
-            })
-            .map(img => ({
-                outerHTML: img.outerHTML,
-                selector: getUniqueSelector(img)
-            }));
+        return hasRoleImg();
     `);
 
     roleImg.forEach(img => {
