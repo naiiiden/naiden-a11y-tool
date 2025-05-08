@@ -1,5 +1,5 @@
 import { hasAsideInOtherLandmarksEval } from "./has-aside-in-other-landmarks/has-aside-in-other-landmarks.js";
-import { hasBannersInOtherLandmarks } from "./has-banners-in-other-landmarks/has-banners-in-other-landmarks.js";
+import { hasBannersInOtherLandmarksEval } from "./has-banners-in-other-landmarks/has-banners-in-other-landmarks.js";
 import { hasBypass } from "./has-bypass/has-bypass.js";
 import { hasContentOutsideLandmarks } from "./has-content-outside-landmarks/has-content-outside-landmarks.js";
 import { hasContentinfoInOtherLandmarks } from "./has-contentinfo-in-other-landmarks/has-contentinfo-in-other-landmarks.js";
@@ -30,7 +30,7 @@ export async function semanticAudit(auditResults) {
     await hasNoMainLandmarkOrMore(auditResults);
     await hasMoreThanOneBannerLandmark(auditResults);
     await hasMoreThanOneContentinfoLandmark(auditResults);
-    await hasBannersInOtherLandmarks(auditResults);
+    await hasBannersInOtherLandmarksEval(auditResults);
     await hasAsideInOtherLandmarksEval(auditResults);
     await hasContentinfoInOtherLandmarks(auditResults);
     await hasMainInOtherLandmarks(auditResults);
