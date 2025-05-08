@@ -4,7 +4,7 @@ import { hasBypassEval } from "./has-bypass/has-bypass.js";
 import { hasContentOutsideLandmarksEval } from "./has-content-outside-landmarks/has-content-outside-landmarks.js";
 import { hasContentinfoInOtherLandmarksEval } from "./has-contentinfo-in-other-landmarks/has-contentinfo-in-other-landmarks.js";
 import { hasDuplicateIdsEval } from "./has-duplicate-ids/has-duplicate-ids.js";
-import { hasHeadingLevelOne } from "./has-heading-level-one/has-heading-level-one.js";
+import { hasHeadingLevelOneEval } from "./has-heading-level-one/has-heading-level-one.js";
 import { hasHeadings } from "./has-headings/has-headings.js";
 import { hasInvalidDlElements } from "./has-invalid-dl-elements/has-invalid-dl-elements.js";
 import { hasInvalidDtDdElements } from "./has-invalid-dt-dd-elements/has-invalid-dt-dd-elements.js";
@@ -21,7 +21,7 @@ import { hasUniqueLandmarks } from "./landmarks-unique/landmarks-unique.js";
 import { hasPossibleHeadings } from "./possible-headings/possible-headings.js";
 
 export async function semanticAudit(auditResults) {
-    await hasHeadingLevelOne(auditResults);
+    await hasHeadingLevelOneEval(auditResults);
     await hasHeadingLevels(auditResults);
     await hasPossibleHeadings(auditResults);
     await hasHeadings(auditResults);
