@@ -153,7 +153,7 @@ export function displayAuditResults(auditResults) {
                   ${error.wcagLinks.map(link => `
                     <li>
                       <a class="external-link" href="${link.url}" target="_blank">
-                        ${link.name} <img class="icon" src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
+                        ${escapeHtml(link.name)} <img class="icon" src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
                       </a>
                     </li>
                   `).join('')}
