@@ -5,7 +5,7 @@ import { hasContentOutsideLandmarksEval } from "./has-content-outside-landmarks/
 import { hasContentinfoInOtherLandmarksEval } from "./has-contentinfo-in-other-landmarks/has-contentinfo-in-other-landmarks.js";
 import { hasDuplicateIdsEval } from "./has-duplicate-ids/has-duplicate-ids.js";
 import { hasHeadingLevelOneEval } from "./has-heading-level-one/has-heading-level-one.js";
-import { hasHeadings } from "./has-headings/has-headings.js";
+import { hasHeadingsEval } from "./has-headings/has-headings.js";
 import { hasInvalidDlElements } from "./has-invalid-dl-elements/has-invalid-dl-elements.js";
 import { hasInvalidDtDdElements } from "./has-invalid-dt-dd-elements/has-invalid-dt-dd-elements.js";
 import { hasInvalidListContent } from "./has-invalid-list-content/has-invalid-list-content.js";
@@ -24,7 +24,7 @@ export async function semanticAudit(auditResults) {
     await hasHeadingLevelOneEval(auditResults);
     await hasHeadingLevels(auditResults);
     await hasPossibleHeadings(auditResults);
-    await hasHeadings(auditResults);
+    await hasHeadingsEval(auditResults);
 
     await hasRegionsOrLandmarks(auditResults);
     await hasNoMainLandmarkOrMore(auditResults);
