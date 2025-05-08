@@ -2,29 +2,35 @@ import { semanticErrors } from "../../../errors/semantic.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
-export async function hasDuplicateIds(auditResults) {
-    const hasDuplicateIds = await inspectedWindowEval(`
+export function hasDuplicateIds() {
+    const elementsWithIds = Array.from(document.querySelectorAll("[id]:not([id=''])"));
+    
+    const duplicates = elementsWithIds.reduce((acc, element) => {
+        const id = element.id.trim();
+        if (!acc[id]) {
+            acc[id] = [];
+        }
+        acc[id].push(element);
+        return acc;
+    }, {});
+    
+    return Object.values(duplicates)
+        .filter(elements => elements.length > 1)
+        .map(elements => elements.map(element => ({
+            selector: getUniqueSelector(element),
+            outerHTML: element.cloneNode().outerHTML
+        })));
+}
+
+export async function hasDuplicateIdsEval(auditResults) {
+    const duplicateIds = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
-        const elementsWithIds = Array.from(document.querySelectorAll("[id]:not([id=''])"));
+        const hasDuplicateIds = ${hasDuplicateIds.toString()};
 
-        const duplicates = elementsWithIds.reduce((acc, element) => {
-            const id = element.id.trim();
-            if (!acc[id]) {
-                acc[id] = [];
-            }
-            acc[id].push(element);
-            return acc;
-        }, {});
-
-        return Object.values(duplicates)
-            .filter(elements => elements.length > 1)
-            .map(elements => elements.map(element => ({
-                selector: getUniqueSelector(element),
-                outerHTML: element.cloneNode().outerHTML
-            })));
+        return hasDuplicateIds();
     `);
 
-    hasDuplicateIds.forEach(group => {
+    duplicateIds.forEach(group => {
         const helperText = `Duplicate ID found on the following elements:\n` +
             group.map(d => `- Selector: ${d.selector}`).join("\n");
 

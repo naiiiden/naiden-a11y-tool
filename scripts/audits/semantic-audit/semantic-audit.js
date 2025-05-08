@@ -3,7 +3,7 @@ import { hasBannersInOtherLandmarksEval } from "./has-banners-in-other-landmarks
 import { hasBypassEval } from "./has-bypass/has-bypass.js";
 import { hasContentOutsideLandmarksEval } from "./has-content-outside-landmarks/has-content-outside-landmarks.js";
 import { hasContentinfoInOtherLandmarksEval } from "./has-contentinfo-in-other-landmarks/has-contentinfo-in-other-landmarks.js";
-import { hasDuplicateIds } from "./has-duplicate-ids/has-duplicate-ids.js";
+import { hasDuplicateIdsEval } from "./has-duplicate-ids/has-duplicate-ids.js";
 import { hasHeadingLevelOne } from "./has-heading-level-one/has-heading-level-one.js";
 import { hasHeadings } from "./has-headings/has-headings.js";
 import { hasInvalidDlElements } from "./has-invalid-dl-elements/has-invalid-dl-elements.js";
@@ -43,6 +43,6 @@ export async function semanticAudit(auditResults) {
     await hasInvalidDtDdElements(auditResults);
 
     await hasBypassEval(auditResults);
-    await hasDuplicateIds(auditResults);
+    await hasDuplicateIdsEval(auditResults);
     await hasTabindexGreaterThanZero(auditResults);
 }
