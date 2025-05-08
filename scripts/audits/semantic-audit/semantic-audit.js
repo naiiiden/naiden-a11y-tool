@@ -6,7 +6,7 @@ import { hasContentinfoInOtherLandmarksEval } from "./has-contentinfo-in-other-l
 import { hasDuplicateIdsEval } from "./has-duplicate-ids/has-duplicate-ids.js";
 import { hasHeadingLevelOneEval } from "./has-heading-level-one/has-heading-level-one.js";
 import { hasHeadingsEval } from "./has-headings/has-headings.js";
-import { hasInvalidDlElements } from "./has-invalid-dl-elements/has-invalid-dl-elements.js";
+import { hasInvalidDlElementsEval } from "./has-invalid-dl-elements/has-invalid-dl-elements.js";
 import { hasInvalidDtDdElements } from "./has-invalid-dt-dd-elements/has-invalid-dt-dd-elements.js";
 import { hasInvalidListContent } from "./has-invalid-list-content/has-invalid-list-content.js";
 import { hasLiOutsideList } from "./has-li-outside-list/has-li-outside-list.js";
@@ -39,7 +39,7 @@ export async function semanticAudit(auditResults) {
     
     await hasInvalidListContent(auditResults);
     await hasLiOutsideList(auditResults);
-    await hasInvalidDlElements(auditResults);
+    await hasInvalidDlElementsEval(auditResults);
     await hasInvalidDtDdElements(auditResults);
 
     await hasBypassEval(auditResults);
