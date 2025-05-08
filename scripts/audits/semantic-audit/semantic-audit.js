@@ -9,7 +9,7 @@ import { hasHeadingsEval } from "./has-headings/has-headings.js";
 import { hasInvalidDlElementsEval } from "./has-invalid-dl-elements/has-invalid-dl-elements.js";
 import { hasInvalidDtDdElementsEval } from "./has-invalid-dt-dd-elements/has-invalid-dt-dd-elements.js";
 import { hasInvalidListContentEval } from "./has-invalid-list-content/has-invalid-list-content.js";
-import { hasLiOutsideList } from "./has-li-outside-list/has-li-outside-list.js";
+import { hasLiOutsideListEval } from "./has-li-outside-list/has-li-outside-list.js";
 import { hasMainInOtherLandmarks } from "./has-main-in-other-landmarks/has-main-in-other-landmarks.js";
 import { hasMoreThanOneBannerLandmark } from "./has-more-than-one-banner-landmark/has-more-thank-one-banner-landmark.js";
 import { hasMoreThanOneContentinfoLandmark } from "./has-more-than-one-contentinfo-landmark/has-more-than-one-contentinfo-landmark.js";
@@ -38,7 +38,7 @@ export async function semanticAudit(auditResults) {
     await hasUniqueLandmarks(auditResults);
     
     await hasInvalidListContentEval(auditResults);
-    await hasLiOutsideList(auditResults);
+    await hasLiOutsideListEval(auditResults);
     await hasInvalidDlElementsEval(auditResults);
     await hasInvalidDtDdElementsEval(auditResults);
 
