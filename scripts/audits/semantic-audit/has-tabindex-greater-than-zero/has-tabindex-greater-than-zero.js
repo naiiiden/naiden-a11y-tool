@@ -12,7 +12,7 @@ export function hasTabindexGreaterThanZero() {
     
             const tabindexValue = element.getAttribute("tabindex").trim();
     
-            if (!/^\d+(\\s.*)?$/.test(tabindexValue)) {
+            if (!/^\d+(\s.*)?$/.test(tabindexValue)) {
                 return false;
             }
     
