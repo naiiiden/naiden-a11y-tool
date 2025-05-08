@@ -11,7 +11,7 @@ import { hasInvalidDtDdElementsEval } from "./has-invalid-dt-dd-elements/has-inv
 import { hasInvalidListContentEval } from "./has-invalid-list-content/has-invalid-list-content.js";
 import { hasLiOutsideListEval } from "./has-li-outside-list/has-li-outside-list.js";
 import { hasMainInOtherLandmarksEval } from "./has-main-in-other-landmarks/has-main-in-other-landmarks.js";
-import { hasMoreThanOneBannerLandmark } from "./has-more-than-one-banner-landmark/has-more-thank-one-banner-landmark.js";
+import { hasMoreThanOneBannerLandmarkEval } from "./has-more-than-one-banner-landmark/has-more-thank-one-banner-landmark.js";
 import { hasMoreThanOneContentinfoLandmark } from "./has-more-than-one-contentinfo-landmark/has-more-than-one-contentinfo-landmark.js";
 import { hasNoMainLandmarkOrMore } from "./has-no-main-landmark-or-more/has-no-main-landmark-or-more.js";
 import { hasRegionsOrLandmarks } from "./has-regions-or-landmarks/has-regions-or-landmarks.js";
@@ -28,7 +28,7 @@ export async function semanticAudit(auditResults) {
 
     await hasRegionsOrLandmarks(auditResults);
     await hasNoMainLandmarkOrMore(auditResults);
-    await hasMoreThanOneBannerLandmark(auditResults);
+    await hasMoreThanOneBannerLandmarkEval(auditResults);
     await hasMoreThanOneContentinfoLandmark(auditResults);
     await hasBannersInOtherLandmarksEval(auditResults);
     await hasAsideInOtherLandmarksEval(auditResults);
