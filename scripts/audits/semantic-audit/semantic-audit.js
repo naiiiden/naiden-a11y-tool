@@ -18,12 +18,12 @@ import { hasRegionsOrLandmarksEval } from "./has-regions-or-landmarks/has-region
 import { hasTabindexGreaterThanZeroEval } from "./has-tabindex-greater-than-zero/has-tabindex-greater-than-zero.js";
 import { hasHeadingLevelsEval } from "./heading-levels/heading-levels.js";
 import { hasUniqueLandmarksEval } from "./landmarks-unique/landmarks-unique.js";
-import { hasPossibleHeadings } from "./possible-headings/possible-headings.js";
+import { hasPossibleHeadingsEval } from "./possible-headings/possible-headings.js";
 
 export async function semanticAudit(auditResults) {
     await hasHeadingLevelOneEval(auditResults);
     await hasHeadingLevelsEval(auditResults);
-    await hasPossibleHeadings(auditResults);
+    await hasPossibleHeadingsEval(auditResults);
     await hasHeadingsEval(auditResults);
 
     await hasRegionsOrLandmarksEval(auditResults);
