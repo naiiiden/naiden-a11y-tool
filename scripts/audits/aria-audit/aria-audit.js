@@ -12,7 +12,7 @@ import { hasAriaRoleRequiredAriaAttributesEval } from "./aria-role-required-aria
 import { hasAriaRoleRequiredChildrenEval } from "./aria-role-required-children/aria-role-required-children.js";
 import { hasAriaRoleRequiredParentEval } from "./aria-role-required-parent/aria-role-required-parent.js";
 import { ariaRoleAllowedAriaAttributes } from "./aria-role-allowed-aria-attributes/aria-role-allowed-aria-attributes.js";
-import { ariaRoleValidValues } from "./aria-roles-valid-values/aria-roles-valid-values.js";
+import { hasAriaRoleValidValuesEval } from "./aria-roles-valid-values/aria-roles-valid-values.js";
 import { ariaTextNoFocusableChildren } from "./aria-text-no-focusable-children/aria-text-no-focusable-children.js";
 import { ariaToggleFieldNames } from "./aria-toggle-field-names/aria-toggle-field-names.js";
 import { ariaTooltipNames } from "./aria-tooltip-names/aria-tooltip-names.js";
@@ -33,7 +33,7 @@ export async function ariaAudit(auditResults) {
     await hasAriaInputFieldNamesEval(auditResults);
     await ariaToggleFieldNames(auditResults);
     await hasAriaHiddenFocusableOrWithFocusableChildrenEval(auditResults);
-    await ariaRoleValidValues(auditResults);
+    await hasAriaRoleValidValuesEval(auditResults);
     await hasAriaDialogAndAlertDialogNamesEval(auditResults);
     await ariaTextNoFocusableChildren(auditResults);
     await hasAriaAllowedRoleEval(auditResults);
