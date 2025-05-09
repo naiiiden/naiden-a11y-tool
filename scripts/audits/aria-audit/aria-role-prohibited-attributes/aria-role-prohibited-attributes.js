@@ -49,7 +49,6 @@ export async function hasAriaRoleProhibitedAttributesEval(auditResults) {
         const hasAriaRoleProhibitedAttributes = ${hasAriaRoleProhibitedAttributes.toString()};
 
         return hasAriaRoleProhibitedAttributes();
-
     `)
 
     ariaRoleProhibitedAttributes.forEach(element => {
