@@ -1,6 +1,6 @@
 import { hasAriaAllowedRoleEval } from "./aria-allowed-role/aria-allowed-role.js";
 import { ariaValidAttributeValues } from "./aria-valid-attribute-values/aria-valid-attribute-values.js";
-import { ariaCommandsNames } from "./aria-command-names/aria-command-names.js";
+import { hasAriaCommandsNamesEval } from "./aria-command-names/aria-command-names.js";
 import { ariaConditionalAttributes } from "./aria-conditional-attributes/aria-conditional-attributes.js";
 import { ariaDialogAndAlertDialogNames } from "./aria-dialog-and-alertdialog-names/aria-dialog-and-alertdialog-names.js";
 import { ariaHiddenFocusableOrWithFocusableChildren } from "./aria-hidden-focusable-or-with-focusable-children/aria-hidden-focusable-or-with-focusable-children.js";
@@ -25,7 +25,7 @@ import { ariaLabelContentNameMismatch } from "./aria-label-content-name-mismatch
 
 export async function ariaAudit(auditResults) {
     await hasAriaHiddenBody(auditResults);
-    await ariaCommandsNames(auditResults);
+    await hasAriaCommandsNamesEval(auditResults);
     await ariaMeterNames(auditResults);
     await ariaProgressbarNames(auditResults);
     await ariaTooltipNames(auditResults);
