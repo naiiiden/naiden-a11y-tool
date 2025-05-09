@@ -9,7 +9,7 @@ import { hasAriaMeterNamesEval } from "./aria-meter-names/aria-meter-names.js";
 import { hasAriaProgressbarNamesEval } from "./aria-progressbar-names/aria-progressbar-names.js";
 import { hasAriaRoleProhibitedAttributesEval } from "./aria-role-prohibited-attributes/aria-role-prohibited-attributes.js";
 import { hasAriaRoleRequiredAriaAttributesEval } from "./aria-role-required-aria-attributes/aria-role-required-aria-attributes.js";
-import { ariaRoleRequiredChildren } from "./aria-role-required-children/aria-role-required-children.js";
+import { hasAriaRoleRequiredChildrenEval } from "./aria-role-required-children/aria-role-required-children.js";
 import { ariaRoleRequiredParent } from "./aria-role-required-parent/aria-role-required-parent.js";
 import { ariaRoleAllowedAriaAttributes } from "./aria-role-allowed-aria-attributes/aria-role-allowed-aria-attributes.js";
 import { ariaRoleValidValues } from "./aria-roles-valid-values/aria-roles-valid-values.js";
@@ -42,7 +42,7 @@ export async function ariaAudit(auditResults) {
     await ariaValidAttributes(auditResults);
     await ariaRoleAllowedAriaAttributes(auditResults);
     await hasAriaRoleRequiredAriaAttributesEval(auditResults);
-    await ariaRoleRequiredChildren(auditResults);
+    await hasAriaRoleRequiredChildrenEval(auditResults);
     await ariaRoleRequiredParent(auditResults);
     await hasAriaRoleProhibitedAttributesEval(auditResults);
     await hasAriaConditionalAttributesEval(auditResults);
