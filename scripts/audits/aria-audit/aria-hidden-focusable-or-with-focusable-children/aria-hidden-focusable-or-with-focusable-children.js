@@ -3,55 +3,60 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
-export async function ariaHiddenFocusableOrWithFocusableChildren(auditResults) {
+export function hasAriaHiddenFocusableOrWithFocusableChildren() {
+    const focusableElementSelector = `
+        :is(
+            :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+            a[href], 
+            :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
+            [tabindex]:not([tabindex^='-'], [tabindex='']), 
+            [contenteditable]:not([contenteditable='false']), 
+            summary:not([tabindex^="-"], [tabindex='']), 
+            :is(audio, video)[controls],
+            embed,
+            area[href]:is(map[name]:not([name='']) area)
+        ):not([tabindex='-1'])
+    `;
+    
+    const elements = Array.from(document.querySelectorAll("[aria-hidden='true']:not([tabindex='-1'])"));
+    
+    const withFocusableChildren = [];
+    const focusableHidden = [];
+    
+    elements.forEach(element => {
+        const visibleFocusableChildren = Array.from(element.querySelectorAll(focusableElementSelector))
+            .filter(child => isElementVisible(child));
+    
+        if (visibleFocusableChildren.length > 0) {
+            withFocusableChildren.push({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element),
+                focusableChildren: visibleFocusableChildren.map(child => ({
+                    outerHTML: child.outerHTML,
+                    selector: getUniqueSelector(child)
+                }))
+            });
+            return;
+        }
+    
+        if (isElementVisible(element) && element.matches(focusableElementSelector)) {
+            focusableHidden.push({
+                outerHTML: element.outerHTML,
+                selector: getUniqueSelector(element)
+            });
+        }
+    });
+    
+    return { withFocusableChildren, focusableHidden };
+}
+
+export async function hasAriaHiddenFocusableOrWithFocusableChildrenEval(auditResults) {
     const ariaHiddenResults = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
+        const hasAriaHiddenFocusableOrWithFocusableChildren = ${hasAriaHiddenFocusableOrWithFocusableChildren.toString()};
 
-        const focusableElementSelector = \`
-            :is(
-                :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
-                a[href], 
-                :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
-                [tabindex]:not([tabindex^='-'], [tabindex='']), 
-                [contenteditable]:not([contenteditable='false']), 
-                summary:not([tabindex^="-"], [tabindex='']), 
-                :is(audio, video)[controls],
-                embed,
-                area[href]:is(map[name]:not([name='']) area)
-            ):not([tabindex='-1'])
-        \`;
-
-        const elements = Array.from(document.querySelectorAll("[aria-hidden='true']:not([tabindex='-1'])"));
-
-        const withFocusableChildren = [];
-        const focusableHidden = [];
-
-        elements.forEach(element => {
-            const visibleFocusableChildren = Array.from(element.querySelectorAll(focusableElementSelector))
-                .filter(child => isElementVisible(child));
-
-            if (visibleFocusableChildren.length > 0) {
-                withFocusableChildren.push({
-                    outerHTML: element.outerHTML,
-                    selector: getUniqueSelector(element),
-                    focusableChildren: visibleFocusableChildren.map(child => ({
-                        outerHTML: child.outerHTML,
-                        selector: getUniqueSelector(child)
-                    }))
-                });
-                return;
-            }
-
-            if (isElementVisible(element) && element.matches(focusableElementSelector)) {
-                focusableHidden.push({
-                    outerHTML: element.outerHTML,
-                    selector: getUniqueSelector(element)
-                });
-            }
-        });
-
-        return { withFocusableChildren, focusableHidden };
+        return hasAriaHiddenFocusableOrWithFocusableChildren();
     `);
 
     ariaHiddenResults.withFocusableChildren.forEach(element => {

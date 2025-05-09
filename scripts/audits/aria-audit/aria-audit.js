@@ -3,7 +3,7 @@ import { ariaValidAttributeValues } from "./aria-valid-attribute-values/aria-val
 import { hasAriaCommandsNamesEval } from "./aria-command-names/aria-command-names.js";
 import { hasAriaConditionalAttributesEval } from "./aria-conditional-attributes/aria-conditional-attributes.js";
 import { hasAriaDialogAndAlertDialogNamesEval } from "./aria-dialog-and-alertdialog-names/aria-dialog-and-alertdialog-names.js";
-import { ariaHiddenFocusableOrWithFocusableChildren } from "./aria-hidden-focusable-or-with-focusable-children/aria-hidden-focusable-or-with-focusable-children.js";
+import { hasAriaHiddenFocusableOrWithFocusableChildrenEval } from "./aria-hidden-focusable-or-with-focusable-children/aria-hidden-focusable-or-with-focusable-children.js";
 import { ariaInputFieldNames } from "./aria-input-field-names/aria-input-field-names.js";
 import { ariaMeterNames } from "./aria-meter-names/aria-meter-names.js";
 import { ariaProgressbarNames } from "./aria-progressbar-names/aria-progressbar-names.js";
@@ -32,7 +32,7 @@ export async function ariaAudit(auditResults) {
     await hasAriaDeprecatedRoles(auditResults);
     await ariaInputFieldNames(auditResults);
     await ariaToggleFieldNames(auditResults);
-    await ariaHiddenFocusableOrWithFocusableChildren(auditResults);
+    await hasAriaHiddenFocusableOrWithFocusableChildrenEval(auditResults);
     await ariaRoleValidValues(auditResults);
     await hasAriaDialogAndAlertDialogNamesEval(auditResults);
     await ariaTextNoFocusableChildren(auditResults);
