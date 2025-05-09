@@ -19,12 +19,12 @@ import { hasAriaTooltipNamesEval } from "./aria-tooltip-names/aria-tooltip-names
 import { hasAriaTreeitemNamesEval } from "./aria-treeitem-names/aria-treeitem-names.js";
 import { hasAriaValidAttributesEval } from "./aria-valid-attributes/aria-valid-attributes.js";
 import { hasAriaDeprecatedRolesEval } from "./has-aria-deprecated-roles/has-aria-deprecated-roles.js";
-import { hasAriaHiddenBody } from "./has-aria-hidden-body/has-aria-hidden-body.js";
+import { hasAriaHiddenBodyEval } from "./has-aria-hidden-body/has-aria-hidden-body.js";
 import { hasRolePresentationOrNoneConflict } from "./has-role-presentation-or-none-conflict/has-role-presentation-or-none-conflict.js";
 import { hasAriaLabelContentNameMismatchEval } from "./aria-label-content-name-mismatch/aria-label-content-name-mismatch.js";
 
 export async function ariaAudit(auditResults) {
-    await hasAriaHiddenBody(auditResults);
+    await hasAriaHiddenBodyEval(auditResults);
     await hasAriaCommandsNamesEval(auditResults);
     await hasAriaMeterNamesEval(auditResults);
     await hasAriaProgressbarNamesEval(auditResults);
