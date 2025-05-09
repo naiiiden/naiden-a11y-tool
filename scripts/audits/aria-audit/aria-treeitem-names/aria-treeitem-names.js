@@ -3,30 +3,35 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
-export async function ariaTreeitemNames(auditResults) {
+export function hasAriaTreeitemNames() {
+    return Array.from(document.querySelectorAll("[role='treeitem']"))
+        .filter(element => {
+            if (!isElementVisible(element)) {
+                return false;
+            }
+    
+            const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
+            const ariaLabelledby = element.hasAttribute('aria-labelledby') 
+                ? document.getElementById(element.getAttribute('aria-labelledby')) 
+                : null;
+            const title = element.hasAttribute('title') ? element.getAttribute('title').trim() : null;
+            
+            return element.textContent.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
+        })
+        .map(element => ({
+            outerHTML: element.outerHTML,
+            selector: getUniqueSelector(element)
+        }));
+}
+
+export async function hasAriaTreeitemNamesEval(auditResults) {
     // https://dequeuniversity.com/rules/axe/4.10/aria-treeitem-name
     const ariaTreeitemNames = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
+        const hasAriaTreeitemNames = ${hasAriaTreeitemNames.toString()};
 
-        return Array.from(document.querySelectorAll("[role='treeitem']"))
-            .filter(element => {
-                if (!isElementVisible(element)) {
-                    return false;
-                }
-
-                const ariaLabel = element.hasAttribute('aria-label') ? element.getAttribute('aria-label').trim() : null;
-                const ariaLabelledby = element.hasAttribute('aria-labelledby') 
-                    ? document.getElementById(element.getAttribute('aria-labelledby')) 
-                    : null;
-                const title = element.hasAttribute('title') ? element.getAttribute('title').trim() : null;
-                
-                return element.textContent.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
-            })
-            .map(element => ({
-                outerHTML: element.outerHTML,
-                selector: getUniqueSelector(element)
-            }));
+        return hasAriaTreeitemNames();
     `)
 
     ariaTreeitemNames.forEach(element => {
