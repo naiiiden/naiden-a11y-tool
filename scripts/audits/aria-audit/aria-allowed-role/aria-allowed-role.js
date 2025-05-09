@@ -4,7 +4,8 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export function hasAriaAllowedRole() {
-    return Array.from(document.querySelectorAll(`
+  return Array.from(
+    document.querySelectorAll(`
         a[href][role]:not([role=''], [role='button'], [role='checkbox'], [role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio'], [role='option'], [role='radio'], [role='switch'], [role='tab'], [role='treeitem'], [role='link']), 
         a:not([href])[role]:is([role='generic']), 
         address[role]:is([role='group']), 
@@ -121,25 +122,30 @@ export function hasAriaAllowedRole() {
         ul[role]:not([role=''], [role='group'], [role='listbox'], [role='menu'], [role='menubar'], [role='none'], [role='presentation'], [role='radiogroup'], [role='tablist'], [role='toolbar'], [role='tree'], [role='list']), 
         video[role]:not([role=''], [role='application']), 
         wbr[role]:not([role=''], [role='none'], [role='presentation'])
-    `))
-        .filter(element => isElementVisible(element))
-        .map(element => ({
-            outerHTML: element.cloneNode().outerHTML,
-            selector: getUniqueSelector(element),
-        }));
+    `),
+  )
+    .filter((element) => isElementVisible(element))
+    .map((element) => ({
+      outerHTML: element.cloneNode().outerHTML,
+      selector: getUniqueSelector(element),
+    }));
 }
 
 export async function hasAriaAllowedRoleEval(auditResults) {
-    // https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role
-    const ariaAllowedRole = await inspectedWindowEval(`
+  // https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role
+  const ariaAllowedRole = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
         const hasAriaAllowedRole = ${hasAriaAllowedRole.toString()};
 
         return hasAriaAllowedRole();
-    `)
+    `);
 
-    ariaAllowedRole.forEach(element => {
-        auditResults.push({ ...ariaErrors[12], element: element.outerHTML, selector: element.selector });
+  ariaAllowedRole.forEach((element) => {
+    auditResults.push({
+      ...ariaErrors[12],
+      element: element.outerHTML,
+      selector: element.selector,
     });
+  });
 }

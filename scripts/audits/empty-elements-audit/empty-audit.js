@@ -4,8 +4,8 @@ import { hasEmptyOrMissingSummariesEval } from "./empty-summaries/empty-summarie
 import { hasEmptyTableHeadingsEval } from "./empty-table-headings/empty-table-headings.js";
 
 export async function emptyAudit(auditResults) {
-    await hasEmptyHeadingsEval(auditResults);
-    await hasEmptyHeadingsWithImagesEval(auditResults);
-    await hasEmptyTableHeadingsEval(auditResults);
-    await hasEmptyOrMissingSummariesEval(auditResults);
+  await hasEmptyHeadingsEval(auditResults);
+  await hasEmptyHeadingsWithImagesEval(auditResults);
+  await hasEmptyTableHeadingsEval(auditResults);
+  await hasEmptyOrMissingSummariesEval(auditResults);
 }

@@ -4,7 +4,8 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export function hasRolePresentationOrNoneConflict() {
-    return Array.from(document.querySelectorAll(`
+  return Array.from(
+    document.querySelectorAll(`
         :is([role='none'], [role='presentation']):is([tabindex]:not([tabindex^='-'], [tabindex='']), 
                                                      [aria-atomic]:not([aria-atomic='']),
                                                      [aria-busy]:not([aria-busy='']),
@@ -38,28 +39,29 @@ export function hasRolePresentationOrNoneConflict() {
             embed,
             area[href]:is(map[name]:not([name='']) area
         )):not([tabindex='-1']):is([role='none'], [role='presentation'])
-    `))
-        .filter(element => isElementVisible(element))
-        .map(element => ({
-            outerHTML: element.outerHTML,
-            selector: getUniqueSelector(element)
-        }));
+    `),
+  )
+    .filter((element) => isElementVisible(element))
+    .map((element) => ({
+      outerHTML: element.outerHTML,
+      selector: getUniqueSelector(element),
+    }));
 }
 
 export async function hasRolePresentationOrNoneConflictEval(auditResults) {
-    const rolePresentationOrNoneConflict = await inspectedWindowEval(`
+  const rolePresentationOrNoneConflict = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
         const hasRolePresentationOrNoneConflict = ${hasRolePresentationOrNoneConflict.toString()};
         
         return hasRolePresentationOrNoneConflict();
-    `) 
-    
-    rolePresentationOrNoneConflict.forEach(element => {
-        auditResults.push({
-            ...ariaErrors[22],
-            element: element.outerHTML,
-            selector: element.selector
-        });
+    `);
+
+  rolePresentationOrNoneConflict.forEach((element) => {
+    auditResults.push({
+      ...ariaErrors[22],
+      element: element.outerHTML,
+      selector: element.selector,
     });
+  });
 }

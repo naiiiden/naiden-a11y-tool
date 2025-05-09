@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
-import { setupDOM } from '../../../utils/setup-dom.js';
-import { hasMetaViewportMaximumScale } from './has-meta-viewport-maximum-scale.js';
+import { describe, it, expect } from "vitest";
+import { setupDOM } from "../../../utils/setup-dom.js";
+import { hasMetaViewportMaximumScale } from "./has-meta-viewport-maximum-scale.js";
 
-describe('hasMetaViewportMaximumScale audit', () => {
-  it('detects maximum-scale less than 5.0', () => {
+describe("hasMetaViewportMaximumScale audit", () => {
+  it("detects maximum-scale less than 5.0", () => {
     setupDOM(`
       <html>
         <head>
@@ -19,7 +19,7 @@ describe('hasMetaViewportMaximumScale audit', () => {
     expect(parseFloat(match[1])).toBeLessThan(5.0);
   });
 
-  it('ignores maximum-scale equal or greater than 5.0', () => {
+  it("ignores maximum-scale equal or greater than 5.0", () => {
     setupDOM(`
       <html>
         <head>

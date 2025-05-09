@@ -8,12 +8,12 @@ import { hasImageInputsEval } from "./image-inputs/image-inputs.js";
 import { hasRelatedFormControlsMissingFieldsetEval } from "./related-form-controls-without-fieldset/related-form-controls-without-fieldset.js.js";
 
 export async function formAudit(auditResults) {
-    await hasEmptyLabelsEval(auditResults);
-    await hasFormControlLabelsEval(auditResults);
-    await hasFieldsetsMissingLegendEval(auditResults);
-    await hasRelatedFormControlsMissingFieldsetEval(auditResults);
-    await hasEmptySubmitButonOrResetInputValuesEval(auditResults);    
-    await hasImageInputsEval(auditResults);
-    await hasVisibleFormControlLabelsEval(auditResults);
-    await hasAutocompleteValidValuesEval(auditResults);
+  await hasEmptyLabelsEval(auditResults);
+  await hasFormControlLabelsEval(auditResults);
+  await hasFieldsetsMissingLegendEval(auditResults);
+  await hasRelatedFormControlsMissingFieldsetEval(auditResults);
+  await hasEmptySubmitButonOrResetInputValuesEval(auditResults);
+  await hasImageInputsEval(auditResults);
+  await hasVisibleFormControlLabelsEval(auditResults);
+  await hasAutocompleteValidValuesEval(auditResults);
 }

@@ -2,6 +2,7 @@ import { rootAndMetadataErrors } from "../../../errors/root-and-metadata.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
+// prettier-ignore
 export const validLangValues = [
     "ab", "aa", "af", "ak", "sq", "am", "ar", "an", "hy", "as", "av", "ae", "ay", "az", "bm", "ba", "eu", "be", "bn",
     "bi", "bs", "br", "bg", "my", "ca", "ch", "ce", "zh", "cu", "cv", "kw", "co", "cr", "cs", "da", "dv", "nl", "dz",
@@ -16,25 +17,32 @@ export const validLangValues = [
 ];
 
 export function hasValidHtmlLangAttr() {
-    const rootDocument = document.documentElement;
-    const hasLangAttr = rootDocument.getAttribute('lang');
+  const rootDocument = document.documentElement;
+  const hasLangAttr = rootDocument.getAttribute("lang");
 
-    return {
-        hasLangAttr,
-        outerHTML: rootDocument.cloneNode().outerHTML,
-        selector: getUniqueSelector(rootDocument)
-    }
+  return {
+    hasLangAttr,
+    outerHTML: rootDocument.cloneNode().outerHTML,
+    selector: getUniqueSelector(rootDocument),
+  };
 }
 
 export async function hasValidHtmlLangAttrEval(auditResults) {
-    const rootDocument = await inspectedWindowEval(`
+  const rootDocument = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const hasValidHtmlLangAttr = ${hasValidHtmlLangAttr.toString()};
 
         return hasValidHtmlLangAttr();
-    `)
+    `);
 
-    if (rootDocument.hasLangAttr && !validLangValues.includes(rootDocument.hasLangAttr.split('-')[0])) {
-        auditResults.push({ ...rootAndMetadataErrors[1], element: rootDocument.outerHTML, selector: rootDocument.selector });
-    }
+  if (
+    rootDocument.hasLangAttr &&
+    !validLangValues.includes(rootDocument.hasLangAttr.split("-")[0])
+  ) {
+    auditResults.push({
+      ...rootAndMetadataErrors[1],
+      element: rootDocument.outerHTML,
+      selector: rootDocument.selector,
+    });
+  }
 }

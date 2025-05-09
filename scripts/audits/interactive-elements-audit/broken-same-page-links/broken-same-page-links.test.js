@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
-import { setupDOM } from '../../../utils/setup-dom.js';
-import { hasBrokenSamePageLinks } from './broken-same-page-links.js';
+import { describe, it, expect } from "vitest";
+import { setupDOM } from "../../../utils/setup-dom.js";
+import { hasBrokenSamePageLinks } from "./broken-same-page-links.js";
 
-describe('findBrokenSamePageLinks', () => {
-  it('detects broken same-page links', () => {
+describe("findBrokenSamePageLinks", () => {
+  it("detects broken same-page links", () => {
     setupDOM(`
       <html>
         <body>
@@ -33,7 +33,7 @@ describe('findBrokenSamePageLinks', () => {
     expect(results).toHaveLength(0);
   });
 
-  it('ignores invisible elements', () => {
+  it("ignores invisible elements", () => {
     setupDOM(`
       <html>
         <body>

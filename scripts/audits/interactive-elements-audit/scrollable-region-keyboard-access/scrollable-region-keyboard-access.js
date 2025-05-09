@@ -3,7 +3,7 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export async function scrollableRegionKeyboardAccess(auditResults) {
-    const scrollableRegionKeyboardAccess = await inspectedWindowEval(`
+  const scrollableRegionKeyboardAccess = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         
         const scrollableElements = Array.from(document.querySelectorAll('*'))
@@ -39,11 +39,13 @@ export async function scrollableRegionKeyboardAccess(auditResults) {
         });
     `);
 
-    scrollableRegionKeyboardAccess.forEach(error => {
-        if (!error.hasKeyboardAccess) {
-            auditResults.push({
-                ...interactiveElementsErrors[5], element: error.outerHTML, selector: error.selector,
-            });
-        }
-    });
+  scrollableRegionKeyboardAccess.forEach((error) => {
+    if (!error.hasKeyboardAccess) {
+      auditResults.push({
+        ...interactiveElementsErrors[5],
+        element: error.outerHTML,
+        selector: error.selector,
+      });
+    }
+  });
 }

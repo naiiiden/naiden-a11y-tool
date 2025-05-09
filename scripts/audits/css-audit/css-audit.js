@@ -3,7 +3,7 @@ import { hasUnderlinedTextEval } from "./has-underlined-text/has-underlined-text
 import { hasVerySmallTextEval } from "./has-very-small-text/has-very-small-text.js";
 
 export async function cssAudit(auditResults) {
-    await hasVerySmallTextEval(auditResults);
-    await hasUnderlinedTextEval(auditResults);
-    await hasUnadjustableTextPropertiesEval(auditResults);
+  await hasVerySmallTextEval(auditResults);
+  await hasUnderlinedTextEval(auditResults);
+  await hasUnadjustableTextPropertiesEval(auditResults);
 }

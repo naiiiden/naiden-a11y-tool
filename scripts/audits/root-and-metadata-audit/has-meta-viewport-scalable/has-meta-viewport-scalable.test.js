@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
-import { setupDOM } from '../../../utils/setup-dom.js';
-import { hasMetaViewportUserScalableNoOrZero } from './has-meta-viewport-scalable.js';
+import { describe, it, expect } from "vitest";
+import { setupDOM } from "../../../utils/setup-dom.js";
+import { hasMetaViewportUserScalableNoOrZero } from "./has-meta-viewport-scalable.js";
 
-describe('hasMetaViewportUserScalableNoOrZero audit', () => {
-  it('pushes an error if user-scalable=no is present', async () => {
+describe("hasMetaViewportUserScalableNoOrZero audit", () => {
+  it("pushes an error if user-scalable=no is present", async () => {
     setupDOM(`
       <html>
         <head>
@@ -15,10 +15,10 @@ describe('hasMetaViewportUserScalableNoOrZero audit', () => {
     `);
 
     const results = hasMetaViewportUserScalableNoOrZero();
-    expect(results.hasContentAttr).toContain('user-scalable=no');
+    expect(results.hasContentAttr).toContain("user-scalable=no");
   });
 
-  it('pushes an error if user-scalable=0 is present', async () => {
+  it("pushes an error if user-scalable=0 is present", async () => {
     setupDOM(`
       <html>
         <head>
@@ -30,11 +30,10 @@ describe('hasMetaViewportUserScalableNoOrZero audit', () => {
     `);
 
     const results = hasMetaViewportUserScalableNoOrZero();
-    expect(results.hasContentAttr).toContain('user-scalable=0');
-
+    expect(results.hasContentAttr).toContain("user-scalable=0");
   });
 
-  it('does not push an error if user-scalable is not present', async () => {
+  it("does not push an error if user-scalable is not present", async () => {
     setupDOM(`
       <html>
         <head>
@@ -46,6 +45,6 @@ describe('hasMetaViewportUserScalableNoOrZero audit', () => {
     `);
 
     const results = hasMetaViewportUserScalableNoOrZero();
-    expect(results.hasContentAttr).not.toContain('user-scalable');
+    expect(results.hasContentAttr).not.toContain("user-scalable");
   });
 });

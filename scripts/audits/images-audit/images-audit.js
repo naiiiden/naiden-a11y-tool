@@ -8,12 +8,12 @@ import { hasServerSideImgMapsEval } from "./server-side-img-maps/server-side-img
 import { hasSvgRoleImgMissingAltEval } from "./svg-role-img-missing-alt/svg-role-img-missing-alt.js";
 
 export async function imagesAudit(auditResults) {
-    await hasMissingAltImagesEval(auditResults);
-    await hasLinkedImagesEval(auditResults);
-    await hasButtonImagesEval(auditResults);
-    await hasImageMapsEval(auditResults);
-    await hasRoleImgEval(auditResults);
-    await hasServerSideImgMapsEval(auditResults);
-    await hasSvgRoleImgMissingAltEval(auditResults);
-    await hasRedundantImgAltEval(auditResults);
+  await hasMissingAltImagesEval(auditResults);
+  await hasLinkedImagesEval(auditResults);
+  await hasButtonImagesEval(auditResults);
+  await hasImageMapsEval(auditResults);
+  await hasRoleImgEval(auditResults);
+  await hasServerSideImgMapsEval(auditResults);
+  await hasSvgRoleImgMissingAltEval(auditResults);
+  await hasRedundantImgAltEval(auditResults);
 }

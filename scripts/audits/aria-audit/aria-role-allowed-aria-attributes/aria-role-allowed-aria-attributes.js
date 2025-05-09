@@ -4,7 +4,8 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export async function ariaRoleAllowedAriaAttributes(auditResults) {
-    const ariaRoleAllowedAriaAttributesList = {
+  // prettier-ignore
+  const ariaRoleAllowedAriaAttributesList = {
         alert: [
             'aria-atomic', 'aria-busy', 'aria-controls', 'aria-current', 'aria-describedby', 'aria-details', 
             'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed', 'aria-haspopup',
@@ -522,8 +523,8 @@ export async function ariaRoleAllowedAriaAttributes(auditResults) {
         ]
     }
 
-    // https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr
-    const ariaRoleAllowedAriaAttributes = await inspectedWindowEval(`
+  // https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr
+  const ariaRoleAllowedAriaAttributes = await inspectedWindowEval(`
         const ariaRoleSupportedAriaAttributesList = ${JSON.stringify(ariaRoleAllowedAriaAttributesList)};
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
@@ -541,7 +542,11 @@ export async function ariaRoleAllowedAriaAttributes(auditResults) {
         });
     `);
 
-    ariaRoleAllowedAriaAttributes.forEach(element => {
-        auditResults.push({ ...ariaErrors[16], element: element.outerHTML, selector: element.selector });
+  ariaRoleAllowedAriaAttributes.forEach((element) => {
+    auditResults.push({
+      ...ariaErrors[16],
+      element: element.outerHTML,
+      selector: element.selector,
     });
+  });
 }

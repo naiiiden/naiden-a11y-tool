@@ -6,5 +6,5 @@ export function highlightElementInDevTools(selector) {
     if (element) {
       inspect(element);
     }  
-  `)
+  `);
 }

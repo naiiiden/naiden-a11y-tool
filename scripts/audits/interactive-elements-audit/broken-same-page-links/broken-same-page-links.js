@@ -4,30 +4,29 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export function hasBrokenSamePageLinks() {
-    return Array.from(document.querySelectorAll('a[href^="#"]'))
-        .filter(link => {
-            if (!isElementVisible(link)) {
-                return false 
-            };
+  return Array.from(document.querySelectorAll('a[href^="#"]'))
+    .filter((link) => {
+      if (!isElementVisible(link)) {
+        return false;
+      }
 
-            const linkText = link.textContent.toLowerCase();
-            return !(linkText.includes('jump') || linkText.includes('skip'));
-        })
-        .map(link => {
-            const targetId = link.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
+      const linkText = link.textContent.toLowerCase();
+      return !(linkText.includes("jump") || linkText.includes("skip"));
+    })
+    .map((link) => {
+      const targetId = link.getAttribute("href").substring(1);
+      const targetElement = document.getElementById(targetId);
 
-            return {
-                targetExists: !!targetElement,
-                outerHTML: link.outerHTML,
-                selector: getUniqueSelector(link)
-            };
-        });
+      return {
+        targetExists: !!targetElement,
+        outerHTML: link.outerHTML,
+        selector: getUniqueSelector(link),
+      };
+    });
 }
 
-
 export async function hasBrokenSamePageLinksEval(auditResults) {
-    const brokenSamePageLinks = await inspectedWindowEval(`
+  const brokenSamePageLinks = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
         const hasBrokenSamePageLinks = ${hasBrokenSamePageLinks.toString()};
@@ -35,13 +34,13 @@ export async function hasBrokenSamePageLinksEval(auditResults) {
         return hasBrokenSamePageLinks();
     `);
 
-    brokenSamePageLinks
-        .filter(link => !link.targetExists)
-        .forEach(link => {
-            auditResults.push({
-                ...interactiveElementsErrors[4],
-                element: link.outerHTML,
-                selector: link.selector
-            });
-        });
+  brokenSamePageLinks
+    .filter((link) => !link.targetExists)
+    .forEach((link) => {
+      auditResults.push({
+        ...interactiveElementsErrors[4],
+        element: link.outerHTML,
+        selector: link.selector,
+      });
+    });
 }

@@ -5,9 +5,9 @@ import { hasObjectAltTextEval } from "./object-has-alt-text/object-has-alt-text.
 import { hasVideOrAudioAutoplayEval } from "./video-audio-no-autoplay/video-audio-no-autoplay.js";
 
 export async function embeddedElementsAudit(auditResults) {
-    await hasEmptyIframeTitlesEval(auditResults);
-    await hasObjectAltTextEval(auditResults);
-    await hasFrameUniqueTitlesEval(auditResults);
-    await hasVideOrAudioAutoplayEval(auditResults);
-    await hasVideoCaptionsEval(auditResults);
+  await hasEmptyIframeTitlesEval(auditResults);
+  await hasObjectAltTextEval(auditResults);
+  await hasFrameUniqueTitlesEval(auditResults);
+  await hasVideOrAudioAutoplayEval(auditResults);
+  await hasVideoCaptionsEval(auditResults);
 }

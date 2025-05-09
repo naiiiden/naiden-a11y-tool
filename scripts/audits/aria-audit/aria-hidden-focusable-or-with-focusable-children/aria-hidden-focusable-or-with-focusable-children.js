@@ -4,7 +4,7 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export function hasAriaHiddenFocusableOrWithFocusableChildren() {
-    const focusableElementSelector = `
+  const focusableElementSelector = `
         :is(
             :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
             a[href], 
@@ -17,41 +17,44 @@ export function hasAriaHiddenFocusableOrWithFocusableChildren() {
             area[href]:is(map[name]:not([name='']) area)
         ):not([tabindex='-1'])
     `;
-    
-    const elements = Array.from(document.querySelectorAll("[aria-hidden='true']:not([tabindex='-1'])"));
-    
-    const withFocusableChildren = [];
-    const focusableHidden = [];
-    
-    elements.forEach(element => {
-        const visibleFocusableChildren = Array.from(element.querySelectorAll(focusableElementSelector))
-            .filter(child => isElementVisible(child));
-    
-        if (visibleFocusableChildren.length > 0) {
-            withFocusableChildren.push({
-                outerHTML: element.outerHTML,
-                selector: getUniqueSelector(element),
-                focusableChildren: visibleFocusableChildren.map(child => ({
-                    outerHTML: child.outerHTML,
-                    selector: getUniqueSelector(child)
-                }))
-            });
-            return;
-        }
-    
-        if (isElementVisible(element) && element.matches(focusableElementSelector)) {
-            focusableHidden.push({
-                outerHTML: element.outerHTML,
-                selector: getUniqueSelector(element)
-            });
-        }
-    });
-    
-    return { withFocusableChildren, focusableHidden };
+
+  const elements = Array.from(
+    document.querySelectorAll("[aria-hidden='true']:not([tabindex='-1'])"),
+  );
+
+  const withFocusableChildren = [];
+  const focusableHidden = [];
+
+  elements.forEach((element) => {
+    const visibleFocusableChildren = Array.from(
+      element.querySelectorAll(focusableElementSelector),
+    ).filter((child) => isElementVisible(child));
+
+    if (visibleFocusableChildren.length > 0) {
+      withFocusableChildren.push({
+        outerHTML: element.outerHTML,
+        selector: getUniqueSelector(element),
+        focusableChildren: visibleFocusableChildren.map((child) => ({
+          outerHTML: child.outerHTML,
+          selector: getUniqueSelector(child),
+        })),
+      });
+      return;
+    }
+
+    if (isElementVisible(element) && element.matches(focusableElementSelector)) {
+      focusableHidden.push({
+        outerHTML: element.outerHTML,
+        selector: getUniqueSelector(element),
+      });
+    }
+  });
+
+  return { withFocusableChildren, focusableHidden };
 }
 
 export async function hasAriaHiddenFocusableOrWithFocusableChildrenEval(auditResults) {
-    const ariaHiddenResults = await inspectedWindowEval(`
+  const ariaHiddenResults = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
         const hasAriaHiddenFocusableOrWithFocusableChildren = ${hasAriaHiddenFocusableOrWithFocusableChildren.toString()};
@@ -59,23 +62,23 @@ export async function hasAriaHiddenFocusableOrWithFocusableChildrenEval(auditRes
         return hasAriaHiddenFocusableOrWithFocusableChildren();
     `);
 
-    ariaHiddenResults.withFocusableChildren.forEach(element => {
-        auditResults.push({
-            ...ariaErrors[8],
-            element: element.outerHTML,
-            selector: element.selector,
-            helperText: `The element with \`aria-hidden="true"\` contains the following focusable or interactive children, which should not be focusable:
+  ariaHiddenResults.withFocusableChildren.forEach((element) => {
+    auditResults.push({
+      ...ariaErrors[8],
+      element: element.outerHTML,
+      selector: element.selector,
+      helperText: `The element with \`aria-hidden="true"\` contains the following focusable or interactive children, which should not be focusable:
                 ${element.focusableChildren
-                  .map(child => `\n- Focusable element: ${child.outerHTML}`)
-                  .join("")}`
-        });
+                  .map((child) => `\n- Focusable element: ${child.outerHTML}`)
+                  .join("")}`,
     });
+  });
 
-    ariaHiddenResults.focusableHidden.forEach(element => {
-        auditResults.push({
-            ...ariaErrors[8],
-            element: element.outerHTML,
-            selector: element.selector,
-        });
+  ariaHiddenResults.focusableHidden.forEach((element) => {
+    auditResults.push({
+      ...ariaErrors[8],
+      element: element.outerHTML,
+      selector: element.selector,
     });
+  });
 }

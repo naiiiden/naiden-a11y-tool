@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function runAudit(auditFuncs) {
     auditResults = [];
-    
+
     try {
       const errorsList = document.getElementById("errors-list");
       const errorsCountContainer = document.getElementById("errors-count-container");
@@ -32,19 +32,18 @@ document.addEventListener("DOMContentLoaded", () => {
       checkOverflow();
 
       for (const auditFunc of auditFuncs) {
-        await auditFunc(auditResults)
+        await auditFunc(auditResults);
       }
 
       console.log("errors:", auditResults);
       displayAuditResults(auditResults);
-      
+
       if (auditResults.length === 0) {
         statusMessage("No errors found.");
       }
-      
+
       displayErrorsCount(auditResults);
       attachErrorSectionAnchorHighlights();
-      
     } catch (err) {
       console.error("Error during audit:", err);
       statusMessage("Error during audit.");

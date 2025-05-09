@@ -8,12 +8,12 @@ import { scrollableRegionKeyboardAccess } from "./scrollable-region-keyboard-acc
 import { touchTargetSizeEval } from "./touch-target-size/touch-target-size.js";
 
 export async function interactiveElementsAudit(auditResults) {
-    await hasEmptyLinksEval(auditResults);
-    await hasEmptyButtonsEval(auditResults);
-    await hasBrokenSkipLinksEval(auditResults);
-    await hasInteractiveControlsWithInteractiveControlsAsChildrenEval(auditResults);
-    await hasBrokenSamePageLinksEval(auditResults);
-    await hasDuplicateAccesskeysEval(auditResults);
-    await touchTargetSizeEval(auditResults);
-    await scrollableRegionKeyboardAccess(auditResults);
+  await hasEmptyLinksEval(auditResults);
+  await hasEmptyButtonsEval(auditResults);
+  await hasBrokenSkipLinksEval(auditResults);
+  await hasInteractiveControlsWithInteractiveControlsAsChildrenEval(auditResults);
+  await hasBrokenSamePageLinksEval(auditResults);
+  await hasDuplicateAccesskeysEval(auditResults);
+  await touchTargetSizeEval(auditResults);
+  await scrollableRegionKeyboardAccess(auditResults);
 }

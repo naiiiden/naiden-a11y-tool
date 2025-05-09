@@ -1,8 +1,8 @@
-import { describe, it, expect } from 'vitest';
-import { setupDOM } from '../../../utils/setup-dom.js';
-import { hasMetaRefresh } from './has-meta-refresh.js';
+import { describe, it, expect } from "vitest";
+import { setupDOM } from "../../../utils/setup-dom.js";
+import { hasMetaRefresh } from "./has-meta-refresh.js";
 
-describe('hasMetaRefresh audit', () => {
+describe("hasMetaRefresh audit", () => {
   it('pushes an error if the document has <meta http-equiv="refresh"> tag', () => {
     setupDOM(`
       <html>
@@ -13,7 +13,7 @@ describe('hasMetaRefresh audit', () => {
         <body>
         </body>
       </html>    
-    `)
+    `);
 
     const results = hasMetaRefresh();
     expect(results.hasContentAttr).toBe("3");
@@ -28,7 +28,7 @@ describe('hasMetaRefresh audit', () => {
         <body>
         </body>
       </html>    
-    `)
+    `);
 
     const results = hasMetaRefresh();
     expect(results).toBe(undefined);

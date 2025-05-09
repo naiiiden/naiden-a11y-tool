@@ -5,19 +5,19 @@ import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export function hasBypass() {
   const skipLinks = Array.from(document.querySelectorAll('a[href^="#"]'))
-    .filter(link => {
+    .filter((link) => {
       if (!isElementVisible(link)) {
         return false;
       }
-  
+
       const linkText = link.textContent.toLowerCase();
-      return linkText.includes('skip') || linkText.includes('jump');
+      return linkText.includes("skip") || linkText.includes("jump");
     })
-    .map(link => ({
+    .map((link) => ({
       selector: getUniqueSelector(link),
-      outerHTML: link.outerHTML
+      outerHTML: link.outerHTML,
     }));
-  
+
   return { skipLinks };
 }
 

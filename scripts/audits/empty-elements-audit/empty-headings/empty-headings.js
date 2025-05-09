@@ -4,36 +4,51 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export function hasEmptyHeadings() {
-    return Array.from(document.querySelectorAll(":is(h1, h2, h3, h4, h5, h6, [role='heading']):not(:has(img))"))
-        .filter(heading => {
-            if (!isElementVisible(heading)) {
-                return false;
-            }
-    
-            const ariaLabel = heading.hasAttribute('aria-label') ? heading.getAttribute('aria-label').trim() : null;
-            const ariaLabelledby = heading.hasAttribute('aria-labelledby') 
-                ? document.getElementById(heading.getAttribute('aria-labelledby')) 
-                : null;
-            const title = heading.hasAttribute('title') ? heading.getAttribute('title').trim() : null;
-            
-            return heading.textContent.trim() === "" && !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title);
-        })
-        .map(heading => ({
-            outerHTML: heading.outerHTML,
-            selector: getUniqueSelector(heading)
-        }));
+  return Array.from(
+    document.querySelectorAll(
+      ":is(h1, h2, h3, h4, h5, h6, [role='heading']):not(:has(img))",
+    ),
+  )
+    .filter((heading) => {
+      if (!isElementVisible(heading)) {
+        return false;
+      }
+
+      const ariaLabel = heading.hasAttribute("aria-label")
+        ? heading.getAttribute("aria-label").trim()
+        : null;
+      const ariaLabelledby = heading.hasAttribute("aria-labelledby")
+        ? document.getElementById(heading.getAttribute("aria-labelledby"))
+        : null;
+      const title = heading.hasAttribute("title")
+        ? heading.getAttribute("title").trim()
+        : null;
+
+      return (
+        heading.textContent.trim() === "" &&
+        !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title)
+      );
+    })
+    .map((heading) => ({
+      outerHTML: heading.outerHTML,
+      selector: getUniqueSelector(heading),
+    }));
 }
 
 export async function hasEmptyHeadingsEval(auditResults) {
-    const emptyHeadings = await inspectedWindowEval(`
+  const emptyHeadings = await inspectedWindowEval(`
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
         const hasEmptyHeadings = ${hasEmptyHeadings.toString()};
 
         return hasEmptyHeadings();
-    `) 
-  
-    emptyHeadings.forEach(heading => {
-        auditResults.push({ ...emptyElementsErrors[0], element: heading.outerHTML, selector: heading.selector });
+    `);
+
+  emptyHeadings.forEach((heading) => {
+    auditResults.push({
+      ...emptyElementsErrors[0],
+      element: heading.outerHTML,
+      selector: heading.selector,
     });
+  });
 }

@@ -4,8 +4,8 @@ export function getUniqueSelector(element) {
   const parts = [];
 
   while (element && element.nodeType === Node.ELEMENT_NODE) {
-    if (element.tagName.toLowerCase() === 'body') {
-      parts.unshift('body');
+    if (element.tagName.toLowerCase() === "body") {
+      parts.unshift("body");
       break;
     }
 
@@ -43,7 +43,9 @@ export function getUniqueSelector(element) {
     }
 
     if (parent) {
-      const siblings = Array.from(parent.children).filter(el => el.tagName === element.tagName);
+      const siblings = Array.from(parent.children).filter(
+        (el) => el.tagName === element.tagName,
+      );
       if (siblings.length > 1) {
         const index = siblings.indexOf(element) + 1;
         selector += `:nth-of-type(${index})`;
@@ -54,5 +56,5 @@ export function getUniqueSelector(element) {
     element = parent;
   }
 
-  return parts.join(' > ');
+  return parts.join(" > ");
 }

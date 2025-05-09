@@ -21,28 +21,28 @@ import { hasUniqueLandmarksEval } from "./landmarks-unique/landmarks-unique.js";
 import { hasPossibleHeadingsEval } from "./possible-headings/possible-headings.js";
 
 export async function semanticAudit(auditResults) {
-    await hasHeadingLevelOneEval(auditResults);
-    await hasHeadingLevelsEval(auditResults);
-    await hasPossibleHeadingsEval(auditResults);
-    await hasHeadingsEval(auditResults);
+  await hasHeadingLevelOneEval(auditResults);
+  await hasHeadingLevelsEval(auditResults);
+  await hasPossibleHeadingsEval(auditResults);
+  await hasHeadingsEval(auditResults);
 
-    await hasRegionsOrLandmarksEval(auditResults);
-    await hasNoMainLandmarkOrMoreEval(auditResults);
-    await hasMoreThanOneBannerLandmarkEval(auditResults);
-    await hasMoreThanOneContentinfoLandmarkEval(auditResults);
-    await hasBannersInOtherLandmarksEval(auditResults);
-    await hasAsideInOtherLandmarksEval(auditResults);
-    await hasContentinfoInOtherLandmarksEval(auditResults);
-    await hasMainInOtherLandmarksEval(auditResults);
-    await hasContentOutsideLandmarksEval(auditResults);
-    await hasUniqueLandmarksEval(auditResults);
-    
-    await hasInvalidListContentEval(auditResults);
-    await hasLiOutsideListEval(auditResults);
-    await hasInvalidDlElementsEval(auditResults);
-    await hasInvalidDtDdElementsEval(auditResults);
+  await hasRegionsOrLandmarksEval(auditResults);
+  await hasNoMainLandmarkOrMoreEval(auditResults);
+  await hasMoreThanOneBannerLandmarkEval(auditResults);
+  await hasMoreThanOneContentinfoLandmarkEval(auditResults);
+  await hasBannersInOtherLandmarksEval(auditResults);
+  await hasAsideInOtherLandmarksEval(auditResults);
+  await hasContentinfoInOtherLandmarksEval(auditResults);
+  await hasMainInOtherLandmarksEval(auditResults);
+  await hasContentOutsideLandmarksEval(auditResults);
+  await hasUniqueLandmarksEval(auditResults);
 
-    await hasBypassEval(auditResults);
-    await hasDuplicateIdsEval(auditResults);
-    await hasTabindexGreaterThanZeroEval(auditResults);
+  await hasInvalidListContentEval(auditResults);
+  await hasLiOutsideListEval(auditResults);
+  await hasInvalidDlElementsEval(auditResults);
+  await hasInvalidDtDdElementsEval(auditResults);
+
+  await hasBypassEval(auditResults);
+  await hasDuplicateIdsEval(auditResults);
+  await hasTabindexGreaterThanZeroEval(auditResults);
 }

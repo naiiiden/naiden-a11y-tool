@@ -3,6 +3,7 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
+// prettier-ignore
 export const validAutocompleteValues = [
     "name", "honorific-prefix", "given-name", "additional-name", "family-name", "honorific-suffix",
     "nickname", "email", "username", "new-password", "current-password", "organization-title",
@@ -17,17 +18,20 @@ export const validAutocompleteValues = [
 ];
 
 export function hasAutocompleteValidValues() {
-    return Array.from(document.querySelectorAll("[autocomplete]"))
-        .filter(element => isElementVisible(element))
-        .filter(element => !validAutocompleteValues.has(element.getAttribute("autocomplete").trim()))
-        .map(element => ({
-            outerHTML: element.cloneNode().outerHTML,
-            selector: getUniqueSelector(element),
-        }));
+  return Array.from(document.querySelectorAll("[autocomplete]"))
+    .filter((element) => isElementVisible(element))
+    .filter(
+      (element) =>
+        !validAutocompleteValues.has(element.getAttribute("autocomplete").trim()),
+    )
+    .map((element) => ({
+      outerHTML: element.cloneNode().outerHTML,
+      selector: getUniqueSelector(element),
+    }));
 }
 
-export async function hasAutocompleteValidValuesEval(auditResults) {    
-    const autocompleteValidValues = await inspectedWindowEval(`
+export async function hasAutocompleteValidValuesEval(auditResults) {
+  const autocompleteValidValues = await inspectedWindowEval(`
         const validAutocompleteValues = new Set(${JSON.stringify(validAutocompleteValues)});
         const getUniqueSelector = ${getUniqueSelector.toString()};
         const isElementVisible = ${isElementVisible.toString()};
@@ -36,7 +40,11 @@ export async function hasAutocompleteValidValuesEval(auditResults) {
         return hasAutocompleteValidValues();
     `);
 
-    autocompleteValidValues.forEach(element => {
-        auditResults.push({ ...formErrors[8], element: element.outerHTML, selector: element.selector });
+  autocompleteValidValues.forEach((element) => {
+    auditResults.push({
+      ...formErrors[8],
+      element: element.outerHTML,
+      selector: element.selector,
     });
+  });
 }
