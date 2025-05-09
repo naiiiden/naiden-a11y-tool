@@ -1,7 +1,7 @@
 import { hasAriaAllowedRoleEval } from "./aria-allowed-role/aria-allowed-role.js";
 import { ariaValidAttributeValues } from "./aria-valid-attribute-values/aria-valid-attribute-values.js";
 import { hasAriaCommandsNamesEval } from "./aria-command-names/aria-command-names.js";
-import { ariaConditionalAttributes } from "./aria-conditional-attributes/aria-conditional-attributes.js";
+import { hasAriaConditionalAttributesEval } from "./aria-conditional-attributes/aria-conditional-attributes.js";
 import { ariaDialogAndAlertDialogNames } from "./aria-dialog-and-alertdialog-names/aria-dialog-and-alertdialog-names.js";
 import { ariaHiddenFocusableOrWithFocusableChildren } from "./aria-hidden-focusable-or-with-focusable-children/aria-hidden-focusable-or-with-focusable-children.js";
 import { ariaInputFieldNames } from "./aria-input-field-names/aria-input-field-names.js";
@@ -45,7 +45,7 @@ export async function ariaAudit(auditResults) {
     await ariaRoleRequiredChildren(auditResults);
     await ariaRoleRequiredParent(auditResults);
     await ariaRoleProhibitedAttributes(auditResults);
-    await ariaConditionalAttributes(auditResults);
+    await hasAriaConditionalAttributesEval(auditResults);
     await hasRolePresentationOrNoneConflict(auditResults);
     await ariaLabelContentNameMismatch(auditResults);
 }
