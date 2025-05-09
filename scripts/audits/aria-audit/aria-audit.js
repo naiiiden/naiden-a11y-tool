@@ -17,7 +17,7 @@ import { hasAriaTextNoFocusableChildrenEval } from "./aria-text-no-focusable-chi
 import { hasAriaToggleFieldNamesEval } from "./aria-toggle-field-names/aria-toggle-field-names.js";
 import { hasAriaTooltipNamesEval } from "./aria-tooltip-names/aria-tooltip-names.js";
 import { hasAriaTreeitemNamesEval } from "./aria-treeitem-names/aria-treeitem-names.js";
-import { ariaValidAttributes } from "./aria-valid-attributes/aria-valid-attributes.js";
+import { hasAriaValidAttributesEval } from "./aria-valid-attributes/aria-valid-attributes.js";
 import { hasAriaDeprecatedRoles } from "./has-aria-deprecated-roles/has-aria-deprecated-roles.js";
 import { hasAriaHiddenBody } from "./has-aria-hidden-body/has-aria-hidden-body.js";
 import { hasRolePresentationOrNoneConflict } from "./has-role-presentation-or-none-conflict/has-role-presentation-or-none-conflict.js";
@@ -39,7 +39,7 @@ export async function ariaAudit(auditResults) {
     await hasAriaAllowedRoleEval(auditResults);
     await hasAriaTreeitemNamesEval(auditResults);
     await hasAriaValidAttributeValuesEval(auditResults);
-    await ariaValidAttributes(auditResults);
+    await hasAriaValidAttributesEval(auditResults);
     await ariaRoleAllowedAriaAttributes(auditResults);
     await hasAriaRoleRequiredAriaAttributesEval(auditResults);
     await hasAriaRoleRequiredChildrenEval(auditResults);
