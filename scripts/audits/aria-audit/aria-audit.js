@@ -1,4 +1,4 @@
-import { ariaAllowedRole } from "./aria-allowed-role/aria-allowed-role.js";
+import { hasAriaAllowedRoleEval } from "./aria-allowed-role/aria-allowed-role.js";
 import { ariaValidAttributeValues } from "./aria-valid-attribute-values/aria-valid-attribute-values.js";
 import { ariaCommandsNames } from "./aria-command-names/aria-command-names.js";
 import { ariaConditionalAttributes } from "./aria-conditional-attributes/aria-conditional-attributes.js";
@@ -36,7 +36,7 @@ export async function ariaAudit(auditResults) {
     await ariaRoleValidValues(auditResults);
     await ariaDialogAndAlertDialogNames(auditResults);
     await ariaTextNoFocusableChildren(auditResults);
-    await ariaAllowedRole(auditResults);
+    await hasAriaAllowedRoleEval(auditResults);
     await ariaTreeitemNames(auditResults);
     await ariaValidAttributeValues(auditResults);
     await ariaValidAttributes(auditResults);
