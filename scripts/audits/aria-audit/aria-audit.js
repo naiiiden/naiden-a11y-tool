@@ -7,7 +7,7 @@ import { hasAriaHiddenFocusableOrWithFocusableChildrenEval } from "./aria-hidden
 import { hasAriaInputFieldNamesEval } from "./aria-input-field-names/aria-input-field-names.js";
 import { hasAriaMeterNamesEval } from "./aria-meter-names/aria-meter-names.js";
 import { hasAriaProgressbarNamesEval } from "./aria-progressbar-names/aria-progressbar-names.js";
-import { ariaRoleProhibitedAttributes } from "./aria-role-prohibited-attributes/aria-role-prohibited-attributes.js";
+import { hasAriaRoleProhibitedAttributesEval } from "./aria-role-prohibited-attributes/aria-role-prohibited-attributes.js";
 import { ariaRoleRequiredAriaAttributes } from "./aria-role-required-aria-attributes/aria-role-required-aria-attributes.js";
 import { ariaRoleRequiredChildren } from "./aria-role-required-children/aria-role-required-children.js";
 import { ariaRoleRequiredParent } from "./aria-role-required-parent/aria-role-required-parent.js";
@@ -44,7 +44,7 @@ export async function ariaAudit(auditResults) {
     await ariaRoleRequiredAriaAttributes(auditResults);
     await ariaRoleRequiredChildren(auditResults);
     await ariaRoleRequiredParent(auditResults);
-    await ariaRoleProhibitedAttributes(auditResults);
+    await hasAriaRoleProhibitedAttributesEval(auditResults);
     await hasAriaConditionalAttributesEval(auditResults);
     await hasRolePresentationOrNoneConflict(auditResults);
     await hasAriaLabelContentNameMismatchEval(auditResults);
