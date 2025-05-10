@@ -14,12 +14,12 @@ export function hasMarquee() {
 
 export async function hasMarqueeEval(auditResults) {
   const marquee = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasMarquee = ${hasMarquee.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasMarquee = ${hasMarquee.toString()};
 
-        return hasMarquee();
-    `);
+    return hasMarquee();
+  `);
 
   marquee.forEach((element) => {
     auditResults.push({

@@ -29,12 +29,12 @@ export function hasUnderlinedText() {
 
 export async function hasUnderlinedTextEval(auditResults) {
   const underlinedText = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasUnderlinedText = ${hasUnderlinedText.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasUnderlinedText = ${hasUnderlinedText.toString()};
 
-        return hasUnderlinedText();
-    `);
+    return hasUnderlinedText();
+  `);
 
   underlinedText.forEach((element) => {
     auditResults.push({

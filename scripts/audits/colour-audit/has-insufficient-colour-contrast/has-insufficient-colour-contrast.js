@@ -123,12 +123,12 @@ export function hasInsufficientColourContrast() {
 
 export async function hasInsufficientColourContrastEval(auditResults) {
   const insufficientColourContrast = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasInsufficientColourContrast = ${hasInsufficientColourContrast.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasInsufficientColourContrast = ${hasInsufficientColourContrast.toString()};
 
-        return hasInsufficientColourContrast();
-    `);
+    return hasInsufficientColourContrast();
+  `);
 
   console.log(insufficientColourContrast);
 

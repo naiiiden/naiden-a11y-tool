@@ -66,12 +66,12 @@ export function hasUnadjustableTextProperties() {
 
 export async function hasUnadjustableTextPropertiesEval(auditResults) {
   const unadjustableTextProperties = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasUnadjustableTextProperties = ${hasUnadjustableTextProperties.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasUnadjustableTextProperties = ${hasUnadjustableTextProperties.toString()};
 
-        return hasUnadjustableTextProperties();
-    `);
+    return hasUnadjustableTextProperties();
+  `);
 
   unadjustableTextProperties.forEach((element) => {
     auditResults.push({

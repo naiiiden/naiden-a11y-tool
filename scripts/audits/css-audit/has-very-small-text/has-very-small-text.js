@@ -23,12 +23,12 @@ export function hasVerySmallText() {
 
 export async function hasVerySmallTextEval(auditResults) {
   const verySmallText = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasVerySmallText = ${hasVerySmallText.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasVerySmallText = ${hasVerySmallText.toString()};
 
-        return hasVerySmallText();
-    `);
+    return hasVerySmallText();
+  `);
 
   verySmallText.forEach((element) => {
     auditResults.push({
