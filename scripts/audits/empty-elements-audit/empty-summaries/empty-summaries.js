@@ -39,12 +39,12 @@ export function hasEmptyOrMissingSummaries() {
 
 export async function hasEmptyOrMissingSummariesEval(auditResults) {
   const emptyOrMissingSummaries = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasEmptyOrMissingSummaries = ${hasEmptyOrMissingSummaries.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasEmptyOrMissingSummaries = ${hasEmptyOrMissingSummaries.toString()};
 
-        return hasEmptyOrMissingSummaries();
-    `);
+    return hasEmptyOrMissingSummaries();
+  `);
 
   emptyOrMissingSummaries.forEach((summary) => {
     auditResults.push({

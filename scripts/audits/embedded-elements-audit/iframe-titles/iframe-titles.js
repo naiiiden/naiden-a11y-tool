@@ -18,12 +18,12 @@ export function hasEmptyIframeTitles() {
 
 export async function hasEmptyIframeTitlesEval(auditResults) {
   const iframeTitles = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasEmptyIframeTitles = ${hasEmptyIframeTitles.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasEmptyIframeTitles = ${hasEmptyIframeTitles.toString()};
 
-        return hasEmptyIframeTitles();
-    `);
+    return hasEmptyIframeTitles();
+  `);
 
   iframeTitles.forEach((iframe) => {
     auditResults.push({

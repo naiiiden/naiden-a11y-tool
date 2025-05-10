@@ -33,12 +33,12 @@ export function hasFrameUniqueTitles() {
 
 export async function hasFrameUniqueTitlesEval(auditResults) {
   const frameUniqueTitles = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasFrameUniqueTitles = ${hasFrameUniqueTitles.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasFrameUniqueTitles = ${hasFrameUniqueTitles.toString()};
 
-        return hasFrameUniqueTitles();
-    `);
+    return hasFrameUniqueTitles();
+  `);
 
   frameUniqueTitles.forEach((element) => {
     auditResults.push({

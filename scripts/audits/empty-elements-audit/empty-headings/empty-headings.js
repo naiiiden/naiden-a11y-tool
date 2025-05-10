@@ -37,12 +37,12 @@ export function hasEmptyHeadings() {
 
 export async function hasEmptyHeadingsEval(auditResults) {
   const emptyHeadings = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasEmptyHeadings = ${hasEmptyHeadings.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasEmptyHeadings = ${hasEmptyHeadings.toString()};
 
-        return hasEmptyHeadings();
-    `);
+    return hasEmptyHeadings();
+  `);
 
   emptyHeadings.forEach((heading) => {
     auditResults.push({

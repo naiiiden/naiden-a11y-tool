@@ -19,12 +19,12 @@ export function hasVideOrAudioAutoplay() {
 
 export async function hasVideOrAudioAutoplayEval(auditResults) {
   const videOrAudioAutoplay = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasVideOrAudioAutoplay = ${hasVideOrAudioAutoplay.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasVideOrAudioAutoplay = ${hasVideOrAudioAutoplay.toString()};
 
-        return hasVideOrAudioAutoplay();
-    `);
+    return hasVideOrAudioAutoplay();
+  `);
 
   videOrAudioAutoplay.forEach((element) => {
     auditResults.push({

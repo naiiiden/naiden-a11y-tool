@@ -36,12 +36,12 @@ export function hasObjectAltText() {
 
 export async function hasObjectAltTextEval(auditResults) {
   const objectAltText = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasObjectAltText = ${hasObjectAltText.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasObjectAltText = ${hasObjectAltText.toString()};
 
-        return hasObjectAltText();
-    `);
+    return hasObjectAltText();
+  `);
 
   objectAltText.forEach((element) => {
     auditResults.push({

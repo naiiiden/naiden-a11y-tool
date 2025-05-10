@@ -21,12 +21,12 @@ export function hasEmptyTableHeading() {
 
 export async function hasEmptyTableHeadingsEval(auditResults) {
   const emptyTableHeadings = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasEmptyTableHeading = ${hasEmptyTableHeading.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasEmptyTableHeading = ${hasEmptyTableHeading.toString()};
 
-        return hasEmptyTableHeading();
-    `);
+    return hasEmptyTableHeading();
+  `);
 
   emptyTableHeadings.forEach((tableHeading) => {
     auditResults.push({

@@ -14,12 +14,12 @@ export function hasVideoCaptions() {
 
 export async function hasVideoCaptionsEval(auditResults) {
   const videoCaptions = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasVideoCaptions = ${hasVideoCaptions.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasVideoCaptions = ${hasVideoCaptions.toString()};
 
-        return hasVideoCaptions();
-    `);
+    return hasVideoCaptions();
+  `);
 
   videoCaptions.forEach((element) => {
     auditResults.push({

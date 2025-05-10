@@ -22,12 +22,12 @@ export function hasEmptyHeadingsWithImages() {
 
 export async function hasEmptyHeadingsWithImagesEval(auditResults) {
   const emptyHeadingsWithImages = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasEmptyHeadingsWithImages = ${hasEmptyHeadingsWithImages.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasEmptyHeadingsWithImages = ${hasEmptyHeadingsWithImages.toString()};
 
-        return hasEmptyHeadingsWithImages();
-    `);
+    return hasEmptyHeadingsWithImages();
+  `);
 
   emptyHeadingsWithImages.forEach((heading) => {
     if (!heading.hasText && heading.hasImage && !heading.hasImageAlt) {
