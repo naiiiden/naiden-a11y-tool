@@ -19,7 +19,7 @@ export function hasAriaHiddenFocusableOrWithFocusableChildren() {
     `;
 
   const elements = Array.from(
-    document.querySelectorAll("[aria-hidden='true']:not([tabindex='-1'])"),
+    document.querySelectorAll("[aria-hidden='true']:not([tabindex='-1'])")
   );
 
   const withFocusableChildren = [];
@@ -27,7 +27,7 @@ export function hasAriaHiddenFocusableOrWithFocusableChildren() {
 
   elements.forEach((element) => {
     const visibleFocusableChildren = Array.from(
-      element.querySelectorAll(focusableElementSelector),
+      element.querySelectorAll(focusableElementSelector)
     ).filter((child) => isElementVisible(child));
 
     if (visibleFocusableChildren.length > 0) {
@@ -55,12 +55,12 @@ export function hasAriaHiddenFocusableOrWithFocusableChildren() {
 
 export async function hasAriaHiddenFocusableOrWithFocusableChildrenEval(auditResults) {
   const ariaHiddenResults = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaHiddenFocusableOrWithFocusableChildren = ${hasAriaHiddenFocusableOrWithFocusableChildren.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaHiddenFocusableOrWithFocusableChildren = ${hasAriaHiddenFocusableOrWithFocusableChildren.toString()};
 
-        return hasAriaHiddenFocusableOrWithFocusableChildren();
-    `);
+    return hasAriaHiddenFocusableOrWithFocusableChildren();
+  `);
 
   ariaHiddenResults.withFocusableChildren.forEach((element) => {
     auditResults.push({

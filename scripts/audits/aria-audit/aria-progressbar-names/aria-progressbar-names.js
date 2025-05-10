@@ -35,12 +35,12 @@ export function hasAriaProgressbarNames() {
 export async function hasAriaProgressbarNamesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-progressbar-name
   const ariaProgressbarNames = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaProgressbarNames = ${hasAriaProgressbarNames.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaProgressbarNames = ${hasAriaProgressbarNames.toString()};
 
-        return hasAriaProgressbarNames();
-    `);
+    return hasAriaProgressbarNames();
+  `);
 
   ariaProgressbarNames.forEach((element) => {
     auditResults.push({

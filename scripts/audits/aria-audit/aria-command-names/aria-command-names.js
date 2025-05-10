@@ -36,12 +36,12 @@ export function hasAriaCommandsNames() {
 export async function hasAriaCommandsNamesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-command-name
   const ariaCommandsNames = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaCommandsNames = ${hasAriaCommandsNames.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaCommandsNames = ${hasAriaCommandsNames.toString()};
 
-        return hasAriaCommandsNames();
-    `);
+    return hasAriaCommandsNames();
+  `);
 
   ariaCommandsNames.forEach((element) => {
     auditResults.push({

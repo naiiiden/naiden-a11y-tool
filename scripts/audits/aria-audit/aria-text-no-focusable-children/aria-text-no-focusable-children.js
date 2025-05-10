@@ -41,12 +41,12 @@ export function hasAriaTextNoFocusableChildren() {
 export async function hasAriaTextNoFocusableChildrenEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-text
   const ariaTextNoFocusableChildren = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaTextNoFocusableChildren = ${hasAriaTextNoFocusableChildren.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaTextNoFocusableChildren = ${hasAriaTextNoFocusableChildren.toString()};
 
-        return hasAriaTextNoFocusableChildren();
-    `);
+    return hasAriaTextNoFocusableChildren();
+  `);
 
   ariaTextNoFocusableChildren.forEach((element) => {
     auditResults.push({

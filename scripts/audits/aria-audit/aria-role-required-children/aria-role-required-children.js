@@ -105,13 +105,13 @@ export function hasAriaRoleRequiredChildren() {
 
 export async function hasAriaRoleRequiredChildrenEval(auditResults) {
   const ariaRoleRequiredChildren = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const ariaRoleRequiredChildrenList = ${JSON.stringify(ariaRoleRequiredChildrenList)};
-        const hasAriaRoleRequiredChildren = ${hasAriaRoleRequiredChildren.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const ariaRoleRequiredChildrenList = ${JSON.stringify(ariaRoleRequiredChildrenList)};
+    const hasAriaRoleRequiredChildren = ${hasAriaRoleRequiredChildren.toString()};
 
-        return hasAriaRoleRequiredChildren();
-    `);
+    return hasAriaRoleRequiredChildren();
+  `);
 
   ariaRoleRequiredChildren.forEach((element) => {
     auditResults.push({

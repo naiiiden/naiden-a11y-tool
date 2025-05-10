@@ -50,12 +50,12 @@ export function hasRolePresentationOrNoneConflict() {
 
 export async function hasRolePresentationOrNoneConflictEval(auditResults) {
   const rolePresentationOrNoneConflict = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasRolePresentationOrNoneConflict = ${hasRolePresentationOrNoneConflict.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasRolePresentationOrNoneConflict = ${hasRolePresentationOrNoneConflict.toString()};
         
-        return hasRolePresentationOrNoneConflict();
-    `);
+    return hasRolePresentationOrNoneConflict();
+  `);
 
   rolePresentationOrNoneConflict.forEach((element) => {
     auditResults.push({

@@ -52,13 +52,13 @@ export function hasAriaRoleProhibitedAttributes() {
 export async function hasAriaRoleProhibitedAttributesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr
   const ariaRoleProhibitedAttributes = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const ariaRoleProhibitedAttributesList = ${JSON.stringify(ariaRoleProhibitedAttributesList)};
-        const hasAriaRoleProhibitedAttributes = ${hasAriaRoleProhibitedAttributes.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const ariaRoleProhibitedAttributesList = ${JSON.stringify(ariaRoleProhibitedAttributesList)};
+    const hasAriaRoleProhibitedAttributes = ${hasAriaRoleProhibitedAttributes.toString()};
 
-        return hasAriaRoleProhibitedAttributes();
-    `);
+    return hasAriaRoleProhibitedAttributes();
+  `);
 
   ariaRoleProhibitedAttributes.forEach((element) => {
     auditResults.push({

@@ -34,12 +34,12 @@ export function hasAriaTooltipNames() {
 export async function hasAriaTooltipNamesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-tooltip-name
   const ariaTooltipNames = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaTooltipNames = ${hasAriaTooltipNames.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaTooltipNames = ${hasAriaTooltipNames.toString()};
 
-        return hasAriaTooltipNames();
-    `);
+    return hasAriaTooltipNames();
+  `);
 
   ariaTooltipNames.forEach((element) => {
     auditResults.push({

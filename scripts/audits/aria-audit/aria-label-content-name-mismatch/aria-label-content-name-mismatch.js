@@ -26,12 +26,12 @@ export function AriaLabelContentNameMismatch() {
 
 export async function hasAriaLabelContentNameMismatchEval(auditResults) {
   const ariaLabelContentNameMismatch = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const AriaLabelContentNameMismatch = ${AriaLabelContentNameMismatch.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const AriaLabelContentNameMismatch = ${AriaLabelContentNameMismatch.toString()};
 
-        return AriaLabelContentNameMismatch();
-    `);
+    return AriaLabelContentNameMismatch();
+  `);
 
   ariaLabelContentNameMismatch.forEach((element) => {
     auditResults.push({

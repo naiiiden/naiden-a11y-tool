@@ -35,12 +35,12 @@ export function hasAriaDialogAndAlertDialogNames() {
 export async function hasAriaDialogAndAlertDialogNamesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-dialog-name
   const ariaDialogAndAlertDialogNames = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaDialogAndAlertDialogNames = ${hasAriaDialogAndAlertDialogNames.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaDialogAndAlertDialogNames = ${hasAriaDialogAndAlertDialogNames.toString()};
 
-        return hasAriaDialogAndAlertDialogNames();
-    `);
+    return hasAriaDialogAndAlertDialogNames();
+  `);
 
   ariaDialogAndAlertDialogNames.forEach((element) => {
     auditResults.push({

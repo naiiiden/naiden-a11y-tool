@@ -50,13 +50,13 @@ export function hasAriaRoleRequiredAriaAttributes() {
 export async function hasAriaRoleRequiredAriaAttributesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-required-attr
   const ariaRoleRequiredAriaAttributes = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const ariaRoleRequiredAriaAttributesList = ${JSON.stringify(ariaRoleRequiredAriaAttributesList)};
-        const hasAriaRoleRequiredAriaAttributes = ${hasAriaRoleRequiredAriaAttributes.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const ariaRoleRequiredAriaAttributesList = ${JSON.stringify(ariaRoleRequiredAriaAttributesList)};
+    const hasAriaRoleRequiredAriaAttributes = ${hasAriaRoleRequiredAriaAttributes.toString()};
 
-        return hasAriaRoleRequiredAriaAttributes();
-    `);
+    return hasAriaRoleRequiredAriaAttributes();
+  `);
 
   ariaRoleRequiredAriaAttributes.forEach((element) => {
     auditResults.push({

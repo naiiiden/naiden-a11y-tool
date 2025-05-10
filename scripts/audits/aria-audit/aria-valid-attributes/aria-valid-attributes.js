@@ -45,13 +45,13 @@ export function hasAriaValidAttributes() {
 export async function hasAriaValidAttributesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr
   const ariaValidAttributes = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const ariaValidAttributesArray = ${JSON.stringify(ariaValidAttributesArray)};
-        const hasAriaValidAttributes = ${hasAriaValidAttributes.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const ariaValidAttributesArray = ${JSON.stringify(ariaValidAttributesArray)};
+    const hasAriaValidAttributes = ${hasAriaValidAttributes.toString()};
 
-        return hasAriaValidAttributes();
-    `);
+    return hasAriaValidAttributes();
+  `);
 
   ariaValidAttributes.forEach((element) => {
     auditResults.push({

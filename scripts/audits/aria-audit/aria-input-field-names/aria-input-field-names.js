@@ -32,12 +32,12 @@ export function hasAriaInputFieldNames() {
 export async function hasAriaInputFieldNamesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-input-field-name
   const ariaInputFieldNames = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaInputFieldNames = ${hasAriaInputFieldNames.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaInputFieldNames = ${hasAriaInputFieldNames.toString()};
 
-        return hasAriaInputFieldNames();
-    `);
+    return hasAriaInputFieldNames();
+  `);
 
   ariaInputFieldNames.forEach((element) => {
     auditResults.push({

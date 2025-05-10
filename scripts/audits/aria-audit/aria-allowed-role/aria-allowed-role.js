@@ -133,13 +133,13 @@ export function hasAriaAllowedRole() {
 
 export async function hasAriaAllowedRoleEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role
-  const ariaAllowedRole = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaAllowedRole = ${hasAriaAllowedRole.toString()};
+	const ariaAllowedRole = await inspectedWindowEval(`
+		const getUniqueSelector = ${getUniqueSelector.toString()};
+		const isElementVisible = ${isElementVisible.toString()};
+		const hasAriaAllowedRole = ${hasAriaAllowedRole.toString()};
 
-        return hasAriaAllowedRole();
-    `);
+    return hasAriaAllowedRole();
+	`);
 
   ariaAllowedRole.forEach((element) => {
     auditResults.push({

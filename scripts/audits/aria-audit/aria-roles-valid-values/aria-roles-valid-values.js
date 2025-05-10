@@ -29,13 +29,13 @@ export function hasAriaRoleValidValues() {
 export async function hasAriaRoleValidValuesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-roles
   const ariaRoleValidValues = await inspectedWindowEval(`
-        const validAriaRoles = new Set(${JSON.stringify(validAriaRoles)});
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaRoleValidValues = ${hasAriaRoleValidValues.toString()};
+    const validAriaRoles = new Set(${JSON.stringify(validAriaRoles)});
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaRoleValidValues = ${hasAriaRoleValidValues.toString()};
 
-        return hasAriaRoleValidValues();
-    `);
+    return hasAriaRoleValidValues();
+  `);
 
   ariaRoleValidValues.forEach((element) => {
     auditResults.push({

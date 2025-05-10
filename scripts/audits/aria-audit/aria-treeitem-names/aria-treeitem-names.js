@@ -34,12 +34,12 @@ export function hasAriaTreeitemNames() {
 export async function hasAriaTreeitemNamesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-treeitem-name
   const ariaTreeitemNames = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaTreeitemNames = ${hasAriaTreeitemNames.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaTreeitemNames = ${hasAriaTreeitemNames.toString()};
 
-        return hasAriaTreeitemNames();
-    `);
+    return hasAriaTreeitemNames();
+  `);
 
   ariaTreeitemNames.forEach((element) => {
     auditResults.push({

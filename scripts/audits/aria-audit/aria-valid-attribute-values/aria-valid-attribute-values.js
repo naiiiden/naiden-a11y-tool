@@ -128,12 +128,12 @@ export function hasAriaValidAttributeValues() {
 export async function hasAriaValidAttributeValuesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-valid-attr-value
   const ariaAttributesValidValues = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const ariaAttributesValidValuesList = ${JSON.stringify(ariaAttributesValidValuesList)};
-        const hasAriaValidAttributeValues = ${hasAriaValidAttributeValues.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const ariaAttributesValidValuesList = ${JSON.stringify(ariaAttributesValidValuesList)};
+    const hasAriaValidAttributeValues = ${hasAriaValidAttributeValues.toString()};
 
-        return hasAriaValidAttributeValues();
-    `);
+    return hasAriaValidAttributeValues();
+  `);
 
   ariaAttributesValidValues.forEach((element) => {
     auditResults.push({

@@ -17,11 +17,11 @@ export function hasAriaHiddenBody() {
 export async function hasAriaHiddenBodyEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-hidden-body
   const documentBody = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const hasAriaHiddenBody = ${hasAriaHiddenBody.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const hasAriaHiddenBody = ${hasAriaHiddenBody.toString()};
 
-        return hasAriaHiddenBody();
-    `);
+    return hasAriaHiddenBody();
+  `);
 
   if (documentBody.isHidden) {
     auditResults.push({

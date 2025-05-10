@@ -525,21 +525,22 @@ export async function ariaRoleAllowedAriaAttributes(auditResults) {
 
   // https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr
   const ariaRoleAllowedAriaAttributes = await inspectedWindowEval(`
-        const ariaRoleSupportedAriaAttributesList = ${JSON.stringify(ariaRoleAllowedAriaAttributesList)};
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
+    const ariaRoleSupportedAriaAttributesList = ${JSON.stringify(ariaRoleAllowedAriaAttributesList)};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
 
-        return Array.from(document.querySelectorAll('[role]'))
-            .filter(element => isElementVisible(element))
-            .flatMap(element => {
-                const validAttributes = ariaRoleSupportedAriaAttributesList[element.getAttribute('role')] || [];
-                return Array.from(element.attributes)
-                    .filter(attr => attr.name.startsWith('aria') && !validAttributes.includes(attr.name))
-                    .map(attr => ({
-                        outerHTML: element.outerHTML,
-                        selector: getUniqueSelector(element)
-                    }))
-        });
+    return Array.from(document.querySelectorAll('[role]'))
+      .filter(element => isElementVisible(element))
+      .flatMap(element => {
+        const validAttributes = ariaRoleSupportedAriaAttributesList[element.getAttribute('role')] || [];
+        return Array.from(element.attributes)
+          .filter(attr => attr.name.startsWith('aria') && !validAttributes.includes(attr.name))
+          .map(attr => ({
+            outerHTML: element.outerHTML,
+            selector: getUniqueSelector(element)
+       })
+      )
+    });
     `);
 
   ariaRoleAllowedAriaAttributes.forEach((element) => {

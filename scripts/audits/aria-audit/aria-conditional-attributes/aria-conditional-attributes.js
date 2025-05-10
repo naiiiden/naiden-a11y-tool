@@ -20,12 +20,12 @@ export function hasAriaConditionalAttributes() {
 export async function hasAriaConditionalAttributesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-conditional-attr
   const ariaConditionalAttributes = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaConditionalAttributes = ${hasAriaConditionalAttributes.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaConditionalAttributes = ${hasAriaConditionalAttributes.toString()};
 
-        return hasAriaConditionalAttributes();
-    `);
+    return hasAriaConditionalAttributes();
+  `);
 
   ariaConditionalAttributes.forEach((element) => {
     auditResults.push({

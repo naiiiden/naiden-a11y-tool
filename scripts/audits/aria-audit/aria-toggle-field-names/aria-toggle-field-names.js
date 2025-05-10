@@ -38,12 +38,12 @@ export function hasAriaToggleFieldNames() {
 export async function hasAriaToggleFieldNamesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-toggle-field-name
   const ariaToggleFieldNames = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaToggleFieldNames = ${hasAriaToggleFieldNames.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaToggleFieldNames = ${hasAriaToggleFieldNames.toString()};
 
-        return hasAriaToggleFieldNames();
-    `);
+    return hasAriaToggleFieldNames();
+  `);
 
   ariaToggleFieldNames.forEach((element) => {
     auditResults.push({

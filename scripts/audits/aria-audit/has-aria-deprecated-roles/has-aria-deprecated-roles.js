@@ -15,12 +15,12 @@ export function hasAriaDeprecatedRoles() {
 export async function hasAriaDeprecatedRolesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-deprecated-role
   const ariaDeprecatedRoles = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaDeprecatedRoles = ${hasAriaDeprecatedRoles.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaDeprecatedRoles = ${hasAriaDeprecatedRoles.toString()};
 
-        return hasAriaDeprecatedRoles();
-    `);
+    return hasAriaDeprecatedRoles();
+  `);
 
   ariaDeprecatedRoles.forEach((element) => {
     auditResults.push({

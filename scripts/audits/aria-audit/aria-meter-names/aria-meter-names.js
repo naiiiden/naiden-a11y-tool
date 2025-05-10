@@ -35,12 +35,12 @@ export function hasAriaMeterNames() {
 export async function hasAriaMeterNamesEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/aria-meter-name
   const ariaMeterNames = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAriaMeterNames = ${hasAriaMeterNames.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAriaMeterNames = ${hasAriaMeterNames.toString()};
 
-        return hasAriaMeterNames();
-    `);
+    return hasAriaMeterNames();
+  `);
 
   ariaMeterNames.forEach((element) => {
     auditResults.push({
