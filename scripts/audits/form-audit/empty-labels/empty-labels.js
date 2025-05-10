@@ -33,12 +33,12 @@ export function hasEmptyLabels() {
 
 export async function hasEmptyLabelsEval(auditResults) {
   const emptyLabels = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasEmptyLabels = ${hasEmptyLabels.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasEmptyLabels = ${hasEmptyLabels.toString()};
 
-        return hasEmptyLabels();
-    `);
+    return hasEmptyLabels();
+  `);
 
   emptyLabels.forEach((label) => {
     auditResults.push({

@@ -46,12 +46,12 @@ export function hasEmptySubmitButonOrResetInputValues() {
 
 export async function hasEmptySubmitButonOrResetInputValuesEval(auditResults) {
   const emptySubmitButtonOrResetInputValues = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasEmptySubmitButonOrResetInputValues = ${hasEmptySubmitButonOrResetInputValues.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasEmptySubmitButonOrResetInputValues = ${hasEmptySubmitButonOrResetInputValues.toString()};
 
-        return hasEmptySubmitButonOrResetInputValues();
-    `);
+    return hasEmptySubmitButonOrResetInputValues();
+  `);
 
   emptySubmitButtonOrResetInputValues.forEach((control) => {
     auditResults.push({

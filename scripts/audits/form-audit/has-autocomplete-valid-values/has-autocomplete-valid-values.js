@@ -5,16 +5,16 @@ import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 // prettier-ignore
 export const validAutocompleteValues = [
-    "name", "honorific-prefix", "given-name", "additional-name", "family-name", "honorific-suffix",
-    "nickname", "email", "username", "new-password", "current-password", "organization-title",
-    "organization", "street-address", "address-line1", "address-line2", "address-line3", "address-level4",
-    "address-level3", "address-level2", "address-level1", "country", "country-name", "postal-code",
-    "cc-name", "cc-given-name", "cc-additional-name", "cc-family-name", "cc-number", "cc-exp",
-    "cc-exp-month", "cc-exp-year", "cc-csc", "cc-type", "transaction-currency", "transaction-amount",
-    "language", "bday", "bday-day", "bday-month", "bday-year", "sex", "tel", "tel-country-code",
-    "tel-national", "tel-area-code", "tel-local", "tel-local-prefix", "tel-local-suffix",
-    "tel-extension", "impp", "url", "photo", "billing", "fax", "home", "mobile", "off", "on", "pager",
-    "shipping", "work"
+  "name", "honorific-prefix", "given-name", "additional-name", "family-name", "honorific-suffix",
+  "nickname", "email", "username", "new-password", "current-password", "organization-title",
+  "organization", "street-address", "address-line1", "address-line2", "address-line3", "address-level4",
+  "address-level3", "address-level2", "address-level1", "country", "country-name", "postal-code",
+  "cc-name", "cc-given-name", "cc-additional-name", "cc-family-name", "cc-number", "cc-exp",
+  "cc-exp-month", "cc-exp-year", "cc-csc", "cc-type", "transaction-currency", "transaction-amount",
+  "language", "bday", "bday-day", "bday-month", "bday-year", "sex", "tel", "tel-country-code",
+  "tel-national", "tel-area-code", "tel-local", "tel-local-prefix", "tel-local-suffix",
+  "tel-extension", "impp", "url", "photo", "billing", "fax", "home", "mobile", "off", "on", "pager",
+  "shipping", "work"
 ];
 
 export function hasAutocompleteValidValues() {
@@ -32,13 +32,13 @@ export function hasAutocompleteValidValues() {
 
 export async function hasAutocompleteValidValuesEval(auditResults) {
   const autocompleteValidValues = await inspectedWindowEval(`
-        const validAutocompleteValues = new Set(${JSON.stringify(validAutocompleteValues)});
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAutocompleteValidValues = ${hasAutocompleteValidValues.toString()};
+    const validAutocompleteValues = new Set(${JSON.stringify(validAutocompleteValues)});
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAutocompleteValidValues = ${hasAutocompleteValidValues.toString()};
 
-        return hasAutocompleteValidValues();
-    `);
+    return hasAutocompleteValidValues();
+  `);
 
   autocompleteValidValues.forEach((element) => {
     auditResults.push({

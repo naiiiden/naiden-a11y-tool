@@ -40,12 +40,12 @@ export function hasVisibleFormControlLabels() {
 
 export async function hasVisibleFormControlLabelsEval(auditResults) {
   const visibleFormControlLabels = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasVisibleFormControlLabels = ${hasVisibleFormControlLabels.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasVisibleFormControlLabels = ${hasVisibleFormControlLabels.toString()};
 
-        return hasVisibleFormControlLabels();
-    `);
+    return hasVisibleFormControlLabels();
+  `);
 
   visibleFormControlLabels.forEach((element) => {
     auditResults.push({

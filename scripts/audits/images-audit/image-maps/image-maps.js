@@ -45,12 +45,12 @@ export function hasImageMaps() {
 export async function hasImageMapsEval(auditResults) {
   // https://dequeuniversity.com/rules/axe/4.10/area-alt
   const imageMaps = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasImageMaps = ${hasImageMaps.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasImageMaps = ${hasImageMaps.toString()};
 
-        return hasImageMaps();
-    `);
+    return hasImageMaps();
+  `);
 
   imageMaps.forEach((map) => {
     if (!map.imgAlt || map.imgAlt === "") {

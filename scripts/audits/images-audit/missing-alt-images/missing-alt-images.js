@@ -33,12 +33,12 @@ export function hasMissingAltImages() {
 
 export async function hasMissingAltImagesEval(auditResults) {
   const missingAltImages = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasMissingAltImages = ${hasMissingAltImages.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasMissingAltImages = ${hasMissingAltImages.toString()};
 
-        return hasMissingAltImages();
-    `);
+    return hasMissingAltImages();
+  `);
 
   missingAltImages.forEach((img) => {
     auditResults.push({

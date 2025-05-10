@@ -14,12 +14,12 @@ export function hasServerSideImgMaps() {
 
 export async function hasServerSideImgMapsEval(auditResults) {
   const serverSideImgMaps = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasServerSideImgMaps = ${hasServerSideImgMaps.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasServerSideImgMaps = ${hasServerSideImgMaps.toString()};
 
-        return hasServerSideImgMaps();
-    `);
+    return hasServerSideImgMaps();
+  `);
 
   serverSideImgMaps.forEach((button) => {
     auditResults.push({

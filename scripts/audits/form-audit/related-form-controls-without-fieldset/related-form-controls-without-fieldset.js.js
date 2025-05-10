@@ -26,11 +26,11 @@ export function hasRelatedFormControlsMissingFieldset() {
 
 export async function hasRelatedFormControlsMissingFieldsetEval(auditResults) {
   const relatedFormControlsMissingFieldset = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const hasRelatedFormControlsMissingFieldset = ${hasRelatedFormControlsMissingFieldset.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const hasRelatedFormControlsMissingFieldset = ${hasRelatedFormControlsMissingFieldset.toString()};
 
-        return hasRelatedFormControlsMissingFieldset();
-    `);
+    return hasRelatedFormControlsMissingFieldset();
+  `);
 
   relatedFormControlsMissingFieldset.forEach((group) => {
     group.forEach((input) => {

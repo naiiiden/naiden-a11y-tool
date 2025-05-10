@@ -29,12 +29,12 @@ export function hasRedundantImgAlt() {
 
 export async function hasRedundantImgAltEval(auditResults) {
   const redundantImgAlt = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasRedundantImgAlt = ${hasRedundantImgAlt.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasRedundantImgAlt = ${hasRedundantImgAlt.toString()};
 
-        return hasRedundantImgAlt();
-    `);
+    return hasRedundantImgAlt();
+  `);
 
   redundantImgAlt.forEach((element) => {
     auditResults.push({

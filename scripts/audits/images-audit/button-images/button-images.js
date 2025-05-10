@@ -19,12 +19,12 @@ export function hasButtonImages() {
 
 export async function hasButtonImagesEval(auditResults) {
   const buttonImages = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasButtonImages = ${hasButtonImages.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasButtonImages = ${hasButtonImages.toString()};
 
-        return hasButtonImages();
-    `);
+    return hasButtonImages();
+  `);
 
   buttonImages.forEach((img) => {
     if (img.hasText && img.alt === null) {

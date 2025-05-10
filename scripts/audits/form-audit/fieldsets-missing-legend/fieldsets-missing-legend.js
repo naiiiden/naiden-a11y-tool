@@ -14,12 +14,12 @@ export function hasFieldsetsMissingLegend() {
 
 export async function hasFieldsetsMissingLegendEval(auditResults) {
   const fieldsetsMissingLegends = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasFieldsetsMissingLegend = ${hasFieldsetsMissingLegend.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasFieldsetsMissingLegend = ${hasFieldsetsMissingLegend.toString()};
 
-        return hasFieldsetsMissingLegend();
-    `);
+    return hasFieldsetsMissingLegend();
+  `);
 
   fieldsetsMissingLegends.forEach((fieldset) => {
     auditResults.push({

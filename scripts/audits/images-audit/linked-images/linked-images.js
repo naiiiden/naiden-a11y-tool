@@ -19,12 +19,12 @@ export function hasLinkedImages() {
 
 export async function hasLinkedImagesEval(auditResults) {
   const linkedImages = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasLinkedImages = ${hasLinkedImages.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasLinkedImages = ${hasLinkedImages.toString()};
 
-        return hasLinkedImages();
-    `);
+    return hasLinkedImages();
+  `);
 
   linkedImages.forEach((img) => {
     if (img.hasText && img.alt === null) {

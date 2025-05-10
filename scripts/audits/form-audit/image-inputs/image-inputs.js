@@ -31,12 +31,12 @@ export function hasImageInputs() {
 
 export async function hasImageInputsEval(auditResults) {
   const imageInputs = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasImageInputs = ${hasImageInputs.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasImageInputs = ${hasImageInputs.toString()};
 
-        return hasImageInputs();
-    `);
+    return hasImageInputs();
+  `);
 
   imageInputs.forEach((input) => {
     auditResults.push({

@@ -32,12 +32,12 @@ export function hasRoleImg() {
 
 export async function hasRoleImgEval(auditResults) {
   const roleImg = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasRoleImg = ${hasRoleImg.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasRoleImg = ${hasRoleImg.toString()};
 
-        return hasRoleImg();
-    `);
+    return hasRoleImg();
+  `);
 
   roleImg.forEach((img) => {
     auditResults.push({

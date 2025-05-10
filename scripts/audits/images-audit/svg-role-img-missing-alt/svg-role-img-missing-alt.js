@@ -36,12 +36,12 @@ export function hasSvgRoleImgMissingAlt() {
 
 export async function hasSvgRoleImgMissingAltEval(auditResults) {
   const svgRoleImgMissingAlt = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasSvgRoleImgMissingAlt = ${hasSvgRoleImgMissingAlt.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasSvgRoleImgMissingAlt = ${hasSvgRoleImgMissingAlt.toString()};
 
-        return hasSvgRoleImgMissingAlt();
-    `);
+    return hasSvgRoleImgMissingAlt();
+  `);
 
   svgRoleImgMissingAlt.forEach((img) => {
     auditResults.push({
