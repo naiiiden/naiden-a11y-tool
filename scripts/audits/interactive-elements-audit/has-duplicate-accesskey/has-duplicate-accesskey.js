@@ -28,11 +28,11 @@ export function hasDuplicateAccesskeys() {
 
 export async function hasDuplicateAccesskeysEval(auditResults) {
   const duplicateAccesskeys = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const hasDuplicateAccesskeys = ${hasDuplicateAccesskeys.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const hasDuplicateAccesskeys = ${hasDuplicateAccesskeys.toString()};
 
-        return hasDuplicateAccesskeys();
-    `);
+    return hasDuplicateAccesskeys();
+  `);
 
   duplicateAccesskeys.forEach((group) => {
     const helperText =

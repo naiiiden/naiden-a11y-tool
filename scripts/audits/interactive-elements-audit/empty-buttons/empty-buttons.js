@@ -40,12 +40,12 @@ export function hasEmptyButtons() {
 
 export async function hasEmptyButtonsEval(auditResults) {
   const emptyButtons = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasEmptyButtons = ${hasEmptyButtons.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasEmptyButtons = ${hasEmptyButtons.toString()};
 
-        return hasEmptyButtons();
-    `);
+    return hasEmptyButtons();
+  `);
 
   emptyButtons.forEach((button) => {
     auditResults.push({

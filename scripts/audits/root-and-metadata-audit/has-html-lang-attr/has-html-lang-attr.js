@@ -16,11 +16,11 @@ export function hasHtmlLangAttr() {
 // https://www.w3.org/WAI/WCAG22/Techniques/html/H57
 export async function hasHtmlLangAttrEval(auditResults) {
   const htmlLangAttr = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const hasHtmlLangAttr = ${hasHtmlLangAttr.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const hasHtmlLangAttr = ${hasHtmlLangAttr.toString()};
     
-        return hasHtmlLangAttr();
-    `);
+    return hasHtmlLangAttr();
+  `);
 
   if (!htmlLangAttr.hasLangAttr) {
     auditResults.push({

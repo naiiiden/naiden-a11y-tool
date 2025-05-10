@@ -15,11 +15,11 @@ export function hasMetaViewportUserScalableNoOrZero() {
 
 export async function hasMetaViewportUserScalableNoOrZeroEval(auditResults) {
   const metaViewport = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const hasMetaViewportUserScalableNoOrZero = ${hasMetaViewportUserScalableNoOrZero.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const hasMetaViewportUserScalableNoOrZero = ${hasMetaViewportUserScalableNoOrZero.toString()};
 
-        return hasMetaViewportUserScalableNoOrZero();
-    `);
+    return hasMetaViewportUserScalableNoOrZero();
+  `);
 
   if (
     metaViewport &&

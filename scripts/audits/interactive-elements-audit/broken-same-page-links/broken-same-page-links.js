@@ -27,12 +27,12 @@ export function hasBrokenSamePageLinks() {
 
 export async function hasBrokenSamePageLinksEval(auditResults) {
   const brokenSamePageLinks = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasBrokenSamePageLinks = ${hasBrokenSamePageLinks.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasBrokenSamePageLinks = ${hasBrokenSamePageLinks.toString()};
 
-        return hasBrokenSamePageLinks();
-    `);
+    return hasBrokenSamePageLinks();
+  `);
 
   brokenSamePageLinks
     .filter((link) => !link.targetExists)

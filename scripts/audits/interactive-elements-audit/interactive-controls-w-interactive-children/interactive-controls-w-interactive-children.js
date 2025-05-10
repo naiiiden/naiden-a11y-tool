@@ -48,12 +48,12 @@ export async function hasInteractiveControlsWithInteractiveControlsAsChildrenEva
   auditResults,
 ) {
   const interactiveControlsWithInteractiveControlsAsChildren = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasInteractiveControlsWithInteractiveControlsAsChildren = ${hasInteractiveControlsWithInteractiveControlsAsChildren.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasInteractiveControlsWithInteractiveControlsAsChildren = ${hasInteractiveControlsWithInteractiveControlsAsChildren.toString()};
 
-        return hasInteractiveControlsWithInteractiveControlsAsChildren();
-    `);
+    return hasInteractiveControlsWithInteractiveControlsAsChildren();
+  `);
 
   interactiveControlsWithInteractiveControlsAsChildren.forEach((element) => {
     auditResults.push({

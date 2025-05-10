@@ -31,12 +31,12 @@ export function hasEmptyLinks() {
 
 export async function hasEmptyLinksEval(auditResults) {
   const emptyLinks = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasEmptyLinks = ${hasEmptyLinks.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasEmptyLinks = ${hasEmptyLinks.toString()};
 
-        return hasEmptyLinks();
-    `);
+    return hasEmptyLinks();
+  `);
 
   emptyLinks.forEach((link) => {
     auditResults.push({

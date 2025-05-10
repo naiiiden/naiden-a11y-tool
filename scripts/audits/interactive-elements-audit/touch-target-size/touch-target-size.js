@@ -113,13 +113,12 @@ export function hasTouchTargetSize() {
 
 export async function touchTargetSizeEval(auditResults) {
   const touchTargetSize = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasTouchTargetSize = ${hasTouchTargetSize.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasTouchTargetSize = ${hasTouchTargetSize.toString()};
 
-        return hasTouchTargetSize();
-        
-    `);
+    return hasTouchTargetSize();    
+  `);
 
   touchTargetSize.forEach((error) => {
     auditResults.push({

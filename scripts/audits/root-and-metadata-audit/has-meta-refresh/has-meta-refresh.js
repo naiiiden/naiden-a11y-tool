@@ -18,11 +18,11 @@ export function hasMetaRefresh() {
 
 export async function hasMetaRefreshEval(auditResults) {
   const metaRefresh = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const hasMetaRefresh = ${hasMetaRefresh.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const hasMetaRefresh = ${hasMetaRefresh.toString()};
 
-        return hasMetaRefresh();
-    `);
+    return hasMetaRefresh();
+  `);
 
   if (
     metaRefresh &&

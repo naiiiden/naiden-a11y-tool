@@ -22,12 +22,12 @@ export function hasBrokenSkipLinks() {
 
 export async function hasBrokenSkipLinksEval(auditResults) {
   const brokenSkipLinks = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasBrokenSkipLinks = ${hasBrokenSkipLinks.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasBrokenSkipLinks = ${hasBrokenSkipLinks.toString()};
 
-        return hasBrokenSkipLinks();
-    `);
+    return hasBrokenSkipLinks();
+  `);
 
   brokenSkipLinks
     .filter(

@@ -18,11 +18,11 @@ export function hasPageTitle() {
 
 export async function hasPageTitleEval(auditResults) {
   const documentTitle = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const hasPageTitle = ${hasPageTitle.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const hasPageTitle = ${hasPageTitle.toString()};
 
-        return hasPageTitle();
-    `);
+    return hasPageTitle();
+  `);
 
   if (documentTitle?.documentTitle === "" || !documentTitle) {
     auditResults.push({

@@ -15,11 +15,11 @@ export function hasMetaViewportMaximumScale() {
 
 export async function hasMetaViewportMaximumScaleEval(auditResults) {
   const metaViewport = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const hasMetaViewportMaximumScale = ${hasMetaViewportMaximumScale.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const hasMetaViewportMaximumScale = ${hasMetaViewportMaximumScale.toString()};
 
-        return hasMetaViewportMaximumScale();
-    `);
+    return hasMetaViewportMaximumScale();
+  `);
 
   if (metaViewport && metaViewport.hasContentAttr) {
     const maxScaleMatch = metaViewport.hasContentAttr.match(
