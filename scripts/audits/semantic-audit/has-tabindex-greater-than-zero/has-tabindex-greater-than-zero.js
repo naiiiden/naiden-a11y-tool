@@ -28,12 +28,12 @@ export function hasTabindexGreaterThanZero() {
 
 export async function hasTabindexGreaterThanZeroEval(auditResults) {
   const tabindexGreaterThanZero = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasTabindexGreaterThanZero = ${hasTabindexGreaterThanZero.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasTabindexGreaterThanZero = ${hasTabindexGreaterThanZero.toString()};
 
-        return hasTabindexGreaterThanZero();
-    `);
+    return hasTabindexGreaterThanZero();
+  `);
 
   tabindexGreaterThanZero.forEach((element) => {
     auditResults.push({

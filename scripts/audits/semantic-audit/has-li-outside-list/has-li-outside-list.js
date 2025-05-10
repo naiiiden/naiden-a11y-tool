@@ -14,12 +14,12 @@ export function hasLiOutsideList() {
 
 export async function hasLiOutsideListEval(auditResults) {
   const liOutsideList = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasLiOutsideList = ${hasLiOutsideList.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasLiOutsideList = ${hasLiOutsideList.toString()};
 
-        return hasLiOutsideList();
-    `);
+    return hasLiOutsideList();
+  `);
 
   liOutsideList.forEach((element) => {
     auditResults.push({

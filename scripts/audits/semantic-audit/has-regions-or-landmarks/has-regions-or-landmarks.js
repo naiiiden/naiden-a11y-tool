@@ -12,11 +12,11 @@ export function hasRegionsOrLandmarks() {
 
 export async function hasRegionsOrLandmarksEval(auditResults) {
   const regionsOrLandmarks = await inspectedWindowEval(`
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasRegionsOrLandmarks = ${hasRegionsOrLandmarks.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasRegionsOrLandmarks = ${hasRegionsOrLandmarks.toString()};
 
-        return hasRegionsOrLandmarks();
-    `);
+    return hasRegionsOrLandmarks();
+  `);
 
   if (regionsOrLandmarks < 1) {
     auditResults.push(semanticErrors[4]);

@@ -31,12 +31,12 @@ export function hasHeadingLevels() {
 
 export async function hasHeadingLevelsEval(auditResults) {
   const headingLevels = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasHeadingLevels = ${hasHeadingLevels.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasHeadingLevels = ${hasHeadingLevels.toString()};
 
-        return hasHeadingLevels();
-    `);
+    return hasHeadingLevels();
+  `);
 
   if (headingLevels.length > 0) {
     if (headingLevels[0].level !== 1) {

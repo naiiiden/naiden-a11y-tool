@@ -23,12 +23,12 @@ export function hasBannersInOtherLandmarks() {
 
 export async function hasBannersInOtherLandmarksEval(auditResults) {
   const bannersInOtherLandmarks = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasBannersInOtherLandmarks = ${hasBannersInOtherLandmarks.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasBannersInOtherLandmarks = ${hasBannersInOtherLandmarks.toString()};
 
-        return hasBannersInOtherLandmarks();
-    `);
+    return hasBannersInOtherLandmarks();
+  `);
 
   bannersInOtherLandmarks.forEach((banner) => {
     auditResults.push({

@@ -14,12 +14,12 @@ export function hasNoMainLandmarkOrMore() {
 
 export async function hasNoMainLandmarkOrMoreEval(auditResults) {
   const mainLandmarks = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasNoMainLandmarkOrMore = ${hasNoMainLandmarkOrMore.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasNoMainLandmarkOrMore = ${hasNoMainLandmarkOrMore.toString()};
 
-        return hasNoMainLandmarkOrMore();
-    `);
+    return hasNoMainLandmarkOrMore();
+  `);
 
   if (mainLandmarks.length < 1) {
     auditResults.push(semanticErrors[5]);

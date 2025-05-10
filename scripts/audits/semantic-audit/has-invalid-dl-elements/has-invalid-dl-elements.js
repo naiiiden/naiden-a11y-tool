@@ -55,11 +55,11 @@ export function hasInvalidDlElements() {
 
 export async function hasInvalidDlElementsEval(auditResults) {
   const invalidDlElements = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const hasInvalidDlElements = ${hasInvalidDlElements.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const hasInvalidDlElements = ${hasInvalidDlElements.toString()};
 
-        return hasInvalidDlElements();
-    `);
+    return hasInvalidDlElements();
+  `);
 
   invalidDlElements.forEach((element) => {
     auditResults.push({

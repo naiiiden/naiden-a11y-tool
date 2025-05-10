@@ -23,12 +23,12 @@ export function hasContentinfoInOtherLandmarks() {
 
 export async function hasContentinfoInOtherLandmarksEval(auditResults) {
   const contentinfoInOtherLandmarks = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasContentinfoInOtherLandmarks = ${hasContentinfoInOtherLandmarks.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasContentinfoInOtherLandmarks = ${hasContentinfoInOtherLandmarks.toString()};
 
-        return hasContentinfoInOtherLandmarks();
-    `);
+    return hasContentinfoInOtherLandmarks();
+  `);
 
   contentinfoInOtherLandmarks.forEach((footer) => {
     auditResults.push({

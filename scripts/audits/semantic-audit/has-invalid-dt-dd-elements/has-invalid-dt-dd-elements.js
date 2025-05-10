@@ -14,12 +14,12 @@ export function hasInvalidDtDdElements() {
 
 export async function hasInvalidDtDdElementsEval(auditResults) {
   const invalidDtDdElements = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasInvalidDtDdElements = ${hasInvalidDtDdElements.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasInvalidDtDdElements = ${hasInvalidDtDdElements.toString()};
 
-        return hasInvalidDtDdElements();
-    `);
+    return hasInvalidDtDdElements();
+  `);
 
   invalidDtDdElements.forEach((element) => {
     auditResults.push({

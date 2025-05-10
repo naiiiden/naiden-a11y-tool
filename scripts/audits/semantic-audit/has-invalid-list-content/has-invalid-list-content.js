@@ -16,12 +16,12 @@ export function hasInvalidListContent() {
 
 export async function hasInvalidListContentEval(auditResults) {
   const invalidListContent = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasInvalidListContent = ${hasInvalidListContent.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasInvalidListContent = ${hasInvalidListContent.toString()};
 
-        return hasInvalidListContent();
-    `);
+    return hasInvalidListContent();
+  `);
 
   invalidListContent.forEach((element) => {
     auditResults.push({

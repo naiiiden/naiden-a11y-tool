@@ -28,12 +28,12 @@ export function hasContentOutsideLandmarks() {
 
 export async function hasContentOutsideLandmarksEval(auditResults) {
   const contentOutsideLandmarks = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasContentOutsideLandmarks = ${hasContentOutsideLandmarks.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasContentOutsideLandmarks = ${hasContentOutsideLandmarks.toString()};
 
-        return hasContentOutsideLandmarks();
-    `);
+    return hasContentOutsideLandmarks();
+  `);
 
   contentOutsideLandmarks.forEach((element) => {
     auditResults.push({

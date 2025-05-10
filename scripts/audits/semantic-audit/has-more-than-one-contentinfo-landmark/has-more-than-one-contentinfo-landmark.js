@@ -10,11 +10,11 @@ export function hasMoreThanOneContentinfoLandmark() {
 
 export async function hasMoreThanOneContentinfoLandmarkEval(auditResults) {
   const moreThanOneContentinfoLandmark = await inspectedWindowEval(`
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasMoreThanOneContentinfoLandmark = ${hasMoreThanOneContentinfoLandmark.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasMoreThanOneContentinfoLandmark = ${hasMoreThanOneContentinfoLandmark.toString()};
 
-        return hasMoreThanOneContentinfoLandmark();
-    `);
+    return hasMoreThanOneContentinfoLandmark();
+  `);
 
   if (moreThanOneContentinfoLandmark > 1) {
     auditResults.push(semanticErrors[8]);

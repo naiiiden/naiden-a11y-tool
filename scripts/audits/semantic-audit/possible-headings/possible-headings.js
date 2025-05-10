@@ -23,12 +23,12 @@ export function hasPossibleHeadings() {
 
 export async function hasPossibleHeadingsEval(auditResults) {
   const possibleHeadings = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasPossibleHeadings = ${hasPossibleHeadings.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasPossibleHeadings = ${hasPossibleHeadings.toString()};
 
-        return hasPossibleHeadings();
-    `);
+    return hasPossibleHeadings();
+  `);
 
   possibleHeadings.forEach((heading) => {
     auditResults.push({

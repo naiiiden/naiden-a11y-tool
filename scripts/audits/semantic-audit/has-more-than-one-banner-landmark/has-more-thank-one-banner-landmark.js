@@ -10,11 +10,11 @@ export function hasMoreThanOneBannerLandmark() {
 
 export async function hasMoreThanOneBannerLandmarkEval(auditResults) {
   const moreThanOneBannerLandmark = await inspectedWindowEval(`
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasMoreThanOneBannerLandmark = ${hasMoreThanOneBannerLandmark.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasMoreThanOneBannerLandmark = ${hasMoreThanOneBannerLandmark.toString()};
 
-        return hasMoreThanOneBannerLandmark();
-    `);
+    return hasMoreThanOneBannerLandmark();
+  `);
 
   if (moreThanOneBannerLandmark > 1) {
     auditResults.push(semanticErrors[7]);

@@ -45,12 +45,12 @@ export function hasUniqueLandmarks() {
 
 export async function hasUniqueLandmarksEval(auditResults) {
   const uniqueLandmarks = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasUniqueLandmarks = ${hasUniqueLandmarks.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasUniqueLandmarks = ${hasUniqueLandmarks.toString()};
 
-        return hasUniqueLandmarks();
-    `);
+    return hasUniqueLandmarks();
+  `);
 
   uniqueLandmarks.forEach((element) => {
     auditResults.push({

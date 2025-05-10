@@ -12,11 +12,11 @@ export function hasHeadings() {
 
 export async function hasHeadingsEval(auditResults) {
   const headings = await inspectedWindowEval(`
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasHeadings = ${hasHeadings.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasHeadings = ${hasHeadings.toString()};
 
-        return hasHeadings();
-    `);
+    return hasHeadings();
+  `);
 
   if (!headings) {
     auditResults.push(semanticErrors[3]);

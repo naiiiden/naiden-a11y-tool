@@ -26,11 +26,11 @@ export function hasDuplicateIds() {
 
 export async function hasDuplicateIdsEval(auditResults) {
   const duplicateIds = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const hasDuplicateIds = ${hasDuplicateIds.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const hasDuplicateIds = ${hasDuplicateIds.toString()};
 
-        return hasDuplicateIds();
-    `);
+    return hasDuplicateIds();
+  `);
 
   duplicateIds.forEach((group) => {
     const helperText =

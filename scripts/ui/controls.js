@@ -25,24 +25,24 @@ export function uiControls(runAudit) {
   const auditFuncsArray = [];
   // prettier-ignore
   const auditFuncsMap = {
-        "root-and-metadata": rootAndMetadataAudit,
-        "semantic": semanticAudit,
-        "aria": ariaAudit,
-        "deprecated-elements": deprecatedElementsAudit,
-        "empty-elements": emptyAudit,
-        "interactive-elements": interactiveElementsAudit,
-        "embedded-elements": embeddedElementsAudit,
-        "form": formAudit,
-        "image": imagesAudit,
-        "css": cssAudit,
-        "colour": colourAudit
-    };
+    "root-and-metadata": rootAndMetadataAudit,
+    "semantic": semanticAudit,
+    "aria": ariaAudit,
+    "deprecated-elements": deprecatedElementsAudit,
+    "empty-elements": emptyAudit,
+    "interactive-elements": interactiveElementsAudit,
+    "embedded-elements": embeddedElementsAudit,
+    "form": formAudit,
+    "image": imagesAudit,
+    "css": cssAudit,
+    "colour": colourAudit
+  };
 
   document.getElementById("toggle-stylesheets").addEventListener("change", () => {
     const disable = document.getElementById("toggle-stylesheets").checked;
     inspectedWindowEval(`
-            (${toggleStylesheets.toString()})(${disable});
-        `);
+      (${toggleStylesheets.toString()})(${disable});
+    `);
   });
 
   openAuditCheckboxesDropdownBtn.addEventListener("click", () => {

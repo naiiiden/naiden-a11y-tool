@@ -23,12 +23,12 @@ export function hasAsideInOtherLandmarks() {
 
 export async function hasAsideInOtherLandmarksEval(auditResults) {
   const asidesInOtherLandmarks = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasAsideInOtherLandmarks = ${hasAsideInOtherLandmarks.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasAsideInOtherLandmarks = ${hasAsideInOtherLandmarks.toString()};
 
-        return hasAsideInOtherLandmarks();
-    `);
+    return hasAsideInOtherLandmarks();
+  `);
 
   asidesInOtherLandmarks.forEach((aside) => {
     auditResults.push({

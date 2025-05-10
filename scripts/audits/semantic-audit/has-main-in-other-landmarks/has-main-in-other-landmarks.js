@@ -23,12 +23,12 @@ export function hasMainInOtherLandmarks() {
 
 export async function hasMainInOtherLandmarksEval(auditResults) {
   const mainInOtherLandmarks = await inspectedWindowEval(`
-        const getUniqueSelector = ${getUniqueSelector.toString()};
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasMainInOtherLandmarks = ${hasMainInOtherLandmarks.toString()};
+    const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasMainInOtherLandmarks = ${hasMainInOtherLandmarks.toString()};
 
-        return hasMainInOtherLandmarks();
-    `);
+    return hasMainInOtherLandmarks();
+  `);
 
   mainInOtherLandmarks.forEach((main) => {
     auditResults.push({

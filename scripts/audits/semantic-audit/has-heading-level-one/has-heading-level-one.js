@@ -11,11 +11,11 @@ export function hasHeadingLevelOne() {
 
 export async function hasHeadingLevelOneEval(auditResults) {
   const hasH1 = await inspectedWindowEval(`
-        const isElementVisible = ${isElementVisible.toString()};
-        const hasHeadingLevelOne = ${hasHeadingLevelOne.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
+    const hasHeadingLevelOne = ${hasHeadingLevelOne.toString()};
 
-        return hasHeadingLevelOne();
-    `);
+    return hasHeadingLevelOne();
+  `);
 
   if (!hasH1) {
     auditResults.push(semanticErrors[0]);
