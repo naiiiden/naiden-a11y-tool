@@ -115,9 +115,9 @@ export async function hasSufficientTouchTargetSizeEval(auditResults) {
   const sufficientTouchTargetSize = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
     const isElementVisible = ${isElementVisible.toString()};
-    const hasTouchTargetSize = ${hasTouchTargetSize.toString()};
+    const hasSufficientTouchTargetSize = ${hasSufficientTouchTargetSize.toString()};
 
-    return hasTouchTargetSize();    
+    return hasSufficientTouchTargetSize();    
   `);
 
   sufficientTouchTargetSize.forEach((error) => {
