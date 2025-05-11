@@ -32,7 +32,11 @@ export function displayAuditCheckboxes() {
     const label = document.createElement("label");
     const formattedName = key
       .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word) => {
+        if (word === "aria") return "ARIA";
+        if (word === "css") return "CSS";
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
       .join(" ");
     const input = document.createElement("input");
 
