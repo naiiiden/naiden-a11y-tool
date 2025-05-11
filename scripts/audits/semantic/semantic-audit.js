@@ -21,28 +21,30 @@ import { hasUniqueLandmarksEval } from "./has-unique-landmarks/has-unique-landma
 import { hasPossibleHeadingsEval } from "./has-possible-headings/has-possible-headings.js";
 
 export async function semanticAudit(auditResults) {
+  await hasBypassEval(auditResults);
+
+  await hasHeadingsEval(auditResults);
   await hasHeadingLevelOneEval(auditResults);
   await hasProperHeadingLevelOrdersEval(auditResults);
   await hasPossibleHeadingsEval(auditResults);
-  await hasHeadingsEval(auditResults);
 
   await hasRegionsOrLandmarksEval(auditResults);
   await hasNoMainLandmarkOrMoreEval(auditResults);
-  await hasMoreThanOneBannerLandmarkEval(auditResults);
-  await hasMoreThanOneContentinfoLandmarkEval(auditResults);
-  await hasBannersInOtherLandmarksEval(auditResults);
-  await hasAsideInOtherLandmarksEval(auditResults);
-  await hasContentinfoInOtherLandmarksEval(auditResults);
   await hasMainInOtherLandmarksEval(auditResults);
-  await hasContentOutsideLandmarksEval(auditResults);
+  await hasMoreThanOneBannerLandmarkEval(auditResults);
+  await hasBannersInOtherLandmarksEval(auditResults);
+  await hasMoreThanOneContentinfoLandmarkEval(auditResults);
+  await hasContentinfoInOtherLandmarksEval(auditResults);
+  await hasAsideInOtherLandmarksEval(auditResults);
+  
   await hasUniqueLandmarksEval(auditResults);
+  await hasContentOutsideLandmarksEval(auditResults);
 
   await hasInvalidListContentEval(auditResults);
   await hasLiOutsideListEval(auditResults);
   await hasInvalidDlElementsEval(auditResults);
   await hasInvalidDtDdElementsEval(auditResults);
 
-  await hasBypassEval(auditResults);
   await hasDuplicateIdsEval(auditResults);
   await hasTabindexGreaterThanZeroEval(auditResults);
 }
