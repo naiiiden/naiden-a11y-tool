@@ -1,11 +1,11 @@
-import { hasButtonImagesEval } from "./button-images/button-images.js";
-import { hasImageMapsEval } from "./image-maps/image-maps.js";
-import { hasRedundantImgAltEval } from "./image-redundant-alt/image-redundant-alt.js";
-import { hasLinkedImagesEval } from "./linked-images/linked-images.js";
-import { hasMissingAltImagesEval } from "./missing-alt-images/missing-alt-images.js";
-import { hasRoleImgEval } from "./role-img/role-img.js";
-import { hasServerSideImgMapsEval } from "./server-side-img-maps/server-side-img-maps.js";
-import { hasSvgRoleImgMissingAltEval } from "./svg-role-img-missing-alt/svg-role-img-missing-alt.js";
+import { hasButtonImagesEval } from "./has-button-images/has-button-images.js";
+import { hasImageMapsEval } from "./has-image-maps/has-image-maps.js";
+import { hasRedundantImgAltEval } from "./has-image-redundant-alt/has-image-redundant-alt.js";
+import { hasLinkedImagesEval } from "./has-linked-images/has-linked-images.js";
+import { hasMissingAltImagesEval } from "./has-missing-alt-images/has-missing-alt-images.js";
+import { hasRoleImgEval } from "./has-role-img/has-role-img.js";
+import { hasServerSideImgMapsEval } from "./has-server-side-img-maps/has-server-side-img-maps.js";
+import { hasSvgRoleImgMissingAltEval } from "./has-svg-role-img-missing-alt/has-svg-role-img-missing-alt.js";
 
 export async function imagesAudit(auditResults) {
   await hasMissingAltImagesEval(auditResults);
