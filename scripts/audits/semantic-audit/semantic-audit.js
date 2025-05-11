@@ -17,7 +17,7 @@ import { hasNoMainLandmarkOrMoreEval } from "./has-no-main-landmark-or-more/has-
 import { hasRegionsOrLandmarksEval } from "./has-regions-or-landmarks/has-regions-or-landmarks.js";
 import { hasTabindexGreaterThanZeroEval } from "./has-tabindex-greater-than-zero/has-tabindex-greater-than-zero.js";
 import { hasProperHeadingLevelOrdersEval } from "./has-proper-heading-level-order/has-proper-heading-level-order.js";
-import { hasUniqueLandmarksEval } from "./landmarks-unique/landmarks-unique.js";
+import { hasUniqueLandmarksEval } from "./has-unique-landmarks/has-unique-landmarks.js";
 import { hasPossibleHeadingsEval } from "./possible-headings/possible-headings.js";
 
 export async function semanticAudit(auditResults) {
