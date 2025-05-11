@@ -6,8 +6,8 @@ import { hasVideOrAudioAutoplayEval } from "./video-audio-no-autoplay/video-audi
 
 export async function embeddedElementsAudit(auditResults) {
   await hasEmptyIframeTitlesEval(auditResults);
-  await hasObjectAltTextEval(auditResults);
   await hasFrameUniqueTitlesEval(auditResults);
   await hasVideOrAudioAutoplayEval(auditResults);
   await hasVideoCaptionsEval(auditResults);
+  await hasObjectAltTextEval(auditResults);
 }

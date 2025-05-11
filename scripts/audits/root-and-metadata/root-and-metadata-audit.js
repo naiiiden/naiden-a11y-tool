@@ -6,10 +6,10 @@ import { hasPageTitleEval } from "./has-page-title/has-page-title.js";
 import { hasValidHtmlLangAttrEval } from "./has-valid-html-lang-attr/has-valid-html-lang-attr.js";
 
 export async function rootAndMetadataAudit(auditResults) {
-  await hasValidHtmlLangAttrEval(auditResults);
   await hasHtmlLangAttrEval(auditResults);
-  await hasPageTitleEval(auditResults);
+  await hasValidHtmlLangAttrEval(auditResults);
   await hasMetaRefreshEval(auditResults);
   await hasMetaViewportUserScalableNoOrZeroEval(auditResults);
   await hasMetaViewportMaximumScaleEval(auditResults);
+  await hasPageTitleEval(auditResults);
 }

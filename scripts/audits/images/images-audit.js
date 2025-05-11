@@ -9,11 +9,11 @@ import { hasSvgRoleImgMissingAltEval } from "./has-svg-role-img-missing-alt/has-
 
 export async function imagesAudit(auditResults) {
   await hasMissingAltImagesEval(auditResults);
+  await hasRoleImgEval(auditResults);
+  await hasSvgRoleImgMissingAltEval(auditResults);
+  await hasRedundantImgAltEval(auditResults);
   await hasLinkedImagesEval(auditResults);
   await hasButtonImagesEval(auditResults);
   await hasImageMapsEval(auditResults);
-  await hasRoleImgEval(auditResults);
   await hasServerSideImgMapsEval(auditResults);
-  await hasSvgRoleImgMissingAltEval(auditResults);
-  await hasRedundantImgAltEval(auditResults);
 }
