@@ -1,15 +1,15 @@
 import { toggleStylesheets } from "../utils/toggle-stylesheets.js";
-import { emptyAudit } from "../audits/empty-elements-audit/empty-audit.js";
-import { formAudit } from "../audits/form-audit/form-audit.js";
-import { embeddedElementsAudit } from "../audits/embedded-elements-audit/embedded-elements-audit.js";
-import { rootAndMetadataAudit } from "../audits/root-and-metadata-audit/root-and-metadata-audit.js";
-import { imagesAudit } from "../audits/images-audit/images-audit.js";
-import { interactiveElementsAudit } from "../audits/interactive-elements-audit/interactive-elements-audit.js";
-import { semanticAudit } from "../audits/semantic-audit/semantic-audit.js";
-import { ariaAudit } from "../audits/aria-audit/aria-audit.js";
-import { cssAudit } from "../audits/css-audit/css-audit.js";
-import { deprecatedElementsAudit } from "../audits/deprecated-elements-audit/deprecated-elements-audit.js";
-import { colourAudit } from "../audits/colour-audit/colour-audit.js";
+import { emptyAudit } from "../audits/empty-elements/empty-audit.js";
+import { formAudit } from "../audits/form/form-audit.js";
+import { embeddedElementsAudit } from "../audits/embedded-elements/embedded-elements-audit.js";
+import { rootAndMetadataAudit } from "../audits/root-and-metadata/root-and-metadata-audit.js";
+import { imagesAudit } from "../audits/images/images-audit.js";
+import { interactiveElementsAudit } from "../audits/interactive-elements/interactive-elements-audit.js";
+import { semanticAudit } from "../audits/semantic/semantic-audit.js";
+import { ariaAudit } from "../audits/aria/aria-audit.js";
+import { cssAudit } from "../audits/css/css-audit.js";
+import { deprecatedElementsAudit } from "../audits/deprecated-elements/deprecated-elements-audit.js";
+import { colourAudit } from "../audits/colour/colour-audit.js";
 import { inspectedWindowEval } from "../utils/inspected-window-eval.js";
 
 export function uiControls(runAudit) {
