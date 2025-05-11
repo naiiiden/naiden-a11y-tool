@@ -16,13 +16,13 @@ import { hasMoreThanOneContentinfoLandmarkEval } from "./has-more-than-one-conte
 import { hasNoMainLandmarkOrMoreEval } from "./has-no-main-landmark-or-more/has-no-main-landmark-or-more.js";
 import { hasRegionsOrLandmarksEval } from "./has-regions-or-landmarks/has-regions-or-landmarks.js";
 import { hasTabindexGreaterThanZeroEval } from "./has-tabindex-greater-than-zero/has-tabindex-greater-than-zero.js";
-import { hasHeadingLevelsEval } from "./heading-levels/heading-levels.js";
+import { hasProperHeadingLevelOrdersEval } from "./has-proper-heading-level-order/has-proper-heading-level-order.js";
 import { hasUniqueLandmarksEval } from "./landmarks-unique/landmarks-unique.js";
 import { hasPossibleHeadingsEval } from "./possible-headings/possible-headings.js";
 
 export async function semanticAudit(auditResults) {
   await hasHeadingLevelOneEval(auditResults);
-  await hasHeadingLevelsEval(auditResults);
+  await hasProperHeadingLevelOrdersEval(auditResults);
   await hasPossibleHeadingsEval(auditResults);
   await hasHeadingsEval(auditResults);
 

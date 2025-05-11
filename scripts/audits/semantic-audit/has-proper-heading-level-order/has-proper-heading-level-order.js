@@ -3,7 +3,7 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
-export function hasHeadingLevels() {
+export function hasProperHeadingLevelOrder() {
   return Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6, [role="heading"]'))
     .filter((heading) => isElementVisible(heading))
     .map((heading) => {
@@ -29,13 +29,13 @@ export function hasHeadingLevels() {
     });
 }
 
-export async function hasHeadingLevelsEval(auditResults) {
+export async function hasProperHeadingLevelOrdersEval(auditResults) {
   const headingLevels = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
     const isElementVisible = ${isElementVisible.toString()};
-    const hasHeadingLevels = ${hasHeadingLevels.toString()};
+    const hasProperHeadingLevelOrder = ${hasProperHeadingLevelOrder.toString()};
 
-    return hasHeadingLevels();
+    return hasProperHeadingLevelOrder();
   `);
 
   if (headingLevels.length > 0) {
