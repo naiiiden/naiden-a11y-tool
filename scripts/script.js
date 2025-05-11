@@ -4,6 +4,7 @@ import { showLoading, hideLoading } from "./ui/display-loading-indicator.js";
 import { attachErrorSectionAnchorHighlights, uiControls } from "./ui/controls.js";
 import { checkOverflow } from "./ui/main-has-overflow.js";
 import { statusMessage } from "./ui/status-message.js";
+import { displayAuditCheckboxes } from "./ui/display-audit-checkboxes.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   let auditResults = [];
@@ -53,5 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  displayAuditCheckboxes();
   uiControls(runAudit);
 });
