@@ -3,7 +3,7 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
-export function hasTouchTargetSize() {
+export function hasSufficientTouchTargetSize() {
   const MIN_TOUCH_SIZE = 24;
 
   const targets = Array.from(
@@ -111,8 +111,8 @@ export function hasTouchTargetSize() {
   return results;
 }
 
-export async function touchTargetSizeEval(auditResults) {
-  const touchTargetSize = await inspectedWindowEval(`
+export async function hasSufficientTouchTargetSizeEval(auditResults) {
+  const sufficientTouchTargetSize = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
     const isElementVisible = ${isElementVisible.toString()};
     const hasTouchTargetSize = ${hasTouchTargetSize.toString()};
@@ -120,7 +120,7 @@ export async function touchTargetSizeEval(auditResults) {
     return hasTouchTargetSize();    
   `);
 
-  touchTargetSize.forEach((error) => {
+  sufficientTouchTargetSize.forEach((error) => {
     auditResults.push({
       ...interactiveElementsErrors[7],
       element: error.outerHTML,
