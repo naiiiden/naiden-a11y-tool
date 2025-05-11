@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/devtools-panel.css">
-    <title>Naiden's a11y audit tool</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/devtools-panel.css">
+  <title>Naiden's a11y audit tool</title>
 </head>
-    <body class="naiden-a11y-tool-body">
-        <header>
-            <h1>
-                Naiden's a11y audit tool
-                <img class="icon" src="assets/logomark.svg" alt=""/>
-            </h1>
-        </header>
-        <main>
-            <div class="controls-container">
-                <label for="toggle-stylesheets">
-                    Disable Stylesheets
-                    <input type="checkbox" id="toggle-stylesheets">
-                </label>
-                <div class="run-button-audit-checkboxes-container">
-                    <button id="open-audit-checkboxes-dropdown-button">
-                        <img class="icon" src="./assets/arrow.svg" alt="Open audit checkboxes dropdown"/>
-                    </button>
-                    <div class="audit-checkboxes-container">
-                        <button type="submit" id="select-all">Select All</button>
-                    </div>
-                    <button id="run-audit-btn">Run Audit</button>
-                </div>
-            </div>
-            <div id="errors-count-container"></div>
-            <p id="loading-indicator"></p>
-            <p id="errors-indicator"></p>
-            <div id="errors-list"></div>
-        </main>
-        <footer>
-            <p>Naiden's a11y audit tool</p>
-            <a class="external-link" href="https://github.com/naiiiden/naiden-a11y-tool" target="_blank">
-                GitHub repository
-                <img class="icon" src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
-            </a>
-        </footer>
-        <script src="scripts/devtools.js"></script>
-        <script type="module" src="scripts/script.js"></script>
-        <script src="scripts/utils/highlight.min.js"></script>
-    </body>
+  <body class="naiden-a11y-tool-body">
+    <header>
+      <h1>
+        Naiden's a11y audit tool
+        <img class="icon" src="assets/logomark.svg" alt=""/>
+      </h1>
+    </header>
+    <main>
+      <div class="controls-container">
+        <label for="toggle-stylesheets">
+          Disable Stylesheets
+          <input type="checkbox" id="toggle-stylesheets">
+        </label>
+        <div class="run-button-audit-checkboxes-container">
+          <button id="open-audit-checkboxes-dropdown-button">
+            <img class="icon" src="./assets/arrow.svg" alt="Open audit checkboxes dropdown"/>
+          </button>
+          <div class="audit-checkboxes-container">
+            <button type="submit" id="select-all">Select All</button>
+          </div>
+          <button id="run-audit-btn">Run Audit</button>
+        </div>
+      </div>
+      <div id="errors-count-container"></div>
+      <p id="loading-indicator"></p>
+      <p id="errors-indicator"></p>
+      <div id="errors-list"></div>
+    </main>
+    <footer>
+      <p>Naiden's a11y audit tool</p>
+      <a class="external-link" href="https://github.com/naiiiden/naiden-a11y-tool" target="_blank">
+        GitHub repository
+        <img class="icon" src="assets/open-in-new.svg" alt="(opens in a new tab)"/>
+      </a>
+    </footer>
+    <script src="scripts/devtools.js"></script>
+    <script type="module" src="scripts/script.js"></script>
+    <script src="scripts/utils/highlight.min.js"></script>
+  </body>
 </html>
