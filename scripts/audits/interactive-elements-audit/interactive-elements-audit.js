@@ -1,4 +1,4 @@
-import { hasBrokenSamePageLinksEval } from "./broken-same-page-links/broken-same-page-links.js";
+import { hasBrokenSamePageLinksEval } from "./has-broken-same-page-links/has-broken-same-page-links.js";
 import { hasBrokenSkipLinksEval } from "./broken-skip-links/broken-skip-links.js";
 import { hasEmptyButtonsEval } from "./empty-buttons/empty-buttons.js";
 import { hasEmptyLinksEval } from "./empty-links/empty-links.js";
