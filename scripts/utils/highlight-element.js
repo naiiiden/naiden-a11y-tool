@@ -7,15 +7,15 @@ export function highlightElement(selector) {
   
     const existingOverlay = document.querySelector('[data-selector="${selector}"]');
   
-    if (element.classList.contains('error-element-highlighted')) {
-      element.classList.remove('error-element-highlighted');
+    if (element.hasAttribute('data-highlighted')) {
+      element.removeAttribute("data-highlighted");
       element.style.outline = "none";
       if (existingOverlay) {
         existingOverlay.remove();
       }
     } else {
-      element.classList.add('error-element-highlighted');
-  
+      element.setAttribute("data-highlighted", "");
+      
       const rect = element.getBoundingClientRect();
       const overlay = document.createElement('div');
       overlay.setAttribute('data-selector', '${selector}');
