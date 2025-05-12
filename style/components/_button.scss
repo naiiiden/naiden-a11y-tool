@@ -1,29 +1,29 @@
 button {
-    border: none;
-    color: inherit;
-    background: var(--background-secondary);
-    border: 1px solid var(--neutral500);
-    box-shadow: var(--box-shadow);
-    padding: .25rem .375rem;
-    display: inline-flex;
-    align-items: center;
-    gap: .375rem;
-    font-family: inherit;
-    font-weight: 500;
-    font-size: inherit;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: .3s;
+  border: none;
+  color: inherit;
+  background: var(--background-secondary);
+  border: 1px solid var(--neutral500);
+  box-shadow: var(--box-shadow);
+  padding: .25rem .375rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: inherit;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: .3s;
 
-    &:disabled {
-        opacity: .5;
-        cursor: not-allowed;
-    }
+  &:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
 
-    &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus-visible {
-        background: var(--button-state-effect);
-        outline: 2px solid var(--text-primary);
-        outline-offset: 1px;
-        transition: .3s, outline 0s, outline-offset 0s;
-    }
+  &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus-visible {
+    background: var(--button-state-effect);
+    outline: 2px solid var(--text-primary);
+    outline-offset: 1px;
+    transition: .3s, outline 0s, outline-offset 0s;
+  }
 }

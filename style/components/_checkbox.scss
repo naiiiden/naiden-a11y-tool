@@ -1,27 +1,27 @@
 label:has(input[type="checkbox"]) {
-    display: flex;
-    align-items: center;
-    gap: .25rem;
+  display: flex;
+  align-items: center;
+  gap: .25rem;
 
-    input[type="checkbox"] {
-        width: .875rem;
-        height: .875rem;
-        appearance: none;
-        border: 1px solid var(--text-primary);
-        border-radius: 3px;
-        background: none;
-        background-image: none;
-        transition: outline 0s, background .0625s, background-image .0625s;
+  input[type="checkbox"] {
+    width: .875rem;
+    height: .875rem;
+    appearance: none;
+    border: 1px solid var(--text-primary);
+    border-radius: 3px;
+    background: none;
+    background-image: none;
+    transition: outline 0s, background .0625s, background-image .0625s;
 
-        &:checked {
-            background: var(--text-primary);
-            background-image: var(--checkmark);
-            transition: outline 0s, background .0625s, background-image .0625s;
-        }
-
-        &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus-visible {
-            outline: 2px solid var(--text-primary);
-            outline-offset: 1px;
-        }
+    &:checked {
+      background: var(--text-primary);
+      background-image: var(--checkmark);
+      transition: outline 0s, background .0625s, background-image .0625s;
     }
+
+    &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus-visible {
+      outline: 2px solid var(--text-primary);
+      outline-offset: 1px;
+    }
+  }
 }

@@ -3,19 +3,19 @@
 @import "./abstracts/utilities";
 
 body {
-    min-width: 300px;
-    min-height: 300px;
-    display: grid;
-    place-content: center;
-    padding: .5rem;
-    text-align: center;
+  min-width: 300px;
+  min-height: 300px;
+  display: grid;
+  place-content: center;
+  padding: .5rem;
+  text-align: center;
 
-    color: var(--text-primary);
-    background: var(--background-secondary);
-    font-family: "Ubuntu", sans-serif;
-    font-size: .875rem;
+  color: var(--text-primary);
+  background: var(--background-secondary);
+  font-family: "Ubuntu", sans-serif;
+  font-size: .875rem;
 
-    h1 {
-        margin: 0;
-    }
+  h1 {
+    margin: 0;
+  }
 }

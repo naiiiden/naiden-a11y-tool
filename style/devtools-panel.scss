@@ -2,55 +2,55 @@
 @import "./abstracts/colors";
 
 @supports (interpolate-size: allow-keywords) {
-    :root {
-        interpolate-size: allow-keywords;
-    }
+  :root {
+    interpolate-size: allow-keywords;
+  }
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scrollbar-color: var(--background-quaternary) var(--background-secondary);
-    scroll-behavior: smooth;
+  scrollbar-color: var(--background-quaternary) var(--background-secondary);
+  scroll-behavior: smooth;
 }
 
 body {
-    color: var(--text-primary);
-    min-height: 100vh;
-    background: var(--background-secondary);
-    font-size: .875rem;
-    display: flex;
-    flex-direction: column;
-    font-family: "Ubuntu", sans-serif;
+  color: var(--text-primary);
+  min-height: 100vh;
+  background: var(--background-secondary);
+  font-size: .875rem;
+  display: flex;
+  flex-direction: column;
+  font-family: "Ubuntu", sans-serif;
 }
 
 main {
-    flex-grow: 1;
-    background: var(--background-primary);
-    border-top: 1px solid var(--background-quaternary);
-    border-bottom: 1px solid var(--background-quaternary);
-    display: flex;
-    flex-direction: column;
+  flex-grow: 1;
+  background: var(--background-primary);
+  border-top: 1px solid var(--background-quaternary);
+  border-bottom: 1px solid var(--background-quaternary);
+  display: flex;
+  flex-direction: column;
 
-    &.scrollbar-border-right {
-        box-shadow: inset -1px 0 0 0 var(--background-quaternary);
-        border-radius: 0 4px 4px 0;
-    }
+  &.scrollbar-border-right {
+    box-shadow: inset -1px 0 0 0 var(--background-quaternary);
+    border-radius: 0 4px 4px 0;
+  }
 }
 
 @media (prefers-reduced-motion) {
-    html {
-        scroll-behavior: auto !important;
-    }
+  html {
+    scroll-behavior: auto !important;
+  }
 
-    *, *::before, *::after {
-        transition: none !important;
-        animation: none !important;
-    }
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
 // https://blog.jim-nielsen.com/2019/conditional-syntax-highlighting-in-dark-mode-with-css-imports/

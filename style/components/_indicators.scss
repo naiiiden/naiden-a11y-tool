@@ -1,21 +1,21 @@
 #loading-indicator {
-    display: none;
-    width: 2rem;
-    height: 2rem;
-    border: .25rem solid var(--text-primary);
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    animation: rotation 1s linear infinite;
-    position: absolute;
-    inset: 50% 0 0 0;
-    margin: 0 auto;
+  display: none;
+  width: 2rem;
+  height: 2rem;
+  border: .25rem solid var(--text-primary);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: rotation 1s linear infinite;
+  position: absolute;
+  inset: 50% 0 0 0;
+  margin: 0 auto;
 }
 
 @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

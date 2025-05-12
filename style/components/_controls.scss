@@ -1,75 +1,75 @@
 .controls-container {
-    padding: .75rem .75rem 0 .75rem;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    gap: .5rem;
+  padding: .75rem .75rem 0 .75rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: .5rem;
 }
 
 .run-button-audit-checkboxes-container {
-    position: relative;
-    display: grid;
-    grid-template-columns: 80% 20%;
-    min-width: 11.5rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  min-width: 11.5rem;
 
-    #run-audit-btn {
-        order: -1;
-        border-radius: 3px 0 0 3px;
-        border-right: 0px;
+  #run-audit-btn {
+    order: -1;
+    border-radius: 3px 0 0 3px;
+    border-right: 0px;
+  }
+
+  #open-audit-checkboxes-dropdown-button {
+    border-radius: 0 3px 3px 0;
+
+    img {
+      transition: .3s;
+
+      &.open {
+        display: block;
+        transform: rotate(180deg);
+        transition: .3s;
+      }
     }
-
-    #open-audit-checkboxes-dropdown-button {
-        border-radius: 0 3px 3px 0;
-
-        img {
-            transition: .3s;
-
-            &.open {
-            display: block;
-            transform: rotate(180deg);
-            transition: .3s;
-            }
-        }
-    }
+  }
     
-    .audit-checkboxes-container {
-        border: 1px solid var(--neutral500);
-        background: var(--background-secondary);
-        box-shadow: var(--box-shadow);
-        border-radius: 0 0 3px 3px;
-        border-top: none;
-        padding: .5rem;
-        min-width: 11.5rem;
-        display: none;
-        position: absolute;
-        inset: 100% 0% auto 0%;
-        transform: scaleY(0);
-        opacity: 0;
-        transform-origin: top center;
-        transition: opacity .2s, transform .2s, display .2s allow-discrete;
+  .audit-checkboxes-container {
+    border: 1px solid var(--neutral500);
+    background: var(--background-secondary);
+    box-shadow: var(--box-shadow);
+    border-radius: 0 0 3px 3px;
+    border-top: none;
+    padding: .5rem;
+    min-width: 11.5rem;
+    display: none;
+    position: absolute;
+    inset: 100% 0% auto 0%;
+    transform: scaleY(0);
+    opacity: 0;
+    transform-origin: top center;
+    transition: opacity .2s, transform .2s, display .2s allow-discrete;
 
-        label {
-            justify-content: space-between;
-        }
-
-        &.open {
-            display: grid;
-            gap: .25rem;
-            transform: scaleY(1);
-            opacity: 1;
-
-            @starting-style {
-                & {
-                    transform: scaleY(0);
-                }
-            }
-        }
-
-        button {
-            margin-top: .25rem;
-            display: flex;
-            justify-content: center;
-        }
+    label {
+      justify-content: space-between;
     }
+
+    &.open {
+      display: grid;
+      gap: .25rem;
+      transform: scaleY(1);
+      opacity: 1;
+
+      @starting-style {
+        & {
+          transform: scaleY(0);
+        }
+      }
+    }
+
+    button {
+      margin-top: .25rem;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
