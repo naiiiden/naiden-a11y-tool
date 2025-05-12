@@ -25,27 +25,31 @@ import { hasAriaLabelContentNameMismatchEval } from "./aria-label-content-name-m
 
 export async function ariaAudit(auditResults) {
   await hasAriaHiddenBodyEval(auditResults);
-  await hasAriaCommandsNamesEval(auditResults);
-  await hasAriaMeterNamesEval(auditResults);
-  await hasAriaProgressbarNamesEval(auditResults);
-  await hasAriaTooltipNamesEval(auditResults);
-  await hasAriaDeprecatedRolesEval(auditResults);
-  await hasAriaInputFieldNamesEval(auditResults);
-  await hasAriaToggleFieldNamesEval(auditResults);
+  
   await hasAriaHiddenFocusableOrWithFocusableChildrenEval(auditResults);
-  await hasAriaRoleValidValuesEval(auditResults);
-  await hasAriaDialogAndAlertDialogNamesEval(auditResults);
   await hasAriaTextNoFocusableChildrenEval(auditResults);
+  await hasAriaLabelContentNameMismatchEval(auditResults);
+  
   await hasAriaAllowedRoleEval(auditResults);
-  await hasAriaTreeitemNamesEval(auditResults);
-  await hasAriaValidAttributeValuesEval(auditResults);
-  await hasAriaValidAttributesEval(auditResults);
-  await hasAriaRoleAllowedAriaAttributesEval(auditResults);
   await hasAriaRoleRequiredAriaAttributesEval(auditResults);
   await hasAriaRoleRequiredChildrenEval(auditResults);
   await hasAriaRoleRequiredParentEval(auditResults);
+  await hasAriaRoleValidValuesEval(auditResults);
+  await hasAriaRoleAllowedAriaAttributesEval(auditResults);
+  await hasRolePresentationOrNoneConflictEval(auditResults);
+  await hasAriaDeprecatedRolesEval(auditResults);
+  
+  await hasAriaCommandsNamesEval(auditResults);
+  await hasAriaToggleFieldNamesEval(auditResults);
+  await hasAriaInputFieldNamesEval(auditResults);
+  await hasAriaDialogAndAlertDialogNamesEval(auditResults);
+  await hasAriaTooltipNamesEval(auditResults);
+  await hasAriaProgressbarNamesEval(auditResults);
+  await hasAriaTreeitemNamesEval(auditResults);
+  await hasAriaMeterNamesEval(auditResults);
+  
+  await hasAriaValidAttributesEval(auditResults);
+  await hasAriaValidAttributeValuesEval(auditResults);
   await hasAriaRoleProhibitedAttributesEval(auditResults);
   await hasAriaConditionalAttributesEval(auditResults);
-  await hasRolePresentationOrNoneConflictEval(auditResults);
-  await hasAriaLabelContentNameMismatchEval(auditResults);
 }
