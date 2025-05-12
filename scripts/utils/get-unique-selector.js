@@ -28,9 +28,10 @@ export function getUniqueSelector(element) {
     if (element.classList.length > 0 && parent) {
       const classList = Array.from(element.classList);
       for (const cls of classList) {
-        if (/^\d/.test(cls)) continue;
+        const trimmedClass = cls.trim();
+        if (!trimmedClass || /^\d/.test(trimmedClass)) continue;
 
-        const escapedClass = CSS.escape(cls);
+        const escapedClass = CSS.escape(trimmedClass);
         const classSelector = `${tag}.${escapedClass}`;
         const sameTagSiblings = parent.querySelectorAll(classSelector);
 
