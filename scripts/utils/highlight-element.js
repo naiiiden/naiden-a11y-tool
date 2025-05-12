@@ -15,6 +15,7 @@ export function highlightElement(selector) {
       }
     } else {
       element.setAttribute("data-highlighted", "");
+      element.scrollIntoView({ behavior: "auto" });
       
       const rect = element.getBoundingClientRect();
       const overlay = document.createElement('div');
