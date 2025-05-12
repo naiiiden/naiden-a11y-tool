@@ -4,7 +4,7 @@ import { hasEmptyButtonsEval } from "./has-empty-buttons/has-empty-buttons.js";
 import { hasEmptyLinksEval } from "./has-empty-links/has-empty-links.js";
 import { hasDuplicateAccesskeysEval } from "./has-duplicate-accesskey/has-duplicate-accesskey.js";
 import { hasInteractiveControlsWithInteractiveControlsAsChildrenEval } from "./has-interactive-controls-w-interactive-children/has-interactive-controls-w-interactive-children.js";
-import { scrollableRegionKeyboardAccess } from "./has-scrollable-region-keyboard-access/has-scrollable-region-keyboard-access.js";
+import { hasScrollableRegionKeyboardAccessEval } from "./has-scrollable-region-keyboard-access/has-scrollable-region-keyboard-access.js";
 import { hasSufficientTouchTargetSizeEval } from "./has-sufficient-touch-target-size/has-sufficient-touch-target-size.js";
 
 export async function interactiveElementsAudit(auditResults) {
@@ -15,5 +15,5 @@ export async function interactiveElementsAudit(auditResults) {
   await hasInteractiveControlsWithInteractiveControlsAsChildrenEval(auditResults);
   await hasSufficientTouchTargetSizeEval(auditResults);
   await hasDuplicateAccesskeysEval(auditResults);
-  await scrollableRegionKeyboardAccess(auditResults);
+  await hasScrollableRegionKeyboardAccessEval(auditResults);
 }
