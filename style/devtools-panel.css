@@ -2,13 +2,13 @@
 @import "./highlightjs-themes/atelier-seaside.min.css";
 @import "./highlightjs-themes/atelier-seaside-light.min.css" screen and (prefers-color-scheme: light);
 :root {
-  --text-primary: #DEE4EA;
-  --background-primary: #101214;
-  --background-secondary: #22272B;
-  --background-tertiary: #2C333A;
-  --background-quaternary: #454F59;
-  --neutral500: #596773;
-  --button-state-effect: #596773;
+  --text-primary: #E5E9ED;
+  --background-primary: #000000;
+  --background-secondary: #0D0F12;
+  --background-tertiary: #181C20;
+  --background-quaternary: #2A323A;
+  --neutral500: #5A6773;
+  --button-state-effect: #66727F;
   --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   --checkmark: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="%23121212" viewBox="0 0 24 24"%3E%3Cpath d="M20.285 2.285l-11.653 11.652-4.285-4.285-2.147 2.146 6.432 6.432 13.8-13.8z"/%3E%3C/svg%3E');
 }
