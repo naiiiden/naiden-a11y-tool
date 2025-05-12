@@ -1,9 +1,7 @@
 export function getUniqueSelector(element) {
-  if (!(element instanceof Element)) return null;
-
   const parts = [];
 
-  while (element && element.nodeType === Node.ELEMENT_NODE) {
+  while (element) {
     if (element.tagName.toLowerCase() === "body") {
       parts.unshift("body");
       break;
@@ -14,37 +12,40 @@ export function getUniqueSelector(element) {
 
     let selector = tag;
 
-    if (element.id) {
-      const id = CSS.escape(element.id);
-      const idSelector = `${tag}#${id}`;
-      const allMatches = document.querySelectorAll(`#${id}`);
+    if (element.id && !/^\d/.test(element.id)) {
+      const escapedId = CSS.escape(element.id);
+      const idSelector = `${tag}#${escapedId}`;
+      const allMatches = document.querySelectorAll(`#${escapedId}`);
+
       if (allMatches.length === 1) {
-        parts.unshift(`#${id}`);
+        parts.unshift(`#${escapedId}`);
         break;
       } else {
         selector = idSelector;
       }
     }
 
-    if (!selector || selector === tag) {
-      if (element.classList.length > 0 && parent) {
-        const classList = Array.from(element.classList);
-        for (const cls of classList) {
-          const classSelector = `${tag}.${CSS.escape(cls)}`;
-          const sameTagSiblings = parent.querySelectorAll(classSelector);
-          if (sameTagSiblings.length === 1) {
-            selector = classSelector;
-            break;
-          } else {
-            selector = classSelector;
-          }
+    if (element.classList.length > 0 && parent) {
+      const classList = Array.from(element.classList);
+      for (const cls of classList) {
+        if (/^\d/.test(cls)) continue;
+
+        const escapedClass = CSS.escape(cls);
+        const classSelector = `${tag}.${escapedClass}`;
+        const sameTagSiblings = parent.querySelectorAll(classSelector);
+
+        if (sameTagSiblings.length === 1) {
+          selector = classSelector;
+          break;
+        } else {
+          selector = classSelector;
         }
       }
     }
 
     if (parent) {
       const siblings = Array.from(parent.children).filter(
-        (el) => el.tagName === element.tagName,
+        (el) => el.tagName === element.tagName
       );
       if (siblings.length > 1) {
         const index = siblings.indexOf(element) + 1;
