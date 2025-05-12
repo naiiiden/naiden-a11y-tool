@@ -1,3 +1,3 @@
 # naiden-a11y-tool
-todo: improve description/fix, color contrast checker ui, table checks, additional error information, tests, getUniqueSelectors handle class/id starting with number
+todo: improve description/fix, color contrast checker ui, table checks, additional error information, tests
 for review: all aria error checks
