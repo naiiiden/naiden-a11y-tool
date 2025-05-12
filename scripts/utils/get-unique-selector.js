@@ -1,6 +1,10 @@
 export function getUniqueSelector(element) {
   const parts = [];
 
+  const isValidCssIdentifierStart = (str) => {
+    return str.trim() === str && (/^[a-zA-Z_]/.test(str) || /^-[a-zA-Z_]/.test(str));
+  };
+
   while (element) {
     if (element.tagName.toLowerCase() === "body") {
       parts.unshift("body");
@@ -12,7 +16,7 @@ export function getUniqueSelector(element) {
 
     let selector = tag;
 
-    if (element.id && !/^\d/.test(element.id) && element.id.trim() === element.id) {
+    if (element.id && isValidCssIdentifierStart(element.id)) {
       const escapedId = CSS.escape(element.id);
       const idSelector = `${tag}#${escapedId}`;
       const allMatches = document.querySelectorAll(`#${escapedId}`);
@@ -29,7 +33,7 @@ export function getUniqueSelector(element) {
       const classList = Array.from(element.classList);
       for (const cls of classList) {
         const trimmedClass = cls.trim();
-        if (!trimmedClass || /^\d/.test(trimmedClass)) continue;
+        if (!trimmedClass || !isValidCssIdentifierStart(trimmedClass)) continue;
 
         const escapedClass = CSS.escape(trimmedClass);
         const classSelector = `${tag}.${escapedClass}`;
