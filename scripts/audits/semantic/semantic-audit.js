@@ -19,6 +19,7 @@ import { hasTabindexGreaterThanZeroEval } from "./has-tabindex-greater-than-zero
 import { hasProperHeadingLevelOrdersEval } from "./has-proper-heading-level-order/has-proper-heading-level-order.js";
 import { hasUniqueLandmarksEval } from "./has-unique-landmarks/has-unique-landmarks.js";
 import { hasPossibleHeadingsEval } from "./has-possible-headings/has-possible-headings.js";
+import { hasMoreThanOneMainLandmarkEval } from "./has-more-than-one-main-landmark/has-more-than-one-main-landmark.js";
 
 export async function semanticAudit(auditResults) {
   await hasBypassEval(auditResults);
@@ -30,6 +31,7 @@ export async function semanticAudit(auditResults) {
 
   await hasRegionsOrLandmarksEval(auditResults);
   await hasNoMainLandmarkEval(auditResults);
+  await hasMoreThanOneMainLandmarkEval(auditResults);
   await hasMainInOtherLandmarksEval(auditResults);
   await hasMoreThanOneBannerLandmarkEval(auditResults);
   await hasBannersInOtherLandmarksEval(auditResults);

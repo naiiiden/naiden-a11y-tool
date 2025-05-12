@@ -3,7 +3,7 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
-export function hasMoreThanOneLandmark() {
+export function hasMoreThanOneMainLandmark() {
   return Array.from(document.querySelectorAll("main, [role='main']"))
     .filter((element) => isElementVisible(element))
     .map((element) => ({
@@ -12,18 +12,16 @@ export function hasMoreThanOneLandmark() {
     }));
 }
 
-export async function hasMoreThanOneLandmarkEval(auditResults) {
+export async function hasMoreThanOneMainLandmarkEval(auditResults) {
   const mainLandmarks = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
     const isElementVisible = ${isElementVisible.toString()};
-    const hasNoMainLandmarkOrMore = ${hasNoMainLandmarkOrMore.toString()};
+    const hasMoreThanOneMainLandmark = ${hasMoreThanOneMainLandmark.toString()};
 
-    return hasNoMainLandmarkOrMore();
+    return hasMoreThanOneMainLandmark();
   `);
 
-  if (mainLandmarks.length < 1) {
-    auditResults.push(semanticErrors[5]);
-  } else if (mainLandmarks.length > 1) {
+  if (mainLandmarks.length > 1) {
     mainLandmarks.slice(1).forEach((landmark) => {
       auditResults.push({
         ...semanticErrors[6],
