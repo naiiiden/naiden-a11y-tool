@@ -3,7 +3,7 @@ import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
-export function hasNoMainLandmarkOrMore() {
+export function hasNoMainLandmark() {
   return Array.from(document.querySelectorAll("main, [role='main']"))
     .filter((element) => isElementVisible(element))
     .map((element) => ({
@@ -12,24 +12,16 @@ export function hasNoMainLandmarkOrMore() {
     }));
 }
 
-export async function hasNoMainLandmarkOrMoreEval(auditResults) {
+export async function hasNoMainLandmarkEval(auditResults) {
   const mainLandmarks = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
     const isElementVisible = ${isElementVisible.toString()};
-    const hasNoMainLandmarkOrMore = ${hasNoMainLandmarkOrMore.toString()};
+    const hasNoMainLandmark = ${hasNoMainLandmark.toString()};
 
-    return hasNoMainLandmarkOrMore();
+    return hasNoMainLandmark();
   `);
 
   if (mainLandmarks.length < 1) {
     auditResults.push(semanticErrors[5]);
-  } else if (mainLandmarks.length > 1) {
-    mainLandmarks.slice(1).forEach((landmark) => {
-      auditResults.push({
-        ...semanticErrors[6],
-        element: landmark.outerHTML,
-        selector: landmark.selector,
-      });
-    });
   }
 }

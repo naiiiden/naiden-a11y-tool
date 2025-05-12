@@ -13,7 +13,7 @@ import { hasLiOutsideListEval } from "./has-li-outside-list/has-li-outside-list.
 import { hasMainInOtherLandmarksEval } from "./has-main-in-other-landmarks/has-main-in-other-landmarks.js";
 import { hasMoreThanOneBannerLandmarkEval } from "./has-more-than-one-banner-landmark/has-more-thank-one-banner-landmark.js";
 import { hasMoreThanOneContentinfoLandmarkEval } from "./has-more-than-one-contentinfo-landmark/has-more-than-one-contentinfo-landmark.js";
-import { hasNoMainLandmarkOrMoreEval } from "./has-no-main-landmark-or-more/has-no-main-landmark-or-more.js";
+import { hasNoMainLandmarkEval } from "./has-no-main-landmark/has-no-main-landmark.js";
 import { hasRegionsOrLandmarksEval } from "./has-regions-or-landmarks/has-regions-or-landmarks.js";
 import { hasTabindexGreaterThanZeroEval } from "./has-tabindex-greater-than-zero/has-tabindex-greater-than-zero.js";
 import { hasProperHeadingLevelOrdersEval } from "./has-proper-heading-level-order/has-proper-heading-level-order.js";
@@ -29,7 +29,7 @@ export async function semanticAudit(auditResults) {
   await hasPossibleHeadingsEval(auditResults);
 
   await hasRegionsOrLandmarksEval(auditResults);
-  await hasNoMainLandmarkOrMoreEval(auditResults);
+  await hasNoMainLandmarkEval(auditResults);
   await hasMainInOtherLandmarksEval(auditResults);
   await hasMoreThanOneBannerLandmarkEval(auditResults);
   await hasBannersInOtherLandmarksEval(auditResults);
