@@ -12,7 +12,7 @@ export function getUniqueSelector(element) {
 
     let selector = tag;
 
-    if (element.id && !/^\d/.test(element.id)) {
+    if (element.id && !/^\d/.test(element.id) && element.id.trim() === element.id) {
       const escapedId = CSS.escape(element.id);
       const idSelector = `${tag}#${escapedId}`;
       const allMatches = document.querySelectorAll(`#${escapedId}`);
