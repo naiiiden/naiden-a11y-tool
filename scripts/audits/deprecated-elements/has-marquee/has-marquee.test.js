@@ -7,7 +7,9 @@ describe("has marquee", () => {
     setupDOM(`
       <html>
         <body>
-          <marquee>hey</marquee>
+          <main>
+            <marquee>hey</marquee>
+          </main>
         </body>
       </html>
     `);
