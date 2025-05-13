@@ -10,7 +10,7 @@ export function hasSufficientTouchTargetSize() {
     document.querySelectorAll(`
         a[href],  
         :is([role="button"], [role="link"], [role="checkbox"], [role="radio"], [role="tab"], [role="menuitem"])[tabindex]:not([tabindex^='-'], [tabindex='']), 
-        :is(input:not([type='hidden']), textarea, select, button):not(:disabled)
+        :is(textarea, select, button, input:not([type='hidden'])):not(:disabled)
     `),
   ).filter((el) => isElementVisible(el));
 
