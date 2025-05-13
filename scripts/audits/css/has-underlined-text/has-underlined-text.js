@@ -11,7 +11,8 @@ export function hasUnderlinedText() {
       }
 
       const isUnderlined =
-        window.getComputedStyle(element).textDecorationLine === "underline";
+        window.getComputedStyle(element).textDecorationLine === "underline" ||
+        window.getComputedStyle(element).textDecoration.includes("underline");
       const isExplicitUElement = element.tagName.toLowerCase() === "u";
       const isNotLink = element.tagName.toLowerCase() !== "a";
 
