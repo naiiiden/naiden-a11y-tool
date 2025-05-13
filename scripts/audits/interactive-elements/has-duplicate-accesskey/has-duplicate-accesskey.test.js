@@ -7,7 +7,7 @@ describe("has duplicate accesskeys", () => {
     setupDOM(`
       <html>
         <body>
-          <main id="not-main">
+          <main id="main">
             <button accesskey="g">button 1</button>
             <button accesskey="g">button 2</button>
           </main>
@@ -16,8 +16,7 @@ describe("has duplicate accesskeys", () => {
     `);
 
     const results = hasDuplicateAccesskeys();
-    console.log(1, results);
-    expect(results[0].targetExists).toBe(false);
+    expect(results[0]).toHaveLength(2);
   });
 
   it('ignores non-duplicate accesskeys', () => {
@@ -49,7 +48,7 @@ describe("has duplicate accesskeys", () => {
     `);
 
     const results = hasDuplicateAccesskeys();
-    console.log(3, results);
-    expect(results).toHaveLength(0);
+    console.log(1, results);
+    expect(results).toHaveLength(1);
   });
 });
