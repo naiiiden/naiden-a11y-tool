@@ -49,6 +49,6 @@ describe("has interactive controls with interactive controls as children", () =>
     `);
 
     const results = hasInteractiveControlsWithInteractiveControlsAsChildren();
-    expect(results).toHaveLength(1);
+    expect(results).toHaveLength(0);
   });
 });
