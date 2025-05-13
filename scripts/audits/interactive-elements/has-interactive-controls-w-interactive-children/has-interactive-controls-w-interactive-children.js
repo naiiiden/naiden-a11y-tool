@@ -5,26 +5,38 @@ import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export function hasInteractiveControlsWithInteractiveControlsAsChildren() {
   const parents = `
-        button:not(:disabled), 
-        a[href], 
-        :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
-        [contenteditable]:not([contenteditable='false']), 
-        [tabindex]:not([tabindex^="-"], [tabindex=''])
-    `;
+    button:not(:disabled), 
+    a[href], 
+    :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+    [contenteditable]:not([contenteditable='false']), 
+    [tabindex]:not([tabindex^="-"], [tabindex=''])
+  `;
 
+  // const children = `
+  //   :is(
+  //     a[href], 
+  //     :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
+  //     [contenteditable]:not([contenteditable='false']), 
+  //     [tabindex]:not([tabindex^="-"], [tabindex='']), 
+  //     :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
+  //     summary:not([tabindex^="-"], [tabindex='']), 
+  //     :is(audio, video)[controls],
+  //     embed,
+  //     area[href]:is(map[name]:not([name='']) area
+  //   )):not([tabindex='-1'])
+  // `;
   const children = `
-        :is(
-            a[href], 
-            :is([role='button'], [role='link'])[tabindex]:not([tabindex^='-'], [tabindex='']), 
-            [contenteditable]:not([contenteditable='false']), 
-            [tabindex]:not([tabindex^="-"], [tabindex='']), 
-            :is(input:not([type='hidden']), textarea, select, button):not(:disabled), 
-            summary:not([tabindex^="-"], [tabindex='']), 
-            :is(audio, video)[controls],
-            embed,
-            area[href]:is(map[name]:not([name='']) area
-        )):not([tabindex='-1'])
-    `;
+    a[href]:not([tabindex="-1"]), 
+    [role="button"][tabindex]:not([tabindex^='-'], [tabindex='']), 
+    [role="link"][tabindex]:not([tabindex^='-'], [tabindex='']), 
+    [contenteditable]:not([contenteditable='false']):not([tabindex='-1']), 
+    [tabindex]:not([tabindex^="-"], [tabindex='']), 
+    :is(input, textarea, select, button):not([type='hidden']):not(:disabled):not([tabindex='-1'])
+    summary:not([tabindex^="-"], [tabindex='']), 
+    :is(audio, video)[controls]:not([tabindex='-1']),
+    embed:not([tabindex='-1']), 
+    area[href]:is(map area):not([tabindex='-1'])
+  `;
 
   return Array.from(document.querySelectorAll(parents))
     .filter((parent) => {
