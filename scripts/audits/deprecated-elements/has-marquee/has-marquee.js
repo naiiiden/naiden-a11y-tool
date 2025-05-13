@@ -4,7 +4,7 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export function hasMarquee() {
-  return Array.from(document.querySelectorAll("marquee"))
+  return Array.from(document.querySelectorAll("marquee:not(:empty)"))
     .filter((element) => isElementVisible(element))
     .map((element) => ({
       outerHTML: element.outerHTML,
