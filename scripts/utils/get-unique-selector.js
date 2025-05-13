@@ -1,8 +1,17 @@
 export function getUniqueSelector(element) {
   const parts = [];
 
-  const isValidCssIdentifierStart = (str) => {
-    return str.trim() === str && (/^[a-zA-Z_]/.test(str) || /^-[a-zA-Z_]/.test(str));
+  const isValidCssIdentifier = (str) => {
+    if (str.trim() !== str) return false;
+
+    // CSS Identifiers: Must start with letter (a-z), underscore (_), or hyphen (-) followed by letter/underscore
+    if (!/^([a-zA-Z_]|-[a-zA-Z_])/.test(str)) return false;
+  
+    // Allowed characters after start: letters, digits, hyphen, underscore
+    // Anything else (space, ?, #, ., etc.) makes it invalid
+    if (!/^[a-zA-Z0-9_-]+$/.test(str)) return false;
+
+    return true;
   };
 
   while (element) {
@@ -16,13 +25,12 @@ export function getUniqueSelector(element) {
 
     let selector = tag;
 
-    if (element.id && isValidCssIdentifierStart(element.id)) {
-      const escapedId = CSS.escape(element.id);
-      const idSelector = `${tag}#${escapedId}`;
-      const allMatches = document.querySelectorAll(`#${escapedId}`);
+    if (element.id && isValidCssIdentifier(element.id)) {
+      const idSelector = `${tag}#${element.id}`;
+      const allMatches = document.querySelectorAll(`#${element.id}`);
 
       if (allMatches.length === 1) {
-        parts.unshift(`#${escapedId}`);
+        parts.unshift(`#${element.id}`);
         break;
       } else {
         selector = idSelector;
@@ -32,11 +40,9 @@ export function getUniqueSelector(element) {
     if (element.classList.length > 0 && parent) {
       const classList = Array.from(element.classList);
       for (const cls of classList) {
-        const trimmedClass = cls.trim();
-        if (!trimmedClass || !isValidCssIdentifierStart(trimmedClass)) continue;
+        if (!isValidCssIdentifier(cls)) continue;
 
-        const escapedClass = CSS.escape(trimmedClass);
-        const classSelector = `${tag}.${escapedClass}`;
+        const classSelector = `${tag}.${cls}`;
         const sameTagSiblings = parent.querySelectorAll(classSelector);
 
         if (sameTagSiblings.length === 1) {
