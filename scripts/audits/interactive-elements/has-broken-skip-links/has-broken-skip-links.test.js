@@ -8,13 +8,13 @@ describe("has broken skip links", () => {
       <html>
         <body>
           <a href="#main">skip</a>
-          <main id="main"></main>
+          <main id="not-main"></main>
         </body>
       </html>
     `);
 
     const results = hasBrokenSkipLinks();
-    expect(results).toHaveLength(1);
+    expect(results[0].targetExists).toBe(false);
   });
 
   it('ignores properly implemented skip link', () => {
@@ -28,7 +28,6 @@ describe("has broken skip links", () => {
     `);
 
     const results = hasBrokenSkipLinks();
-    console.log(results);
     expect(results[0].targetExists).toBe(true);
   });
 
