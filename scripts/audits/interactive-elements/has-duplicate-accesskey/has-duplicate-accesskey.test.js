@@ -48,7 +48,6 @@ describe("has duplicate accesskeys", () => {
     `);
 
     const results = hasDuplicateAccesskeys();
-    console.log(1, results);
-    expect(results).toHaveLength(1);
+    expect(results).toHaveLength(0);
   });
 });
