@@ -4,7 +4,7 @@ import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 // prettier-ignore
-export const validAutocompleteValues = [
+export const validAutocompleteValues = new Set([
   "name", "honorific-prefix", "given-name", "additional-name", "family-name", "honorific-suffix",
   "nickname", "email", "username", "new-password", "current-password", "organization-title",
   "organization", "street-address", "address-line1", "address-line2", "address-line3", "address-level4",
@@ -15,7 +15,7 @@ export const validAutocompleteValues = [
   "tel-national", "tel-area-code", "tel-local", "tel-local-prefix", "tel-local-suffix",
   "tel-extension", "impp", "url", "photo", "billing", "fax", "home", "mobile", "off", "on", "pager",
   "shipping", "work"
-];
+]);
 
 export function hasAutocompleteValidValues() {
   return Array.from(document.querySelectorAll("[autocomplete]"))
@@ -32,7 +32,7 @@ export function hasAutocompleteValidValues() {
 
 export async function hasAutocompleteValidValuesEval(auditResults) {
   const autocompleteValidValues = await inspectedWindowEval(`
-    const validAutocompleteValues = new Set(${JSON.stringify(validAutocompleteValues)});
+    const validAutocompleteValues = new Set(${JSON.stringify(Array.from(validAutocompleteValues))});
     const getUniqueSelector = ${getUniqueSelector.toString()};
     const isElementVisible = ${isElementVisible.toString()};
     const hasAutocompleteValidValues = ${hasAutocompleteValidValues.toString()};
