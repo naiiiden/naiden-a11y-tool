@@ -5,8 +5,19 @@ import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export function hasVisibleFormControlLabels() {
   return Array.from(
+    // ':is(input, select, textarea, input[id]:not(:is([type="submit"], [type="button"], [type="reset"], [type="hidden"])), select[id], textarea[id]):is([title]:not([title=""]), [aria-describedby]:not([aria-describedby=""]))',
     document.querySelectorAll(
-      ':is(input, select, textarea, input[id]:not(:is([type="submit"], [type="button"], [type="reset"], [type="hidden"])), select[id], textarea[id]):is([title]:not([title=""]), [aria-describedby]:not([aria-describedby=""]))',
+      // ':is(input, select, textarea, input[id]:not(:is([type="submit"], [type="button"], [type="reset"], [type="hidden"])), select[id], textarea[id]):is([title]:not([title=""]), [aria-describedby]:not([aria-describedby=""]))',
+      `
+        input:is([title]:not([title=""])), input:is([aria-describedby]:not([aria-describedby=""])), 
+        select:is([title]:not([title=""])), input:is([aria-describedby]:not([aria-describedby=""])), 
+        textarea:is([title]:not([title=""])), input:is([aria-describedby]:not([aria-describedby=""])), 
+        input[id]:not([type="button"]):is([title]:not([title=""])), input:is([aria-describedby]:not([aria-describedby=""])),
+        input[id]:not([type="reset"]):is([title]:not([title=""])), input:is([aria-describedby]:not([aria-describedby=""])),
+        input[id]:not([type="hidden"]):is([title]:not([title=""])), input:is([aria-describedby]:not([aria-describedby=""])), 
+        select[id]:is([title]:not([title=""])), input:is([aria-describedby]:not([aria-describedby=""])), 
+        textarea[id]:is([title]:not([title=""])), input:is([aria-describedby]:not([aria-describedby=""]))
+      `
     ),
   )
     .filter((element) => {
