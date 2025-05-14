@@ -46,7 +46,8 @@ describe("has images redundant alt", () => {
         <body>
           <main id="main">
             <button style="display: none;">
-              <img src="" alt=""/>
+              hi
+              <img src="" alt="hi"/>
             </button>
           </main>
         </body>
