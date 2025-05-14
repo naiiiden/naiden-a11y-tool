@@ -1,18 +1,21 @@
 import { semanticErrors } from "../../../errors/semantic.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 
 export function hasDuplicateIds() {
   const elementsWithIds = Array.from(document.querySelectorAll("[id]:not([id=''])"));
 
-  const duplicates = elementsWithIds.reduce((acc, element) => {
-    const id = element.id.trim();
-    if (!acc[id]) {
-      acc[id] = [];
-    }
-    acc[id].push(element);
-    return acc;
-  }, {});
+  const duplicates = elementsWithIds
+    .filter((element) => isElementVisible(element))
+    .reduce((acc, element) => {
+      const id = element.id.trim();
+      if (!acc[id]) {
+        acc[id] = [];
+      }
+      acc[id].push(element);
+      return acc;
+    }, {});
 
   return Object.values(duplicates)
     .filter((elements) => elements.length > 1)
@@ -20,13 +23,14 @@ export function hasDuplicateIds() {
       elements.map((element) => ({
         selector: getUniqueSelector(element),
         outerHTML: element.cloneNode().outerHTML,
-      })),
+      }))
     );
 }
 
 export async function hasDuplicateIdsEval(auditResults) {
   const duplicateIds = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
     const hasDuplicateIds = ${hasDuplicateIds.toString()};
 
     return hasDuplicateIds();
