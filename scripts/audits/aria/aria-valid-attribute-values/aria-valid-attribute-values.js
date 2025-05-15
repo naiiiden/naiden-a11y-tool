@@ -132,7 +132,7 @@ export async function hasAriaValidAttributeValuesEval(auditResults) {
   const ariaAttributesValidValues = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
     const ariaAttributesValidValuesList = ${JSON.stringify(ariaAttributesValidValuesList)};
-    import isElementVisible = ${isElementVisible.toString()};
+    const isElementVisible = ${isElementVisible.toString()};
     const hasAriaValidAttributeValues = ${hasAriaValidAttributeValues.toString()};
 
     return hasAriaValidAttributeValues();
