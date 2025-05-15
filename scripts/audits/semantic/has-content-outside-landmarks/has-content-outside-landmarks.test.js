@@ -7,9 +7,10 @@ describe("has content outside landmarks", () => {
     setupDOM(`
       <html>
         <body>
-          <footer>
-            <header>hi</header>
-          </footer>
+          <h1>hey</h1>
+          <main>
+            hey
+          </main>
         </body>
       </html>
     `);
@@ -23,7 +24,6 @@ describe("has content outside landmarks", () => {
     setupDOM(`
       <html>
         <body>
-          <header>header</header>
           <main id="main">
             <p>hey</p>
           </main>
@@ -40,9 +40,10 @@ describe("has content outside landmarks", () => {
     setupDOM(`
       <html>
         <body>
-          <footer>
-            <header style="display: none;">hi</header>
-          </footer>
+          <h1 style="display: none;">hey</h1>
+          <main>
+            hey
+          </main>
         </body>
       </html>
     `);
