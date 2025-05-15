@@ -1,5 +1,6 @@
 import { semanticErrors } from "../../../errors/semantic.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export function hasInvalidDlElements() {
@@ -46,6 +47,7 @@ export function hasInvalidDlElements() {
   };
 
   return dlElements
+    .filter((dl) => isElementVisible(dl))
     .filter((dl) => !isDlValid(dl))
     .map((dl) => ({
       outerHTML: dl.outerHTML,
