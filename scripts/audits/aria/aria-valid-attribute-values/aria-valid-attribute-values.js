@@ -1,5 +1,6 @@
 import { ariaErrors } from "../../../errors/aria.js";
 import { getUniqueSelector } from "../../../utils/get-unique-selector.js";
+import { isElementVisible } from "../../../utils/is-element-visible.js";
 import { inspectedWindowEval } from "../../../utils/inspected-window-eval.js";
 
 export const ariaAttributesValidValuesList = {
@@ -57,6 +58,7 @@ export function hasAriaValidAttributeValues() {
         .join(", "),
     ),
   )
+    .filter((element) => isElementVisible(element))
     .map((element) => {
       const invalidAttributes = Object.entries(ariaAttributesValidValuesList)
         .map(([attr, validValues]) => {
@@ -130,6 +132,7 @@ export async function hasAriaValidAttributeValuesEval(auditResults) {
   const ariaAttributesValidValues = await inspectedWindowEval(`
     const getUniqueSelector = ${getUniqueSelector.toString()};
     const ariaAttributesValidValuesList = ${JSON.stringify(ariaAttributesValidValuesList)};
+    import isElementVisible = ${isElementVisible.toString()};
     const hasAriaValidAttributeValues = ${hasAriaValidAttributeValues.toString()};
 
     return hasAriaValidAttributeValues();
