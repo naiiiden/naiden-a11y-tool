@@ -43,7 +43,7 @@ export function hasInvalidDlElements() {
       return true;
     };
 
-    return validateChildren(Array.from(dl.children));
+    return validateChildren(Array.from(dl.children).filter((child) => isElementVisible(child)));
   };
 
   return dlElements
