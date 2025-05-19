@@ -34,4 +34,13 @@ export const cssErrors = [
     ],
     fix: "Ensure users can override text properties with custom stylesheets",
   },
+  {
+    type: "CSS",
+    id: 3,
+    name: "Justified text",
+    description:
+      "Text has more than 500 characters and has propertly text-align: justify",
+    wcagLinks: [],
+    fix: "Remove the the text-align: justify property or use a different value",
+  },
 ];
