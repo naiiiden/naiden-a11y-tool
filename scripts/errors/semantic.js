@@ -123,7 +123,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H101",
       },
       {
-        name: "The banner landmark examples",
+        name: "The main landmark examples",
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/main.html",
       },
     ],
@@ -140,7 +140,7 @@ export const semanticErrors = [
         url: "https://html.spec.whatwg.org/multipage/grouping-content.html#the-main-element%3Athe-main-element",
       },
       {
-        name: "The banner landmark examples",
+        name: "The main landmark examples",
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/main.html",
       },
     ],
@@ -174,7 +174,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/TR/wai-aria-1.3/#contentinfo",
       },
       {
-        name: "The banner landmark examples",
+        name: "The contentinfo landmark examples",
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/contentinfo.html",
       },
     ],
@@ -210,7 +210,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/#landmarkroles",
       },
       {
-        name: "The banner landmark examples",
+        name: "The complementary landmark examples",
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/complementary.html",
       },
     ],
@@ -228,7 +228,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/#landmarkroles",
       },
       {
-        name: "The banner landmark examples",
+        name: "The contentinfo landmark examples",
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/contentinfo.html",
       },
     ],
@@ -246,7 +246,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/#landmarkroles",
       },
       {
-        name: "The banner landmark examples",
+        name: "The main landmark examples",
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/main.html",
       },
     ],
