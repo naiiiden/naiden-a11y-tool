@@ -39,9 +39,25 @@ export function hasContentOutsideLandmarks() {
 
       if (el.matches('a[href^="#"]')) {
         const text = el.textContent.toLowerCase();
-        return !(text.includes("skip") || text.includes("jump"));
+        if (text.includes("skip") || text.includes("jump")) {
+          return false;
+        };
       }
-      return true;
+
+      const ariaLabel = el.hasAttribute("aria-label")
+        ? el.getAttribute("aria-label").trim()
+        : null;
+      const ariaLabelledby = el.hasAttribute("aria-labelledby")
+        ? document.getElementById(el.getAttribute("aria-labelledby"))
+        : null;
+      const title = el.hasAttribute("title")
+        ? el.getAttribute("title").trim()
+        : null;
+
+      return (
+        el.textContent.trim() === "" &&
+        !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title)
+      );
     })
     .map((el) => ({
       outerHTML: el.outerHTML,
