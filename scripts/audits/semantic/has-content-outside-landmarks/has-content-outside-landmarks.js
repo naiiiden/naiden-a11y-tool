@@ -55,7 +55,7 @@ export function hasContentOutsideLandmarks() {
         : null;
 
       return (
-        el.textContent.trim() === "" &&
+        el.textContent.trim() !== "" &&
         !(ariaLabel || (ariaLabelledby && ariaLabelledby.textContent.trim()) || title)
       );
     })
