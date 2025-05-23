@@ -22,10 +22,6 @@ export function hasContentOutsideLandmarks() {
         [role="complementary"],
         [role="search"],
         [role="region"],
-        [role="region"],
-        [role="region"],
-        [role="form"],
-        [role="form"],
         [role="form"],
         style,
         script
