@@ -1,6 +1,6 @@
 import { vi } from "vitest";
 
-global.chrome = {
+globalThis.browser = {
   devtools: {
     inspectedWindow: {
       eval: vi.fn(),
