@@ -1,5 +1,7 @@
+const devtools = typeof browser !== "undefined" ? browser.devtools : chrome.devtools;
+
 export function inspectedWindowEval(script) {
   return new Promise((resolve) => {
-    chrome.devtools.inspectedWindow.eval(`(() => { ${script} })()`, resolve);
+    devtools.inspectedWindow.eval(`(() => { ${script} })()`, resolve);
   });
 }
