@@ -28,3 +28,7 @@ export const tableErrors = [
     fix: "Ensure that the content of the summary attribute and the <caption> elements are not identical",
   },
 ];
+// https://dequeuniversity.com/rules/axe/4.10/td-headers-attr
+// https://dequeuniversity.com/rules/axe/4.10/th-has-data-cells
+// https://dequeuniversity.com/rules/axe/4.10/table-fake-caption
+// https://dequeuniversity.com/rules/axe/4.10/td-has-header
