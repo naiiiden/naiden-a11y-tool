@@ -4,7 +4,7 @@ export const tableErrors = [
     id: 0,
     name: "scope attribute should be used correctly",
     description:
-      "Check that the scope attribute is only being used on th elements",
+      "scope attribute should only be used on th elements",
     wcagLinks: [
       {
         name: "",
