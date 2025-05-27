@@ -4,7 +4,7 @@ export const deprecatedElementsErrors = [
     id: 0,
     name: "Marquee elements are deprecated and must not be used",
     description:
-      "A marquee, which is deprecated and should not be used, element is present",
+      "A marquee element is present",
     wcagLinks: [
       {
         name: "Pause, Stop, Hide (Level A)",
