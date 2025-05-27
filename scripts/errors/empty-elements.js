@@ -3,7 +3,7 @@ export const emptyElementsErrors = [
     type: "empty-elements",
     id: 0,
     name: "Empty heading",
-    description: "Heading elements should contain content.",
+    description: "Heading element is missing content.",
     wcagLinks: [
       {
         name: "Headings and Labels (Level AA)",
@@ -14,15 +14,15 @@ export const emptyElementsErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Techniques/general/G130.html",
       },
     ],
-    fix: "Ensure that heading elements containt content.",
+    fix: "Ensure that heading elements contain content.",
   },
   {
     type: "empty-elements",
     id: 1,
     name: "Empty table header",
-    description: "Table header elements should contain text that describes the purpose of the row or the column.",
+    description: "Table header element is missing content.",
     wcagLinks: "",
-    fix: "Ensure that table header elements contain content.",
+    fix: "Ensure that table header elements contain text that describes the purpose of the row or the column.",
   },
   {
     type: "empty-elements",
