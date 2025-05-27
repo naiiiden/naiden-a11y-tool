@@ -3,7 +3,7 @@ export const embeddedElementsErrors = [
     type: "embedded-elements",
     id: 0,
     name: "Empty or missing iframe title",
-    description: "Some iframes have an empty or missing title.",
+    description: "Iframe has an empty or missing title.",
     wcagLinks: [
       {
         name: "Using the title attribute of the iframe element",
@@ -20,7 +20,7 @@ export const embeddedElementsErrors = [
     type: "embedded-elements",
     id: 1,
     name: "Object elements must have alt text",
-    description: "Object elements must have alt text",
+    description: "Object element is missing alt text",
     wcagLinks: [
       {
         name: "Using the body of the object element",
@@ -37,7 +37,7 @@ export const embeddedElementsErrors = [
     type: "embedded-elements",
     id: 2,
     name: "Iframe elements must have a unique title attribute",
-    description: "Iframe elements must have a unique and non-empty title attribute",
+    description: "Iframe element has a non-unique title attribute",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
