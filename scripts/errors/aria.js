@@ -388,7 +388,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 19,
     name: "Certain ARIA roles must be contained by particular parents",
-    description: "Certain ARIA roles must be contained by particular parents",
+    description: "Certain elements with ARIA roles must be contained by particular parents",
     wcagLinks: [
       {
         name: "Info and Relationships (Level A)",
@@ -399,13 +399,13 @@ export const ariaErrors = [
         url: "https://www.w3.org/TR/wai-aria-1.3/#role_definitions",
       },
     ],
-    fix: "Ensure ARIA role elements are contained by parent role",
+    fix: "Ensure child elements with ARIA role are contained by required parent element or role",
   },
   {
     type: "ARIA",
     id: 20,
     name: "ARIA role elements must use permitted ARIA attributes",
-    description: "ARIA role elements must use permitted ARIA attributes",
+    description: "Elements with ARIA role must use permitted ARIA attributes",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -448,9 +448,9 @@ export const ariaErrors = [
     id: 22,
     name: "Elements marked as presentational or none should be consistently ignored",
     description:
-      "Elements marked as presentational or none should be consistently ignored",
+      "Elements marked as presentational or none should be removed from the accessibility tree and consistently ignored",
     wcagLinks: "",
-    fix: "Check all elements with role=none or role=presentation to ensure they do not have a global ARIA attribute and are not focusable",
+    fix: "Check all elements with role=\"none\" or role=\"presentation\" to ensure they do not have a global ARIA attribute and are not focusable",
   },
   {
     type: "ARIA",
