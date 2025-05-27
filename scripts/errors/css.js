@@ -18,14 +18,14 @@ export const cssErrors = [
         url: "https://design.canada.ca/style-guide/#wp4-2",
       },
     ],
-    fix: "Remove underline (element with text-decoration: underline style or <u> element) from non-link text to prevent confusion",
+    fix: "Remove underlined elements with text-decoration: underline style or <u> tag from non-link text to prevent confusion",
   },
   {
     type: "CSS",
     id: 2,
     name: "Text properties unadjustable with custom stylesheets",
     description:
-      "Text properties (line-height, letter-spacing, word-spacing, font-size) cannot be modified with custom stylesheets",
+      "Text properties line-height, letter-spacing, word-spacing, font-size cannot be modified with custom stylesheets",
     wcagLinks: [
       {
         name: "Text Spacing (Level AA)",
@@ -39,7 +39,7 @@ export const cssErrors = [
     id: 3,
     name: "Justified text",
     description:
-      "Text has more than 500 characters and has propertly text-align: justify",
+      "Text has more than 500 characters and has property text-align: justify which can negatively impact readability",
     wcagLinks: [],
     fix: "Remove the the text-align: justify property or use a different value",
   },
