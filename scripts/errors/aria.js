@@ -148,7 +148,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 7,
     name: "ARIA toggle field elements must have an accessible name",
-    description: "ARIA toggle field elements must have an accessible name",
+    description: "ARIA toggle field elements must have an accessible name that describes the destination, purpose, function or action for screen reader users",
     wcagLinks: [
       {
         name: "Non-text Content (Level A)",
@@ -167,14 +167,14 @@ export const ariaErrors = [
         url: "https://html.spec.whatwg.org/#the-title-attribute",
       },
     ],
-    fix: "Ensure elements with role (checkbox, menu, menuitemcheckbox, menuitemradio, radio, radiogroup, switch) have accessible names",
+    fix: "Ensure elements with role=\"checkbox\", role=\"menu\", role=\"menuitemcheckbox\", role=\"menuitemradio\", role=\"radio\", role=\"radiogroup\" or role=\"switch\" have an accessible name",
   },
   {
     type: "ARIA",
     id: 8,
-    name: "ARIA hidden elements must not be focusable or contain focusable children",
+    name: "aria-hidden=\"true\" elements must not be focusable or contain focusable children",
     description:
-      "ARIA hidden elements must not be focusable or contain focusable children",
+      "aria-hidden=\"true\" elements must not be focusable or contain focusable children",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -197,13 +197,13 @@ export const ariaErrors = [
         url: "https://www.w3.org/TR/wai-aria-1.3/#aria-hidden",
       },
     ],
-    fix: "Ensure ARIA hidden elements are not focusable and don't contain focusable children",
+    fix: "Ensure aria-hidden=\"true\" elements are not focusable and don't contain focusable children",
   },
   {
     type: "ARIA",
     id: 9,
     name: "ARIA roles must conform to valid values",
-    description: "ARIA roles must conform to valid values",
+    description: "Invalid ARIA roles are not interpreted by assistive technologies and cannot be communicated to the user",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -224,7 +224,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 10,
     name: "ARIA dialog and alertdialog elements must have an accessible name",
-    description: "ARIA dialog and alertdialog elements must have an accessible name",
+    description: "ARIA dialog and alertdialog elements must have an accessible name that describes the destination, purpose, function or action for screen reader users",
     wcagLinks: [
       {
         name: "Using aria-alertdialog to identify errors",
@@ -235,15 +235,15 @@ export const ariaErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
       },
     ],
-    fix: "Ensure elements with role dialog and alertdialog have accessible names",
+    fix: "Ensure elements with role=\"dialog\" and role=\"alertdialog\" have an accessible name",
   },
   {
     type: "ARIA",
     id: 11,
-    name: "ARIA role text elements should not have focusable descendants",
-    description: "ARIA role text elements should not have focusable descendants",
+    name: "ARIA role=\"text\" elements should not have focusable descendants",
+    description: "ARIA role=\"text\" elements should not have focusable descendants",
     wcagLinks: "",
-    fix: "Ensure elements with role text don't have focusable descendants",
+    fix: "Ensure elements with role=\"text\" don't have focusable descendants",
   },
   {
     type: "ARIA",
