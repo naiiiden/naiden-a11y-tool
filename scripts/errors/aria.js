@@ -2,9 +2,9 @@ export const ariaErrors = [
   {
     type: "ARIA",
     id: 0,
-    name: "aria-hidden='true' must not be present on document body",
+    name: "aria-hidden=\"true\" attribute value must not be present on the document body",
     description:
-      "Document is not accessible to assistive technologies when the body element has aria-hidden='true'",
+      "Document is not accessible to assistive technologies when the body element has the aria-hidden=\"true\" attribute value",
     wcagLinks: [
       {
         name: "aria-hidden state",
@@ -15,14 +15,14 @@ export const ariaErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
       },
     ],
-    fix: "Ensure the document body element doesn't have aria-hidden=true attribute",
+    fix: "Ensure the document body element doesn't have aria-hidden=\"true\" attribute value",
   },
   {
     type: "ARIA",
     id: 1,
     name: "ARIA commands must have an accessible name",
     description:
-      "ARIA commands must have an accessible name that describes the destination, purpose, function or action for screen readers",
+      "ARIA commands must have an accessible name that describes the destination, purpose, function or action for screen reader users",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -33,13 +33,13 @@ export const ariaErrors = [
         url: "https://html.spec.whatwg.org/#the-title-attribute",
       },
     ],
-    fix: "Ensure elements with role=link, role=button or role=menuitem have an accessible name",
+    fix: "Ensure elements with role=\"link\", role=\"button\" or role=\"menuitem\" have an accessible name",
   },
   {
     type: "ARIA",
     id: 2,
     name: "ARIA meter elements must have an accessible name",
-    description: "ARIA meter elements must have an accessible name",
+    description: "ARIA meter elements must have an accessible name that describes the destination, purpose, function or action for screen reader users",
     wcagLinks: [
       {
         name: "Non-text Content (Level A)",
@@ -58,13 +58,13 @@ export const ariaErrors = [
         url: "https://html.spec.whatwg.org/#the-title-attribute",
       },
     ],
-    fix: "Ensure elements with role meter have accessible names",
+    fix: "Ensure elements with role=\"meter\" have an accessible name",
   },
   {
     type: "ARIA",
     id: 3,
     name: "ARIA progressbar elements must have an accessible name",
-    description: "ARIA progressbar elements must have an accessible name",
+    description: "ARIA progressbar elements must have an accessible name that describes the destination, purpose, function or action for screen reader users",
     wcagLinks: [
       {
         name: "Non-text Content (Level A)",
@@ -83,13 +83,13 @@ export const ariaErrors = [
         url: "https://html.spec.whatwg.org/#the-title-attribute",
       },
     ],
-    fix: "Ensure elements with role progressbar have accessible names",
+    fix: "Ensure elements with role=\"progressbar\" have an accessible name",
   },
   {
     type: "ARIA",
     id: 4,
     name: "ARIA tooltip elements must have an accessible name",
-    description: "ARIA tooltip elements must have an accessible name",
+    description: "ARIA tooltip elements must have an accessible name that describes the destination, purpose, function or action for screen reader users",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -100,7 +100,7 @@ export const ariaErrors = [
         url: "https://html.spec.whatwg.org/#the-title-attribute",
       },
     ],
-    fix: "Ensure elements with role tooltip have accessible names",
+    fix: "Ensure elements with role=\"tooltip\" have an accessible name",
   },
   {
     type: "ARIA",
@@ -117,13 +117,13 @@ export const ariaErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
       },
     ],
-    fix: "Make sure all that all role attributes are not using deprecated values",
+    fix: "Ensure that all role attributes are not using deprecated values",
   },
   {
     type: "ARIA",
     id: 6,
     name: "ARIA input fields must have an accessible names",
-    description: "ARIA input fields must have an accessible names",
+    description: "ARIA input fields must have an accessible name that describes the destination, purpose, function or action for screen reader users",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -142,7 +142,7 @@ export const ariaErrors = [
         url: "https://html.spec.whatwg.org/#the-title-attribute",
       },
     ],
-    fix: "Ensure elements with role (combobox, listbox, searchbox, slider, spinbutton, textbox) have accessible names",
+    fix: "Ensure elements with role=\"combobox\", role=\"listbox\", role=\"searchbox\", role=\"slider\", role=\"spinbutton\" or role=\"textbox\" have an accessible name",
   },
   {
     type: "ARIA",
