@@ -14,7 +14,7 @@ export const embeddedElementsErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
       },
     ],
-    fix: "Add text to the empty iframe.",
+    fix: "Ensure every iframe element has an accessible name.",
   },
   {
     type: "embedded-elements",
@@ -36,8 +36,8 @@ export const embeddedElementsErrors = [
   {
     type: "embedded-elements",
     id: 2,
-    name: "Frames must have a unique title attribute",
-    description: "Frames must have a unique title attribute",
+    name: "Iframe elements must have a unique title attribute",
+    description: "Iframe elements must have a unique and non-empty title attribute",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -48,13 +48,14 @@ export const embeddedElementsErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H64",
       },
     ],
-    fix: "Ensure all iframe/frame elements contain a unique title attribute",
+    fix: "Ensure all iframe elements contain a unique and non-empty title attribute",
   },
   {
     type: "embedded-elements",
     id: 3,
     name: "Video or audio elements must not autoplay",
-    description: "Video or audio elements must not autoplay",
+    description:
+      "Video or audio elements must not autoplay audio for more than 3 seconds without a control mechanism to stop or mute the audio",
     wcagLinks: [
       {
         name: "Audio Control (Level A)",
@@ -79,7 +80,8 @@ export const embeddedElementsErrors = [
     type: "embedded-elements",
     id: 4,
     name: "Video elements must have captions",
-    description: "Video elements must have captions",
+    description:
+      "Video elements must have captions which should convey all meaningful auditory information in the video including dialogue, musical cues, sound effects, and other relevant information for deaf users",
     wcagLinks: [
       {
         name: "Providing closed captions",
