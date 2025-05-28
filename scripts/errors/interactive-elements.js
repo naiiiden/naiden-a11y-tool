@@ -34,7 +34,7 @@ export const interactiveElementsErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html",
       },
     ],
-    fix: "Add descriptive alt text to all button images.",
+    fix: "Add descriptive alt text to all links.",
   },
   {
     type: "interactive-elements",
