@@ -7,4 +7,5 @@ A browser extension designed to help with identifying and fixing various accessi
 - Table checks,
 - Additional error information,
 - Color contrast checker UI,
-- Translations
+- Translations,
+- Possible AI integration in "How to Fix" section
