@@ -3,7 +3,7 @@ export const imageErrors = [
     type: "image",
     id: 0,
     name: "Image missing alt attribute",
-    description: "Some images are missing an alt attribute.",
+    description: "Image is missing an alt attribute.",
     wcagLinks: [
       {
         name: "Using alt attributes on img elements",
@@ -36,7 +36,7 @@ export const imageErrors = [
     type: "image",
     id: 1,
     name: "Linked image missing alt attribute or alt value is empty",
-    description: "Some linked images are missing an alt attribute or its value is empty.",
+    description: "Linked image is missing an alt attribute or its value is empty.",
     wcagLinks: [
       {
         name: "Using alt attributes on img elements",
@@ -69,7 +69,7 @@ export const imageErrors = [
     type: "image",
     id: 2,
     name: "Button image missing alt attribute or alt value is empty",
-    description: "Some button images are missing an alt attribute or its value is empty.",
+    description: "Button image is missing an alt attribute or its value is empty.",
     wcagLinks: [
       {
         name: "Using alt attributes on img elements",
@@ -98,7 +98,7 @@ export const imageErrors = [
     type: "image",
     id: 3,
     name: 'Image "img[usemap]" map missing alt text',
-    description: "Image map missing alt text.",
+    description: "Image map missing is alt text.",
     wcagLinks: [
       {
         name: "Using alt attributes on img elements",
@@ -111,7 +111,7 @@ export const imageErrors = [
     type: "image",
     id: 4,
     name: "Image map area missing alt text",
-    description: "Image map area missing alt text.",
+    description: "Image map area is missing alt text.",
     wcagLinks: [
       {
         name: "Providing text alternatives for the area elements of image maps",
@@ -124,7 +124,7 @@ export const imageErrors = [
     type: "image",
     id: 5,
     name: "role='img' elements must have an alt text",
-    description: "role='img' elements must have an alt text.",
+    description: "role='img' element doesn't have an alt text.",
     wcagLinks: [
       {
         name: "Using aria-label to provide labels for objects",
@@ -149,15 +149,15 @@ export const imageErrors = [
     type: "image",
     id: 6,
     name: "Server side img maps must not be used",
-    description: "Server side img maps must not be used",
+    description: "Server side img map is used",
     wcagLinks: "",
     fix: "Ensure server side img maps are not used",
   },
   {
     type: "image",
     id: 7,
-    name: "Svg elements with role='img' must have an alt text",
-    description: "Svg elements with role='img' must have an alt text.",
+    name: "SVG elements with role='img' must have an alt text",
+    description: "SVG element with role='img' doesn't have an alt text.",
     wcagLinks: [
       {
         name: "Using aria-label to provide labels for objects",
@@ -182,7 +182,7 @@ export const imageErrors = [
     type: "image",
     id: 8,
     name: "Alt text of button and link images should not be repeated as text",
-    description: "Alt text of button or link images should not be repeated as text",
+    description: "Alt text of button or link image is repeated as text",
     wcagLinks: [
       {
         name: "Combining adjacent image and text links for the same resource",
