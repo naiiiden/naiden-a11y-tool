@@ -109,7 +109,7 @@ export const formErrors = [
     type: "form",
     id: 3,
     name: "Fieldset doesn't have legend",
-    description: "Legend describes the elements contained by a fieldset",
+    description: "Fieldset doesn't contain a legend element which describes the elements contained by a fieldset",
     wcagLinks: [
       {
         name: "Providing a description for groups of form controls using fieldset and legend elements",
@@ -177,7 +177,7 @@ export const formErrors = [
     type: "form",
     id: 6,
     name: "Image input must have alt text",
-    description: "Image input must have alt text",
+    description: "Image input doesn't have an have alt text",
     wcagLinks: [
       {
         name: "Using alt attributes on images used as submit buttons",
@@ -206,7 +206,7 @@ export const formErrors = [
     type: "form",
     id: 7,
     name: "Form elements should have a visible label",
-    description: "Form elements should have a visible label",
+    description: "Form element doesn't have a visible label",
     wcagLinks: [
       {
         name: "Using label elements to associate text labels with form controls",
@@ -223,7 +223,7 @@ export const formErrors = [
     type: "form",
     id: 8,
     name: "autocomplete attribute must be used correctly",
-    description: "autocomplete attribute must be used correctly",
+    description: "Autocomplete attribute is not used correctly",
     wcagLinks: [
       {
         name: "Identify Input Purpose (Level AA)",
