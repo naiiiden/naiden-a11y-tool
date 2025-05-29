@@ -281,7 +281,7 @@ export const semanticErrors = [
     type: "semantic",
     id: 14,
     name: "Ul and ol must only directly contain li, script or template elements",
-    description: "Ul and ol must only directly contain li, script or template elements",
+    description: "Ul or ol contains a direct child element that is not a li, script or template",
     wcagLinks: [
       {
         name: "Using ol, ul and dl for lists or groups of links",
@@ -298,7 +298,7 @@ export const semanticErrors = [
     type: "semantic",
     id: 15,
     name: "Li elements must be contained in an ul or ol",
-    description: "Li elements must be contained in an ul or ol",
+    description: "Li element is not contained in an ul or ol element",
     wcagLinks: [
       {
         name: "Using ol, ul and dl for lists or groups of links",
@@ -316,7 +316,7 @@ export const semanticErrors = [
     id: 16,
     name: "Dl elements must only directly contain properly-ordered dt and dd groups, script, template or div elements",
     description:
-      "Dl elements must only directly contain properly-ordered dt and dd groups, script, template or div elements",
+      "Dl element contains a direct child element that is not a properly-ordered dt and dd groups, script, template or div elements",
     wcagLinks: [
       {
         name: "Using description lists",
@@ -337,7 +337,7 @@ export const semanticErrors = [
     type: "semantic",
     id: 17,
     name: "Dt and dd elements must be contained by a dl element",
-    description: "Dt and dd elements must be contained by a dl element",
+    description: "Dt or dd element is not contained by a dl element",
     wcagLinks: [
       {
         name: "Using description lists",
@@ -358,7 +358,7 @@ export const semanticErrors = [
     type: "semantic",
     id: 18,
     name: "Page must have means to bypass repeated blocks",
-    description: "Page must have means to bypass repeated blocks",
+    description: "Page doesn't have means to bypass repeated blocks",
     wcagLinks: [
       {
         name: "Bypass Blocks (Level A)",
@@ -391,7 +391,7 @@ export const semanticErrors = [
     type: "semantic",
     id: 19,
     name: "Ids must be unique",
-    description: "Ids must be unique",
+    description: "Id is not unique",
     wcagLinks: "",
     fix: "Ensure ids are not duplicated",
   },
@@ -399,7 +399,7 @@ export const semanticErrors = [
     type: "semantic",
     id: 20,
     name: "Elements should not have tabindex greater than 0",
-    description: "Elements should not have tabindex greater than 0",
+    description: "Element has tabindex greater than 0",
     wcagLinks: [
       {
         name: "Focus Order (Level A)",
@@ -416,7 +416,7 @@ export const semanticErrors = [
     type: "semantic",
     id: 21,
     name: "Landmarks should be unique",
-    description: "Landmarks should be unique",
+    description: "Landmarks is not unique",
     wcagLinks: [
       {
         name: "General Principles of Landmark Design",
