@@ -371,7 +371,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 18,
     name: "Certain ARIA roles must contain particular children",
-    description: "Element with ARIA certain role doesn't contain required children",
+    description: "Element with certain ARIA role doesn't contain required child element or role",
     wcagLinks: [
       {
         name: "Info and Relationships (Level A)",
@@ -388,7 +388,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 19,
     name: "Certain ARIA roles must be contained by particular parents",
-    description: "Certain elements with ARIA roles must be contained by particular parents",
+    description: "Element with certain ARIA role must be contained by particular parent element or role",
     wcagLinks: [
       {
         name: "Info and Relationships (Level A)",
@@ -405,7 +405,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 20,
     name: "ARIA role elements must use permitted ARIA attributes",
-    description: "Elements with ARIA role must use permitted ARIA attributes",
+    description: "Element with ARIA role is using an ARIA attribute which is prohibited for that role",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -426,7 +426,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 21,
     name: "ARIA attributes must be used as specified for the element's role",
-    description: "ARIA attributes must be used as specified for the element's role",
+    description: "ARIA attribute is not used as specified for the element's role",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -448,7 +448,7 @@ export const ariaErrors = [
     id: 22,
     name: "Elements marked as presentational or none should be consistently ignored",
     description:
-      "Elements marked as presentational or none should be removed from the accessibility tree and consistently ignored",
+      "Elements marked as presentational or none is focusable and is not consistently ignored and removed from the accessibility tree",
     wcagLinks: "",
     fix: "Check all elements with role=\"none\" or role=\"presentation\" to ensure they do not have a global ARIA attribute and are not focusable",
   },
@@ -456,7 +456,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 23,
     name: "Elements must have their visible text as part of their accessible name",
-    description: "Elements must have their visible text as part of their accessible name",
+    description: "Element doesn't have their visible text as part of their accessible name",
     wcagLinks: [
       {
         name: "Using label elements to associate text labels with form controls",
