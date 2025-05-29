@@ -274,7 +274,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 13,
     name: "ARIA treeitem elements must have an accessible name",
-    description: "ARIA treeitem elements must have an accessible name that describes the destination, purpose, function or action for screen reader users",
+    description: "ARIA treeitem element doesn't have an accessible name",
     wcagLinks: [
       {
         name: "Using aria-label to provide labels for objects",
@@ -293,13 +293,13 @@ export const ariaErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
       },
     ],
-    fix: "Ensure elements with role=\"treeitem\" have an accessible name",
+    fix: "Ensure elements with role=\"treeitem\" have an accessible name that describes the destination, purpose, function or action for screen reader users",
   },
   {
     type: "ARIA",
     id: 14,
     name: "ARIA attributes must conform to valid values",
-    description: "Elements with ARIA attributes must conform to valid values",
+    description: "Element with ARIA attribute doesn't have a valid value",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -316,7 +316,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 15,
     name: "ARIA attributes must conform to valid names",
-    description: "Elements with ARIA attributes must conform to valid names",
+    description: "Element with ARIA attribute doesn't have a valid name",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -333,7 +333,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 16,
     name: "Elements with ARIA roles must only use supported ARIA attributes",
-    description: "Elements with ARIA roles must only use supported ARIA attributes",
+    description: "Element with ARIA role doesn't use supported ARIA attributes allowed for their role",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -354,7 +354,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 17,
     name: "Required ARIA attributes must be provided for elements with ARIA role",
-    description: "required ARIA attributes must be provided for elements with ARIA role",
+    description: "Element with ARIA role doesn't have required ARIA attributes for their role",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -371,7 +371,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 18,
     name: "Certain ARIA roles must contain particular children",
-    description: "Certain elements with ARIA roles must contain particular children",
+    description: "Element with ARIA certain role doesn't contain required children",
     wcagLinks: [
       {
         name: "Info and Relationships (Level A)",
