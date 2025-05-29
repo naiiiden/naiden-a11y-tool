@@ -55,7 +55,7 @@ export const embeddedElementsErrors = [
     id: 3,
     name: "Video or audio elements must not autoplay",
     description:
-      "Video or audio elements must not autoplay audio for more than 3 seconds without a control mechanism to stop or mute the audio",
+      "A video or audio element autoplays audio for more than 3 seconds without a control mechanism to stop or mute the audio",
     wcagLinks: [
       {
         name: "Audio Control (Level A)",
@@ -81,7 +81,7 @@ export const embeddedElementsErrors = [
     id: 4,
     name: "Video elements must have captions",
     description:
-      "Video elements must have captions which should convey all meaningful auditory information in the video including dialogue, musical cues, sound effects, and other relevant information for deaf users",
+      "Video element lacks must have captions which should convey all meaningful auditory information in the video including dialogue, musical cues, sound effects, and other relevant information for deaf users",
     wcagLinks: [
       {
         name: "Providing closed captions",
