@@ -3,7 +3,7 @@ export const interactiveElementsErrors = [
     type: "interactive-elements",
     id: 0,
     name: "Empty link",
-    description: "Some links don't have text.",
+    description: "Link element don't have text.",
     wcagLinks: [
       {
         name: "Providing link text that describes the purpose of a link for anchor elements",
@@ -40,7 +40,7 @@ export const interactiveElementsErrors = [
     type: "interactive-elements",
     id: 1,
     name: "Empty button",
-    description: "Some button don't have text.",
+    description: "Button element don't have text.",
     wcagLinks: [
       {
         name: "Using aria-label to provide an invisible label where a visible label cannot be used",
@@ -82,7 +82,7 @@ export const interactiveElementsErrors = [
     type: "interactive-elements",
     id: 3,
     name: "Interactive control element has focusable children",
-    description: "Interactive control element has focusable children",
+    description: "Interactive control element contains focusable children",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -129,7 +129,7 @@ export const interactiveElementsErrors = [
     type: "interactive-elements",
     id: 5,
     name: "Scrollable region must have keyboard access",
-    description: "Scrollable region must have keyboard access",
+    description: "Scrollable region doesn't have keyboard access",
     wcagLinks: [
       {
         name: "Keyboard (Level A)",
@@ -154,7 +154,7 @@ export const interactiveElementsErrors = [
     type: "interactive-elements",
     id: 6,
     name: "Accesskeys must be unique",
-    description: "Accesskeys must be unique",
+    description: "Accesskey is not unique",
     wcagLinks: "",
     fix: "Ensure accesskeys are not duplicated",
   },
@@ -162,7 +162,8 @@ export const interactiveElementsErrors = [
     type: "interactive-elements",
     id: 7,
     name: "All touch targets must be 24px large, or leave sufficient space",
-    description: "All touch targets must be 24px large, or leave sufficient space",
+    description:
+      "Touch target is too small or placed too close to another touch target, making it hard to tap accurately on touch devices",
     wcagLinks: [
       {
         name: "Target Size (Minimum) (Level AA)",
