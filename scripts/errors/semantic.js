@@ -3,7 +3,7 @@ export const semanticErrors = [
     type: "semantic",
     id: 0,
     name: "No first level heading",
-    description: "No first level heading on the page",
+    description: "Page is missing first level heading",
     wcagLinks: [
       {
         name: "Using h1-h6 to identify headings",
@@ -185,7 +185,7 @@ export const semanticErrors = [
     id: 9,
     name: 'Header or role="banner" landmark should not be contained in another landmark',
     description:
-      'Header or role="banner" landmark should not be contained in another landmark',
+      'Header or role="banner" landmark is contained in another landmark',
     wcagLinks: [
       {
         name: "Landmark Regions",
@@ -203,7 +203,7 @@ export const semanticErrors = [
     id: 10,
     name: 'Aside or role="complementary" should not be contained in another landmark',
     description:
-      'Aside or role="complementary" should not be contained in another landmark',
+      'Aside or role="complementary" is contained in another landmark',
     wcagLinks: [
       {
         name: "Landmark Regions",
@@ -221,7 +221,7 @@ export const semanticErrors = [
     id: 11,
     name: 'Footer or role="contentinfo" landmark should not be contained in another landmark',
     description:
-      'Footer or role="contentinfo" landmark should not be contained in another landmark',
+      'Footer or role="contentinfo" landmark is contained in another landmark',
     wcagLinks: [
       {
         name: "Landmark Regions",
@@ -239,7 +239,7 @@ export const semanticErrors = [
     id: 12,
     name: 'Main or role="main" landmark should not be contained in another landmark',
     description:
-      'Main or role="main" landmark should not be contained in another landmark',
+      'Main or role="main" landmark is contained in another landmark',
     wcagLinks: [
       {
         name: "Landmark Regions",
@@ -256,7 +256,7 @@ export const semanticErrors = [
     type: "semantic",
     id: 13,
     name: "Page content should be contained by landmarks",
-    description: "Page content should be contained by landmarks",
+    description: "Element is not contained by landmarks",
     wcagLinks: [
       {
         name: "Using ARIA landmarks to identify regions of a page",
