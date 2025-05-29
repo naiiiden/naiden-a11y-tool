@@ -4,7 +4,7 @@ export const colourErrors = [
     id: 0,
     name: "Elements must meet minimum color contrast ratio thresholds",
     description:
-      "All text elements must have sufficient contrast between text in the foreground and background colors behind it in accordance with WCAG 2 AA contrast ratio thresholds.",
+      "Element doesn't have sufficient contrast between text in the foreground and background colors behind it in accordance with WCAG 2 AA contrast ratio thresholds.",
     wcagLinks: [
       {
         name: "Contrast (Minimum) (Level AA)",
