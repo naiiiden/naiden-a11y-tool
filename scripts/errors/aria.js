@@ -148,7 +148,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 7,
     name: "ARIA toggle field elements must have an accessible name",
-    description: "ARIA toggle field elements must have an accessible name that describes the destination, purpose, function or action for screen reader users",
+    description: "ARIA toggle field element doesn't have an accessible name",
     wcagLinks: [
       {
         name: "Non-text Content (Level A)",
@@ -167,14 +167,14 @@ export const ariaErrors = [
         url: "https://html.spec.whatwg.org/#the-title-attribute",
       },
     ],
-    fix: "Ensure elements with role=\"checkbox\", role=\"menu\", role=\"menuitemcheckbox\", role=\"menuitemradio\", role=\"radio\", role=\"radiogroup\" or role=\"switch\" have an accessible name",
+    fix: "Ensure elements with role=\"checkbox\", role=\"menu\", role=\"menuitemcheckbox\", role=\"menuitemradio\", role=\"radio\", role=\"radiogroup\" or role=\"switch\" have an accessible name that describes the destination, purpose, function or action for screen reader users",
   },
   {
     type: "ARIA",
     id: 8,
     name: "aria-hidden=\"true\" elements must not be focusable or contain focusable children",
     description:
-      "aria-hidden=\"true\" elements must not be focusable or contain focusable children",
+      "Element with aria-hidden=\"true\" attribute value is focusable or contains focusable children",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -197,13 +197,13 @@ export const ariaErrors = [
         url: "https://www.w3.org/TR/wai-aria-1.3/#aria-hidden",
       },
     ],
-    fix: "Ensure aria-hidden=\"true\" elements are not focusable and don't contain focusable children",
+    fix: "Ensure elements with aria-hidden=\"true\" attribute value are not focusable and don't contain focusable children",
   },
   {
     type: "ARIA",
     id: 9,
     name: "ARIA roles must conform to valid values",
-    description: "Invalid ARIA roles are not interpreted by assistive technologies and cannot be communicated to the user",
+    description: "Element has an invalid ARIA role which cannot be interpreted by assistive technologies and cannot be communicated to the user",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
@@ -218,13 +218,13 @@ export const ariaErrors = [
         url: "https://www.w3.org/TR/wai-aria-1.3/#roles",
       },
     ],
-    fix: "Ensure all ARIA role elements have a valid value",
+    fix: "Ensure all elements with an ARIA role have a valid value",
   },
   {
     type: "ARIA",
     id: 10,
     name: "ARIA dialog and alertdialog elements must have an accessible name",
-    description: "ARIA dialog and alertdialog elements must have an accessible name that describes the destination, purpose, function or action for screen reader users",
+    description: "ARIA dialog or alertdialog element doesn't have an accessible name",
     wcagLinks: [
       {
         name: "Using aria-alertdialog to identify errors",
@@ -235,13 +235,13 @@ export const ariaErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
       },
     ],
-    fix: "Ensure elements with role=\"dialog\" and role=\"alertdialog\" have an accessible name",
+    fix: "Ensure elements with role=\"dialog\" and role=\"alertdialog\" have an accessible name that describes the destination, purpose, function or action for screen reader users",
   },
   {
     type: "ARIA",
     id: 11,
     name: "ARIA role=\"text\" elements should not have focusable descendants",
-    description: "ARIA role=\"text\" elements should not have focusable descendants",
+    description: "Element with ARIA role=\"text\" contains focusable descendants",
     wcagLinks: "",
     fix: "Ensure elements with role=\"text\" don't have focusable descendants",
   },
@@ -249,7 +249,7 @@ export const ariaErrors = [
     type: "ARIA",
     id: 12,
     name: "ARIA role should be appropriate for the element",
-    description: "ARIA role should be appropriate for the element",
+    description: "ARIA role is not appropriate for the element",
     wcagLinks: [
       {
         name: "The roles model",
