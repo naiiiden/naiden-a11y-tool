@@ -27,14 +27,14 @@ export const emptyElementsErrors = [
   {
     type: "empty-elements",
     id: 2,
-    name: "Empty or missing summary",
-    description: "Summary element is empty or missing.",
+    name: "Empty or missing <summary>",
+    description: "<summary> element is empty or missing.",
     wcagLinks: [
       {
         name: "Name, Role, Value (Level A)",
         url: "https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html",
       },
     ],
-    fix: "Ensure that summary elements have an accesible name.",
+    fix: "Ensure that <summary> elements have an accesible name.",
   },
 ];
