@@ -112,7 +112,7 @@ export const semanticErrors = [
     type: "semantic",
     id: 5,
     name: "Page must have one <main> tag",
-    description: "Page must have a main tag",
+    description: "Page must have a <main> tag",
     wcagLinks: [
       {
         name: "Using ARIA landmarks to identify regions of a page",
@@ -127,13 +127,13 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/main.html",
       },
     ],
-    fix: "Add main tag",
+    fix: "Add <main> tag",
   },
   {
     type: "semantic",
     id: 6,
-    name: "Page should not have more than one main tag",
-    description: "Page must have only one main tag",
+    name: "Page should not have more than one <main> tag",
+    description: "Page must have only one <main> tag",
     wcagLinks: [
       {
         name: "The <main> element",
@@ -183,9 +183,9 @@ export const semanticErrors = [
   {
     type: "semantic",
     id: 9,
-    name: 'Header or role="banner" landmark should not be contained in another landmark',
+    name: '<header> or role="banner" landmark should not be contained in another landmark',
     description:
-      'Header or role="banner" landmark is contained in another landmark',
+      '<header> or role="banner" landmark is contained in another landmark',
     wcagLinks: [
       {
         name: "Landmark Regions",
@@ -196,14 +196,14 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/banner.html",
       },
     ],
-    fix: 'Header or role="banner" landmark should be at top level',
+    fix: '<header> or role="banner" landmark should be at top level',
   },
   {
     type: "semantic",
     id: 10,
-    name: 'Aside or role="complementary" should not be contained in another landmark',
+    name: '<aside> or role="complementary" should not be contained in another landmark',
     description:
-      'Aside or role="complementary" is contained in another landmark',
+      '<aside> or role="complementary" is contained in another landmark',
     wcagLinks: [
       {
         name: "Landmark Regions",
@@ -214,14 +214,14 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/complementary.html",
       },
     ],
-    fix: 'Aside or role="complementary" should be top level',
+    fix: '<aside> or role="complementary" should be top level',
   },
   {
     type: "semantic",
     id: 11,
-    name: 'Footer or role="contentinfo" landmark should not be contained in another landmark',
+    name: '<footer> or role="contentinfo" landmark should not be contained in another landmark',
     description:
-      'Footer or role="contentinfo" landmark is contained in another landmark',
+      '<footer> or role="contentinfo" landmark is contained in another landmark',
     wcagLinks: [
       {
         name: "Landmark Regions",
@@ -232,14 +232,14 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/contentinfo.html",
       },
     ],
-    fix: 'Footer or role="contentinfo" landmark should be top level',
+    fix: '<footer> or role="contentinfo" landmark should be top level',
   },
   {
     type: "semantic",
     id: 12,
-    name: 'Main or role="main" landmark should not be contained in another landmark',
+    name: '<main> or role="main" landmark should not be contained in another landmark',
     description:
-      'Main or role="main" landmark is contained in another landmark',
+      '<main> or role="main" landmark is contained in another landmark',
     wcagLinks: [
       {
         name: "Landmark Regions",
@@ -250,7 +250,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/main.html",
       },
     ],
-    fix: 'Main or role="main" landmark should be top level',
+    fix: '<main> or role="main" landmark should be top level',
   },
   {
     type: "semantic",
@@ -280,8 +280,8 @@ export const semanticErrors = [
   {
     type: "semantic",
     id: 14,
-    name: "Ul and ol must only directly contain li, script or template elements",
-    description: "Ul or ol contains a direct child element that is not a li, script or template",
+    name: "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+    description: "<ul> or <ol> contains a direct child element that is not a <li>, <script> or <template>",
     wcagLinks: [
       {
         name: "Using ol, ul and dl for lists or groups of links",
@@ -297,8 +297,8 @@ export const semanticErrors = [
   {
     type: "semantic",
     id: 15,
-    name: "Li elements must be contained in an ul or ol",
-    description: "Li element is not contained in an ul or ol element",
+    name: "<li> elements must be contained in an <ul> or <ol>",
+    description: "<li> element is not contained in an <ul> or <ol> element",
     wcagLinks: [
       {
         name: "Using ol, ul and dl for lists or groups of links",
@@ -309,14 +309,14 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
       },
     ],
-    fix: "Ensures li elements are used semantically",
+    fix: "Ensures <li> elements are used semantically",
   },
   {
     type: "semantic",
     id: 16,
-    name: "Dl elements must only directly contain properly-ordered dt and dd groups, script, template or div elements",
+    name: "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements",
     description:
-      "Dl element contains a direct child element that is not a properly-ordered dt and dd groups, script, template or div elements",
+      "<dl> element contains a direct child element that is not a properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements",
     wcagLinks: [
       {
         name: "Using description lists",
@@ -331,13 +331,13 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
       },
     ],
-    fix: "Ensure that all dl elements are structured correctly.",
+    fix: "Ensure that all <dl> elements are structured correctly.",
   },
   {
     type: "semantic",
     id: 17,
-    name: "Dt and dd elements must be contained by a dl element",
-    description: "Dt or dd element is not contained by a dl element",
+    name: "<dt> and <dd> elements must be contained by a <dl> element",
+    description: "<dt> or <dd> element is not contained by a <dl> element",
     wcagLinks: [
       {
         name: "Using description lists",
@@ -352,7 +352,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
       },
     ],
-    fix: "Ensure that all dt and dd elements are contained dl.",
+    fix: "Ensure that all <dt> and <dd> elements are contained <dl>.",
   },
   {
     type: "semantic",
