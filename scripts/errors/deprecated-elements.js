@@ -2,9 +2,9 @@ export const deprecatedElementsErrors = [
   {
     type: "deprecated-elements",
     id: 0,
-    name: "Marquee elements are deprecated and must not be used",
+    name: "<marquee> elements are deprecated and must not be used",
     description:
-      "A marquee element is present",
+      "A <marquee> element is present",
     wcagLinks: [
       {
         name: "Pause, Stop, Hide (Level A)",
@@ -15,6 +15,6 @@ export const deprecatedElementsErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Techniques/failures/F16.html",
       },
     ],
-    fix: "Remove the marquee element and replace it with CSS animations or other accessible methods. Ensure the user is allowed to pause or stop the animation.",
+    fix: "Remove the <marquee> element and replace it with CSS animations or other accessible methods. Ensure the user is allowed to pause or stop the animation.",
   },
 ];
