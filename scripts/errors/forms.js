@@ -108,25 +108,25 @@ export const formErrors = [
   {
     type: "form",
     id: 3,
-    name: "Fieldset doesn't have legend",
-    description: "Fieldset doesn't contain a legend element which describes the elements contained by a fieldset",
+    name: "<fieldset> doesn't have <legend>",
+    description: "<fieldset> doesn't contain a <legend> element which describes the elements contained by the <fieldset>",
     wcagLinks: [
       {
-        name: "Providing a description for groups of form controls using fieldset and legend elements",
+        name: "Providing a description for groups of form controls using <fieldset> and <legend> elements",
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H71",
       },
     ],
-    fix: "Add legend",
+    fix: "Add <legend>",
   },
   {
     type: "form",
     id: 4,
-    name: "Missing fieldset",
+    name: "Missing <fieldset>",
     description:
-      "Two or more radio buttons or checkboxes with the same name are not contained by a fieldset",
+      "Two or more radio buttons or checkboxes with the same name are not contained by a <fieldset>",
     wcagLinks: [
       {
-        name: "Providing a description for groups of form controls using fieldset and legend elements",
+        name: "Providing a description for groups of form controls using <fieldset> and <legend> elements",
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H71",
       },
       {
