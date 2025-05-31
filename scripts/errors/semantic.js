@@ -6,7 +6,7 @@ export const semanticErrors = [
     description: "Page is missing first level heading",
     wcagLinks: [
       {
-        name: "Using h1-h6 to identify headings",
+        name: "Using <h1>-<h6> to identify headings",
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H42",
       },
       {
@@ -35,7 +35,7 @@ export const semanticErrors = [
     description: "Heading level skipped",
     wcagLinks: [
       {
-        name: "Using h1-h6 to identify headings",
+        name: "Using <h1>-<h6> to identify headings",
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H42",
       },
       {
@@ -284,7 +284,7 @@ export const semanticErrors = [
     description: "<ul> or <ol> contains a direct child element that is not a <li>, <script> or <template>",
     wcagLinks: [
       {
-        name: "Using ol, ul and dl for lists or groups of links",
+        name: "Using <ol>, <ul> and <dl> for lists or groups of links",
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H48",
       },
       {
@@ -301,7 +301,7 @@ export const semanticErrors = [
     description: "<li> element is not contained in an <ul> or <ol> element",
     wcagLinks: [
       {
-        name: "Using ol, ul and dl for lists or groups of links",
+        name: "Using <ol>, <ul> and <dl> for lists or groups of links",
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H48",
       },
       {
@@ -323,7 +323,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H40",
       },
       {
-        name: "Using ol, ul and dl for lists or groups of links",
+        name: "Using <ol>, <ul> and <dl> for lists or groups of links",
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H48",
       },
       {
@@ -344,7 +344,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H40",
       },
       {
-        name: "Using ol, ul and dl for lists or groups of links",
+        name: "Using <ol>, <ul> and <dl> for lists or groups of links",
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H48",
       },
       {
@@ -352,7 +352,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships",
       },
     ],
-    fix: "Ensure that all <dt> and <dd> elements are contained <dl>.",
+    fix: "Ensure that all <dt> and <dd> elements are contained by a <dl>.",
   },
   {
     type: "semantic",
