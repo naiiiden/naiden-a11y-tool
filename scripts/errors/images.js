@@ -2,11 +2,11 @@ export const imageErrors = [
   {
     type: "image",
     id: 0,
-    name: "Image missing alt attribute",
-    description: "Image is missing an alt attribute.",
+    name: "<img> missing alt attribute",
+    description: "<img> is missing an alt attribute.",
     wcagLinks: [
       {
-        name: "Using alt attributes on img elements",
+        name: "Using alt attributes on <img> elements",
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H37",
       },
       {
@@ -14,7 +14,7 @@ export const imageErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
       },
       {
-        name: 'Failure of Success Criterion 1.1.1 due to omitting the alt attribute or text alternative on img elements, area elements, and input elements of type "image"',
+        name: 'Failure of Success Criterion 1.1.1 due to omitting the alt attribute or text alternative on <img> elements, <area> elements, and <input> elements of type "image"',
         url: "https://www.w3.org/WAI/WCAG22/Techniques/failures/F65.html",
       },
       {
@@ -26,7 +26,7 @@ export const imageErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA10.html",
       },
       {
-        name: "Using null alt text and no title attribute on img elements for images that assistive technology should ignore",
+        name: "Using null alt text and no title attribute on <img> elements for images that assistive technology should ignore",
         url: "https://www.w3.org/WAI/WCAG22/Techniques/html/H67.html",
       },
     ],
@@ -123,8 +123,8 @@ export const imageErrors = [
   {
     type: "image",
     id: 5,
-    name: "role='img' elements must have an alt text",
-    description: "role='img' element doesn't have an alt text.",
+    name: "role=\"img\" elements must have an alt text",
+    description: "role=\"img\" element doesn't have an alt text.",
     wcagLinks: [
       {
         name: "Using aria-label to provide labels for objects",
@@ -143,7 +143,7 @@ export const imageErrors = [
         url: "https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA10.html",
       },
     ],
-    fix: "Add alt text to all role='img' elements.",
+    fix: "Add alt text to all elements with role=\"img\".",
   },
   {
     type: "image",
@@ -156,8 +156,8 @@ export const imageErrors = [
   {
     type: "image",
     id: 7,
-    name: "SVG elements with role='img' must have an alt text",
-    description: "SVG element with role='img' doesn't have an alt text.",
+    name: "<svg> elements with role=\"img\" must have an alt text",
+    description: "<svg> element with role=\"img\" doesn't have an alt text.",
     wcagLinks: [
       {
         name: "Using aria-label to provide labels for objects",
@@ -176,7 +176,7 @@ export const imageErrors = [
         url: "https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA10.html",
       },
     ],
-    fix: "Add alt text to all svg elements with role='img'",
+    fix: "Add alt text to all <svg> elements with role=\"img\"",
   },
   {
     type: "image",
