@@ -3,7 +3,7 @@ export const interactiveElementsErrors = [
     type: "interactive-elements",
     id: 0,
     name: "Empty link",
-    description: "Link element don't have text.",
+    description: "<a> element don't have text.",
     wcagLinks: [
       {
         name: "Providing link text that describes the purpose of a link for anchor elements",
@@ -40,7 +40,7 @@ export const interactiveElementsErrors = [
     type: "interactive-elements",
     id: 1,
     name: "Empty button",
-    description: "Button element don't have text.",
+    description: "<button> element don't have text.",
     wcagLinks: [
       {
         name: "Using aria-label to provide an invisible label where a visible label cannot be used",
