@@ -14,7 +14,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels.html",
       },
       {
-        name: "Using role=heading to identify headings",
+        name: "Using role=\"heading\" to identify headings",
         url: "https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA12",
       },
       {
@@ -26,7 +26,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Techniques/general/G141",
       },
     ],
-    fix: "Add h1 tag",
+    fix: "Add <h1> tag",
   },
   {
     type: "semantic",
@@ -144,7 +144,7 @@ export const semanticErrors = [
         url: "https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/examples/main.html",
       },
     ],
-    fix: "Leave only one main tag",
+    fix: "Leave only one <main> tag",
   },
   {
     type: "semantic",
