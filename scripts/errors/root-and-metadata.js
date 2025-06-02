@@ -63,7 +63,6 @@ export const rootAndMetadataErrors = [
         name: "Page Titled (Level A)",
         url: "https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html",
       },
-      // descriptive title here
     ],
     fix: "Add a non-empty <title> to the page",
   },
