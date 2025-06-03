@@ -64,7 +64,7 @@ export const rootAndMetadataErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/page-titled.html",
       },
     ],
-    fix: "Add a non-empty <title> to the page",
+    fix: "Add a non-empty &c;<title>&ec; to the page",
   },
   {
     type: "root-and-metadata",
