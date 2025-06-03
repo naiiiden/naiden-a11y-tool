@@ -372,6 +372,9 @@ label:has(input[type=checkbox]) input[type=checkbox]:not(:disabled):hover, label
 #errors-list .custom-details ul > li:not(details li) .element-location *, #errors-list .custom-details ul > li:not(details li) .element-fix * {
   display: inline;
 }
+#errors-list .custom-details ul > li:not(details li) code:not(pre code) {
+  background: var(--background-primary);
+}
 #errors-list .custom-details ul > li:not(details li) .element-information {
   padding: 1.5rem 0;
 }
