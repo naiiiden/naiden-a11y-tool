@@ -2,7 +2,7 @@ export const rootAndMetadataErrors = [
   {
     type: "root-and-metadata",
     id: 0,
-    name: '<html> element is missing a"lang" attribute',
+    name: 'c;<html>&ec; element is missing a"lang" attribute',
     description: 'The page is missing a "lang" attribute',
     wcagLinks: [
       {
@@ -22,12 +22,12 @@ export const rootAndMetadataErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html",
       },
     ],
-    fix: 'Ensure that the <html> element has a "lang" attribute',
+    fix: 'Ensure that the c;<html>&ec; element has a "lang" attribute',
   },
   {
     type: "root-and-metadata",
     id: 1,
-    name: '<html> element has an invalid "lang" attribute value',
+    name: 'c;<html>&ec; element has an invalid "lang" attribute value',
     description: 'The page\'s "lang" attribute value is invalid',
     wcagLinks: [
       {
@@ -43,13 +43,13 @@ export const rootAndMetadataErrors = [
         url: "https://www.w3.org/WAI/WCAG22/Understanding/language-of-page.html",
       },
     ],
-    fix: 'Ensure that the <html> element has a valid "lang" attribute value',
+    fix: 'Ensure that the c;<html>&ec; element has a valid "lang" attribute value',
   },
   {
     type: "root-and-metadata",
     id: 2,
-    name: "Document <title> element is missing or it's empty",
-    description: "The document is missing a <title> element or it has one but it's empty",
+    name: "Document c;<title>&ec; element is missing or it's empty",
+    description: "The document is missing a c;<title>&ec; element or it has one but it's empty",
     wcagLinks: [
       {
         name: "Providing a document title using the <title> element",
